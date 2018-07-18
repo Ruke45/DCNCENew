@@ -44,6 +44,6 @@ D:\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OAuth.Consumer.xml
 D:\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OAuth.xml
 D:\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId.xml
 D:\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-D:\NCEDCO\NCEDCO\obj\Debug\NCEDCO.csprojResolveAssemblyReference.cache
 D:\NCEDCO\NCEDCO\obj\Debug\NCEDCO.dll
 D:\NCEDCO\NCEDCO\obj\Debug\NCEDCO.pdb
+D:\NCEDCO\NCEDCO\obj\Debug\NCEDCO.csprojResolveAssemblyReference.cache

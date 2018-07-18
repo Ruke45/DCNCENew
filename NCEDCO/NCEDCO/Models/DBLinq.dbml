@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NCEDCO" Class="DBLinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ANONYMUS\SQLEXPRESS;Initial Catalog=NCEDCO;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NCEDCOConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.DCISgetSequence" Method="DCISgetSequence">
+    <Parameter Name="SequenceName" Parameter="sequenceName" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="DCISgetSequenceResult">
+      <Column Name="SequesnceValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DCISsetParentCustomerRequest" Method="DCISsetParentCustomerRequest">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address3" Parameter="address3" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="isSVat" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="AdminUserId" Parameter="adminUserId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="AdminPassword" Parameter="adminPassword" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="ContactPersonName" Parameter="contactPersonName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ContactPersonDesignation" Parameter="contactPersonDesignation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ContactPersonDirectPhoneNumber" Parameter="contactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactPersonMobile" Parameter="contactPersonMobile" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactPersonEmail" Parameter="contactPersonEmail" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NCEMember" Parameter="nCEMember" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="AdminName" Parameter="adminName" Type="System.String" DbType="VarChar(150)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DCISgetParentCustomerRequestList" Method="DCISgetParentCustomerRequestList">
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="DCISgetParentCustomerRequestListResult">
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Telephone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSVat" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ContactPersonDesignation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonMobile" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NCEMember" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PaidType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AdminUserId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminPassword" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DCISgetParentCustomerRequestDetails" Method="DCISgetParentCustomerRequestDetails">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="DCISgetParentCustomerRequestDetailsResult">
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Telephone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSVat" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ContactPersonDesignation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonMobile" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NCEMember" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PaidType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AdminUserId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminPassword" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
