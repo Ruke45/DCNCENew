@@ -152,6 +152,8 @@ namespace NCEDCO.Models.Business
                         req.Fax = r.Fax;
                         req.Request_Id = r.RequestId;
                         req.Telephone = r.Telephone;
+                        req.IsNCEMember = r.NCEMember;
+                        req.IsVat = r.IsSVat;
                     }
                 }
 
@@ -162,6 +164,72 @@ namespace NCEDCO.Models.Business
                 ErrorLog.LogError(ex);
                 return null;
             }
+        }
+
+        public string SetApproveCustomerParentRequest(M_CustomerParentRequest pr)
+        {
+            try
+            {
+                string ParentCID = string.Empty;
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+
+                        B_RecordSequence CParentId = new B_RecordSequence();
+                        Int64 RequestNo = CParentId.getNextSequence("ParentCustomerId", dbContext);
+                        ParentCID = "PC" + RequestNo.ToString();
+                        dbContext.DCISsetApproveParentCustomer( pr.Request_Id,
+                                                                ParentCID,
+                                                                pr.Customer_Name,
+                                                                pr.Telephone,
+                                                                pr.Email,
+                                                                pr.Fax,
+                                                                "A",
+                                                                pr.Address1,
+                                                                pr.Address2,
+                                                                pr.Address3,
+                                                                "ADMIN",
+                                                                pr.IsVat,
+                                                                pr.ContactPersonName,
+                                                                pr.ContactPersonDesignation,
+                                                                pr.ContactPersonDirectPhone,
+                                                                pr.ContactPersonMobile,
+                                                                pr.ContactPersonEmail,
+                                                                pr.IsNCEMember);
+
+                        dbContext.DCISsetUpdateParentCustomerReq("A", pr.Request_Id);
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+                        return ParentCID;
+
+                        //Email Send function needed
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return null;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
         }
     }
 }

@@ -50,5 +50,27 @@ namespace NCEDCO.Controllers
         {
             return View(CustomerOBj.getParentCustomerDetails(RequestId));
         }
+
+        //[UserFilter(Function_Id = "TINDX")]
+        [HttpPost]
+        public JsonResult ApprovePCustomer(string RequestID)
+        {
+            string result = "Error";
+            try
+            {
+
+                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(RequestID));
+
+                if (result != null)
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

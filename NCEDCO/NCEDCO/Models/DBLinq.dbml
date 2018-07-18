@@ -83,4 +83,30 @@
       <Column Name="AdminName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.DCISsetUpdateParentCustomerReq" Method="DCISsetUpdateParentCustomerReq">
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DCISsetApproveParentCustomer" Method="DCISsetApproveParentCustomer">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ParentCustomerID" Parameter="parentCustomerID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address3" Parameter="address3" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="isSVat" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="ContactPersonName" Parameter="contactPersonName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ContactPersonDesignation" Parameter="contactPersonDesignation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ContactPersonDirectPhoneNumber" Parameter="contactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactPersonMobile" Parameter="contactPersonMobile" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactPersonEmail" Parameter="contactPersonEmail" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NCEMember" Parameter="nCEMember" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

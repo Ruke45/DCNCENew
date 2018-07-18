@@ -109,6 +109,38 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID);
 			return ((ISingleResult<DCISgetParentCustomerRequestDetailsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISsetUpdateParentCustomerReq")]
+		public int DCISsetUpdateParentCustomerReq([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(1)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, requestID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISsetApproveParentCustomer")]
+		public int DCISsetApproveParentCustomer(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerID", DbType="VarChar(20)")] string parentCustomerID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="VarChar(100)")] string name, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telephone", DbType="VarChar(20)")] string telephone, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(50)")] string email, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fax", DbType="VarChar(20)")] string fax, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(1)")] string status, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address1", DbType="NVarChar(50)")] string address1, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address2", DbType="NVarChar(50)")] string address2, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address3", DbType="NVarChar(50)")] string address3, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string isSVat, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonName", DbType="VarChar(150)")] string contactPersonName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonDesignation", DbType="VarChar(50)")] string contactPersonDesignation, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonDirectPhoneNumber", DbType="VarChar(20)")] string contactPersonDirectPhoneNumber, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonMobile", DbType="VarChar(20)")] string contactPersonMobile, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonEmail", DbType="VarChar(50)")] string contactPersonEmail, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="NCEMember", DbType="VarChar(10)")] string nCEMember)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, parentCustomerID, name, telephone, email, fax, status, address1, address2, address3, createdBy, isSVat, contactPersonName, contactPersonDesignation, contactPersonDirectPhoneNumber, contactPersonMobile, contactPersonEmail, nCEMember);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
