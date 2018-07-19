@@ -142,13 +142,6 @@ namespace NCEDCO.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISsetApprovedPCUser")]
-		public int DCISsetApprovedPCUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(20)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonName", DbType="VarChar(150)")] string personName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(200)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerId", DbType="VarChar(20)")] string parentCustomerId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, personName, password, parentCustomerId);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISgeMailParameters")]
 		public ISingleResult<DCISgeMailParametersResult> DCISgeMailParameters()
 		{
@@ -168,6 +161,13 @@ namespace NCEDCO.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rejectReasonCategory);
 			return ((ISingleResult<_getRejectReasonsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISsetApprovedPCUser")]
+		public int DCISsetApprovedPCUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(20)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonName", DbType="VarChar(150)")] string personName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(200)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerId", DbType="VarChar(20)")] string parentCustomerId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, personName, password, parentCustomerId);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

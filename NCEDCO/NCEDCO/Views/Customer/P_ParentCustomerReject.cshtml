@@ -14,6 +14,9 @@
                     @Html.DropDownListFor(model => model.Reject_ReasonId, @ViewBag.Bag_RejectReasons as SelectList, "", new { @class = "select2_C form-control"})
                     <span class="help-block m-b-none" id="CategoryIdError"></span>
                 </div>
+                <div class="col-sm-2">
+                            @Html.ValidationMessageFor(model => model.Reject_ReasonId, null, new { @class = "text-danger" })
+                        </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -52,7 +55,7 @@
                 success: function () {
                     $("#loaderDiv").hide();
                     $("#myModal").modal("hide");
-                    window.location.href = "/Customer/Category";
+                    window.location.href = "/Customer/ParentCustomerRequests?Result=Rejected";
 
                 }
 

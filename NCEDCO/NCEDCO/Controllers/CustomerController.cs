@@ -20,6 +20,11 @@ namespace NCEDCO.Controllers
             return View();
         }
 
+        public ActionResult CRegister()
+        {
+            return View();
+        }
+
         [HttpPost]
         public JsonResult Register(M_CustomerParentRequest Model)
         {

@@ -147,6 +147,7 @@ namespace NCEDCO.Models.Business
                         req.Address3 = r.Address3;
                         req.Admin_Name = r.AdminName;
                         req.Admin_UserId = r.AdminUserId;
+                        req.Admin_Password = r.AdminPassword;
                         req.ContactPersonDesignation = r.ContactPersonDesignation;
                         req.ContactPersonDirectPhone = r.ContactPersonDirectPhoneNumber;
                         req.ContactPersonEmail = r.ContactPersonEmail;

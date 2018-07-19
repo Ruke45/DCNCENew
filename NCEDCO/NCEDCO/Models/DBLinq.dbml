@@ -109,13 +109,6 @@
     <Parameter Name="NCEMember" Parameter="nCEMember" Type="System.String" DbType="VarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.DCISsetApprovedPCUser" Method="DCISsetApprovedPCUser">
-    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="PersonName" Parameter="personName" Type="System.String" DbType="VarChar(150)" />
-    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(200)" />
-    <Parameter Name="ParentCustomerId" Parameter="parentCustomerId" Type="System.String" DbType="VarChar(20)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.DCISgeMailParameters" Method="DCISgeMailParameters">
     <ElementType Name="DCISgeMailParametersResult">
       <Column Name="ParameterCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
@@ -132,5 +125,12 @@
       <Column Name="RejectCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="ReasonName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.DCISsetApprovedPCUser" Method="DCISsetApprovedPCUser">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="PersonName" Parameter="personName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="ParentCustomerId" Parameter="parentCustomerId" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
