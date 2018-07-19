@@ -23,169 +23,298 @@
 
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Parent Customer Requests Table <div style="float:right">
-                <button type="button" class="btn btn-primary">Approve</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                <button type="button" class="btn btn-warning">Return</button>
+            <div class="panel-heading">
+                Parent Customer Requests Table
+                <div style="float: right">
+                    <button type="button" class="btn btn-primary" onclick="ApproveParentCustomer()">Approve </button>
+                    <button type="button" class="btn btn-danger" onclick='ShowRejectView("@Model.Request_Id")'>Reject</button>
+                    <button type="button" class="btn btn-warning">Return</button>
 
-           </div>
+                </div>
 
             </div>
 
 
 
             <div class="panel-body">
-                        <div class="row">
-            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="FrmPCDetails" class="form-horizontal" autocomplete="off">
+                             @Html.HiddenFor(m => m.Request_Id, new { @Value = Model.Request_Id})
+                        <table class="table table-bordered boxshadow">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">Administrator Details</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Request_Id)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Request_Id)
+                                    </td>
 
-                <table class="table table-bordered boxshadow">
-                    <tbody>
-                        <tr><td colspan="2">Administrator Details</td></tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Request_Id)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Request_Id)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Customer_Name)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Customer_Name)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Customer_Name)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Customer_Name)
-                            </td>
+                                </tr>
 
-                        </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Address1)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Address1)
+                                    </td>
 
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Address1)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Address1)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Address2)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Address2)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Address2)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Address2)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Address3)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Address3)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Address3)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Address3)
-                            </td>
+                                </tr>
 
-                        </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Telephone)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Telephone)
+                                    </td>
 
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Telephone)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Telephone)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Email)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Email)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Email)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Email)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Fax)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Fax)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Fax)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Fax)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Contact Person Details</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonName)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.ContactPersonName)
+                                    </td>
 
-                        </tr>
-                        <tr><td colspan="2">Contact Person Details</td></tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonName)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.ContactPersonName)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonEmail)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.ContactPersonEmail)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonEmail)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.ContactPersonEmail)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonDesignation)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.ContactPersonDesignation)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonDesignation)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.ContactPersonDesignation)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonDirectPhone)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.ContactPersonDirectPhone)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.ContactPersonDirectPhone)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.ContactPersonDirectPhone)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Administrator Details</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Admin_Name)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Admin_Name)
+                                    </td>
 
-                        </tr>
-                        <tr><td colspan="2">Administrator Details</td></tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Admin_Name)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Admin_Name)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Admin_UserId)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.Admin_UserId)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.Admin_UserId)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.Admin_UserId)
-                            </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Other Details</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.IsNCEMember)</td>
+                                    @if (Model.IsNCEMember == "Y")
+                                    {
+                                        <td class="modal-sm" colspan="3">Yes
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="modal-sm" colspan="3">No
+                                        </td>
+                                    }
 
-                        </tr>
-                        <tr><td colspan="2">Other Details</td></tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.IsNCEMember)</td>
-                            @if(Model.IsNCEMember == "Y"){
-                            <td class="modal-sm" colspan="3">
-                                Yes
-                            </td>
-                            }else{
-                                <td class="modal-sm" colspan="3">
-                                 No
-                            </td>
-                            }
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.IsVat)</td>
+                                    @if (Model.IsVat == "Y")
+                                    {
+                                        <td class="modal-sm" colspan="3">Yes
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="modal-sm" colspan="3">No
+                                        </td>
+                                    }
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.IsVat)</td>
-                            @if(Model.IsVat == "Y"){
-                            <td class="modal-sm" colspan="3">
-                                Yes
-                            </td>
-                            }else{
-                                <td class="modal-sm" colspan="3">
-                                 No
-                            </td>
-                            }
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.CreatedDate)</td>
+                                    <td class="modal-sm" colspan="3">
+                                        @Html.DisplayFor(model => model.CreatedDate)
+                                    </td>
 
-                        </tr>
-                        <tr>
-                            <td style="font-weight: bold;">@Html.DisplayNameFor(model => model.CreatedDate)</td>
-                            <td class="modal-sm" colspan="3">
-                                @Html.DisplayFor(model => model.CreatedDate)
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </form> 
+                    </div>
+                </div>
 
             </div>
-        </div>
 
-                            </div>
-
-             <div class="panel-footer">Parent Customer Requests Table</div>
+            <div class="panel-footer">Parent Customer Requests Table</div>
         </div>
     </div>
 </div>
+
+<div id="SuccesModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+
+        <div class="modal-content" id="SuccessModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Successful !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="SuccesLable" class="control-label" style="color: #3bc91f"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Notification Modals -->
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="OModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content"  id="OModelBody">
+
+    </div>
+
+  </div>
+</div>
+<script>
+
+    var ApproveParentCustomer = function () {
+        debugger
+        var formdata = $("#FrmPCDetails").serialize();
+        //$("#loaderDiv").show();
+        //$("#btnRegister").prop('value', 'Saving');
+        $.ajax({
+            
+            type: "POST",
+            url: "/Customer/ApprovePCustomer",
+            data: formdata,
+            success: function (result) {
+                //$("#loaderDiv").hide();
+                if (result == "Success") {
+
+                    window.location.href = "/Customer/ParentCustomerRequests?Msg= Saved Successfully";
+                    //$('#qualification').load();
+                    //$("#btnCreateTeacher").prop('value', 'Save');
+                    //$('.nav-tabs a[href="#qualification"]').tab('show');                    
+                }
+                else if (result == "Error") {
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
+                    $("#btnCreateTeacher").prop('value', 'Save');
+                    $("#errorModel").modal("show");
+                }
+                else {
+
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                    $("#btnCreateTeacher").prop('value', 'Save');
+                    $("#errorModel").modal("show");
+                }
+
+            }
+
+        })
+    }
+    var ShowRejectView = function (RejectingID) {
+        debugger
+        var Url = "/Customer/RejectReasons?RejectingID=" + RejectingID;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+
+    var DeleteView = function (CategoryId, FunctionID) {
+        debugger
+        var Url = "/User/DeleteUCFunction?CategoryId=" + CategoryId + "&FunctionId=" + FunctionID;
+        $("#MyModelBody").load(Url, function () {
+            $("#myModal").modal("show");
+        })
+    }
+    var dwnload = function (SeqNo) {
+        debugger
+        $.ajax(
+        {
+            url: '/PSMessage/DownloadAttachmentInbox',
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {
+                SeqNo: SeqNo
+            },
+            type: "GET",
+            success: function () {
+                window.location = '/PSMessage/DownloadAttachmentInbox?SeqNo=' + SeqNo;
+            }
+            //.error(function () {
+            //    alert("Handler for .error() called.")
+            //})
+        });
+    }
+</script>

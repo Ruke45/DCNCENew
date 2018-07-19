@@ -53,13 +53,45 @@ namespace NCEDCO.Controllers
 
         //[UserFilter(Function_Id = "TINDX")]
         [HttpPost]
-        public JsonResult ApprovePCustomer(string RequestID)
+        public JsonResult ApprovePCustomer(M_CustomerParentRequest Model)
         {
             string result = "Error";
             try
             {
 
-                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(RequestID));
+                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(Model.Request_Id));
+
+                if (result != null)
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RejectReasons(string RejectingID)
+        {
+            string ParentReject_Category = System.Configuration.ConfigurationManager.AppSettings["ParentReject_Category"].ToString();
+            Rejectitem objReject = new Rejectitem();
+            List<M_Reject> UCategorylist = objReject.getReasons(ParentReject_Category);
+            ViewBag.Bag_RejectReasons = new SelectList(UCategorylist, "Reject_ReasonId", "Reject_ReasonName");
+            ViewBag.Bag_RejectingID = RejectingID;
+
+            return PartialView("P_ParentCustomerReject");
+        }
+
+        [HttpPost]
+        public JsonResult RejectPCustomer(M_Reject Model)
+        {
+            string result = "Error";
+            try
+            {
+
+                result = CustomerOBj.SetRejectCustomerParentRequest(Model);
 
                 if (result != null)
                 {

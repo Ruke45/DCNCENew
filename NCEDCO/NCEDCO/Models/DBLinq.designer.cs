@@ -141,6 +141,34 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, parentCustomerID, name, telephone, email, fax, status, address1, address2, address3, createdBy, isSVat, contactPersonName, contactPersonDesignation, contactPersonDirectPhoneNumber, contactPersonMobile, contactPersonEmail, nCEMember);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISsetApprovedPCUser")]
+		public int DCISsetApprovedPCUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(20)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonName", DbType="VarChar(150)")] string personName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(200)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerId", DbType="VarChar(20)")] string parentCustomerId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, personName, password, parentCustomerId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISgeMailParameters")]
+		public ISingleResult<DCISgeMailParametersResult> DCISgeMailParameters()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<DCISgeMailParametersResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISsetCustomerParentReject")]
+		public int DCISsetCustomerParentReject([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getRejectReasons]")]
+		public ISingleResult<_getRejectReasonsResult> _getRejectReasons([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectReasonCategory", DbType="VarChar(20)")] string rejectReasonCategory)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rejectReasonCategory);
+			return ((ISingleResult<_getRejectReasonsResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -972,6 +1000,94 @@ namespace NCEDCO.Models
 				if ((this._AdminName != value))
 				{
 					this._AdminName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class DCISgeMailParametersResult
+	{
+		
+		private string _ParameterCode;
+		
+		private string _ParameterValue;
+		
+		public DCISgeMailParametersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParameterCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string ParameterCode
+		{
+			get
+			{
+				return this._ParameterCode;
+			}
+			set
+			{
+				if ((this._ParameterCode != value))
+				{
+					this._ParameterCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParameterValue", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string ParameterValue
+		{
+			get
+			{
+				return this._ParameterValue;
+			}
+			set
+			{
+				if ((this._ParameterValue != value))
+				{
+					this._ParameterValue = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getRejectReasonsResult
+	{
+		
+		private string _RejectCode;
+		
+		private string _ReasonName;
+		
+		public _getRejectReasonsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RejectCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RejectCode
+		{
+			get
+			{
+				return this._RejectCode;
+			}
+			set
+			{
+				if ((this._RejectCode != value))
+				{
+					this._RejectCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string ReasonName
+		{
+			get
+			{
+				return this._ReasonName;
+			}
+			set
+			{
+				if ((this._ReasonName != value))
+				{
+					this._ReasonName = value;
 				}
 			}
 		}

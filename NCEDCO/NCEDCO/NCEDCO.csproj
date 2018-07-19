@@ -178,7 +178,12 @@
     <Compile Include="Models\M_CustomerParent.cs" />
     <Compile Include="Models\M_CustomerParentRequest.cs" />
     <Compile Include="Models\M_CustomerRequest.cs" />
+    <Compile Include="Models\M_Parameters.cs" />
+    <Compile Include="Models\M_Reject.cs" />
+    <Compile Include="Models\Utility\Encrypt_Decrypt.cs" />
     <Compile Include="Models\Utility\ErrorLog.cs" />
+    <Compile Include="Models\Utility\MailSender.cs" />
+    <Compile Include="Models\Utility\Rejectitem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +320,7 @@
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Customer\ParentCustomerRequests.cshtml" />
     <Content Include="Views\Customer\ParentCustomerRequestsDetails.cshtml" />
+    <Content Include="Views\Customer\P_ParentCustomerReject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

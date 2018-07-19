@@ -9,15 +9,21 @@ namespace NCEDCO.Models.Business
 {
     public class B_Customer
     {
-        static string DECKey = System.Configuration.ConfigurationManager.AppSettings["DecKey"];
+        static string DECKey = ConfigurationManager.AppSettings["DecKey"];
+        static string Substrings = ConfigurationManager.AppSettings["Substrings"].ToString();
         string Connection_ = ConfigurationManager.ConnectionStrings["NCEDCOConnectionString"].ToString();
-        string Password = DECKey.Substring(12);
+        string Password = DECKey.Substring(Convert.ToInt32(Substrings));
+
+        /*------Email Subjects---------*/
+        string Parent_Approved = ConfigurationManager.AppSettings["Parent_Approved"].ToString();
+        string Parent_Rejected = ConfigurationManager.AppSettings["Parent_Rejected"].ToString();
 
         public string SetCustomerParentRequest(M_CustomerParentRequest pr)
         {
             try
             {
                 string PRequesNo = string.Empty;
+                string EncriptPass = Encrypt_Decrypt.Encrypt(pr.Admin_Password, Password);
                 using (DBLinqDataContext dbContext = new DBLinqDataContext())
                 {
 
@@ -43,7 +49,7 @@ namespace NCEDCO.Models.Business
                                                                 "",
                                                                 pr.IsVat,
                                                                 pr.Admin_UserId,
-                                                                pr.Admin_Password,
+                                                                EncriptPass,
                                                                 pr.ContactPersonName,
                                                                 pr.ContactPersonDesignation,
                                                                 pr.ContactPersonDirectPhone,
@@ -204,8 +210,13 @@ namespace NCEDCO.Models.Business
                                                                 pr.IsNCEMember);
 
                         dbContext.DCISsetUpdateParentCustomerReq("A", pr.Request_Id);
+                        dbContext.DCISsetApprovedPCUser(pr.Admin_UserId, pr.Admin_Name, pr.Admin_Password, ParentCID);
                         dbContext.SubmitChanges();
                         dbContext.Transaction.Commit();
+
+                        MailSender Mail = new MailSender();
+                        Mail.SendEmail(pr.ContactPersonEmail, "NCE Registration Approval", Parent_Approved + "  Your Customer Code is : " + ParentCID, " ");
+
                         return ParentCID;
 
                         //Email Send function needed
@@ -230,6 +241,49 @@ namespace NCEDCO.Models.Business
                 return null;
             }
 
+        }
+
+        public string SetRejectCustomerParentRequest(M_Reject pr)
+        {
+            string result = "Error";
+            try
+            {           
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+                        dbContext.DCISsetCustomerParentReject(pr.Rejecting_ID);
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+
+                        MailSender Mail = new MailSender();
+                        Mail.SendEmail(pr.Email_, "NCE Registration Approval", Parent_Rejected," ");
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return result;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return result;
+            }
         }
     }
 }
