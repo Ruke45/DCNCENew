@@ -290,14 +290,6 @@
             $("#OModel").modal("show");
         })
     }
-
-    var DeleteView = function (CategoryId, FunctionID) {
-        debugger
-        var Url = "/User/DeleteUCFunction?CategoryId=" + CategoryId + "&FunctionId=" + FunctionID;
-        $("#MyModelBody").load(Url, function () {
-            $("#myModal").modal("show");
-        })
-    }
     var dwnload = function (SeqNo) {
         debugger
         $.ajax(

@@ -169,6 +169,47 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, personName, password, parentCustomerId);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getAllExportSector]")]
+		public ISingleResult<_getAllExportSectorResult> _getAllExportSector([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(1)")] string status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status);
+			return ((ISingleResult<_getAllExportSectorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setParentChildCustomerRequest]")]
+		public int _setParentChildCustomerRequest(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="VarChar(100)")] string name, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telephone", DbType="VarChar(20)")] string telephone, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(50)")] string email, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fax", DbType="VarChar(20)")] string fax, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(1)")] string status, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address1", DbType="NVarChar(50)")] string address1, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address2", DbType="NVarChar(50)")] string address2, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address3", DbType="NVarChar(50)")] string address3, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string isSVat, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonName", DbType="VarChar(150)")] string contactPersonName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonDesignation", DbType="VarChar(50)")] string contactPersonDesignation, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonDirectPhoneNumber", DbType="VarChar(20)")] string contactPersonDirectPhoneNumber, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonMobile", DbType="VarChar(20)")] string contactPersonMobile, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPersonEmail", DbType="VarChar(50)")] string contactPersonEmail, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="NCEMember", DbType="VarChar(10)")] string nCEMember, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerId", DbType="VarChar(20)")] string parentCustomerId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductDetails", DbType="Text")] string productDetails, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExportSector", DbType="VarChar(100)")] string exportSector)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, name, telephone, email, fax, status, address1, address2, address3, createdBy, isSVat, contactPersonName, contactPersonDesignation, contactPersonDirectPhoneNumber, contactPersonMobile, contactPersonEmail, nCEMember, parentCustomerId, productDetails, exportSector);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DCISgetTemplateHeader")]
+		public ISingleResult<DCISgetTemplateHeaderResult> DCISgetTemplateHeader([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateId", DbType="VarChar(20)")] string templateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(2)")] string isActive, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdminOnlyDisplay", DbType="VarChar(2)")] string adminOnlyDisplay)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), templateId, isActive, adminOnlyDisplay);
+			return ((ISingleResult<DCISgetTemplateHeaderResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -1088,6 +1129,238 @@ namespace NCEDCO.Models
 				if ((this._ReasonName != value))
 				{
 					this._ReasonName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getAllExportSectorResult
+	{
+		
+		private string _ExportSector;
+		
+		private string _ExportId;
+		
+		public _getAllExportSectorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportSector", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ExportSector
+		{
+			get
+			{
+				return this._ExportSector;
+			}
+			set
+			{
+				if ((this._ExportSector != value))
+				{
+					this._ExportSector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string ExportId
+		{
+			get
+			{
+				return this._ExportId;
+			}
+			set
+			{
+				if ((this._ExportId != value))
+				{
+					this._ExportId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class DCISgetTemplateHeaderResult
+	{
+		
+		private string _TemplateId;
+		
+		private string _TemplateName;
+		
+		private string _ImgUrl;
+		
+		private System.DateTime _CreatedDate;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _IsActive;
+		
+		private string _ModifiedBy;
+		
+		private string _CreatedBy;
+		
+		private string _Description;
+		
+		private string _TemplatePath;
+		
+		public DCISgetTemplateHeaderResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this._TemplateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImgUrl", DbType="NChar(200) NOT NULL", CanBeNull=false)]
+		public string ImgUrl
+		{
+			get
+			{
+				return this._ImgUrl;
+			}
+			set
+			{
+				if ((this._ImgUrl != value))
+				{
+					this._ImgUrl = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this._ModifiedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplatePath", DbType="VarChar(250)")]
+		public string TemplatePath
+		{
+			get
+			{
+				return this._TemplatePath;
+			}
+			set
+			{
+				if ((this._TemplatePath != value))
+				{
+					this._TemplatePath = value;
 				}
 			}
 		}

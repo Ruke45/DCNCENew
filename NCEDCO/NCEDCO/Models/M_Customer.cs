@@ -16,10 +16,6 @@ namespace NCEDCO.Models
         [Required(ErrorMessage = "Required!")]
         public DateTime ModifiedDate { get; set; }
 
-        [Display(Name = "Is Vat")]
-        [Required(ErrorMessage = "Required!")]
-        public string SVat { get; set; }
-
         [Display(Name = "Template ID")]
         public string TemplateId { get; set; }
 

@@ -22,6 +22,10 @@ namespace NCEDCO.Controllers
 
         public ActionResult CRegister()
         {
+            ExportSector objExport = new ExportSector();
+            List<M_ExportSector> ExportList = objExport.getAllExportSector("Y");
+            ViewBag.Bag_ExportSectors = new SelectList(ExportList, "ExportSectorId", "ExportSectorName");
+
             return View();
         }
 
@@ -45,6 +49,32 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult CRegister(M_Customer Model)
+        {
+            string result = "Error";
+            try
+            {
+                result = CustomerOBj.SetChildCustomerRequest(Model);
+
+                if (result != null)
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CTemplateSelect(string RequestId)
+        {
+            NCETemplate Temp = new NCETemplate();
+            ViewBag.Bag_CCRequestId = RequestId;
+            return View(Temp.getTemplateData("%","%","%")); // Only View Admin all template customers show -3 template 
+        }
         //[UserFilter(Function_Id = "TINDX")]
         public ActionResult ParentCustomerRequests()
         {
@@ -108,6 +138,14 @@ namespace NCEDCO.Controllers
                 ErrorLog.LogError(Ex);
             }
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ShowTemplate(string TemplateId,string RequestId)
+        {
+            NCETemplate Temp = new NCETemplate();
+            ViewBag.Bag_CCTRequestId = RequestId; // Only View Admin all template customers show -3 template 
+
+            return PartialView("P_ShowSingleTemplate", Temp.getTemplateData(TemplateId, "%"));
         }
     }
 }

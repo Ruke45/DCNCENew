@@ -286,5 +286,70 @@ namespace NCEDCO.Models.Business
                 return result;
             }
         }
+
+        public string SetChildCustomerRequest(M_Customer pr)
+        {
+            try
+            {
+                string PCRequesNo = string.Empty;
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+
+                        B_RecordSequence CParentId = new B_RecordSequence();
+                        Int64 RequestNo = CParentId.getNextSequence("CustomerRequestNo", dbContext);
+                        PCRequesNo = "CCRN" + RequestNo.ToString();
+                        dbContext._setParentChildCustomerRequest(PCRequesNo,
+                                                                pr.Customer_Name,
+                                                                pr.Telephone,
+                                                                pr.Email,
+                                                                pr.Fax,
+                                                                "P",
+                                                                pr.Address1,
+                                                                pr.Address2,
+                                                                pr.Address3,
+                                                                "CLIENT",// User Session Parent User ID Here
+                                                                pr.IsVat,
+                                                                pr.ContactPersonName,
+                                                                pr.ContactPersonDesignation,
+                                                                pr.ContactPersonDirectPhone,
+                                                                pr.ContactPersonMobile,
+                                                                pr.ContactPersonEmail,
+                                                                pr.IsNCEMember,
+                                                                "PC3", // User Session Parent Customer ID Here
+                                                                pr.ProductDetails,
+                                                                pr.ExportSector);
+
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+                        return PCRequesNo;
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return null;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+        }
     }
 }

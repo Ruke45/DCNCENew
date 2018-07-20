@@ -24,13 +24,13 @@
             <div class="panel-heading">Customer Client Registration Form</div>
             <div class="panel-body">
                 <form id="FrmPCRegister" class="form-horizontal" autocomplete="off">
-                     <div class="col-lg-12">
-                     <h6>Client's Genaral Details --</h6>
-                   </div>
+                    <div class="col-lg-12">
+                        <h6>Client's Genaral Details --</h6>
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Customer_Name, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Customer_Name, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Customer_Name, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Customer_Name, null, new { @class = "text-danger" })
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Address1, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Address1, null, new { @class = "text-danger" })
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Address2, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Address2, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Address2, null, new { @class = "text-danger" })
@@ -57,7 +57,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Address3, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Address3, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Address3, null, new { @class = "text-danger" })
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
@@ -75,7 +75,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Telephone, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Telephone, null, new { @class = "text-danger" })
@@ -84,20 +84,20 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Fax, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Fax, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Fax, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         @*<div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Fax, null, new { @class = "text-danger" })
                         </div>*@
                     </div>
                     <div class="col-lg-12">
-                     <h6>Clients' Contact Person Details --</h6>
-                   </div>
+                        <h6>Clients' Contact Person Details --</h6>
+                    </div>
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonName, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonName, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonName, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonName, null, new { @class = "text-danger" })
@@ -106,7 +106,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonDesignation, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonDesignation, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonDesignation, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonDesignation, null, new { @class = "text-danger" })
@@ -115,7 +115,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonEmail, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonEmail, null, new { @class = "text-danger" })
@@ -124,7 +124,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonDirectPhone, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonDirectPhone, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonDirectPhone, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonDirectPhone, null, new { @class = "text-danger" })
@@ -133,17 +133,42 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonMobile, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonMobile, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonMobile, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonMobile, null, new { @class = "text-danger" })
                         </div>
                     </div>
-                    
-
                     <div class="col-lg-12">
-                     <h6>Client's Other Details --</h6>
-                   </div>
+                        <h6>Client's Export Product Details --</h6>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ProductDetails, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextAreaFor(model => model.ProductDetails, new { @class = "form-control", rows = "5", cols = "20" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.ProductDetails, null, new { @class = "text-danger" })
+                        </div>
+                        @*<textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>*@
+                        <span class="help-block">
+                            <p id="characterLeft" class="help-block ">You have reached the limit</p>
+                            <p id="Error" style="color: red;"></p>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ExportSector, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.DropDownListFor(model => model.ExportSector, ViewBag.Bag_ExportSectors as SelectList, "", new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.ExportSector, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h6>Client's Other Details --</h6>
+                    </div>
 
 
                     @*<div class="form-group">
@@ -168,31 +193,52 @@
                             </div>*@
 
                     <div class="form-group">
-                                @Html.LabelFor(m => m.IsNCEMember, new { @class = "col-sm-2 control-label" })
-                                <div class="col-sm-7">
-                                    <div class="radio radio-inline">
-														@Html.RadioButtonFor(m => m.IsNCEMember, "Y")
-														<label for="radio1">
-															YES
-														</label>
-													</div>
-                                    <div class="radio radio-inline">
-														@Html.RadioButtonFor(m => m.IsNCEMember, "N")
-														<label for="radio1">
-															NO
-														</label>
-													</div>
-                                </div>
-                                <div class="col-sm-3">
-                                    @Html.ValidationMessageFor(model => model.IsNCEMember, null, new { @class = "text-danger" })
-                                </div>
+                        @Html.LabelFor(m => m.IsNCEMember, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsNCEMember, "Y")
+                                <label for="radio1">
+                                    Yes
+                                </label>
                             </div>
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsNCEMember, "N")
+                                <label for="radio1">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.IsNCEMember, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.IsVat, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsVat, "Y")
+                                <label for="radio1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsVat, "N")
+                                <label for="radio1">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.IsVat, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
 
                     <div class="hr-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-2">
-                            <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary"><span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
-                                <img src="~/Images/ellipsis.gif" /></span></button>
+                            <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
+                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                                    <img src="~/Images/ellipsis.gif" /></span></button>
                         </div>
                     </div>
 
@@ -222,16 +268,42 @@
 
 <!-- Modal -->
 <div id="SModel" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content"  id="SModelBody">
-        <label id="lblSuccess">Registration request has been proceded. An Email will send to you when the request is processed.</label>
+        <!-- Modal content-->
+        <div class="modal-content" id="SModelBody">
+            <label id="lblSuccess">Registration request has been proceded. An Email will send to you when the request is processed.</label>
+        </div>
+
     </div>
-
-  </div>
 </div>
 <script>
+
+    $(document).ready(function () {
+        $('#characterLeft').text('250 characters left');
+        $('#ProductDetails').keydown(function () {
+            var max = 250;
+            var len = $(this).val().length;
+            if (len >= max) {
+                $('#characterLeft').text('You have reached the limit');
+                $('#characterLeft').addClass('red');
+                $('#btnSubmit').addClass('disabled');
+            }
+            else {
+                var ch = max - len;
+                $('#characterLeft').text(ch + ' characters left');
+                $('#btnSubmit').removeClass('disabled');
+                $('#characterLeft').removeClass('red');
+            }
+        });
+        //$(".select2_Teacher").select2({
+        //    placeholder: "Select a Teacher",
+        //    allowClear: true,
+        //    width: '100%'
+        //});
+    });
+
+
 
     var CreateParentCustomer = function () {
         var myformdata = $("#FrmPCRegister").serialize();
@@ -244,7 +316,7 @@
         $.ajax({
 
             type: "POST",
-            url: "/Customer/Register",
+            url: "/Customer/CRegister",
             data: myformdata,
             success: function (result) {
                 $("#loaderDiv").hide();

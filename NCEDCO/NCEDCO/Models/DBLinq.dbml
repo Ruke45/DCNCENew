@@ -133,4 +133,51 @@
     <Parameter Name="ParentCustomerId" Parameter="parentCustomerId" Type="System.String" DbType="VarChar(20)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getAllExportSector]" Method="_getAllExportSector">
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="_getAllExportSectorResult">
+      <Column Name="ExportSector" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ExportId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setParentChildCustomerRequest]" Method="_setParentChildCustomerRequest">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address3" Parameter="address3" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="isSVat" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="ContactPersonName" Parameter="contactPersonName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ContactPersonDesignation" Parameter="contactPersonDesignation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ContactPersonDirectPhoneNumber" Parameter="contactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactPersonMobile" Parameter="contactPersonMobile" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactPersonEmail" Parameter="contactPersonEmail" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NCEMember" Parameter="nCEMember" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="ParentCustomerId" Parameter="parentCustomerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ProductDetails" Parameter="productDetails" Type="System.String" DbType="Text" />
+    <Parameter Name="ExportSector" Parameter="exportSector" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DCISgetTemplateHeader" Method="DCISgetTemplateHeader">
+    <Parameter Name="TemplateId" Parameter="templateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="AdminOnlyDisplay" Parameter="adminOnlyDisplay" Type="System.String" DbType="VarChar(2)" />
+    <ElementType Name="DCISgetTemplateHeaderResult">
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TemplateName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ImgUrl" Type="System.String" DbType="NChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TemplatePath" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -27,7 +27,7 @@ namespace NCEDCO.Models
         [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Special Characters Are Not  Allowed.")]
         public string Telephone { get; set; }
 
-        [Display(Name = "IsVat")]
+        [Display(Name = "Is a VAT Customer")]
         [Required(ErrorMessage = "Required!")]
         public string IsVat { get; set; }
 
