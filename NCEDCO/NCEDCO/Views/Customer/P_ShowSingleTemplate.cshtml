@@ -7,6 +7,7 @@
         </div>
         <div class="modal-body">
             @Html.HiddenFor(m => m.ClientID_, new { @Value = @ViewBag.Bag_CCTRequestId })
+            @Html.HiddenFor(m => m.Template_Id, new { @Value = @Model.Template_Id })
             <div class="row">
                 <div class="col-md-2 portfolio-item"></div>
                 <div class="col-md-8 portfolio-item">
@@ -22,7 +23,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#" id="btnSubmit" class="btn btn-primary"><span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+            <a href="#" id="btnSubmit" class="btn btn-primary"><span class="fa fa-bookmark"></span>Select <span style="text-align: center; display: none" id="loaderDiv">
                 <img src="~/img/ellipsis.gif" /></span></a>
         </div>
     </form>
@@ -45,7 +46,7 @@
             //}
             //$("#loaderDiv").show();
 
-            var myformdata = $("#FrmRPC").serialize();
+            var myformdata = $("#FrmSelectTemp").serialize();
             //if (!$("#myForm").valid()) {
 
             //    return false;
@@ -53,12 +54,12 @@
             $.ajax({
 
                 type: "POST",
-                url: "/Customer/RejectPCustomer",
+                url: "/Customer/SetClientTemplate",
                 data: myformdata,
                 success: function () {
                     $("#loaderDiv").hide();
-                    $("#myModal").modal("hide");
-                    window.location.href = "/Customer/ParentCustomerRequests?Result=Rejected";
+                    $("#OModel").modal("hide");
+                    window.location.href = "/Shared/Sucsess";
 
                 }
 

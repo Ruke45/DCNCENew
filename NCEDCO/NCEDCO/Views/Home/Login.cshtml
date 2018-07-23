@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_.cshtml";
+}
+@model NCEDCO.Models.M_Login
+
+         <div class="row" style="margin-top: 200px;">
+             <div class="col-md-3"></div>
+    	  <div class="col-md-6">
+				<form id="FrmLOG" class="form-horizontal" autocomplete="off">
+					<h1>Member Login</h1><br/>
+                      <div class="form-group">
+                        @Html.LabelFor(m => m.User_ID, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBoxFor(model => model.User_ID, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.User_ID, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        @Html.LabelFor(m => m.Password_, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.PasswordFor(model => model.Password_, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Password_, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <button type="button" value="Save" id="btnLogin" onclick="Login()" class="btn btn-primary">
+                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                                    <img src="~/Images/ellipsis.gif" /></span></button>
+                        </div>
+                    </div>
+				  </form>
+				</div>
+             <div class="col-md-3"></div>
+			</div>
+
+         <div class="row">
+               <div class="col-sm-6 col-sm-offset-3 social-login" id="ErrorMessage" runat="server" style="text-align:center;display:none;">
+                  <div class="alert alert-dismissable alert-danger">
+						<strong>Login Failed ! </strong>User Name or Password is incorrect try submitting again.
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			 </div>
+            </div>
+             </div>
+<script>
+    var Login = function () {
+        var myformdata = $("#FrmLOG").serialize();
+
+        if (!$("#FrmLOG").valid()) {
+            return false;
+        }
+        $("#loaderDiv").show();
+        //$("#btnCreateTeacher").prop('value', 'Saving');
+        $.ajax({
+
+            type: "POST",
+            url: "/Home/Login",
+            data: myformdata,
+            success: function (result) {
+                if (result == "Succes") {
+                    window.location.href = "/Home/Dashboard";
+                }
+                else if (result == "Failed") {
+                    $("#ErrorMessage").show();
+                    $("#loaderDivlogin").hide();
+                }
+                else {
+                    $("#ErrorMessage").show();
+                    $("#loaderDivlogin").hide();
+                }
+
+            }
+
+        })
+    }
+</script>

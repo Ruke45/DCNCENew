@@ -147,5 +147,26 @@ namespace NCEDCO.Controllers
 
             return PartialView("P_ShowSingleTemplate", Temp.getTemplateData(TemplateId, "%"));
         }
+
+        [HttpPost]
+        public JsonResult SetClientTemplate(M_NCETemplate Model)
+        {
+            string result = "Error";
+            try
+            {
+
+                result = CustomerOBj.SetChildTemplate(Model);
+
+                if (result != null)
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -210,6 +210,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), templateId, isActive, adminOnlyDisplay);
 			return ((ISingleResult<DCISgetTemplateHeaderResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setCutomerClientTemplate]")]
+		public int _setCutomerClientTemplate([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateId", DbType="VarChar(20)")] string templateId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, templateId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getUserlogin]")]
+		public ISingleResult<_getUserloginResult> _getUserlogin([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(20)")] string userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(50)")] string password)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, password);
+			return ((ISingleResult<_getUserloginResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -1361,6 +1375,140 @@ namespace NCEDCO.Models
 				if ((this._TemplatePath != value))
 				{
 					this._TemplatePath = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getUserloginResult
+	{
+		
+		private string _UserId;
+		
+		private string _UserGroupID;
+		
+		private string _IsActive;
+		
+		private string _Password;
+		
+		private System.DateTime _PassowordExpiryDate;
+		
+		private string _PersonName;
+		
+		private string _ParentCustomerId;
+		
+		public _getUserloginResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroupID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UserGroupID
+		{
+			get
+			{
+				return this._UserGroupID;
+			}
+			set
+			{
+				if ((this._UserGroupID != value))
+				{
+					this._UserGroupID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassowordExpiryDate", DbType="DateTime NOT NULL")]
+		public System.DateTime PassowordExpiryDate
+		{
+			get
+			{
+				return this._PassowordExpiryDate;
+			}
+			set
+			{
+				if ((this._PassowordExpiryDate != value))
+				{
+					this._PassowordExpiryDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PersonName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string PersonName
+		{
+			get
+			{
+				return this._PersonName;
+			}
+			set
+			{
+				if ((this._PersonName != value))
+				{
+					this._PersonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentCustomerId", DbType="VarChar(20)")]
+		public string ParentCustomerId
+		{
+			get
+			{
+				return this._ParentCustomerId;
+			}
+			set
+			{
+				if ((this._ParentCustomerId != value))
+				{
+					this._ParentCustomerId = value;
 				}
 			}
 		}

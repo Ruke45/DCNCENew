@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Models\Business\B_Customer.cs" />
     <Compile Include="Models\Business\B_RecordSequence.cs" />
+    <Compile Include="Models\Business\B_Users.cs" />
     <Compile Include="Models\DBLinq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +180,7 @@
     <Compile Include="Models\M_CustomerParentRequest.cs" />
     <Compile Include="Models\M_CustomerRequest.cs" />
     <Compile Include="Models\M_ExportSector.cs" />
+    <Compile Include="Models\M_Login.cs" />
     <Compile Include="Models\M_NCETemplate.cs" />
     <Compile Include="Models\M_Parameters.cs" />
     <Compile Include="Models\M_Reject.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Models\Utility\MailSender.cs" />
     <Compile Include="Models\Utility\NCETemplate.cs" />
     <Compile Include="Models\Utility\Rejectitem.cs" />
+    <Compile Include="Models\Utility\_USession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -318,7 +321,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Customer\Register.cshtml" />
@@ -328,6 +330,9 @@
     <Content Include="Views\Customer\CRegister.cshtml" />
     <Content Include="Views\Customer\CTemplateSelect.cshtml" />
     <Content Include="Views\Customer\P_ShowSingleTemplate.cshtml" />
+    <Content Include="Views\Shared\Sucsess.cshtml" />
+    <Content Include="Views\Shared\_Layout_.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

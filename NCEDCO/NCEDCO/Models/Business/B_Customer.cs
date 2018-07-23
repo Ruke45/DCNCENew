@@ -351,5 +351,53 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public string SetChildTemplate(M_NCETemplate pr)
+        {
+            try
+            {
+                string result = "Error";
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+
+                        dbContext._setCutomerClientTemplate(pr.ClientID_,pr.Template_Id);
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+
+                        //MailSender Mail = new MailSender();
+                        //Mail.SendEmail(pr.ContactPersonEmail, "NCE Registration Approval", Parent_Approved + "  Your Customer Code is : " + ParentCID, " ");
+
+                        return result = "Sucess";
+
+                        //Email Send function needed
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return result;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return "Exception";
+            }
+
+        }
     }
 }
