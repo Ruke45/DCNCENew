@@ -60,5 +60,69 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+
+        public bool checkUserName(string UserName)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    System.Data.Linq.ISingleResult<_getUserNameResult> ckuser = datacontext._getUserName(UserName);
+                    foreach (_getUserNameResult result in ckuser)
+                    {
+                        if (result.UserID.Equals(UserName))
+                        {
+                            return true;
+                        }
+                        else return false;
+                    }
+                }
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return true;
+            }
+
+
+        }
+
+        public bool checkAuthorization(string UserGroupId,string FunctionId)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    System.Data.Linq.ISingleResult<_getUserGroupFunctionResult> ckuser = datacontext._getUserGroupFunction(FunctionId,UserGroupId);
+                    foreach (_getUserGroupFunctionResult result in ckuser)
+                    {
+                        if (result.GroupId.Equals(UserGroupId))
+                        {
+                            return true;
+                        }
+                        else return false;
+                    }
+                }
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return true;
+            }
+
+
+        }
+ 
     }
 }

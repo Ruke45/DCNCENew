@@ -14,6 +14,7 @@ namespace NCEDCO.Controllers
         //
         // GET: /Customer/
         B_Customer CustomerOBj = new B_Customer();
+        B_Users objUser = new B_Users();
 
         public ActionResult Register()
         {
@@ -55,12 +56,16 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
-                result = CustomerOBj.SetChildCustomerRequest(Model);
-
-                if (result != null)
+                if (!objUser.checkUserName(Model.Admin_UserId))
                 {
-                    result = "Success";
+                    result = CustomerOBj.SetChildCustomerRequest(Model);
+
+                    if (result != null)
+                    {
+                        result = "Success";
+                    }
                 }
+                
             }
             catch (Exception Ex)
             {
@@ -93,8 +98,27 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
-
                 result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(Model.Request_Id));
+
+                if (result != null)
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ApproveCCustomer(M_CustomerRequest Model)
+        {
+            string result = "Error";
+            try
+            {
+                result = CustomerOBj.SetApproveClientCustomerRequest(CustomerOBj.getChildCustomerDetails(Model.Request_Id));
 
                 if (result != null)
                 {
@@ -111,12 +135,28 @@ namespace NCEDCO.Controllers
         public ActionResult RejectReasons(string RejectingID)
         {
             string ParentReject_Category = System.Configuration.ConfigurationManager.AppSettings["ParentReject_Category"].ToString();
-            Rejectitem objReject = new Rejectitem();
-            List<M_Reject> UCategorylist = objReject.getReasons(ParentReject_Category);
+            List<M_Reject> UCategorylist = getRejectReasons(ParentReject_Category);
             ViewBag.Bag_RejectReasons = new SelectList(UCategorylist, "Reject_ReasonId", "Reject_ReasonName");
             ViewBag.Bag_RejectingID = RejectingID;
 
             return PartialView("P_ParentCustomerReject");
+        }
+
+        private static List<M_Reject> getRejectReasons(string ParentReject_Category)
+        {
+            Rejectitem objReject = new Rejectitem();
+            List<M_Reject> UCategorylist = objReject.getReasons(ParentReject_Category);
+            return UCategorylist;
+        }
+
+        public ActionResult ClientRejectReasons(string RejectingID)
+        {
+            string ParentReject_Category = System.Configuration.ConfigurationManager.AppSettings["ParentReject_Category"].ToString();
+            List<M_Reject> UCategorylist = getRejectReasons(ParentReject_Category);
+            ViewBag.Bag_RejectReasons = new SelectList(UCategorylist, "Reject_ReasonId", "Reject_ReasonName");
+            ViewBag.Bag_RejectingID = RejectingID;
+
+            return PartialView("C_ChildCustomerReject");
         }
 
         [HttpPost]
@@ -125,8 +165,27 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
-
                 result = CustomerOBj.SetRejectCustomerParentRequest(Model);
+
+                if (result != null)
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult RejectCCustomer(M_Reject Model)
+        {
+            string result = "Error";
+            try
+            {
+                result = CustomerOBj.SetRejectCustomerChildRequest(Model);
 
                 if (result != null)
                 {
@@ -154,7 +213,6 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
-
                 result = CustomerOBj.SetChildTemplate(Model);
 
                 if (result != null)
@@ -167,6 +225,22 @@ namespace NCEDCO.Controllers
                 ErrorLog.LogError(Ex);
             }
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CheckUserName(string userName)
+        {     
+            bool isExits = objUser.checkUserName(userName);
+            return Json(isExits, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ClientCustomerRequests()
+        {
+            return View(CustomerOBj.getChildCustomerRequest("P"));
+        }
+
+        public ActionResult ClientCustomerRequestsDetails(string RequestID)
+        {
+            return View(CustomerOBj.getChildCustomerDetails(RequestID));
         }
     }
 }

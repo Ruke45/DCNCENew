@@ -164,6 +164,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\UserFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,12 +189,14 @@
     <Compile Include="Models\Utility\ErrorLog.cs" />
     <Compile Include="Models\Utility\ExportSector.cs" />
     <Compile Include="Models\Utility\MailSender.cs" />
+    <Compile Include="Models\Utility\Navigation_Menu.cs" />
     <Compile Include="Models\Utility\NCETemplate.cs" />
     <Compile Include="Models\Utility\Rejectitem.cs" />
     <Compile Include="Models\Utility\_USession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Admin_Navigation.xml" />
     <Content Include="Content\style.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -333,11 +336,13 @@
     <Content Include="Views\Shared\Sucsess.cshtml" />
     <Content Include="Views\Shared\_Layout_.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Customer\ClientCustomerRequests.cshtml" />
+    <Content Include="Views\Customer\ClientCustomerRequestsDetails.cshtml" />
+    <Content Include="Views\Customer\C_ChildCustomerReject.cshtml" />
+    <Content Include="Views\Shared\P_Navigation.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

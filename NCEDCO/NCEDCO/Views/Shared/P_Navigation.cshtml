@@ -1,0 +1,26 @@
+﻿@model  NCEDCO.Models.Utility.Navigation_Menu
+<ul class="mainnav">
+    @foreach (var item in Model.Items)
+    {
+        if(!@item.IsParent)
+        {
+            <li>@Html.ActionLink(@item.Name, @item.Action, @item.Controller)</li>
+        }
+        else
+        {
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@item.Name</a>
+                @if (item.ChildMenuItems.Any())
+                {
+                <ul class="dropdown-menu">
+                    @foreach (var subitem in item.ChildMenuItems)
+                    {
+                    <li>@Html.ActionLink(@subitem.Name, @subitem.Action, @subitem.Controller)</li>
+                    }
+                </ul>
+                }
+            </li>
+        }
+     }
+ </ul>

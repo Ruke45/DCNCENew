@@ -399,5 +399,215 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public List<M_CustomerRequest> getChildCustomerRequest(string Status)
+        {
+            try
+            {
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    List<M_CustomerRequest> PList = new List<M_CustomerRequest>();
+
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getClientCustomerRequestListResult> lst = dbContext._getClientCustomerRequestList(Status);
+                    foreach (_getClientCustomerRequestListResult result in lst)
+                    {
+                        M_CustomerRequest M = new M_CustomerRequest();
+                        M.Address1 = result.Address1;
+                        M.Address2 = result.Address2;
+                        M.Address3 = result.Address3;
+                        M.ContactPersonDesignation = result.ContactPersonDesignation;
+                        M.ContactPersonEmail = result.ContactPersonEmail;
+                        M.Customer_Name = result.Name;
+                        M.Email = result.Email;
+                        M.Telephone = result.Telephone;
+                        M.Request_Id = result.RequestId;
+                        M.ContactPersonName = result.ContactPersonName;
+                        M.CreatedDate = Convert.ToDateTime(result.CreatedDate);
+
+                        PList.Add(M);
+                    }
+
+                    return PList;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                // Console.WriteLine(ex.Message.ToString());
+                return null;
+            }
+
+        }
+
+        public M_CustomerRequest getChildCustomerDetails(string RequestId)
+        {
+            try
+            {
+
+                M_CustomerRequest req = new M_CustomerRequest();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getClientCustomerRequestDetailsResult> lst = datacontext._getClientCustomerRequestDetails(RequestId);
+
+                    foreach (_getClientCustomerRequestDetailsResult r in lst)
+                    {
+                        req.Address1 = r.Address1;
+                        req.Address2 = r.Address2;
+                        req.Address3 = r.Address3;
+                        req.ContactPersonDesignation = r.ContactPersonDesignation;
+                        req.ContactPersonDirectPhone = r.ContactPersonDirectPhoneNumber;
+                        req.ContactPersonEmail = r.ContactPersonEmail;
+                        req.ContactPersonMobile = r.ContactPersonMobile;
+                        req.ContactPersonName = r.ContactPersonName;
+                        req.CreatedDate = Convert.ToDateTime(r.CreatedDate);
+                        req.Customer_Name = r.Name; // Child Customer
+                        req.Email = r.Email;
+                        req.Fax = r.Fax;
+                        req.Request_Id = r.RequestId;
+                        req.Telephone = r.Telephone;
+                        req.IsNCEMember = r.NCEMember;
+                        req.IsVat = r.SVat;
+                        req.ProductDetails = r.Productdetails;
+                        req.ExportSector = r.ExportSector;
+                        req.ExportSector_Name = r.ExportSectorName;
+                        req.Template_ID = r.TemplateId;
+                        req.Template_Name = r.TemplateName;
+                        req.Parent_CustomerId = r.ParentCustomerId;
+                        req.Parent_CustomerName = r.CustomerName;
+                    }
+                }
+
+                return req;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+        }
+
+        public string SetApproveClientCustomerRequest(M_CustomerRequest pr)
+        {
+            try
+            {
+                string ChildCID = string.Empty;
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+
+                        B_RecordSequence ChildID = new B_RecordSequence();
+                        Int64 RequestNo = ChildID.getNextSequence("CustomerID", dbContext);
+                        ChildCID = "CC" + RequestNo.ToString();
+                        dbContext._setApproveChildCustomer(pr.Request_Id,
+                                                                pr.Parent_CustomerId,
+                                                                ChildCID,
+                                                                pr.Customer_Name,
+                                                                pr.Telephone,
+                                                                pr.Email,
+                                                                pr.Fax,
+                                                                "A",
+                                                                pr.Address1,
+                                                                pr.Address2,
+                                                                pr.Address3,
+                                                                "ADMIN",
+                                                                pr.IsVat,
+                                                                pr.ContactPersonName,
+                                                                pr.ContactPersonDesignation,
+                                                                pr.ContactPersonDirectPhone,
+                                                                pr.ContactPersonMobile,
+                                                                pr.ContactPersonEmail,
+                                                                pr.IsNCEMember,
+                                                                pr.ProductDetails,
+                                                                pr.ExportSector);
+
+                        dbContext._setUpdateClientCustomerReq("A", pr.Request_Id);
+
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+
+                        //MailSender Mail = new MailSender();
+                        //Mail.SendEmail(pr.ContactPersonEmail, "NCE Client Customer Registration Approval", Parent_Approved + "  Your Client Customer Code is : " + ParentCID, " ");
+
+                        return ChildCID;
+
+                        //Email Send function needed
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return null;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+        }
+
+        public string SetRejectCustomerChildRequest(M_Reject pr)
+        {
+            string result = "Error";
+            try
+            {
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+                        dbContext._setCustomerChildReject(pr.Rejecting_ID);
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+
+                        //MailSender Mail = new MailSender();
+                        //Mail.SendEmail(pr.Email_, "NCE Registration Approval", Parent_Rejected, " ");
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return result;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return result;
+            }
+        }
     }
+
 }

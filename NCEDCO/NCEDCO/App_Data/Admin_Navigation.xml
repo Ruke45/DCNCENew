@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+* Created Date : 2018/7/24
+* Author : Tharaka Madusanka
+-->
+<Navigations>
+  <Navigation title="Customer Requests" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Main Customer Requests" action="ParentCustomerRequests" controller="Customer" url="#"/>
+    <Child title="Client's Customer Requests" action="ClientCustomerRequests" controller="Customer" url="#"/>
+  </Navigation>
+</Navigations>

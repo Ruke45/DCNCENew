@@ -316,4 +316,18 @@
 
         })
     }
+
+    $('#Admin_UserId').blur(function () {
+        var url = "/User/CheckUserName";
+        var name = $('#UserId').val();
+        debugger
+        $.get(url, { input: name }, function (data) {
+            if (data == "true") {
+                $("#ErrorLable").text("User Name Already Exits");
+                $("#btnRegister").prop('value', 'Save');
+                $("#errorModel").modal("show");
+            }
+        });
+    })
+
 </script>

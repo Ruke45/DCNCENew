@@ -7,12 +7,15 @@ using NCEDCO.Models.Utility;
 using NCEDCO.Models.Business;
 using System.Configuration;
 using NCEDCO.Models;
+using System.Xml;
+using System.IO;
 
 namespace NCEDCO.Controllers
 {
     public class HomeController : Controller
     {
         B_Users objUser = new B_Users();
+        _USession _session = new _USession();
 
         public ActionResult Index()
         {
@@ -21,10 +24,8 @@ namespace NCEDCO.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Dashboard()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 
@@ -66,6 +67,71 @@ namespace NCEDCO.Controllers
             Session.Clear();
             Session.RemoveAll();
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Navigation_Lord()
+        {
+            var _menu = new Navigation_Menu();
+
+            string naviga = "~/App_Data/Admin_Navigation.xml";
+
+            //if (_session.User_Group == "Admin")
+            //{
+            //    naviga = "~/App_Data/Admin_Navigation.xml";
+            //}
+            //else
+            //{
+            //    naviga = "~/App_Data/navigation.xml";
+            //}
+
+            var xmlData = System.Web.HttpContext.Current.Server.MapPath(naviga);
+            if (xmlData == null)
+            {
+                throw new ArgumentNullException("xmlData");
+            }
+            var xmldoc = new XmlDataDocument();
+            var fs = new FileStream(xmlData, FileMode.Open, FileAccess.Read);
+            xmldoc.Load(fs);
+            var xmlnode = xmldoc.GetElementsByTagName("Navigation");
+            for (var i = 0; i <= xmlnode.Count - 1; i++)
+            {
+                var xmlAttributeCollection = xmlnode[i].Attributes;
+                if (xmlAttributeCollection != null)
+                {
+                    var nodeMenu = new MenuItem()
+                    {
+                        Name = xmlAttributeCollection["title"].Value,
+                        Action = xmlAttributeCollection["action"].Value,
+                        Controller = xmlAttributeCollection["controller"].Value,
+                        Link = xmlAttributeCollection["url"].Value,
+                        IsParent = Convert.ToBoolean(xmlAttributeCollection["isParent"].Value),
+                    };
+                    if (xmlnode[i].ChildNodes.Count != 0)
+                    {
+                        for (var j = 0; j < xmlnode[i].ChildNodes.Count; j++)
+                        {
+                            var xmlNode = xmlnode[i].ChildNodes.Item(j);
+                            if (xmlNode != null)
+                            {
+                                if (xmlNode.Attributes != null)
+                                {
+                                    nodeMenu.ChildMenuItems.Add(new MenuItem()
+                                    {
+                                        Name = xmlNode.Attributes["title"].Value,
+                                        Action = xmlNode.Attributes["action"].Value,
+                                        Controller = xmlNode.Attributes["controller"].Value,
+                                        Link = xmlNode.Attributes["url"].Value,
+                                    });
+
+                                }
+                            }
+                        }
+                    }
+                    _menu.Items.Add(nodeMenu);
+                }
+            }
+            return PartialView("P_Navigation", _menu);
         }
     }
 }
