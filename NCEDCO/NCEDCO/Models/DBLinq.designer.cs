@@ -294,6 +294,62 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), functionId, groupId);
 			return ((ISingleResult<_getUserGroupFunctionResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateOwnerContact]")]
+		public int _setUpdateOwnerContact([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(150)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(150)")] string web, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string fax)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name, phone, email, web, fax);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getOwnerContact]")]
+		public ISingleResult<_getOwnerContactResult> _getOwnerContact()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<_getOwnerContactResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getOwnerCompany]")]
+		public ISingleResult<_getOwnerCompanyResult> _getOwnerCompany()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<_getOwnerCompanyResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateOwnerCompany]")]
+		public int _setUpdateOwnerCompany([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrganizationName", DbType="VarChar(150)")] string organizationName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PostBox", DbType="VarChar(40)")] string postBox, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address1", DbType="VarChar(120)")] string address1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address2", DbType="VarChar(120)")] string address2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address3", DbType="VarChar(50)")] string address3)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), organizationName, postBox, address1, address2, address3);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setSupportingDocuments]")]
+		public int _setSupportingDocuments([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentId", DbType="VarChar(20)")] string supportingDocumentId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentName", DbType="NVarChar(100)")] string supportingDocumentName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="NVarChar(50)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(2)")] string isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId, supportingDocumentName, createdBy, isActive);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateSupportingDocuments]")]
+		public int _setUpdateSupportingDocuments([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentId", DbType="VarChar(20)")] string supportingDocumentId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentName", DbType="VarChar(100)")] string supportingDocumentName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModifiedBy", DbType="VarChar(20)")] string modifiedBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId, supportingDocumentName, modifiedBy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setDeleteSupportingDocuments]")]
+		public int _setDeleteSupportingDocuments([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentId", DbType="VarChar(20)")] string supportingDocumentId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSupportDocument]")]
+		public ISingleResult<_getSupportDocumentResult> _getSupportDocument([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentId", DbType="VarChar(20)")] string supportingDocumentId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(1)")] string isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId, isActive);
+			return ((ISingleResult<_getSupportDocumentResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -2457,6 +2513,354 @@ namespace NCEDCO.Models
 				if ((this._GroupId != value))
 				{
 					this._GroupId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getOwnerContactResult
+	{
+		
+		private string _Email;
+		
+		private string _FaxNo;
+		
+		private string _Name;
+		
+		private string _TelephoneNo;
+		
+		private string _WebAddress;
+		
+		public _getOwnerContactResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FaxNo", DbType="VarChar(15)")]
+		public string FaxNo
+		{
+			get
+			{
+				return this._FaxNo;
+			}
+			set
+			{
+				if ((this._FaxNo != value))
+				{
+					this._FaxNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(150)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelephoneNo", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string TelephoneNo
+		{
+			get
+			{
+				return this._TelephoneNo;
+			}
+			set
+			{
+				if ((this._TelephoneNo != value))
+				{
+					this._TelephoneNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WebAddress", DbType="VarChar(150)")]
+		public string WebAddress
+		{
+			get
+			{
+				return this._WebAddress;
+			}
+			set
+			{
+				if ((this._WebAddress != value))
+				{
+					this._WebAddress = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getOwnerCompanyResult
+	{
+		
+		private string _OrganizationName;
+		
+		private string _PostBox;
+		
+		private string _Address1;
+		
+		private string _Address2;
+		
+		private string _Address3;
+		
+		public _getOwnerCompanyResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrganizationName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string OrganizationName
+		{
+			get
+			{
+				return this._OrganizationName;
+			}
+			set
+			{
+				if ((this._OrganizationName != value))
+				{
+					this._OrganizationName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostBox", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string PostBox
+		{
+			get
+			{
+				return this._PostBox;
+			}
+			set
+			{
+				if ((this._PostBox != value))
+				{
+					this._PostBox = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address1", DbType="VarChar(120)")]
+		public string Address1
+		{
+			get
+			{
+				return this._Address1;
+			}
+			set
+			{
+				if ((this._Address1 != value))
+				{
+					this._Address1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address2", DbType="VarChar(120)")]
+		public string Address2
+		{
+			get
+			{
+				return this._Address2;
+			}
+			set
+			{
+				if ((this._Address2 != value))
+				{
+					this._Address2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address3", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Address3
+		{
+			get
+			{
+				return this._Address3;
+			}
+			set
+			{
+				if ((this._Address3 != value))
+				{
+					this._Address3 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSupportDocumentResult
+	{
+		
+		private string _SupportingDocumentId;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDate;
+		
+		private string _IsMandatory;
+		
+		private string _IsActive;
+		
+		private string _SupportingDocumentName;
+		
+		private string _ModifiedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		public _getSupportDocumentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string SupportingDocumentId
+		{
+			get
+			{
+				return this._SupportingDocumentId;
+			}
+			set
+			{
+				if ((this._SupportingDocumentId != value))
+				{
+					this._SupportingDocumentId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsMandatory", DbType="VarChar(2)")]
+		public string IsMandatory
+		{
+			get
+			{
+				return this._IsMandatory;
+			}
+			set
+			{
+				if ((this._IsMandatory != value))
+				{
+					this._IsMandatory = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(2)")]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentName", DbType="VarChar(100)")]
+		public string SupportingDocumentName
+		{
+			get
+			{
+				return this._SupportingDocumentName;
+			}
+			set
+			{
+				if ((this._SupportingDocumentName != value))
+				{
+					this._SupportingDocumentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(20)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this._ModifiedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
 				}
 			}
 		}

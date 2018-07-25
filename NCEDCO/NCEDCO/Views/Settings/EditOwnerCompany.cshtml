@@ -1,0 +1,177 @@
+﻿@model NCEDCO.Models.M_ProductOwner
+@{
+    ViewBag.Title = "Owner Company Details";
+}
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">
+            <small>Edit Company Information</small>
+        </h3>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Settings</a>
+            </li>
+            <li class="active">Edit Company Information</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Edit Company Information Form</div>
+            <div class="panel-body">
+                <form id="FrmECon" class="form-horizontal" autocomplete="off">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Organization, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBoxFor(model => model.Organization, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Organization, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PO_BOX, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBoxFor(model => model.PO_BOX, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.PO_BOX, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address1, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Address1, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address2, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Address3, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address3, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control", @maxlength = "150" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Address3, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="hr-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
+                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                                    <img src="~/Images/ellipsis.gif" /></span></button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div class="panel-footer">Edit Company Information Form</div>
+        </div>
+    </div>
+</div>
+<!--Notification Modals -->
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="SModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" id="SModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Sucsess !</h4>
+            </div>
+            <div class="modal-body" style="color:#009252">
+                 <label id="lblSuccess">Company Details Updated Successfully</label>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+
+    var CreateParentCustomer = function () {
+        var myformdata = $("#FrmECon").serialize();
+
+        if (!$("#FrmECon").valid()) {
+            return false;
+        }
+        $("#loaderDiv").show();
+        $("#btnRegister").prop('value', 'Saving');
+        $.ajax({
+
+            type: "POST",
+            url: "/Settings/EditOwnerCompany",
+            data: myformdata,
+            success: function (result) {
+                $("#loaderDiv").hide();
+                if (result == "Success") {
+                    $("#btnRegister").prop('value', 'Saved Successfully');
+                    $("#SModel").modal("show");
+                    //window.location.href = "/Teacher/Create?Msg= Saved Successfully";
+                    //$('#qualification').load();
+                    //$("#btnCreateTeacher").prop('value', 'Save');
+                    //$('.nav-tabs a[href="#qualification"]').tab('show');                    
+                }
+                else if (result == "Error") {
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
+                    $("#btnCreateTeacher").prop('value', 'Save');
+                    $("#errorModel").modal("show");
+                }
+                else {
+
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                    $("#btnCreateTeacher").prop('value', 'Save');
+                    $("#errorModel").modal("show");
+                }
+
+            }
+
+        })
+    }
+
+    $('#Admin_UserId').blur(function () {
+        var url = "/User/CheckUserName";
+        var name = $('#UserId').val();
+        debugger
+        $.get(url, { input: name }, function (data) {
+            if (data == "true") {
+                $("#ErrorLable").text("User Name Already Exits");
+                $("#btnRegister").prop('value', 'Save');
+                $("#errorModel").modal("show");
+            }
+        });
+    })
+
+</script>

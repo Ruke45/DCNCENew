@@ -299,4 +299,69 @@
       <Column Name="GroupId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setUpdateOwnerContact]" Method="_setUpdateOwnerContact">
+    <Parameter Name="name" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="phone" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="web" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="fax" Type="System.String" DbType="VarChar(15)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getOwnerContact]" Method="_getOwnerContact">
+    <ElementType Name="_getOwnerContactResult">
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FaxNo" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TelephoneNo" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="WebAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_getOwnerCompany]" Method="_getOwnerCompany">
+    <ElementType Name="_getOwnerCompanyResult">
+      <Column Name="OrganizationName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="PostBox" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setUpdateOwnerCompany]" Method="_setUpdateOwnerCompany">
+    <Parameter Name="OrganizationName" Parameter="organizationName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="PostBox" Parameter="postBox" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="VarChar(120)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="VarChar(120)" />
+    <Parameter Name="Address3" Parameter="address3" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setSupportingDocuments]" Method="_setSupportingDocuments">
+    <Parameter Name="SupportingDocumentId" Parameter="supportingDocumentId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="SupportingDocumentName" Parameter="supportingDocumentName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(2)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setUpdateSupportingDocuments]" Method="_setUpdateSupportingDocuments">
+    <Parameter Name="SupportingDocumentId" Parameter="supportingDocumentId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="SupportingDocumentName" Parameter="supportingDocumentName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ModifiedBy" Parameter="modifiedBy" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setDeleteSupportingDocuments]" Method="_setDeleteSupportingDocuments">
+    <Parameter Name="SupportingDocumentId" Parameter="supportingDocumentId" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getSupportDocument]" Method="_getSupportDocument">
+    <Parameter Name="SupportingDocumentId" Parameter="supportingDocumentId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="_getSupportDocumentResult">
+      <Column Name="SupportingDocumentId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsMandatory" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="SupportingDocumentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

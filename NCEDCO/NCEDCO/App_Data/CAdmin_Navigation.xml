@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+* Created Date : 2018/7/24
+* Author : Tharaka Madusanka
+-->
+<Navigations>
+  <Navigation title="New Client" action="#" controller="#" url="#" isParent ="true">
+    <Child title="New Registration Requests" action="CRegister" controller="Customer" url="#"/>
+  </Navigation>
+</Navigations>

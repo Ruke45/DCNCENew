@@ -164,12 +164,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Filters\UserFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Business\B_Customer.cs" />
     <Compile Include="Models\Business\B_RecordSequence.cs" />
+    <Compile Include="Models\Business\B_Settings.cs" />
     <Compile Include="Models\Business\B_Users.cs" />
     <Compile Include="Models\DBLinq.designer.cs">
       <AutoGen>True</AutoGen>
@@ -184,7 +186,9 @@
     <Compile Include="Models\M_Login.cs" />
     <Compile Include="Models\M_NCETemplate.cs" />
     <Compile Include="Models\M_Parameters.cs" />
+    <Compile Include="Models\M_ProductOwner.cs" />
     <Compile Include="Models\M_Reject.cs" />
+    <Compile Include="Models\M_SupportDocument.cs" />
     <Compile Include="Models\Utility\Encrypt_Decrypt.cs" />
     <Compile Include="Models\Utility\ErrorLog.cs" />
     <Compile Include="Models\Utility\ExportSector.cs" />
@@ -341,6 +345,11 @@
     <Content Include="Views\Customer\ClientCustomerRequestsDetails.cshtml" />
     <Content Include="Views\Customer\C_ChildCustomerReject.cshtml" />
     <Content Include="Views\Shared\P_Navigation.cshtml" />
+    <Content Include="Views\Settings\EditOwnerContact.cshtml" />
+    <Content Include="Views\Settings\EditOwnerCompany.cshtml" />
+    <Content Include="Views\Settings\SupportDocument.cshtml" />
+    <Content Include="Views\Settings\P_NewSupportDoc.cshtml" />
+    <Content Include="Views\Settings\P_DeleteSupportDoc.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
