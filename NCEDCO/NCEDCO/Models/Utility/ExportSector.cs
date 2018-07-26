@@ -22,7 +22,7 @@ namespace NCEDCO.Models.Utility
                     foreach (_getAllExportSectorResult result in lst)
                     {
                         M_ExportSector req = new M_ExportSector();
-                        req.ExportSectorId = result.ExportId;
+                        req.ExportSectorId = Convert.ToInt32(result.ExportId);
                         req.ExportSectorName= result.ExportSector;
                         Requests.Add(req);
                     }

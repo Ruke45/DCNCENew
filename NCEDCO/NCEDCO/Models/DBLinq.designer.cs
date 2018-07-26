@@ -350,6 +350,34 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId, isActive);
 			return ((ISingleResult<_getSupportDocumentResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setNewExportSector]")]
+		public int _setNewExportSector([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExportSectorName", DbType="VarChar(100)")] string exportSectorName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(2)")] string status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exportSectorName, status);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateExportSector]")]
+		public int _setUpdateExportSector([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExportId", DbType="Int")] System.Nullable<int> exportId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExportSector", DbType="VarChar(100)")] string exportSector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(1)")] string isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exportId, exportSector, isActive);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setDeleteExportSector]")]
+		public int _setDeleteExportSector([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExportID", DbType="Int")] System.Nullable<int> exportID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exportID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getExportSector]")]
+		public ISingleResult<_getExportSectorResult> _getExportSector([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(5)")] string status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status);
+			return ((ISingleResult<_getExportSectorResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -2861,6 +2889,68 @@ namespace NCEDCO.Models
 				if ((this._ModifiedDate != value))
 				{
 					this._ModifiedDate = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getExportSectorResult
+	{
+		
+		private int _ExportId;
+		
+		private string _ExportSector;
+		
+		private string _Status;
+		
+		public _getExportSectorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportId", DbType="Int NOT NULL")]
+		public int ExportId
+		{
+			get
+			{
+				return this._ExportId;
+			}
+			set
+			{
+				if ((this._ExportId != value))
+				{
+					this._ExportId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportSector", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ExportSector
+		{
+			get
+			{
+				return this._ExportSector;
+			}
+			set
+			{
+				if ((this._ExportSector != value))
+				{
+					this._ExportSector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(1)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
 				}
 			}
 		}

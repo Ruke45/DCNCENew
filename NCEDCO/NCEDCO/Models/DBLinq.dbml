@@ -364,4 +364,27 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setNewExportSector]" Method="_setNewExportSector">
+    <Parameter Name="ExportSectorName" Parameter="exportSectorName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(2)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setUpdateExportSector]" Method="_setUpdateExportSector">
+    <Parameter Name="ExportId" Parameter="exportId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExportSector" Parameter="exportSector" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setDeleteExportSector]" Method="_setDeleteExportSector">
+    <Parameter Name="ExportID" Parameter="exportID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getExportSector]" Method="_getExportSector">
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="_getExportSectorResult">
+      <Column Name="ExportId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExportSector" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

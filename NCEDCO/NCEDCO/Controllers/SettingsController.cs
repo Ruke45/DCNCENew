@@ -71,7 +71,7 @@ namespace NCEDCO.Controllers
             if (SD != "")
             {
                 M_SupportDocument S = new M_SupportDocument();
-                S.SupportingDocument_Name = Name;
+                S.SupportingDocument_Name = Name.Replace("_", " ");
                 S.SupportingDocument_Id = SD;
                 return PartialView("P_NewSupportDoc", S);
             }
@@ -126,6 +126,85 @@ namespace NCEDCO.Controllers
             try
             {
                 if (objSettings.SDcoument_DeleteSDcoument(Model))
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ExportSector()
+        {
+            return View(objSettings.ExportS_getExportSection("%"));
+        }
+
+        public ActionResult NewExportSector(int SD,string IsActive,string Name)
+        {
+            M_ExportSector Ex = new M_ExportSector();
+            if (SD != 0)
+            {
+                Ex.IsActive = IsActive;
+                Ex.ExportSectorId = SD;
+                Ex.ExportSectorName = Name.Replace("_", " ");
+                return PartialView("P_AddEditExportSector", Ex);
+            }
+            Ex.IsActive = "Y";
+            return PartialView("P_AddEditExportSector",Ex);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[HandleError]
+        public ActionResult NewExportSector(M_ExportSector Model)
+        {
+            if (Model.ExportSectorName == null)
+            {
+                Model.IsActive = "Y";
+                return PartialView("P_AddEditExportSector",Model);
+            }
+
+            string result = "Error";
+            try
+            {
+                if (Model.ExportSectorId == 0)
+                {
+                    if (Model.IsActive == null) { Model.IsActive = "Y"; }
+                    if (objSettings.ExportS_NewExportSector(Model))
+                    {
+                        result = "Success";
+                    }
+                }
+                else
+                {
+                    if (objSettings.ExportS_UpdateExportSector(Model))
+                    {
+                        result = "Success";
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteExportSector(string ID)
+        {
+            ViewBag.Export_ID = ID;
+            return PartialView("P_DeleteExportSector");
+        }
+        [HttpPost]
+        public JsonResult DeleteExportSector(M_ExportSector Model)
+        {
+            string result = "Error";
+            try
+            {
+                if (objSettings.ExportS_DeleteExportSector(Model))
                 {
                     result = "Success";
                 }

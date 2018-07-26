@@ -350,6 +350,9 @@
     <Content Include="Views\Settings\SupportDocument.cshtml" />
     <Content Include="Views\Settings\P_NewSupportDoc.cshtml" />
     <Content Include="Views\Settings\P_DeleteSupportDoc.cshtml" />
+    <Content Include="Views\Settings\ExportSector.cshtml" />
+    <Content Include="Views\Settings\P_AddEditExportSector.cshtml" />
+    <Content Include="Views\Settings\P_DeleteExportSector.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

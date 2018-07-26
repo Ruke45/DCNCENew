@@ -76,7 +76,6 @@ namespace NCEDCO.Models.Business
 
         }
 
-
         public bool Owner_ModifyContactPerson(M_ProductOwner odo)
         {
             try
@@ -213,6 +212,107 @@ namespace NCEDCO.Models.Business
 
                     datacontext.Connection.ConnectionString = Connection_;
                     datacontext._setDeleteSupportingDocuments(sd.SupportingDocument_Id);
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public List<M_ExportSector> ExportS_getExportSection(string IsActive)
+        {
+            try
+            {
+
+                List<M_ExportSector> lstGroup = new List<M_ExportSector>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getExportSectorResult> lst = datacontext._getExportSector(IsActive);
+                    foreach (_getExportSectorResult result in lst)
+                    {
+                        M_ExportSector grp = new M_ExportSector();
+                        grp.ExportSectorId = Convert.ToInt32(result.ExportId);
+                        grp.ExportSectorName = result.ExportSector;
+                        grp.IsActive = result.Status;
+                        lstGroup.Add(grp);
+
+                    }
+                }
+
+                return lstGroup;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public bool ExportS_NewExportSector(M_ExportSector sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setNewExportSector(sd.ExportSectorName, sd.IsActive);
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public bool ExportS_UpdateExportSector(M_ExportSector sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setUpdateExportSector(sd.ExportSectorId, sd.ExportSectorName, sd.IsActive);
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public bool ExportS_DeleteExportSector(M_ExportSector sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setDeleteExportSector(sd.ExportSectorId);
                     datacontext.SubmitChanges();
 
                 }

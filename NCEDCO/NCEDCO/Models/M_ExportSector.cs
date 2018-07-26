@@ -10,7 +10,7 @@ namespace NCEDCO.Models
     {
         [Display(Name = "Export Sector Id")]
         [Required(ErrorMessage = "Required!")]
-        public string ExportSectorId { get; set; }
+        public int ExportSectorId { get; set; }
 
         [Display(Name = "Export Sector Name")]
         [Required(ErrorMessage = "Required!")]
