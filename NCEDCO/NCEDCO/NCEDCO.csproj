@@ -353,6 +353,9 @@
     <Content Include="Views\Settings\ExportSector.cshtml" />
     <Content Include="Views\Settings\P_AddEditExportSector.cshtml" />
     <Content Include="Views\Settings\P_DeleteExportSector.cshtml" />
+    <Content Include="Views\Settings\RejectReasons.cshtml" />
+    <Content Include="Views\Settings\P_NewRejectReason.cshtml" />
+    <Content Include="Views\Settings\P_DeleteRejectReason.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

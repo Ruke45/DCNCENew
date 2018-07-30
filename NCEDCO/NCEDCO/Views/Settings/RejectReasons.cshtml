@@ -1,0 +1,135 @@
+﻿@model IEnumerable<NCEDCO.Models.M_Reject>
+@{
+    ViewBag.Title = "Reject Reasons";
+}
+
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">
+            <small>Reject Reason</small>
+        </h3>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Settings </a>
+            </li>
+            <li class="active">Reject Reason</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Reject Reason Table <a href="#" class="btn btn-primary btn-sm" style="float:right" onclick="addNew('','','');">Add New Reject Reason</a></div> 
+
+
+
+            <div class="panel-body">
+                <table id="datatable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Reject_ReasonId)</th>
+                            <th>@Html.DisplayNameFor(model => model.Reject_ReasonCategory)</th>
+                            <th>@Html.DisplayNameFor(model => model.Reject_ReasonName)</th>
+                            <th>@Html.DisplayNameFor(model => model.Createdby)</th>
+                            <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Reject_ReasonId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Reject_ReasonCategory)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Reject_ReasonName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Createdby)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
+                                <td align="center">
+                                    <div class="btn-group">
+                                        <a href="#"  onclick='addNew("@item.Reject_ReasonId","@item.Reject_ReasonCategory","@item.Reject_ReasonName.Replace(" ","_")")'>Edit</a> | 
+                                        <a href="#" onclick='deleteSD("@item.Reject_ReasonId")'>Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+             <div class="panel-footer">Reject Reason Table</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="OModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content"  id="OModelBody">
+
+    </div>
+
+  </div>
+</div>
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/pace/pace.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+        $('#datatable-responsive').DataTable();
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+        var table = $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+    });
+    TableManageButtons.init();
+ </script>
+                            
+<script>
+    var addNew = function (rid,rrc,rn) {
+        var Url = "/Settings/NewRejectReason?Rid=" + rid +"&rrc="+rrc +"&Rname="+rn;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+
+    var deleteSD = function (ID) {
+        var Url = "/Settings/DeleteRejectReason?ID=" + ID;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+</script>
+

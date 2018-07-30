@@ -378,6 +378,41 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status);
 			return ((ISingleResult<_getExportSectorResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getRejectReasons_List]")]
+		public ISingleResult<_getRejectReasons_ListResult> _getRejectReasons_List([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="VarChar(20)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(1)")] string isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), category, isActive);
+			return ((ISingleResult<_getRejectReasons_ListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setNewRejectReason]")]
+		public int _setNewRejectReason([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectCode", DbType="VarChar(20)")] string rejectCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="VarChar(20)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ReasonName", DbType="VarChar(150)")] string reasonName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Createdby", DbType="VarChar(20)")] string createdby, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(1)")] string isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rejectCode, category, reasonName, createdby, isActive);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getRejectReasonCategories]")]
+		public ISingleResult<_getRejectReasonCategoriesResult> _getRejectReasonCategories()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<_getRejectReasonCategoriesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateRejectReason]")]
+		public int _setUpdateRejectReason([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectCode", DbType="VarChar(20)")] string rejectCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ReasonName", DbType="VarChar(150)")] string reasonName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectRCategory", DbType="VarChar(20)")] string rejectRCategory)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rejectCode, reasonName, rejectRCategory);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setDeleteRejectReason]")]
+		public int _setDeleteRejectReason([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectCode", DbType="VarChar(20)")] string rejectCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rejectCode);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -2951,6 +2986,202 @@ namespace NCEDCO.Models
 				if ((this._Status != value))
 				{
 					this._Status = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getRejectReasons_ListResult
+	{
+		
+		private string _RejectCode;
+		
+		private string _ReasonName;
+		
+		private string _Category;
+		
+		private string _ModifiedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private string _IsActive;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private string _CreatedBy;
+		
+		public _getRejectReasons_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RejectCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RejectCode
+		{
+			get
+			{
+				return this._RejectCode;
+			}
+			set
+			{
+				if ((this._RejectCode != value))
+				{
+					this._RejectCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string ReasonName
+		{
+			get
+			{
+				return this._ReasonName;
+			}
+			set
+			{
+				if ((this._ReasonName != value))
+				{
+					this._ReasonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this._Category = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(20)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this._ModifiedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(1)")]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="Date")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(20)")]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getRejectReasonCategoriesResult
+	{
+		
+		private string _RejectReasonsCategory;
+		
+		private string _CategoryDescription;
+		
+		public _getRejectReasonCategoriesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RejectReasonsCategory", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RejectReasonsCategory
+		{
+			get
+			{
+				return this._RejectReasonsCategory;
+			}
+			set
+			{
+				if ((this._RejectReasonsCategory != value))
+				{
+					this._RejectReasonsCategory = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryDescription", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CategoryDescription
+		{
+			get
+			{
+				return this._CategoryDescription;
+			}
+			set
+			{
+				if ((this._CategoryDescription != value))
+				{
+					this._CategoryDescription = value;
 				}
 			}
 		}

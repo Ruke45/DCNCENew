@@ -38,5 +38,35 @@ namespace NCEDCO.Models.Utility
               return null;
           }
       }
+
+      public List<M_RejectCategory> getReasonCategories()
+      {
+          try
+          {
+
+              List<M_RejectCategory> lstreason = new List<M_RejectCategory>();
+              using (DBLinqDataContext datacontext = new DBLinqDataContext())
+              {
+                  datacontext.Connection.ConnectionString = Connection_;
+                  System.Data.Linq.ISingleResult<_getRejectReasonCategoriesResult> lst = datacontext._getRejectReasonCategories();
+
+                  foreach (_getRejectReasonCategoriesResult result in lst)
+                  {
+                      M_RejectCategory r = new M_RejectCategory();
+                      r.RejectCategoryId = result.RejectReasonsCategory;
+                      r.RejectCategoryName = result.CategoryDescription;
+                      lstreason.Add(r);
+
+                  }
+              }
+
+              return lstreason;
+          }
+          catch (Exception ex)
+          {
+              ErrorLog.LogError(ex);
+              return null;
+          }
+      }
     }
 }

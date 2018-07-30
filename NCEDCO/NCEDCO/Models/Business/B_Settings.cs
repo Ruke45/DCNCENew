@@ -325,5 +325,112 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public List<M_Reject> RejectR_getRejectReasons(string RCategory,string IsActive)
+        {
+            try
+            {
+
+                List<M_Reject> lstR = new List<M_Reject>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getRejectReasons_ListResult> lst = datacontext._getRejectReasons_List(RCategory,IsActive);
+
+                    foreach (_getRejectReasons_ListResult result in lst)
+                    {
+                        M_Reject R = new M_Reject();
+                        R.Reject_ReasonCategory = result.Category;
+                        R.Reject_ReasonName = result.ReasonName;
+                        R.Reject_ReasonId = result.RejectCode;
+                        R.Createdby = result.CreatedBy;
+                        R.CreatedDate = Convert.ToDateTime(result.CreatedDate);
+                        lstR.Add(R);
+
+                    }
+                }
+
+                return lstR;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public bool RejectR_NewRejectReason(M_Reject sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    B_RecordSequence seqmanager = new B_RecordSequence();
+                    Int64 rr = seqmanager.getNextSequence("RejectCode", datacontext);
+                    string rrc = "RRC" + rr.ToString();
+                    datacontext._setNewRejectReason(rrc,sd.Reject_ReasonCategory,sd.Reject_ReasonName,sd.Createdby,"Y");
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public bool RejectR_UpdateRejectReason(M_Reject sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setUpdateRejectReason(sd.Reject_ReasonId,sd.Reject_ReasonName,sd.Reject_ReasonCategory);
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public bool RejectR_DeleteRejectReason(M_Reject sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setDeleteRejectReason(sd.Reject_ReasonId);
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
     }
 }

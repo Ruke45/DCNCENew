@@ -387,4 +387,42 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getRejectReasons_List]" Method="_getRejectReasons_List">
+    <Parameter Name="Category" Parameter="category" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="_getRejectReasons_ListResult">
+      <Column Name="RejectCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ReasonName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setNewRejectReason]" Method="_setNewRejectReason">
+    <Parameter Name="RejectCode" Parameter="rejectCode" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Category" Parameter="category" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ReasonName" Parameter="reasonName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Createdby" Parameter="createdby" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getRejectReasonCategories]" Method="_getRejectReasonCategories">
+    <ElementType Name="_getRejectReasonCategoriesResult">
+      <Column Name="RejectReasonsCategory" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryDescription" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setUpdateRejectReason]" Method="_setUpdateRejectReason">
+    <Parameter Name="RejectCode" Parameter="rejectCode" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ReasonName" Parameter="reasonName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="RejectRCategory" Parameter="rejectRCategory" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setDeleteRejectReason]" Method="_setDeleteRejectReason">
+    <Parameter Name="RejectCode" Parameter="rejectCode" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

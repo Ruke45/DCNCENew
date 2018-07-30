@@ -9,8 +9,9 @@
     <Child title="Client's Customer Requests" action="ClientCustomerRequests" controller="Customer" url="#"/>
   </Navigation>
   <Navigation title="Settings" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Export Sector (Add/Edit)" action="ExportSector" controller="Settings" url="#"/>
     <Child title="Owner Company" action="ParentCustomerRequests" controller="Settings" url="#"/>
     <Child title="Owner Contact" action="EditOwnerCompany" controller="Settings" url="#"/>
-    <Child title="Supporting Documnet (Add/Edit)" action="SupportDocument" controller="Settings" url="#"/>
+    <Child title="Supporting Document (Add/Edit)" action="SupportDocument" controller="Settings" url="#"/>
   </Navigation>
 </Navigations>

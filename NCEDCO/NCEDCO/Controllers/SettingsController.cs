@@ -157,8 +157,6 @@ namespace NCEDCO.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[HandleError]
         public ActionResult NewExportSector(M_ExportSector Model)
         {
             if (Model.ExportSectorName == null)
@@ -198,6 +196,7 @@ namespace NCEDCO.Controllers
             ViewBag.Export_ID = ID;
             return PartialView("P_DeleteExportSector");
         }
+
         [HttpPost]
         public JsonResult DeleteExportSector(M_ExportSector Model)
         {
@@ -205,6 +204,87 @@ namespace NCEDCO.Controllers
             try
             {
                 if (objSettings.ExportS_DeleteExportSector(Model))
+                {
+                    result = "Success";
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RejectReasons()
+        {
+            return View(objSettings.RejectR_getRejectReasons("%","Y"));
+        }
+
+        public ActionResult NewRejectReason(string Rid,string rrc , string Rname)
+        {
+            Rejectitem objReject = new Rejectitem();
+            List<M_RejectCategory> RCategory = objReject.getReasonCategories();
+            ViewBag.Bag_RejectReasonsCat = new SelectList(RCategory, "RejectCategoryId", "RejectCategoryName");
+
+            M_Reject Ex = new M_Reject();
+            if (Rid != "")
+            {
+                Ex.Reject_ReasonId = Rid;
+                Ex.Reject_ReasonName = Rname.Replace("_", " ");
+                Ex.Reject_ReasonCategory = rrc;
+                return PartialView("P_NewRejectReason", Ex);
+            }
+            //Ex.IsActive = "Y";
+            return PartialView("P_NewRejectReason");
+        }
+
+        [HttpPost]
+        public ActionResult NewRejectReason(M_Reject Model)
+        {
+            if (Model.Reject_ReasonName == null || Model.Reject_ReasonCategory == null)
+            {
+                Model.IsActive = "Y";
+                return PartialView("P_NewRejectReason", Model);
+            }
+
+            string result = "Error";
+            try
+            {
+                if (Model.Reject_ReasonId == null)
+                {
+                    if (objSettings.RejectR_NewRejectReason(Model))
+                    {
+                        result = "Success";
+                    }
+                }
+                else
+                {
+                    if (objSettings.RejectR_UpdateRejectReason(Model))
+                    {
+                        result = "Success";
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteRejectReason(string ID)
+        {
+            ViewBag.RejectID = ID;
+            return PartialView("P_DeleteRejectReason");
+        }
+
+        [HttpPost]
+        public JsonResult DeleteRejectReason(M_Reject Model)
+        {
+            string result = "Error";
+            try
+            {
+                if (objSettings.RejectR_DeleteRejectReason(Model))
                 {
                     result = "Success";
                 }
