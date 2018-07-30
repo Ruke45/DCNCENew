@@ -432,5 +432,41 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public List<M_SupportDocument> STemp_getSDoctemplates(string IsActive, string TemplateId)
+        {
+            try
+            {
+
+                List<M_SupportDocument> lstR = new List<M_SupportDocument>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getTemplateSupportDoc_ListResult> lst = datacontext._getTemplateSupportDoc_List(IsActive,TemplateId);
+
+                    foreach (_getTemplateSupportDoc_ListResult result in lst)
+                    {
+                        M_SupportDocument t = new M_SupportDocument();
+                        t.SupportingDocument_Id = result.SupportingDocumentId;
+                        t.SupportingDocument_Name = result.SupportingDocumentName;
+                        t.Template_Id = result.TemplateName;
+                        t.Template_Name = result.TemplateName;
+                        t.Template_SupportID = result.TemplateSupportingDocument;
+                        t.Is_Mandatory = result.IsMandatory;
+                        lstR.Add(t);
+
+                    }
+                }
+
+                return lstR;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }

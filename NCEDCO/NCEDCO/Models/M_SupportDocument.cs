@@ -6,7 +6,7 @@ using System.Web;
 
 namespace NCEDCO.Models
 {
-    public class M_SupportDocument
+    public class M_SupportDocument : M_NCETemplate
     {
         String UserId;
 
@@ -142,6 +142,24 @@ namespace NCEDCO.Models
         {
             get { return CertificateRequestId; }
             set { CertificateRequestId = value; }
+        }
+
+        int TemplateSupportID;
+        [Display(Name = "ID")]
+        [Required(ErrorMessage = "Required!")]
+        public int Template_SupportID
+        {
+            get { return TemplateSupportID; }
+            set { TemplateSupportID = value; }
+        }
+
+        string IsMandatory;
+        [Display(Name = "Mandatory")]
+        [Required(ErrorMessage = "Required!")]
+        public string Is_Mandatory
+        {
+            get { return IsMandatory; }
+            set { IsMandatory = value; }
         }
     }
 }

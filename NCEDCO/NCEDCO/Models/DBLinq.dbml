@@ -425,4 +425,21 @@
     <Parameter Name="RejectCode" Parameter="rejectCode" Type="System.String" DbType="VarChar(20)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getTemplateSupportDoc_List]" Method="_getTemplateSupportDoc_List">
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="TemplateID" Parameter="templateID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getTemplateSupportDoc_ListResult">
+      <Column Name="SupportingDocumentId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SupportingDocumentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TemplateName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IsMandatory" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TemplateSupportingDocument" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,20 +8,23 @@ namespace NCEDCO.Models
 {
     public class M_NCETemplate
     {
-        string TemplateName;
-
+        protected string TemplateName;
+        [Display(Name = "Template Name")]
+        [Required(ErrorMessage = "Required!")]
         public string Template_Name
         {
             get { return TemplateName; }
             set { TemplateName = value; }
         }
-        string TemplateId;
-
+        protected string TemplateId;
+        [Display(Name = "Template Id")]
+        [Required(ErrorMessage = "Required!")]
         public string Template_Id
         {
             get { return TemplateId; }
             set { TemplateId = value; }
         }
+
         string CreatedBy;
 
         public string Created_By

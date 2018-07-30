@@ -413,6 +413,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rejectCode);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getTemplateSupportDoc_List]")]
+		public ISingleResult<_getTemplateSupportDoc_ListResult> _getTemplateSupportDoc_List([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="VarChar(1)")] string isActive, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateID", DbType="VarChar(20)")] string templateID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), isActive, templateID);
+			return ((ISingleResult<_getTemplateSupportDoc_ListResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3182,6 +3189,212 @@ namespace NCEDCO.Models
 				if ((this._CategoryDescription != value))
 				{
 					this._CategoryDescription = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getTemplateSupportDoc_ListResult
+	{
+		
+		private string _SupportingDocumentId;
+		
+		private string _SupportingDocumentName;
+		
+		private string _TemplateId;
+		
+		private string _TemplateName;
+		
+		private string _CreatedBy;
+		
+		private string _IsActive;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private string _ModifiedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private string _IsMandatory;
+		
+		private int _TemplateSupportingDocument;
+		
+		public _getTemplateSupportDoc_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string SupportingDocumentId
+		{
+			get
+			{
+				return this._SupportingDocumentId;
+			}
+			set
+			{
+				if ((this._SupportingDocumentId != value))
+				{
+					this._SupportingDocumentId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentName", DbType="VarChar(100)")]
+		public string SupportingDocumentName
+		{
+			get
+			{
+				return this._SupportingDocumentName;
+			}
+			set
+			{
+				if ((this._SupportingDocumentName != value))
+				{
+					this._SupportingDocumentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this._TemplateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(20)")]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(1)")]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="Date")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(20)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this._ModifiedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsMandatory", DbType="VarChar(1)")]
+		public string IsMandatory
+		{
+			get
+			{
+				return this._IsMandatory;
+			}
+			set
+			{
+				if ((this._IsMandatory != value))
+				{
+					this._IsMandatory = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateSupportingDocument", DbType="Int NOT NULL")]
+		public int TemplateSupportingDocument
+		{
+			get
+			{
+				return this._TemplateSupportingDocument;
+			}
+			set
+			{
+				if ((this._TemplateSupportingDocument != value))
+				{
+					this._TemplateSupportingDocument = value;
 				}
 			}
 		}

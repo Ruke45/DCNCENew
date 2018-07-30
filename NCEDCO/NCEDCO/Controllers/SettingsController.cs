@@ -79,8 +79,6 @@ namespace NCEDCO.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[HandleError]
         public ActionResult NewSupportDoc(M_SupportDocument Model)
         {
             if (Model.SupportingDocument_Name == null)
@@ -294,6 +292,11 @@ namespace NCEDCO.Controllers
                 ErrorLog.LogError(Ex);
             }
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SupportDocumentForTemplate()
+        {
+            return View(objSettings.STemp_getSDoctemplates("Y", "%"));
         }
     }
 }
