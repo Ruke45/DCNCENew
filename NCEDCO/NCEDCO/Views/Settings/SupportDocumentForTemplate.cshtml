@@ -125,8 +125,8 @@
         })
     }
 
-    var deleteSD = function (SDocID) {
-        var Url = "/Settings/DeleteSupportDocument?SDoc_ID=" + SDocID;
+    var deleteSD = function (ID) {
+        var Url = "/Settings/DeleteSupportDocForTemplate?ID=" + ID;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })

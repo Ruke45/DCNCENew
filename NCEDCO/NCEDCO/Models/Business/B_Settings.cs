@@ -477,8 +477,76 @@ namespace NCEDCO.Models.Business
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
 
+                    int count = 0;
                     datacontext.Connection.ConnectionString = Connection_;
-                    datacontext._setTemplateSupportingDocument(sd.SupportingDocument_Id,sd.Template_Id,sd.Created_By,sd.Is_Mandatory);
+                    System.Data.Linq.ISingleResult<_CheckTemplateSupportDocResult> lst = datacontext._CheckTemplateSupportDoc(sd.SupportingDocument_Id, sd.Template_Id);
+                    foreach(_CheckTemplateSupportDocResult i in lst)
+                    {
+                        count = Convert.ToInt32(i.Count_);
+                    }
+                    
+                    if (count == 0)
+                    {
+                        datacontext._setTemplateSupportingDocument(sd.SupportingDocument_Id, sd.Template_Id, sd.Created_By, sd.Is_Mandatory);
+                        datacontext.SubmitChanges();
+                    }
+                    
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public bool STemp_UpdateTemplateSupportDoc(M_SupportDocument sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    int count = 0;
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_CheckTemplateSupportDocResult> lst = datacontext._CheckTemplateSupportDoc(sd.SupportingDocument_Id, sd.Template_Id);
+                    foreach (_CheckTemplateSupportDocResult i in lst)
+                    {
+                        count = Convert.ToInt32(i.Count_);
+                    }
+
+                    if (count == 0)
+                    {
+                        datacontext._setUpdateTemplateSupportDoc(sd.Template_SupportID, sd.Template_Id, sd.SupportingDocument_Id, sd.Is_Mandatory,sd.Modified_By);
+                        datacontext.SubmitChanges();
+                    }
+
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public bool STemp_DeleteRejectReason(M_SupportDocument sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setDeleteTemplateSupportDoc(sd.Template_SupportID);
                     datacontext.SubmitChanges();
 
                 }

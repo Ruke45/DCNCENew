@@ -358,6 +358,7 @@
     <Content Include="Views\Settings\P_DeleteRejectReason.cshtml" />
     <Content Include="Views\Settings\SupportDocumentForTemplate.cshtml" />
     <Content Include="Views\Settings\P_NewSupportDocForTemplate.cshtml" />
+    <Content Include="Views\Settings\P_DeleteSupportDocForTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

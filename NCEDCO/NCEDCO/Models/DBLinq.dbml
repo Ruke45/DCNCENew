@@ -449,4 +449,23 @@
     <Parameter Name="IsMandatory" Parameter="isMandatory" Type="System.String" DbType="VarChar(1)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_CheckTemplateSupportDoc]" Method="_CheckTemplateSupportDoc">
+    <Parameter Name="SupportingDocid" Parameter="supportingDocid" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TemplateId" Parameter="templateId" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_CheckTemplateSupportDocResult">
+      <Column Name="Count_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setUpdateTemplateSupportDoc]" Method="_setUpdateTemplateSupportDoc">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TemplateId" Parameter="templateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="SupportDocId" Parameter="supportDocId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsMandatory" Parameter="isMandatory" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="ModifiedBy" Parameter="modifiedBy" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setDeleteTemplateSupportDoc]" Method="_setDeleteTemplateSupportDoc">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

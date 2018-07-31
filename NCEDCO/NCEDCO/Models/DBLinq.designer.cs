@@ -427,6 +427,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId, templateId, createdBy, isMandatory);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_CheckTemplateSupportDoc]")]
+		public ISingleResult<_CheckTemplateSupportDocResult> _CheckTemplateSupportDoc([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocid", DbType="VarChar(20)")] string supportingDocid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateId", DbType="VarChar(20)")] string templateId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocid, templateId);
+			return ((ISingleResult<_CheckTemplateSupportDocResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateTemplateSupportDoc]")]
+		public int _setUpdateTemplateSupportDoc([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateId", DbType="VarChar(20)")] string templateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportDocId", DbType="VarChar(20)")] string supportDocId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsMandatory", DbType="VarChar(1)")] string isMandatory, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModifiedBy", DbType="VarChar(20)")] string modifiedBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, templateId, supportDocId, isMandatory, modifiedBy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setDeleteTemplateSupportDoc]")]
+		public int _setDeleteTemplateSupportDoc([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3402,6 +3423,32 @@ namespace NCEDCO.Models
 				if ((this._TemplateSupportingDocument != value))
 				{
 					this._TemplateSupportingDocument = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _CheckTemplateSupportDocResult
+	{
+		
+		private System.Nullable<int> _Count_;
+		
+		public _CheckTemplateSupportDocResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_", DbType="Int")]
+		public System.Nullable<int> Count_
+		{
+			get
+			{
+				return this._Count_;
+			}
+			set
+			{
+				if ((this._Count_ != value))
+				{
+					this._Count_ = value;
 				}
 			}
 		}

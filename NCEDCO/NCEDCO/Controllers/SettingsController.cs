@@ -334,18 +334,44 @@ namespace NCEDCO.Controllers
             {
                 if (Model.Template_SupportID == 0)
                 {
+                    Model.Created_By = "Admin";
                     if (objSettings.STemp_NewTemplateSupportDoc(Model))
                     {
                         result = "Success";
                     }
                 }
-                //else
-                //{
-                //    if (objSettings.RejectR_UpdateRejectReason(Model))
-                //    {
-                //        result = "Success";
-                //    }
-                //}
+                else
+                {
+                    Model.Modified_By = "Admin";
+                    if (objSettings.STemp_UpdateTemplateSupportDoc(Model))
+                    {
+                        result = "Success";
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteSupportDocForTemplate(string ID)
+        {
+            ViewBag.TempSupID = ID;
+            return PartialView("P_DeleteSupportDocForTemplate");
+        }
+
+        [HttpPost]
+        public JsonResult DeleteSupportDocForTemplate(M_SupportDocument Model)
+        {
+            string result = "Error";
+            try
+            {
+                if (objSettings.STemp_DeleteRejectReason(Model))
+                {
+                    result = "Success";
+                }
             }
             catch (Exception Ex)
             {
