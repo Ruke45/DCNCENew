@@ -449,7 +449,7 @@ namespace NCEDCO.Models.Business
                         M_SupportDocument t = new M_SupportDocument();
                         t.SupportingDocument_Id = result.SupportingDocumentId;
                         t.SupportingDocument_Name = result.SupportingDocumentName;
-                        t.Template_Id = result.TemplateName;
+                        t.Template_Id = result.TemplateId;
                         t.Template_Name = result.TemplateName;
                         t.Template_SupportID = result.TemplateSupportingDocument;
                         t.Is_Mandatory = result.IsMandatory;
@@ -466,6 +466,29 @@ namespace NCEDCO.Models.Business
                 return null;
             }
 
+
+        }
+
+        public bool STemp_NewTemplateSupportDoc(M_SupportDocument sd)
+        {
+            try
+            {
+
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setTemplateSupportingDocument(sd.SupportingDocument_Id,sd.Template_Id,sd.Created_By,sd.Is_Mandatory);
+                    datacontext.SubmitChanges();
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
 
         }
     }

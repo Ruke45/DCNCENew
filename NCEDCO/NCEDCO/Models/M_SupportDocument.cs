@@ -16,7 +16,7 @@ namespace NCEDCO.Models
             set { UserId = value; }
         }
 
-        String SupportingDocumentId;
+        string SupportingDocumentId;
         [Display(Name = "Supporting Document Id")]
         [Required(ErrorMessage = "Required!")]
         public string SupportingDocument_Id
@@ -25,7 +25,7 @@ namespace NCEDCO.Models
             set { SupportingDocumentId = value; }
         }
 
-        String SupportingDocumentName;
+        string SupportingDocumentName;
         [Display(Name = "Supporting Document Name")]
         [Required(ErrorMessage = "Required!")]
         public string SupportingDocument_Name
@@ -37,7 +37,7 @@ namespace NCEDCO.Models
 
         String CreatedBy;
         [Display(Name = "Created By")]
-        public string Created_By
+        public new string Created_By
         {
             get { return CreatedBy; }
             set { CreatedBy = value; }
@@ -54,7 +54,7 @@ namespace NCEDCO.Models
         String IsActive;
         [Display(Name = "Is Active")]
         [Required(ErrorMessage = "Required!")]
-        public string Is_Active
+        public new string Is_Active
         {
             get { return IsActive; }
             set { IsActive = value; }
@@ -62,7 +62,7 @@ namespace NCEDCO.Models
 
         String ModifiedBy;
         [Display(Name = "Modified By")]
-        public string Modified_By
+        public new string Modified_By
         {
             get { return ModifiedBy; }
             set { ModifiedBy = value; }

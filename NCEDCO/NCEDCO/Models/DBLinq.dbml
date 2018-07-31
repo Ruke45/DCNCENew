@@ -442,4 +442,11 @@
       <Column Name="TemplateSupportingDocument" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setTemplateSupportingDocument]" Method="_setTemplateSupportingDocument">
+    <Parameter Name="SupportingDocumentId" Parameter="supportingDocumentId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TemplateId" Parameter="templateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsMandatory" Parameter="isMandatory" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

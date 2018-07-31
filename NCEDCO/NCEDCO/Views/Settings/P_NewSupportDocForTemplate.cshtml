@@ -1,0 +1,127 @@
+﻿@model NCEDCO.Models.M_SupportDocument
+
+<div>
+    <form id="FrmRPC" class="form-horizontal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add / Edit Reject Reason</h4>
+        </div>
+        <div class="modal-body">
+            @Html.HiddenFor(m => m.Template_SupportID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Template_Name, new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-8">
+                    @Html.DropDownListFor(model => model.Template_Id, ViewBag.Bag_NceTemplates as SelectList, "", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SupportingDocument_Name, new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-8">
+                    @Html.DropDownListFor(model => model.SupportingDocument_Id, ViewBag.Bag_SupportDoc as SelectList, "", new { @class = "form-control" })
+                </div>
+            </div>
+             <div class="form-group">
+                @Html.LabelFor(m => m.Is_Mandatory, new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-8">
+                    @if (Model.Is_Mandatory == "Y")
+                    {
+                    <div class="radio radio-inline">
+                        @Html.RadioButtonFor(m => m.Is_Mandatory, "Y",true)
+                        <label for="radio1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="radio radio-inline">
+                        @Html.RadioButtonFor(m => m.Is_Mandatory, "N",false)
+                        <label for="radio1">
+                            No
+                        </label>
+                    </div>
+                    }
+                    else if (Model.Is_Mandatory == "N")
+                    {
+                    <div class="radio radio-inline">
+                        @Html.RadioButtonFor(m => m.Is_Mandatory, "Y",false)
+                        <label for="radio1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="radio radio-inline">
+                        @Html.RadioButtonFor(m => m.Is_Mandatory, "N",true)
+                        <label for="radio1">
+                            No
+                        </label>
+                    </div>   
+                    }
+                    else{
+                        <div class="radio radio-inline">
+                        @Html.RadioButtonFor(m => m.Is_Mandatory, "Y",true)
+                        <label for="radio1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="radio radio-inline">
+                        @Html.RadioButtonFor(m => m.Is_Mandatory, "N",false)
+                        <label for="radio1">
+                            No
+                        </label>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="btnSubmit" class="btn btn-primary"><span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                <img src="~/Images/ellipsis.gif" /></span></a>
+        </div>
+    </form>
+</div>
+<script>
+
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function (e) {
+            debugger
+            if (!$("#Template_Id").val()) {
+                $("#Template_Id").closest('.form-group').addClass('has-error');
+                //$("#CategoryIdError").text("Required");
+                return;
+            }
+            if (!$("#SupportingDocument_Id").val()) {
+                $("#SupportingDocument_Id").closest('.form-group').addClass('has-error');
+                //$("#CategoryIdError").text("Required");
+                return;
+            }
+            if (!$("#Is_Mandatory").val()) {
+                $("#Is_Mandatory").closest('.form-group').addClass('has-error');
+                //$("#CategoryIdError").text("Required");
+                return;
+            }
+            $("#loaderDiv").show();
+
+            var myformdata = $("#FrmRPC").serialize();
+            $.ajax({
+
+                type: "POST",
+                url: "/Settings/NewSupportDocForTemplate",
+                data: myformdata,
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    if (result == "Success") {
+                        debugger
+                        window.location.href = "/Settings/SupportDocumentForTemplate?Result=Successfull";
+                    }
+                    else if (result == "Error") {
+                        $("#OModel").modal("hide");
+                        $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
+                        $("#errorModel").modal("show");
+                    }
+                }
+
+            })
+        })
+
+    })
+
+
+</script>

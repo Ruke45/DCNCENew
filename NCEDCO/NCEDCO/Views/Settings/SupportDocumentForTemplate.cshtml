@@ -22,7 +22,7 @@
 
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Support Document for Template Table <a href="#" class="btn btn-primary btn-sm" style="float:right" onclick="addNew('','');">Add New Template Support Document</a></div> 
+            <div class="panel-heading">Support Document for Template Table <a href="#" class="btn btn-primary btn-sm" style="float:right" onclick="addNew(0,'','','');">Add New Template Support Document</a></div> 
 
 
 
@@ -54,7 +54,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.Is_Mandatory)</td>
                                 <td align="center">
                                     <div class="btn-group">
-                                        <a href="#"  onclick='addNew("@item.SupportingDocument_Id","@item.Template_Id",@item.Template_SupportID)'>Edit</a> | 
+                                        <a href="#"  onclick='addNew(@item.Template_SupportID,"@item.SupportingDocument_Id","@item.Template_Id","@item.Is_Mandatory",)'>Edit</a> | 
                                         <a href="#" onclick='deleteSD(@item.Template_SupportID)'>Delete</a>
                                     </div>
                                 </td>
@@ -118,8 +118,8 @@
  </script>
                             
 <script>
-    var addNew = function (SDocID,Name) {
-        var Url = "/Settings/NewSupportDoc?SD=" + SDocID +"&Name=" +Name ;
+    var addNew = function (id,sid,tempid,isactive) {
+        var Url = "/Settings/NewSupportDocForTemplate?id="+id+"&sid="+sid+"&tempid="+tempid+"&isactive="+isactive;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })

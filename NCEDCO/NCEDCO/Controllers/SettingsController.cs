@@ -298,5 +298,60 @@ namespace NCEDCO.Controllers
         {
             return View(objSettings.STemp_getSDoctemplates("Y", "%"));
         }
+
+        public ActionResult NewSupportDocForTemplate(int id, string sid, string tempid, string isactive)
+        {
+            NCETemplate objTemp = new NCETemplate();
+            List<M_NCETemplate> Temp = objTemp.getTemplateData("%","Y","%");
+            ViewBag.Bag_NceTemplates = new SelectList(Temp, "Template_Id", "Template_Name");
+
+            List<M_SupportDocument> Support = objSettings.SDocument_getSDcouments("%","%");
+            ViewBag.Bag_SupportDoc = new SelectList(Support, "SupportingDocument_Id", "SupportingDocument_Name");
+            M_SupportDocument sp = new M_SupportDocument();
+            if (id != 0)
+            {
+                sp.Template_SupportID = id;
+                sp.SupportingDocument_Id = sid;
+                sp.Template_Id = tempid;
+                sp.Is_Mandatory = isactive;
+                return PartialView("P_NewSupportDocForTemplate", sp);
+            }
+            sp.Is_Mandatory = "Y";
+            return PartialView("P_NewSupportDocForTemplate",sp);
+        }
+
+        [HttpPost]
+        public ActionResult NewSupportDocForTemplate(M_SupportDocument Model)
+        {
+            if (Model.SupportingDocument_Id == null || Model.Template_Id == null)
+            {
+                Model.Is_Mandatory = "Y";
+                return PartialView("P_NewSupportDocForTemplate", Model);
+            }
+
+            string result = "Error";
+            try
+            {
+                if (Model.Template_SupportID == 0)
+                {
+                    if (objSettings.STemp_NewTemplateSupportDoc(Model))
+                    {
+                        result = "Success";
+                    }
+                }
+                //else
+                //{
+                //    if (objSettings.RejectR_UpdateRejectReason(Model))
+                //    {
+                //        result = "Success";
+                //    }
+                //}
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

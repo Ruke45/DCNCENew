@@ -420,6 +420,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), isActive, templateID);
 			return ((ISingleResult<_getTemplateSupportDoc_ListResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setTemplateSupportingDocument]")]
+		public int _setTemplateSupportingDocument([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocumentId", DbType="VarChar(20)")] string supportingDocumentId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateId", DbType="VarChar(20)")] string templateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsMandatory", DbType="VarChar(1)")] string isMandatory)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supportingDocumentId, templateId, createdBy, isMandatory);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult

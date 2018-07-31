@@ -26,8 +26,7 @@ namespace NCEDCO.Models
         }
 
         string CreatedBy;
-
-        public string Created_By
+        public virtual string Created_By
         {
             get { return CreatedBy; }
             set { CreatedBy = value; }
@@ -35,14 +34,14 @@ namespace NCEDCO.Models
 
         string IsActive;
 
-        public string Is_Active
+        public virtual string Is_Active
         {
             get { return IsActive; }
             set { IsActive = value; }
         }
         string ModifiedBy;
 
-        public string Modified_By
+        public virtual string Modified_By
         {
             get { return ModifiedBy; }
             set { ModifiedBy = value; }
