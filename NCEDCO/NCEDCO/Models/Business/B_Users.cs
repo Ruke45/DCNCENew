@@ -12,6 +12,8 @@ namespace NCEDCO.Models.Business
         static string DECKey = ConfigurationManager.AppSettings["DecKey"];
         static string Substrings = ConfigurationManager.AppSettings["Substrings"].ToString();
         string Connection_ = ConfigurationManager.ConnectionStrings["NCEDCOConnectionString"].ToString();
+        string Group_Singatory = ConfigurationManager.AppSettings["UserGroupID_SAdmin"].ToString();
+
         string Password = DECKey.Substring(Convert.ToInt32(Substrings));
 
         public M_Login getUserLogin(M_Login Usr)
@@ -119,6 +121,37 @@ namespace NCEDCO.Models.Business
                 // Console.WriteLine(ex.Message.ToString());
                 ErrorLog.LogError(ex);
                 return true;
+            }
+
+
+        }
+
+        public List<M_Signatory>  _getSignatoryUser()
+        {
+            try
+            {
+                List<M_Signatory> list = new List<M_Signatory>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    System.Data.Linq.ISingleResult<_getSignatoryUsersResult> ckuser = datacontext._getSignatoryUsers(Group_Singatory);
+                    foreach (_getSignatoryUsersResult result in ckuser)
+                    {
+                        M_Signatory s = new M_Signatory();
+                        s.UserId = result.UserID;
+                        s.UserName = result.PersonName;
+                        list.Add(s);
+                    }
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return null;
             }
 
 

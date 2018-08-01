@@ -468,4 +468,11 @@
     <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getSignatoryUsers]" Method="_getSignatoryUsers">
+    <Parameter Name="UserGroup" Parameter="userGroup" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getSignatoryUsersResult">
+      <Column Name="UserID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PersonName" Type="System.String" DbType="VarChar(188) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

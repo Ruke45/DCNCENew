@@ -188,7 +188,9 @@
     <Compile Include="Models\M_Parameters.cs" />
     <Compile Include="Models\M_ProductOwner.cs" />
     <Compile Include="Models\M_Reject.cs" />
+    <Compile Include="Models\M_Signatory.cs" />
     <Compile Include="Models\M_SupportDocument.cs" />
+    <Compile Include="Models\M_Users.cs" />
     <Compile Include="Models\Utility\Encrypt_Decrypt.cs" />
     <Compile Include="Models\Utility\ErrorLog.cs" />
     <Compile Include="Models\Utility\ExportSector.cs" />
@@ -359,6 +361,7 @@
     <Content Include="Views\Settings\SupportDocumentForTemplate.cshtml" />
     <Content Include="Views\Settings\P_NewSupportDocForTemplate.cshtml" />
     <Content Include="Views\Settings\P_DeleteSupportDocForTemplate.cshtml" />
+    <Content Include="Views\Settings\SignatorySignature.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

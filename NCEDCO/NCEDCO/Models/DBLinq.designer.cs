@@ -448,6 +448,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSignatoryUsers]")]
+		public ISingleResult<_getSignatoryUsersResult> _getSignatoryUsers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserGroup", DbType="VarChar(20)")] string userGroup)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userGroup);
+			return ((ISingleResult<_getSignatoryUsersResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3449,6 +3456,50 @@ namespace NCEDCO.Models
 				if ((this._Count_ != value))
 				{
 					this._Count_ = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSignatoryUsersResult
+	{
+		
+		private string _UserID;
+		
+		private string _PersonName;
+		
+		public _getSignatoryUsersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PersonName", DbType="VarChar(188) NOT NULL", CanBeNull=false)]
+		public string PersonName
+		{
+			get
+			{
+				return this._PersonName;
+			}
+			set
+			{
+				if ((this._PersonName != value))
+				{
+					this._PersonName = value;
 				}
 			}
 		}

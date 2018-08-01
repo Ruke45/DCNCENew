@@ -3,6 +3,7 @@ using NCEDCO.Models.Business;
 using NCEDCO.Models.Utility;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -372,6 +373,32 @@ namespace NCEDCO.Controllers
                 {
                     result = "Success";
                 }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SignatorySignature()
+        {
+            B_Users objUser = new B_Users();
+            List<M_Signatory> USignatory = objUser._getSignatoryUser();
+            ViewBag.Bag_SignatoryList = new SelectList(USignatory, "UserId", "UserName");
+
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult SignatorySignature(M_Signatory Model)
+        {
+            string result = "Error";
+            try
+            {
+                string id = Model.UserId;
+                var Pfx = Model.Signature_Path;
+                var Img = Model.Singature_Img;
             }
             catch (Exception Ex)
             {
