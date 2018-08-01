@@ -363,7 +363,9 @@
     <Content Include="Views\Settings\P_DeleteSupportDocForTemplate.cshtml" />
     <Content Include="Views\Settings\SignatorySignature.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Signature\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NCEDCO" Class="DBLinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=ANONYMUS\SQLEXPRESS;Initial Catalog=NCEDCO;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NCEDCOConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ANONYMUS;Initial Catalog=NCEDCO;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NCEDCOConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.DCISgetSequence" Method="DCISgetSequence">
     <Parameter Name="SequenceName" Parameter="sequenceName" Type="System.String" DbType="VarChar(50)" />
     <ElementType Name="DCISgetSequenceResult">
@@ -474,5 +474,27 @@
       <Column Name="UserID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="PersonName" Type="System.String" DbType="VarChar(188) NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.[_getUserSignatureDetails]" Method="_getUserSignatureDetails">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getUserSignatureDetailsResult">
+      <Column Name="UserID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PFXpath" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="SignatureIMGPath" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setUpdateUserSignatureDetails]" Method="_setUpdateUserSignatureDetails">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="PFXpath" Parameter="pFXpath" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="SignatureIMGPath" Parameter="signatureIMGPath" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setSignatorySignatureDetails]" Method="_setSignatorySignatureDetails">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="PFXpath" Parameter="pFXpath" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="SignatureIMGPath" Parameter="signatureIMGPath" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

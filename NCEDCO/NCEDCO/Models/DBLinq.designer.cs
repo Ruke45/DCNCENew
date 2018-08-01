@@ -455,6 +455,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userGroup);
 			return ((ISingleResult<_getSignatoryUsersResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getUserSignatureDetails]")]
+		public ISingleResult<_getUserSignatureDetailsResult> _getUserSignatureDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(20)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+			return ((ISingleResult<_getUserSignatureDetailsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateUserSignatureDetails]")]
+		public int _setUpdateUserSignatureDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(20)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PFXpath", DbType="NVarChar(250)")] string pFXpath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SignatureIMGPath", DbType="NVarChar(250)")] string signatureIMGPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, pFXpath, signatureIMGPath, createdBy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setSignatorySignatureDetails]")]
+		public int _setSignatorySignatureDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(20)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PFXpath", DbType="NVarChar(250)")] string pFXpath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SignatureIMGPath", DbType="NVarChar(250)")] string signatureIMGPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, pFXpath, signatureIMGPath, createdBy);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3500,6 +3521,68 @@ namespace NCEDCO.Models
 				if ((this._PersonName != value))
 				{
 					this._PersonName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getUserSignatureDetailsResult
+	{
+		
+		private string _UserID;
+		
+		private string _PFXpath;
+		
+		private string _SignatureIMGPath;
+		
+		public _getUserSignatureDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PFXpath", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string PFXpath
+		{
+			get
+			{
+				return this._PFXpath;
+			}
+			set
+			{
+				if ((this._PFXpath != value))
+				{
+					this._PFXpath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignatureIMGPath", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string SignatureIMGPath
+		{
+			get
+			{
+				return this._SignatureIMGPath;
+			}
+			set
+			{
+				if ((this._SignatureIMGPath != value))
+				{
+					this._SignatureIMGPath = value;
 				}
 			}
 		}

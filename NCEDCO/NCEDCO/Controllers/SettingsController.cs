@@ -4,6 +4,7 @@ using NCEDCO.Models.Utility;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +16,7 @@ namespace NCEDCO.Controllers
         //
         // GET: /Settings/
         B_Settings objSettings = new B_Settings();
+        B_Users objUser = new B_Users();
 
         public ActionResult EditOwnerContact()
         {
@@ -383,7 +385,7 @@ namespace NCEDCO.Controllers
 
         public ActionResult SignatorySignature()
         {
-            B_Users objUser = new B_Users();
+            
             List<M_Signatory> USignatory = objUser._getSignatoryUser();
             ViewBag.Bag_SignatoryList = new SelectList(USignatory, "UserId", "UserName");
 
@@ -393,12 +395,28 @@ namespace NCEDCO.Controllers
         [HttpPost]
         public JsonResult SignatorySignature(M_Signatory Model)
         {
-            string result = "Error";
+            bool result = false;
             try
             {
-                string id = Model.UserId;
-                var Pfx = Model.Signature_Path;
-                var Img = Model.Singature_Img;
+                string DirectoryPath = "~/Signature/" + Model.UserId + "/" + DateTime.Now.ToString("yyyy_MM_dd");
+
+                var pfx = Model.Signature_Path;
+                var imgPath = Model.Singature_Img;
+
+                if (pfx != null && imgPath != null && Model.UserId == null)
+                {
+                    if (objUser.SigantorySignatureUpload(Model, DirectoryPath + "/" + pfx.FileName.Replace(" ", "_"),
+                                                                DirectoryPath + "/" + imgPath.FileName.Replace(" ", "_")))
+                    {
+                        if (!Directory.Exists(Server.MapPath(DirectoryPath)))
+                        {
+                            Directory.CreateDirectory(Server.MapPath(DirectoryPath));
+                        }
+                        pfx.SaveAs(Server.MapPath(DirectoryPath + "/" + pfx.FileName.Replace(" ", "_")));
+                        imgPath.SaveAs(Server.MapPath(DirectoryPath + "/" + imgPath.FileName.Replace(" ", "_")));
+                    }
+                    result = true;
+                }
             }
             catch (Exception Ex)
             {

@@ -38,18 +38,18 @@
                         @Html.LabelFor(m => m.Signature_Path, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
                             <div class="fileUpload btn btn-default">
-                                <input type="file" id="Signature_Path" class="upload">
+                                <input type="file" id="Signature_Path" class="upload" accept=".pfx,.PFX">
                             </div>
                         </div>
-@*                        <div class="col-sm-3">
-                            @Html.ValidationMessageFor(model => model.UserId, null, new { @class = "text-danger" })
-                        </div>*@
+                        <div class="col-sm-3">
+                            <label id="lblErSignature" class="control-label" style="color: #e83a3a"></label>
+                        </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Singature_Img, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
                             <div class="fileUpload btn btn-default">
-                                <input type="file" id="Singature_Img" class="upload">
+                                <input type="file" id="Singature_Img" class="upload" accept="image/*">
                             </div>
                         </div>
                         @*<div class="col-sm-3">
@@ -68,26 +68,67 @@
     </div>
 
 </div>
+
+<!--Notification Modals -->
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="SModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content"  id="SModelBody">
+        <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Successful !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="lblSuccess" style="color:#0e751b">Signatory Signature Uploaded Succesfully</label>
+            </div>
+        
+    </div>
+
+  </div>
+</div>
 <script>
     $(document).ready(function () {
 
-        $("#btnSubmit").click(function (e) {
+        $("#btnSubmit").click(function () {
             debugger
-            //if (!$("#Template_Id").val()) {
-            //    $("#Template_Id").closest('.form-group').addClass('has-error');
-            //    //$("#CategoryIdError").text("Required");
-            //    return;
-            //}
-            //if (!$("#SupportingDocument_Id").val()) {
-            //    $("#SupportingDocument_Id").closest('.form-group').addClass('has-error');
-            //    //$("#CategoryIdError").text("Required");
-            //    return;
-            //}
-            //if (!$("#Is_Mandatory").val()) {
-            //    $("#Is_Mandatory").closest('.form-group').addClass('has-error');
-            //    //$("#CategoryIdError").text("Required");
-            //    return;
-            //}
+            if (!$("#Signature_Path").val()) {
+                $("#Signature_Path").closest('.form-group').addClass('has-error');
+
+                $("#ErrorLable").text("Please Select a PFX File Path");
+                $("#errorModel").modal("show");
+                return;
+            }
+            if (!$("#Singature_Img").val()) {
+                $("#Singature_Img").closest('.form-group').addClass('has-error');
+                
+                $("#ErrorLable").text("Please Select a Image File Path");
+                $("#errorModel").modal("show");
+                return;
+            }
+            if (!$("#UserId").val()) {
+                $("#UserId").closest('.form-group').addClass('has-error');
+                
+                $("#ErrorLable").text("Please Select a User");
+                $("#errorModel").modal("show");
+                return;
+            }
             $("#loaderDiv").show();
 
             var Pfx = $("#Signature_Path")[0].files;
@@ -104,10 +145,16 @@
                 contentType: false,
                 processData: false,
                 success: function (result) {
-                    //$("#AttachmentFile").val('');
-                    ////$("#attachmetnsview").append('<div class="col-sm-12" id="' + result.SeqNo + '"><div class="well">' + result.FileName + ' ' + result.SeqNo + '<button type="button" class="close" onclick="DeleteAttachment(' + result.SeqNo + ');">&times;</button></div></div>')
-                    //$("#attachmetnsview").append('<div class="col-sm-12" id="' + result.SeqNo + '"><div class="panel panel-default"><div class="panel-body">' + result.FileName + ' ' + result.SeqNo + '<button type="button" class="close" onclick="DeleteAttachment(' + result.SeqNo + ');">&times;</button></div></div></div>')
-                    //$("#loaderDiv").hide();
+                    $("#loaderDiv").hide();
+                    if (result) {
+                        $("#SModel").modal("show");                   
+                    }
+                    else {
+
+                        $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                        $("#btnCreateTeacher").prop('value', 'Save');
+                        $("#errorModel").modal("show");
+                    }
                 }
 
 
@@ -115,7 +162,30 @@
 
         })
 
+        //var validFilesTypes = ["pfx"];
+
+        //$("#Signature_Path").change(function () {
+
+        //    var file = $("#Signature_Path")[0].files;
+        //    var label = document.getElementById("<%=lblErSignature.ClientID%>");
+        //    var path = file.value;
+        //    var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
+        //    var isValidFile = false;
+        //    for (var i = 0; i < validFilesTypes.length; i++) {
+        //        if (ext == validFilesTypes[i]) {
+        //            isValidFile = true;
+        //            break;
+        //        }
+        //    }
+        //    if (!isValidFile) {
+        //        label.style.color = "red";
+        //        label.innerHTML = "Invalid File. Please upload a File with" +
+        //         " extension:\n\n" + validFilesTypes.join(", ");
+        //    }
+        //    return isValidFile;
+        //});
     })
 
+   
 
 </script>

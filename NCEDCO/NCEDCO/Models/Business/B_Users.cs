@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Transactions;
+using System.Web.Mvc;
 
 namespace NCEDCO.Models.Business
 {
@@ -155,6 +158,42 @@ namespace NCEDCO.Models.Business
             }
 
 
+        }
+
+        public bool SigantorySignatureUpload(M_Signatory Model,string pfxpath, string Imgpath)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var result = datacontext._getUserSignatureDetails(Model.UserId).FirstOrDefault();
+                    
+                    if (result == null)
+                    {
+                        datacontext._setSignatorySignatureDetails(Model.UserId, pfxpath, Imgpath, "Admin");
+                        datacontext.SubmitChanges();
+                        return true;
+                    }
+                    else 
+                    {
+                        if (result.UserID.Equals(Model.UserId))
+                        {
+                            datacontext._setUpdateUserSignatureDetails(Model.UserId, pfxpath, Imgpath, "Admin");
+                            datacontext.SubmitChanges();
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return false;
+            }
+            
         }
  
     }
