@@ -53,16 +53,18 @@ namespace NCEDCO.Controllers
         [HttpPost]
         public JsonResult CRegister(M_Customer Model)
         {
-            string result = "Error";
+            string output = "Error";
+            string ID = "";
             try
             {
                 if (!objUser.checkUserName(Model.Admin_UserId))
                 {
-                    result = CustomerOBj.SetChildCustomerRequest(Model);
+                    var cid = CustomerOBj.SetChildCustomerRequest(Model);
 
-                    if (result != null)
+                    if (ID != null)
                     {
-                        result = "Success";
+                        ID = cid;
+                        output = "Sucsess";
                     }
                 }
                 
@@ -71,14 +73,19 @@ namespace NCEDCO.Controllers
             {
                 ErrorLog.LogError(Ex);
             }
+            var result = new {  Msg = output, CID = ID };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult CTemplateSelect(string RequestId)
         {
-            NCETemplate Temp = new NCETemplate();
-            ViewBag.Bag_CCRequestId = RequestId;
-            return View(Temp.getTemplateData("%","%","%")); // Only View Admin all template customers show -3 template 
+            if (RequestId != null)
+            {
+                NCETemplate Temp = new NCETemplate();
+                ViewBag.Bag_CCRequestId = RequestId;
+                return View(Temp.getTemplateData("%", "%", "%"));
+            }// Only View Admin all template customers show -3 template 
+            return HttpNotFound("Ooops, There is no page like this :/");
         }
         //[UserFilter(Function_Id = "TINDX")]
         public ActionResult ParentCustomerRequests()

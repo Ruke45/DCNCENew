@@ -262,13 +262,13 @@
         $.ajax({
             
             type: "POST",
-            url: "/Customer/ApprovePCustomer",
+            url: "/Customer/ApproveCCustomer",
             data: formdata,
             success: function (result) {
                 //$("#loaderDiv").hide();
                 if (result == "Success") {
 
-                    window.location.href = "/Customer/ParentCustomerRequests?Msg= Saved Successfully";
+                    window.location.href = "/Customer/ClientCustomerRequests?Msg= Saved Successfully";
                     //$('#qualification').load();
                     //$("#btnCreateTeacher").prop('value', 'Save');
                     //$('.nav-tabs a[href="#qualification"]').tab('show');                    

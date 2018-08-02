@@ -324,7 +324,7 @@ namespace NCEDCO.Models.Business
                                                                 pr.IsNCEMember,
                                                                 "PC3", // User Session Parent Customer ID Here
                                                                 pr.ProductDetails,
-                                                                pr.ExportSector);
+                                                                pr.ExportSectorId);
 
                         dbContext.SubmitChanges();
                         dbContext.Transaction.Commit();
@@ -474,7 +474,7 @@ namespace NCEDCO.Models.Business
                         req.IsNCEMember = r.NCEMember;
                         req.IsVat = r.SVat;
                         req.ProductDetails = r.Productdetails;
-                        req.ExportSector = r.ExportSector;
+                        req.ExportSectorId = Convert.ToInt32(r.ExportSector);
                         req.ExportSector_Name = r.ExportSectorName;
                         req.Template_ID = r.TemplateId;
                         req.Template_Name = r.TemplateName;
@@ -530,7 +530,8 @@ namespace NCEDCO.Models.Business
                                                                 pr.ContactPersonEmail,
                                                                 pr.IsNCEMember,
                                                                 pr.ProductDetails,
-                                                                pr.ExportSector);
+                                                                pr.ExportSector,
+                                                                pr.Template_ID);
 
                         dbContext._setUpdateClientCustomerReq("A", pr.Request_Id);
 

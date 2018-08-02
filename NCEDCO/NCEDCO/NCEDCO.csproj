@@ -162,6 +162,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CertificateRequestController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Business\B_CertificateRequest.cs" />
     <Compile Include="Models\Business\B_Customer.cs" />
     <Compile Include="Models\Business\B_RecordSequence.cs" />
     <Compile Include="Models\Business\B_Settings.cs" />
@@ -178,6 +180,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\M_Cerificate.cs" />
     <Compile Include="Models\M_Customer.cs" />
     <Compile Include="Models\M_CustomerParent.cs" />
     <Compile Include="Models\M_CustomerParentRequest.cs" />
@@ -362,8 +365,10 @@
     <Content Include="Views\Settings\P_NewSupportDocForTemplate.cshtml" />
     <Content Include="Views\Settings\P_DeleteSupportDocForTemplate.cshtml" />
     <Content Include="Views\Settings\SignatorySignature.cshtml" />
+    <Content Include="Views\CertificateRequest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Documents\" />
     <Folder Include="Signature\" />
   </ItemGroup>
   <ItemGroup>

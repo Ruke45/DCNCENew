@@ -37,8 +37,8 @@
                        if (count == 3) {@Html.Raw("</div>") }
                         
                        <div class="col-md-4 portfolio-item">
-                            <a href="#" onclick='ShowSelected("@Template.Template_Id","REQ112")'><img class="img-responsive" src=" @Template.Img_Url" alt=""></a>
-                            <h5><a href="#" onclick='ShowSelected("@Template.Template_Id","REQ112")'>@Template.Template_Name</a></h5>
+                            <a href="#" onclick='ShowSelected("@Template.Template_Id","@ViewBag.Bag_CCRequestId")'><img class="img-responsive" src=" @Template.Img_Url" alt=""></a>
+                            <h5><a href="#" onclick='ShowSelected("@Template.Template_Id","@ViewBag.Bag_CCRequestId")'>@Template.Template_Name</a></h5>
                             <p>@Template.Description_</p>
                       </div>
                         count++;

@@ -160,10 +160,10 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ExportSector, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                            @Html.DropDownListFor(model => model.ExportSector, ViewBag.Bag_ExportSectors as SelectList, "", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.ExportSectorId, ViewBag.Bag_ExportSectors as SelectList, "", new { @class = "form-control" })
                         </div>
                         <div class="col-sm-3">
-                            @Html.ValidationMessageFor(model => model.ExportSector, null, new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.ExportSectorId, null, new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -320,22 +320,13 @@
             data: myformdata,
             success: function (result) {
                 $("#loaderDiv").hide();
-                if (result == "Success") {
-                    $("#btnRegister").prop('value', 'Saved Successfully');
-                    $("#SModel").modal("show");
-                    //window.location.href = "/Teacher/Create?Msg= Saved Successfully";
-                    //$('#qualification').load();
-                    //$("#btnCreateTeacher").prop('value', 'Save');
-                    //$('.nav-tabs a[href="#qualification"]').tab('show');                    
-                }
-                else if (result == "Error") {
-                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
-                    $("#btnCreateTeacher").prop('value', 'Save');
-                    $("#errorModel").modal("show");
+                if (result.Msg = "Sucsess") {
+                    window.location.href = "/Customer/CTemplateSelect?RequestId=" + result.CID;
+                    
                 }
                 else {
 
-                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
                     $("#btnCreateTeacher").prop('value', 'Save');
                     $("#errorModel").modal("show");
                 }
