@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using NCEDCO.Models;
 using NCEDCO.Models.Business;
+using NCEDCO.Models.Templates;
 using System.IO;
 
 namespace NCEDCO.Controllers
@@ -16,9 +17,15 @@ namespace NCEDCO.Controllers
         B_CertificateRequest objCr = new B_CertificateRequest();
         public ActionResult Index()
         {
-            M_Cerificate C = new M_Cerificate();
-            C.Support_Docs = objCr.getTemplateSupportingDocs("CC1", "template-2");
-            return View(C);
+            
+
+            List<M_CertificateRefferance> ReffList = objCr.getRefferenceCRequest("PC3");
+            ViewBag.Bag_RefferenceRequ = new SelectList(ReffList, "RequestId", "TemplateName");
+
+            List<M_Customer> ClientList = objCr.getCustomerClients("PC3");
+            ViewBag.Bag_ClientsofCustomer = new SelectList(ClientList, "ClientId", "Customer_Name");
+
+            return View();
         }
 
         [HttpPost]
@@ -44,6 +51,39 @@ namespace NCEDCO.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(M_Column_with_HS_code Model)
+        {
+            var DocumentUpload = Model.Support_Docs;
+            foreach (var Doc in DocumentUpload)
+            {
+                string strFileUpload = "file_" + Doc.SupportingDocument_Id; ;
+                HttpPostedFileBase file = Request.Files[strFileUpload];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    // if you want to save in folder use this
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    file.SaveAs(path);
+
+                    // if you want to store in Bytes in Database use this
+                    byte[] image = new byte[file.ContentLength];
+                    file.InputStream.Read(image, 0, image.Length);
+
+                }
+            }
+            return View();
+        }
+
+        public ActionResult LoadRefferenceCR(string Reff)
+        {
+            M_Cerificate C = new M_Cerificate();
+            C = objCr.getCleintNTemplate(Reff, "PC3");
+            C.Support_Docs = objCr.getTemplateSupportingDocs(C.Client_Id, C.TemplateId);
+            return PartialView("P_CertificateRequstForm",C);
         }
 
     }

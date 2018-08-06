@@ -508,4 +508,32 @@
       <Column Name="IsMandatory" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.getCustomerConsigneesReff" Method="getCustomerConsigneesReff">
+    <Parameter Name="ParentCustomerID" Parameter="parentCustomerID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="getCustomerConsigneesReffResult">
+      <Column Name="Consignee" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SeqNo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TemplateName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getCustomerClientList" Method="getCustomerClientList">
+    <Parameter Name="ParentCustomerID" Parameter="parentCustomerID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="getCustomerClientListResult">
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ParentCustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getClientTemplateNName" Method="getClientTemplateNName">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ParentId" Parameter="parentId" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="getClientTemplateNNameResult">
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(612) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

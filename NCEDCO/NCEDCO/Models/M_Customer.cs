@@ -12,6 +12,10 @@ namespace NCEDCO.Models
         [Required(ErrorMessage = "Required!")]
         public string ModifiedBy { get; set; }
 
+        [Display(Name = "Client ID")]
+        [Required(ErrorMessage = "Required!")]
+        public string ClientId { get; set; }
+
         [Display(Name = "Modified Date")]
         [Required(ErrorMessage = "Required!")]
         public DateTime ModifiedDate { get; set; }

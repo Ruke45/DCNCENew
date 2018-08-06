@@ -44,5 +44,102 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public List<M_CertificateRefferance> getRefferenceCRequest(string PCID)
+        {
+            try
+            {
+
+                List<M_CertificateRefferance> lstSD = new List<M_CertificateRefferance>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<getCustomerConsigneesReffResult> lst = datacontext.getCustomerConsigneesReff(PCID);
+
+                    foreach (getCustomerConsigneesReffResult result in lst)
+                    {
+                        M_CertificateRefferance SD = new M_CertificateRefferance();
+                        SD.Consignee = result.Consignee;
+                        SD.RequestId = result.RequestId;
+                        SD.TemplateName = result.TemplateName;
+                        SD.SeqNo = result.SeqNo;
+                        lstSD.Add(SD);
+
+                    }
+                }
+
+                return lstSD;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public List<M_Customer> getCustomerClients(string PCID)
+        {
+            try
+            {
+
+                List<M_Customer> lstSD = new List<M_Customer>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<getCustomerClientListResult> lst = datacontext.getCustomerClientList(PCID);
+
+                    foreach (getCustomerClientListResult result in lst)
+                    {
+                        M_Customer SD = new M_Customer();
+                        SD.TemplateId = result.TemplateId;
+                        SD.Customer_Name = result.CustomerName;
+                        SD.ClientId = result.CustomerId;
+                        lstSD.Add(SD);
+
+                    }
+                }
+
+                return lstSD;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public M_Cerificate getCleintNTemplate(string CustomerId, string ParentId)
+        {
+            try
+            {
+
+                M_Cerificate Cu = new M_Cerificate();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var lst = datacontext.getClientTemplateNName(CustomerId,ParentId).SingleOrDefault();
+                    if (lst != null)
+                    {
+                        Cu.Consignor_Exporter = lst.CustomerName;
+                        Cu.TemplateId = lst.TemplateId;
+                        Cu.Client_Id = lst.CustomerId;
+ 
+                    }
+                }
+
+                return Cu;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }

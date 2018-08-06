@@ -20,57 +20,135 @@
 <!-- /.row -->
 
 <div class="row">
-    @using (Html.BeginForm("Index", "CertificateRequest", FormMethod.Post, 
-                        new { id = "TheForm", enctype = "multipart/form-data" }))
-            {
-    <div class="col-md-12">
+
+    <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Parent Customer Requests Table</div>
-            <input id="Submit1" class="btn btn-success" type="submit" onclick="return Savefiles();" value=" submit" />
-
-
-
+            <div class="panel-heading">Certificate Request Form</div>
             <div class="panel-body">
-                <table id="datatable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Document Name</th>
-                            <th>Is Mandatory</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+
+                <div class="col-md-12 form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Pre Certificate Selection</div>
+                        <div class="panel-body">
+                            
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Client_Id, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-7">
+                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control" ,@onchange = "loadTemplate()" })
+                                </div>
+                                @*<div class="col-sm-3">
+                                    <button type="button" value="Save" id="btnLoadCertificate" onclick="CreateParentCustomer()" class="btn btn-primary">
+                                        <span class="fa fa-bookmark"></span>Load <span style="text-align: center; display: none" id="loaderDiv">
+                                            <img src="~/Images/ellipsis.gif" /></span></button>
+                                </div>*@
+                            </div>
 
 
-                    <tbody>
-                        @if (Model != null)
-                        {
-                            for (int i = 0; i < Model.Support_Docs.Count; i++)
-                            {
-                                var fileupload1 = "file_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
-                            <tr>  
-                                   @Html.HiddenFor(m => m.Support_Docs[i].SupportingDocument_Id, new { id = @Model.Support_Docs[i].SupportingDocument_Id })
-                                   @Html.HiddenFor(m => m.Support_Docs[i].Is_Mandatory, new { id = @Model.Support_Docs[i].Is_Mandatory })
-                                <td>@Model.Support_Docs[i].SupportingDocument_Name</td>
-                                <td>@Model.Support_Docs[i].Is_Mandatory</td>
-                                <td><span class="btn btn-info btn-file">
-                                    <input type="file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
-                                </span></td>
-                            </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+
+                            @*<div class="form-group" id="loadCRefference">
+                                @Html.LabelFor(m => m.CertificateReff, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-7">
+                                    @Html.DropDownListFor(model => model.RefferencNo, ViewBag.Bag_RefferenceRequ as SelectList, "", new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" value="Save" id="btnLoadCertificate" onclick="CreateParentCustomer()" class="btn btn-primary">
+                                        <span class="fa fa-bookmark"></span>Load <span style="text-align: center; display: none" id="loaderDiv">
+                                            <img src="~/Images/ellipsis.gif" /></span></button>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="FrmCRq" class="form-horizontal" autocomplete="off" enctype="multipart/form-data" onsubmit="return AjaxPost(this)">
+                    <div class="col-md-12" id ="LoadTemplate"></div>
+
+                </form>
+
             </div>
-            <div class="panel-footer">Parent Customer Requests Table</div>
         </div>
     </div>
-    }
 </div>
 <script>
+
+    var CreateParentCustomer = function () {
+        //var myformdata = $("#FrmCRq").FormData();
+
+        //if (!$("#FrmCRq").valid()) {
+        //    return false;
+        //}
+        //$("#loaderDiv").show();
+        //$("#btnRegister").prop('value', 'Saving');
+        $.ajax({
+
+            type: "POST",
+            url: "/CertificateRequest/Index",
+            data: new FormData($('FrmCRq')[0]),
+            mimeType: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#loaderDiv").hide();
+                if (result == "Success") {
+                    $("#Submit1").prop('value', 'Saved Successfully');
+                    //$("#SModel").modal("show");
+                    //window.location.href = "/Teacher/Create?Msg= Saved Successfully";
+                    //$('#qualification').load();
+                    //$("#btnCreateTeacher").prop('value', 'Save');
+                    //$('.nav-tabs a[href="#qualification"]').tab('show');                    
+                }
+                else if (result == "Error") {
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
+                    $("#btnCreateTeacher").prop('value', 'Save');
+                    $("#errorModel").modal("show");
+                }
+                else {
+
+                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                    $("#btnCreateTeacher").prop('value', 'Save');
+                    $("#errorModel").modal("show");
+                }
+
+            }
+
+        })
+    }
+
+    function AjaxPost(formData) {
+        if (!formData.valid()) {
+            return;
+        }
+        var ajaxConfig = {
+            type: "POST",
+            url: "/CertificateRequest/Index",
+            data: new FormData(formData),
+            success: function (result) {
+                alert(result);
+            }
+        }
+        if ($(formData).attr('enctype') == "multipart/form-data") {
+            ajaxConfig["contentType"] = false;
+            ajaxConfig["processData"] = false;
+        }
+        $.ajax(ajaxConfig);
+        return false;
+    }
+
     var DetailsView = function (RequestId) {
         debugger
         var Url = "/Customer/ParentCustomerRequestsDetails?RequestId=" + RequestId;
         window.location.href = Url;
+    }
+
+    var loadTemplate = function () {
+        var tid = $('#Client_Id').val();
+        debugger
+        if (tid != "") {
+            $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceCR?Reff=' + tid);
+            $('#LoadTemplate').show();
+        } else {
+            $('#LoadTemplate').hide();
+        }
     }
 </script>
 

@@ -181,6 +181,7 @@
       <DependentUpon>DBLinq.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\M_Cerificate.cs" />
+    <Compile Include="Models\M_CertificateRefferance.cs" />
     <Compile Include="Models\M_Customer.cs" />
     <Compile Include="Models\M_CustomerParent.cs" />
     <Compile Include="Models\M_CustomerParentRequest.cs" />
@@ -194,6 +195,8 @@
     <Compile Include="Models\M_Signatory.cs" />
     <Compile Include="Models\M_SupportDocument.cs" />
     <Compile Include="Models\M_Users.cs" />
+    <Compile Include="Models\Templates\M_Column_without_HS_code.cs" />
+    <Compile Include="Models\Templates\M_Column_with_HS_code.cs" />
     <Compile Include="Models\Utility\Encrypt_Decrypt.cs" />
     <Compile Include="Models\Utility\ErrorLog.cs" />
     <Compile Include="Models\Utility\ExportSector.cs" />
@@ -366,6 +369,8 @@
     <Content Include="Views\Settings\P_DeleteSupportDocForTemplate.cshtml" />
     <Content Include="Views\Settings\SignatorySignature.cshtml" />
     <Content Include="Views\CertificateRequest\Index.cshtml" />
+    <Content Include="Views\CertificateRequest\P_LoadRefferenceTemplates.cshtml" />
+    <Content Include="Views\CertificateRequest\P_CertificateRequstForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

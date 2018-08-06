@@ -484,6 +484,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerClientId, templateID);
 			return ((ISingleResult<_getSupportingDOCforRequestResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getCustomerConsigneesReff")]
+		public ISingleResult<getCustomerConsigneesReffResult> getCustomerConsigneesReff([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerID", DbType="VarChar(20)")] string parentCustomerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), parentCustomerID);
+			return ((ISingleResult<getCustomerConsigneesReffResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getCustomerClientList")]
+		public ISingleResult<getCustomerClientListResult> getCustomerClientList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomerID", DbType="VarChar(20)")] string parentCustomerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), parentCustomerID);
+			return ((ISingleResult<getCustomerClientListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getClientTemplateNName")]
+		public ISingleResult<getClientTemplateNNameResult> getClientTemplateNName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentId", DbType="VarChar(20)")] string parentId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, parentId);
+			return ((ISingleResult<getClientTemplateNNameResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3671,6 +3692,246 @@ namespace NCEDCO.Models
 				if ((this._IsMandatory != value))
 				{
 					this._IsMandatory = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getCustomerConsigneesReffResult
+	{
+		
+		private string _Consignee;
+		
+		private string _CustomerId;
+		
+		private string _RequestId;
+		
+		private long _SeqNo;
+		
+		private string _TemplateName;
+		
+		public getCustomerConsigneesReffResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(250)")]
+		public string Consignee
+		{
+			get
+			{
+				return this._Consignee;
+			}
+			set
+			{
+				if ((this._Consignee != value))
+				{
+					this._Consignee = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20)")]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20)")]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SeqNo", DbType="BigInt NOT NULL")]
+		public long SeqNo
+		{
+			get
+			{
+				return this._SeqNo;
+			}
+			set
+			{
+				if ((this._SeqNo != value))
+				{
+					this._SeqNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="VarChar(150)")]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this._TemplateName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getCustomerClientListResult
+	{
+		
+		private string _CustomerId;
+		
+		private string _CustomerName;
+		
+		private string _TemplateId;
+		
+		private string _ParentCustomerId;
+		
+		public getCustomerClientListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20)")]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentCustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string ParentCustomerId
+		{
+			get
+			{
+				return this._ParentCustomerId;
+			}
+			set
+			{
+				if ((this._ParentCustomerId != value))
+				{
+					this._ParentCustomerId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getClientTemplateNNameResult
+	{
+		
+		private string _TemplateId;
+		
+		private string _CustomerId;
+		
+		private string _CustomerName;
+		
+		public getClientTemplateNNameResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20)")]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(612) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
 				}
 			}
 		}
