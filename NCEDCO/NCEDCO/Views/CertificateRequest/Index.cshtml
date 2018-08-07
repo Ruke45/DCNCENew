@@ -69,6 +69,22 @@
         </div>
     </div>
 </div>
+
+<!--Notification Modals -->
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     
         
@@ -167,11 +183,31 @@
             },
             onkeyup: false,
             submitHandler: function (form) {
+                if (!Mandatory()) {
+                    return;
+                }
                 AjaxPost(form);
-                return false;
             }
         }); 
     });
+
+    function Mandatory() {
+        debugger
+        var MandFlg = $("[id*='mand_']");
+        var FileUpload1 = $("[id*='file_']");
+        var Booleandata = true;
+        for (var i = 0; i < MandFlg.length; i++) {
+            if ($("#" + MandFlg[i].id).val() == 'Y' && $("#" + FileUpload1[i].id).val() == '') {
+                Booleandata = false;
+                //alert("FIle Upload");
+            }
+        }
+        if (!Booleandata) {
+            $("#ErrorLable").text("Please Upload the Mandatory Supporting Documents");
+            $("#errorModel").modal("show");
+        }
+        return Booleandata;
+    }
 
     function AjaxPost(formData) {
         var ajaxConfig = {

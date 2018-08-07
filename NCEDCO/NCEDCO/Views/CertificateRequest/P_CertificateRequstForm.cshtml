@@ -209,17 +209,19 @@
                                             for (int i = 0; i < Model.Support_Docs.Count; i++)
                                             {
                                                 var fileupload1 = "file_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                                                var valdation = "val_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                                                var mad = "mand_" + i;
                                             <tr>
                                                 @Html.HiddenFor(m => m.Support_Docs[i].SupportingDocument_Id, new { id = @Model.Support_Docs[i].SupportingDocument_Id })
-                                                @Html.HiddenFor(m => m.Support_Docs[i].Is_Mandatory, new { id = @Model.Support_Docs[i].Is_Mandatory })
+                                                @Html.HiddenFor(m => m.Support_Docs[i].Is_Mandatory, new { id = @mad })
                                                 <td>@Model.Support_Docs[i].SupportingDocument_Name</td>
                                                 @if (Model.Support_Docs[i].Is_Mandatory == "Y")
                                                 {<td>Yes</td>}
                                                 else
                                                 {<td>No</td>}
                                                 <td><span class="btn btn-default btn-file">
-                                                    <input type="file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
-                                                </span></td>
+                                                    <input type="file" class="btn-file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
+                                                </span><span style="color:Red" id="@valdation"></span></td>
                                             </tr>
                                             }
                                         }
@@ -249,7 +251,7 @@
 
                   </div>
 
-<input id="Submit1" class="btn btn-success" type="submit" onclick="return Savefiles();" value="Save Certificate" />
+<input id="Submit1" class="btn btn-success" type="submit" onclick="return Mandatory1();" value="Save Certificate" />
 
 <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
                                 <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
@@ -264,4 +266,42 @@
         })
         $('#InvoiceDate').val("");
     });
+
+    function ValidateFile(value) {
+
+        var file = getNameFromPath($(value).val());
+        if (file != null) {
+            var extension = file.substr((file.lastIndexOf('.') + 1));
+            switch (extension) {
+                case 'pdf':
+                    flag = true;
+                    break;
+                default:
+                    flag = false;
+            }
+        }
+
+        if (flag == false) {
+
+            var str = value.name;
+            var res = str.split("_");
+            var data = "_val" + res[1];
+            $("#" + data).text("You can upload only .pdf extension file Only");
+            $("#" + value.name).val('');
+            return false;
+        }
+        //else {
+        //    var size = ValidateFileSize(value);
+        //    var str = value.name;
+        //    var res = str.split("_");
+        //    var data = "_val" + res[1];
+        //    if (size > 1) {
+        //        $("#" + data).text("You Can Upload file Size Up to 1 MB.");
+        //        $("#" + value.name).val('');
+        //    }
+        //    else {
+        //        $("#" + data).text("");
+        //    }
+        //}
+    }
 </script>

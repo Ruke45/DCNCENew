@@ -617,3 +617,6 @@ used to vertically center elements, may need modification if you're not using de
     padding-left: unset;
 }
 
+.fileerror {
+    border:#f10c0c;
+}
