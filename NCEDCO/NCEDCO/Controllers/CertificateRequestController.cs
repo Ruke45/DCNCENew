@@ -31,51 +31,28 @@ namespace NCEDCO.Controllers
         [HttpPost]
         public ActionResult Index(M_Cerificate Model)
         {
-            var DocumentUpload = Model.Support_Docs;
-            foreach (var Doc in DocumentUpload)
-            {
-                string strFileUpload = "file_" + Doc.SupportingDocument_Id; ;
-                HttpPostedFileBase file = Request.Files[strFileUpload];
+             string result = "Error";
+                 result = "Succes";
+                 var DocumentUpload = Model.Support_Docs;
+                 foreach (var Doc in DocumentUpload)
+                 {
+                     string strFileUpload = "file_" + Doc.SupportingDocument_Id; ;
+                     HttpPostedFileBase file = Request.Files[strFileUpload];
 
-                if (file != null && file.ContentLength > 0)
-                {
-                    // if you want to save in folder use this
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                    file.SaveAs(path);
+                     if (file != null && file.ContentLength > 0)
+                     {
+                         // if you want to save in folder use this
+                         var fileName = Path.GetFileName(file.FileName);
+                         var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                         file.SaveAs(path);
 
-                    // if you want to store in Bytes in Database use this
-                    byte[] image = new byte[file.ContentLength];
-                    file.InputStream.Read(image, 0, image.Length);
+                         // if you want to store in Bytes in Database use this
+                         byte[] image = new byte[file.ContentLength];
+                         file.InputStream.Read(image, 0, image.Length);
 
-                }
-            }
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Index(M_Column_with_HS_code Model)
-        {
-            var DocumentUpload = Model.Support_Docs;
-            foreach (var Doc in DocumentUpload)
-            {
-                string strFileUpload = "file_" + Doc.SupportingDocument_Id; ;
-                HttpPostedFileBase file = Request.Files[strFileUpload];
-
-                if (file != null && file.ContentLength > 0)
-                {
-                    // if you want to save in folder use this
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                    file.SaveAs(path);
-
-                    // if you want to store in Bytes in Database use this
-                    byte[] image = new byte[file.ContentLength];
-                    file.InputStream.Read(image, 0, image.Length);
-
-                }
-            }
-            return View();
+                     }
+                 }
+             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadRefferenceCR(string Reff)

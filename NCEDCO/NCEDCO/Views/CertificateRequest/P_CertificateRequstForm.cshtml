@@ -7,7 +7,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Consignor_Exporter, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextAreaFor(model => model.Consignor_Exporter, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextAreaFor(model => model.Consignor_Exporter, new { @class = "form-control", @maxlength = "150", @id = "Consignor_Exporter", @name = "Consignor_Exporter" })
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.Consignor_Exporter, null, new { @class = "text-danger" })
@@ -16,7 +16,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Consignee, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextAreaFor(model => model.Consignee, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextAreaFor(model => model.Consignee, new { @class = "form-control", @maxlength = "150", @id = "Consignee", @name = "Consignee" })
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.Consignee, null, new { @class = "text-danger" })
@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.InvoiceNo, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.InvoiceNo, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.InvoiceNo, new { @class = "form-control", @maxlength = "150", @id = "InvoiceNo", @name = "InvoiceNo" })
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.InvoiceNo, null, new { @class = "text-danger" })
@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.InvoiceDate, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.InvoiceDate, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.InvoiceDate, new { @class = "form-control", @maxlength = "150" , @id = "InvoiceDate", @name = "InvoiceDate"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.InvoiceDate, null, new { @class = "text-danger" })
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.CountyOfOrigin, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.CountyOfOrigin, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.CountyOfOrigin, new { @class = "form-control", @maxlength = "150" , @id = "CountyOfOrigin", @name = "CountyOfOrigin" })
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.CountyOfOrigin, null, new { @class = "text-danger" })
@@ -53,7 +53,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.PortOfLoading, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.PortOfLoading, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.PortOfLoading, new { @class = "form-control", @maxlength = "150" , @id = "PortOfLoading", @name = "PortOfLoading"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.PortOfLoading, null, new { @class = "text-danger" })
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Vessel, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.Vessel, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.Vessel, new { @class = "form-control", @maxlength = "150" , @id = "Vessel", @name = "Vessel"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.Vessel, null, new { @class = "text-danger" })
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.PortOfDischarge, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.PortOfDischarge, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.PortOfDischarge, new { @class = "form-control", @maxlength = "150" , @id = "PortOfDischarge", @name = "PortOfDischarge"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.PortOfDischarge, null, new { @class = "text-danger" })
@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.PlaceOfDelivery, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.PlaceOfDelivery, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.PlaceOfDelivery, new { @class = "form-control", @maxlength = "150" , @id = "PlaceOfDelivery", @name = "PlaceOfDelivery"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.PlaceOfDelivery, null, new { @class = "text-danger" })
@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.OtherComments, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.OtherComments, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.OtherComments, new { @class = "form-control", @maxlength = "150" , @id = "OtherComments", @name = "OtherComments"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.OtherComments, null, new { @class = "text-danger" })
@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Goods_Item, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.Goods_Item, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.Goods_Item, new { @class = "form-control", @maxlength = "150" , @id = "Goods_Item", @name = "Goods_Item"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.Goods_Item, null, new { @class = "text-danger" })
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.ShippingMarks, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.ShippingMarks, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.ShippingMarks, new { @class = "form-control", @maxlength = "150" , @id = "ShippingMarks", @name = "ShippingMarks"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.ShippingMarks, null, new { @class = "text-danger" })
@@ -134,7 +134,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.SummaryDescription, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextAreaFor(model => model.SummaryDescription, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextAreaFor(model => model.SummaryDescription, new { @class = "form-control", @maxlength = "150" , @id = "SummaryDescription", @name = "SummaryDescription" })
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.ShippingMarks, null, new { @class = "text-danger" })
@@ -143,7 +143,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.QtyNUnit, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.QtyNUnit, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.QtyNUnit, new { @class = "form-control", @maxlength = "150" , @id = "QtyNUnit", @name = "QtyNUnit"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.QtyNUnit, null, new { @class = "text-danger" })
@@ -154,7 +154,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.HSCode, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.HSCode, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.HSCode, new { @class = "form-control", @maxlength = "150" , @id = "HSCode", @name = "HSCode"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.HSCode, null, new { @class = "text-danger" })
@@ -166,7 +166,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Remarks, new { @class = "col-sm-2 control-label" })
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @maxlength = "150" })
+                                        @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @maxlength = "150" , @id = "Remarks", @name = "Remarks"})
                                     </div>
                                     <div class="col-sm-3">
                                         @Html.ValidationMessageFor(model => model.Remarks, null, new { @class = "text-danger" })
@@ -248,3 +248,20 @@
                         </div>
 
                   </div>
+
+<input id="Submit1" class="btn btn-success" type="submit" onclick="return Savefiles();" value="Save Certificate" />
+
+<button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
+                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                                    <img src="~/Images/ellipsis.gif" /></span></button>
+<script>
+    $(document).ready(function () {
+        debugger
+        $('#InvoiceDate').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            todayHighlight: true
+        })
+        $('#InvoiceDate').val("");
+    });
+</script>

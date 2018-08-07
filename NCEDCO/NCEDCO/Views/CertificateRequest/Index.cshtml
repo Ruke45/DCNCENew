@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 
-                <form id="FrmCRq" class="form-horizontal" autocomplete="off" enctype="multipart/form-data" onsubmit="return AjaxPost(this)">
+                <form id="FrmCRq" class="form-horizontal" autocomplete="off" enctype="multipart/form-data">
                     <div class="col-md-12" id ="LoadTemplate"></div>
 
                 </form>
@@ -70,60 +70,122 @@
     </div>
 </div>
 <script>
-
-    var CreateParentCustomer = function () {
-        //var myformdata = $("#FrmCRq").FormData();
-
-        //if (!$("#FrmCRq").valid()) {
-        //    return false;
-        //}
-        //$("#loaderDiv").show();
-        //$("#btnRegister").prop('value', 'Saving');
-        $.ajax({
-
-            type: "POST",
-            url: "/CertificateRequest/Index",
-            data: new FormData($('FrmCRq')[0]),
-            mimeType: "multipart/form-data",
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                $("#loaderDiv").hide();
-                if (result == "Success") {
-                    $("#Submit1").prop('value', 'Saved Successfully');
-                    //$("#SModel").modal("show");
-                    //window.location.href = "/Teacher/Create?Msg= Saved Successfully";
-                    //$('#qualification').load();
-                    //$("#btnCreateTeacher").prop('value', 'Save');
-                    //$('.nav-tabs a[href="#qualification"]').tab('show');                    
+    
+        
+    $(document).ready(function () { 
+        $("#FrmCRq").validate({ 
+            rules: { 
+                Consignor_Exporter: {
+                    required:true 
+                },
+                Consignee:{
+                    required:true
+                },
+                InvoiceNo: {
+                    required: true
+                },
+                InvoiceDate: {
+                    required: true
+                },
+                CountyOfOrigin: {
+                    required: true
+                },
+                PortOfLoading: {
+                    required: true
+                },
+                Vessel: {
+                    required: true
+                },
+                PortOfDischarge: {
+                    required: true
+                },
+                PlaceOfDelivery: {
+                    required: true
+                },
+                SummaryDescription: {
+                    required: true
+                },
+                QtyNUnit: {
+                    required: true
+                },
+                HSCode: {
+                    required: true
+                },
+            }, 
+            messages: { 
+                Consignor_Exporter: {
+                    required: "Consignor / Exporter should not be empty"
+                },
+                Consignee: {
+                    required: "Consignee should not be empty"
+                },
+                InvoiceNo: {
+                    required: "Invoice No should not be empty"
+                },
+                InvoiceDate: {
+                    required: "Invoice Date should not be empty"
+                },
+                CountyOfOrigin: {
+                    required: "County Of Origin should not be empty"
+                },
+                PortOfLoading: {
+                    required: "Port Of Loading should not be empty"
+                },
+                Vessel: {
+                    required: "Vessel should not be empty"
+                },
+                PortOfDischarge: {
+                    required: "Port Of Discharge should not be empty"
+                },
+                PlaceOfDelivery: {
+                    required: "Place Of Delivery should not be empty"
+                },
+                SummaryDescription: {
+                    required: "Summary Description should not be empty"
+                },
+                QtyNUnit: {
+                    required: "Qty N Unit should not be empty"
+                },
+                HSCode: {
+                    required: "HS Code should not be empty"
                 }
-                else if (result == "Error") {
-                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
-                    $("#btnCreateTeacher").prop('value', 'Save');
-                    $("#errorModel").modal("show");
+            },
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.form-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
                 }
-                else {
-
-                    $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
-                    $("#btnCreateTeacher").prop('value', 'Save');
-                    $("#errorModel").modal("show");
-                }
-
+            },
+            onkeyup: false,
+            submitHandler: function (form) {
+                AjaxPost(form);
+                return false;
             }
-
-        })
-    }
+        }); 
+    });
 
     function AjaxPost(formData) {
-        if (!formData.valid()) {
-            return;
-        }
         var ajaxConfig = {
             type: "POST",
             url: "/CertificateRequest/Index",
             data: new FormData(formData),
             success: function (result) {
-                alert(result);
+                if (result == "Succes") {
+                    alert(result);
+                }
+                else {
+                    alert(result);
+                }
+                
             }
         }
         if ($(formData).attr('enctype') == "multipart/form-data") {

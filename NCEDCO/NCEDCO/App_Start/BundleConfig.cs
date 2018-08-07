@@ -23,7 +23,9 @@ namespace NCEDCO
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //            "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/style.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                         "~/Content/style.css",
+                         "~/Content/bootstrap-datepicker3.css"));
         }
     }
 }

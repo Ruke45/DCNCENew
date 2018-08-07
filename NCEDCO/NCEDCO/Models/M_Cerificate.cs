@@ -30,30 +30,31 @@ namespace NCEDCO.Models
 
         [Display(Name = "Invoice Date")]
         [Required(ErrorMessage = "Required!")]
-        public DateTime InvoiceDate { get; set; }
+        [DataType(DataType.Date)]
+        public System.DateTime InvoiceDate { get; set; }
 
         [Display(Name = "Country of Origin")]
         [Required(ErrorMessage = "Required!")]
         public string CountyOfOrigin { get; set; }
 
         [Display(Name = "Total Invoice Value")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string TotalInvoiceValue { get; set; }
 
         [Display(Name = "Total Quantity")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string TotalQuantity { get; set; }
 
         [Display(Name = "Port Of Loading")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string PortOfLoading { get; set; }
 
         [Display(Name = "Port Of Discharge")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string PortOfDischarge { get; set; }
 
         [Display(Name = "Place Of Delivery")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string PlaceOfDelivery { get; set; }
 
         [Display(Name = "Vessel")]
@@ -61,29 +62,29 @@ namespace NCEDCO.Models
         public string Vessel { get; set; }
 
         [Display(Name = "Other Comments")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string OtherComments { get; set; }
 
         /**NCE Certificate item Table**/
 
         [Display(Name = "Goods/Items")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string Goods_Item { get; set; }
 
         [Display(Name = "Shipping Marks")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string ShippingMarks { get; set; }
 
         [Display(Name = "Package Type")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string PackageType { get; set; }
 
         [Display(Name = "Qty & Unit")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string QtyNUnit { get; set; }
 
         [Display(Name = "Summary Description")]
-        [Required(ErrorMessage = "Required!")]
+        //[Required(ErrorMessage = "Required!")]
         public string SummaryDescription { get; set; }
 
         [Display(Name = "HS Code")]
