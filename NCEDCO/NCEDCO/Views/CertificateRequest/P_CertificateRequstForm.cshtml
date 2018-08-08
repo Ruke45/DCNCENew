@@ -1,274 +1,359 @@
 ﻿@model NCEDCO.Models.M_Cerificate
 
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Certificate Genaral Details</div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Consignor_Exporter, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextAreaFor(model => model.Consignor_Exporter, new { @class = "form-control", @maxlength = "150", @id = "Consignor_Exporter", @name = "Consignor_Exporter" })
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.Consignor_Exporter, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Consignee, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextAreaFor(model => model.Consignee, new { @class = "form-control", @maxlength = "150", @id = "Consignee", @name = "Consignee" })
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.Consignee, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.InvoiceNo, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.InvoiceNo, new { @class = "form-control", @maxlength = "150", @id = "InvoiceNo", @name = "InvoiceNo" })
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.InvoiceNo, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.InvoiceDate, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.InvoiceDate, new { @class = "form-control", @maxlength = "150" , @id = "InvoiceDate", @name = "InvoiceDate"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.InvoiceDate, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.CountyOfOrigin, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.CountyOfOrigin, new { @class = "form-control", @maxlength = "150" , @id = "CountyOfOrigin", @name = "CountyOfOrigin" })
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.CountyOfOrigin, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Certificate Genaral Details</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Consignor_Exporter, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextAreaFor(model => model.Consignor_Exporter, new { @class = "form-control", @maxlength = "150", @id = "Consignor_Exporter", @name = "Consignor_Exporter", @cols = "50", @rows = "5", @style = "width:100%;" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.Consignor_Exporter, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Consignee, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextAreaFor(model => model.Consignee, new { @class = "form-control", @maxlength = "150", @id = "Consignee", @name = "Consignee", @cols = "50", @rows = "5", @style = "width:100%;" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.Consignee, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.InvoiceNo, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.InvoiceNo, new { @class = "form-control", @maxlength = "150", @id = "InvoiceNo", @name = "InvoiceNo" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.InvoiceNo, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.InvoiceDate, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.InvoiceDate, new { @class = "form-control", @maxlength = "150", @id = "InvoiceDate", @name = "InvoiceDate" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.InvoiceDate, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CountyOfOrigin, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.CountyOfOrigin, new { @class = "form-control", @maxlength = "150", @id = "CountyOfOrigin", @name = "CountyOfOrigin", @readonly = "readonly", @Value = "Sri Lanka" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.CountyOfOrigin, null, new { @class = "text-danger" })
+                </div>
+            </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.PortOfLoading, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.PortOfLoading, new { @class = "form-control", @maxlength = "150" , @id = "PortOfLoading", @name = "PortOfLoading"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.PortOfLoading, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Vessel, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.Vessel, new { @class = "form-control", @maxlength = "150" , @id = "Vessel", @name = "Vessel"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.Vessel, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                @*****************Different Template Changes Start*****************************************@
+            <div class="form-group">
+                @Html.LabelFor(m => m.PortOfLoading, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.PortOfLoading, new { @class = "form-control", @maxlength = "150", @id = "PortOfLoading", @name = "PortOfLoading" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.PortOfLoading, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Vessel, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.Vessel, new { @class = "form-control", @maxlength = "150", @id = "Vessel", @name = "Vessel" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.Vessel, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            @*****************Different Template Changes Start*****************************************@
 
-                                @if (Model.TemplateId != "template-3" || Model.TemplateId != "template-4"){
+            @if (Model.TemplateId != "template-3" && Model.TemplateId != "template-4")
+            {
 
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.PortOfDischarge, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.PortOfDischarge, new { @class = "form-control", @maxlength = "150" , @id = "PortOfDischarge", @name = "PortOfDischarge"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.PortOfDischarge, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.PlaceOfDelivery, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.PlaceOfDelivery, new { @class = "form-control", @maxlength = "150" , @id = "PlaceOfDelivery", @name = "PlaceOfDelivery"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.PlaceOfDelivery, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                }
-
-                                @if (Model.TemplateId == "template-3" || Model.TemplateId == "template-4"){
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.OtherComments, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.OtherComments, new { @class = "form-control", @maxlength = "150" , @id = "OtherComments", @name = "OtherComments"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.OtherComments, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                }
-                            </div>
-                            <div class="panel-footer">Certificate Genaral Details</div>
-                        </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PortOfDischarge, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-7">
+                        @Html.TextBoxFor(model => model.PortOfDischarge, new { @class = "form-control", @maxlength = "150", @id = "PortOfDischarge", @name = "PortOfDischarge" })
                     </div>
-
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Certificate Item Details</div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Goods_Item, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.Goods_Item, new { @class = "form-control", @maxlength = "150" , @id = "Goods_Item", @name = "Goods_Item"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.Goods_Item, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.ShippingMarks, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.ShippingMarks, new { @class = "form-control", @maxlength = "150" , @id = "ShippingMarks", @name = "ShippingMarks"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.ShippingMarks, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.SummaryDescription, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextAreaFor(model => model.SummaryDescription, new { @class = "form-control", @maxlength = "150" , @id = "SummaryDescription", @name = "SummaryDescription" })
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.ShippingMarks, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.QtyNUnit, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.QtyNUnit, new { @class = "form-control", @maxlength = "150" , @id = "QtyNUnit", @name = "QtyNUnit"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.QtyNUnit, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                @if (Model.TemplateId != "template-1" || Model.TemplateId != "template-3")
-                                {
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.HSCode, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.HSCode, new { @class = "form-control", @maxlength = "150" , @id = "HSCode", @name = "HSCode"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.HSCode, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                }
-                                @if (Model.TemplateId == "template-3")
-                                {
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Remarks, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-7">
-                                        @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @maxlength = "150" , @id = "Remarks", @name = "Remarks"})
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.ValidationMessageFor(model => model.Remarks, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                }
-                            </div>
-                            <div class="panel-footer">Certificate Item Details</div>
-                        </div>
+                    <div class="col-sm-3">
+                        @Html.ValidationMessageFor(model => model.PortOfDischarge, null, new { @class = "text-danger" })
                     </div>
+                </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PlaceOfDelivery, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-7">
+                        @Html.TextBoxFor(model => model.PlaceOfDelivery, new { @class = "form-control", @maxlength = "150", @id = "PlaceOfDelivery", @name = "PlaceOfDelivery" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.ValidationMessageFor(model => model.PlaceOfDelivery, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
 
-                    @*  @using (Html.BeginForm("Index", "CertificateRequest", FormMethod.Post, 
+            @if (Model.TemplateId == "template-3" || Model.TemplateId == "template-4")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OtherComments, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-7">
+                        @Html.TextBoxFor(model => model.OtherComments, new { @class = "form-control", @maxlength = "150", @id = "OtherComments", @name = "OtherComments" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.ValidationMessageFor(model => model.OtherComments, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="panel-footer">Certificate Genaral Details</div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Certificate Item Details</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Goods_Item, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.Goods_Item, new { @class = "form-control", @maxlength = "150", @id = "Goods_Item", @name = "Goods_Item" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.Goods_Item, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ShippingMarks, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.ShippingMarks, new { @class = "form-control", @maxlength = "150", @id = "ShippingMarks", @name = "ShippingMarks" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.ShippingMarks, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SummaryDescription, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextAreaFor(model => model.SummaryDescription, new { @class = "form-control", @maxlength = "150", @id = "SummaryDescription", @name = "SummaryDescription", @cols = "50", @rows = "6", @style = "width:100%;" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.ShippingMarks, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PackageType, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.PackageType, new { @class = "form-control", @maxlength = "150", @id = "QtyNUnit", @name = "QtyNUnit" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.PackageType, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.QtyNUnit, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.QtyNUnit, new { @class = "form-control", @maxlength = "150", @id = "QtyNUnit", @name = "QtyNUnit" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.QtyNUnit, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            @if (Model.TemplateId != "template-1" && Model.TemplateId != "template-3")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.HSCode, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-7">
+                        @Html.TextBoxFor(model => model.HSCode, new { @class = "form-control", @maxlength = "150", @id = "HSCode", @name = "HSCode" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.ValidationMessageFor(model => model.HSCode, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            @if (Model.TemplateId == "template-5")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Remarks, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-7">
+                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", @maxlength = "150", @id = "HSCode", @name = "HSCode" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.ValidationMessageFor(model => model.Remarks, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="panel-footer">Certificate Item Details</div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Certificate Invoice Values</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.TotalInvoiceValue, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.TotalInvoiceValue, new { @class = "form-control", @maxlength = "150", @id = "HSCode", @name = "HSCode" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.TotalInvoiceValue, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.TotalQuantity, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.TotalQuantity, new { @class = "form-control", @maxlength = "150", @id = "HSCode", @name = "HSCode" })
+                </div>
+                <div class="col-sm-3">
+                    @Html.ValidationMessageFor(model => model.TotalQuantity, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            
+        </div>
+        <div class="panel-footer">Certificate Invoice Values</div>
+    </div>
+</div>
+@*  @using (Html.BeginForm("Index", "CertificateRequest", FormMethod.Post, 
                         new { id = "TheForm", enctype = "multipart/form-data" }))
             {
         *@
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Certificate Supporting Documents</div>
-                            @* <input id="Submit1" class="btn btn-success" type="submit" onclick="return Savefiles();" value=" submit" />
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Certificate Supporting Documents</div>
+        @* <input id="Submit1" class="btn btn-success" type="submit" onclick="return Savefiles();" value=" submit" />
 
                             <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
                                 <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
                                     <img src="~/Images/ellipsis.gif" /></span></button>*@
 
-                            <div class="panel-body">
-                                <table id="datatable" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Document Name</th>
-                                            <th>Is Mandatory</th>
-                                            <th>Upload File Location</th>
-                                        </tr>
-                                    </thead>
+        <div class="panel-body">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Is Mandatory</th>
+                        <th>Upload File Location</th>
+                    </tr>
+                </thead>
 
 
-                                    <tbody>
-                                        @if (Model != null)
-                                        {
-                                            for (int i = 0; i < Model.Support_Docs.Count; i++)
-                                            {
-                                                var fileupload1 = "file_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
-                                                var valdation = "val_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
-                                                var mad = "mand_" + i;
-                                            <tr>
-                                                @Html.HiddenFor(m => m.Support_Docs[i].SupportingDocument_Id, new { id = @Model.Support_Docs[i].SupportingDocument_Id })
-                                                @Html.HiddenFor(m => m.Support_Docs[i].Is_Mandatory, new { id = @mad })
-                                                <td>@Model.Support_Docs[i].SupportingDocument_Name</td>
-                                                @if (Model.Support_Docs[i].Is_Mandatory == "Y")
-                                                {<td>Yes</td>}
-                                                else
-                                                {<td>No</td>}
-                                                <td><span class="btn btn-default btn-file">
-                                                    <input type="file" class="btn-file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
-                                                </span><span style="color:Red" id="@valdation"></span></td>
-                                            </tr>
-                                            }
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="panel-footer">Certificate Supporting Documents</div>
-                        </div>
-                    </div>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.Support_Docs.Count; i++)
+                        {
+                            var fileupload1 = "file_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                            var valdation = "val_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                            var mad = "mand_" + i;
+                        <tr>
+                            @Html.HiddenFor(m => m.Support_Docs[i].SupportingDocument_Id, new { id = @Model.Support_Docs[i].SupportingDocument_Id })
+                            @Html.HiddenFor(m => m.Support_Docs[i].Is_Mandatory, new { id = @mad })
+                            <td>@Model.Support_Docs[i].SupportingDocument_Name</td>
+                            @if (Model.Support_Docs[i].Is_Mandatory == "Y")
+                            {<td>Yes</td>}
+                            else
+                            {<td>No</td>}
+                            <td><span class="btn btn-default btn-file">
+                                <input type="file" class="btn-file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
+                            </span><span style="color:Red" id="@valdation"></span></td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">Certificate Supporting Documents</div>
+    </div>
+</div>
 
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Post Refference Settings</div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.AddAsReff, new { @class = "col-sm-2 control-label" })
-                                    <div class="col-sm-3">
-                                        @*@Html.DropDownListFor(model => model.Consignor_Exporter, ViewBag.Bag_ExportSectors as SelectList, "", new { @class = "form-control" })*@
-                                    </div>
-                                    @Html.LabelFor(m => m.CTemplateName, new { @class = "col-sm-3 control-label" })
-                                    <div class="col-sm-4">
-                                        @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @maxlength = "150" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Post Refference Settings</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SealRequired, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-1">
+                    @Html.CheckBoxFor(model => model.SealRequired)
+                </div>
+                @Html.LabelFor(m => m.AddAsReff, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-1">
+                    @Html.CheckBoxFor(model => model.AddAsReff)
+                </div>
+                @*@Html.LabelFor(m => m.CTemplateName, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-3">
+                    @Html.TextBoxFor(model => model.CTemplateName, new { @class = "form-control", @maxlength = "150" })
+                </div>*@
+            </div>
+            </div>
+        </div>
+    </div>
 
-                  </div>
+</div>
 
 <input id="Submit1" class="btn btn-success" type="submit" onclick="return Mandatory1();" value="Save Certificate" />
 
 <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
-                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
-                                    <img src="~/Images/ellipsis.gif" /></span></button>
+    <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+        <img src="~/Images/ellipsis.gif" /></span></button>
 <script>
     $(document).ready(function () {
         debugger
         $('#InvoiceDate').daterangepicker({
+            locale: {
+                format: 'YYYY/MMM/DD'
+            },
             singleDatePicker: true,
             showDropdowns: true,
             todayHighlight: true
         })
-        $('#InvoiceDate').val("");
+
+
+        //var date_input = $('#InvoiceDate'); //our date input has the name "date"
+        //var container = $('.body');
+        //date_input.datepicker({
+        //    format: 'mm/dd/yyyy',
+        //    container: container,
+        //    todayHighlight: true,
+        //    autoclose: true,
+        //})
+        //$('#InvoiceDate').val("");
     });
 
-    function ValidateFile(value) {
 
+    function getNameFromPath(strFilepath) {
+        var objRE = new RegExp(/([^\/\\]+)$/);
+        var strName = objRE.exec(strFilepath);
+        if (strName == null) { return null; }
+        else { return strName[0]; }
+    }
+
+    function ValidateFileSize(fileid) {
+        try {
+            var fileSize = 0;
+            if (navigator.userAgent.match(/msie/i)) {
+                var obaxo = new ActiveXObject("Scripting.FileSystemObject");
+                var filePath = $("#" + fileid)[0].value;
+                var objFile = obaxo.getFile(filePath);
+                var fileSize = objFile.size;
+                fileSize = fileSize / 1048576;
+            }
+            else {
+                fileSize = $(fileid)[0].files[0].size
+                fileSize = fileSize / 1048576;
+            }
+
+            return fileSize;
+        }
+        catch (e) {
+            alert("Error is :" + e);
+        }
+    }
+
+    function ValidateFile(value) {
+        debugger
         var file = getNameFromPath($(value).val());
         if (file != null) {
             var extension = file.substr((file.lastIndexOf('.') + 1));
@@ -282,26 +367,26 @@
         }
 
         if (flag == false) {
-
+            debugger
             var str = value.name;
             var res = str.split("_");
-            var data = "_val" + res[1];
-            $("#" + data).text("You can upload only .pdf extension file Only");
+            var data = "val_" + res[1];
+            $("#" + data).text("    You can upload only .pdf extension file Only");
             $("#" + value.name).val('');
             return false;
         }
-        //else {
-        //    var size = ValidateFileSize(value);
-        //    var str = value.name;
-        //    var res = str.split("_");
-        //    var data = "_val" + res[1];
-        //    if (size > 1) {
-        //        $("#" + data).text("You Can Upload file Size Up to 1 MB.");
-        //        $("#" + value.name).val('');
-        //    }
-        //    else {
-        //        $("#" + data).text("");
-        //    }
-        //}
+        else {
+            var size = ValidateFileSize(value);
+            var str = value.name;
+            var res = str.split("_");
+            var data = "val_" + res[1];
+            if (size > 2) {
+                $("#" + data).text("  You Can Only Upload file Size Up to 2 MB.");
+                $("#" + value.name).val('');
+            }
+            else {
+                $("#" + data).text("");
+            }
+        }
     }
 </script>

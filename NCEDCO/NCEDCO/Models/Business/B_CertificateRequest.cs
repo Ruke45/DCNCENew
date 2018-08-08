@@ -124,7 +124,7 @@ namespace NCEDCO.Models.Business
                     var lst = datacontext.getClientTemplateNName(CustomerId,ParentId).SingleOrDefault();
                     if (lst != null)
                     {
-                        Cu.Consignor_Exporter = lst.CustomerName;
+                        Cu.Consignor_Exporter = lst.CustomerName.Replace("<br />", "\r\n");
                         Cu.TemplateId = lst.TemplateId;
                         Cu.Client_Id = lst.CustomerId;
  
@@ -141,5 +141,87 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public string setCertificateRequest(M_Cerificate hdr)
+        {
+
+            try
+            {
+                string certificatereqno = string.Empty;
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+
+                        B_RecordSequence CParentId = new B_RecordSequence();
+                        Int64 RequestNo = CParentId.getNextSequence("CertificateRequestNo", dbContext);
+                        certificatereqno = "CRN" + RequestNo.ToString();
+                        dbContext._setCertifcateRequestHeader(certificatereqno,
+                                                                hdr.TemplateId,
+                                                                hdr.Client_Id,
+                                                                hdr.Createdby,
+                                                                hdr.Status,
+                                                                hdr.Consignor_Exporter,
+                                                                hdr.Consignee,
+                                                                hdr.InvoiceNo,
+                                                                Convert.ToDateTime(hdr.InvoiceDate),
+                                                                hdr.CountyOfOrigin,
+                                                                hdr.PortOfLoading,
+                                                                hdr.PortOfDischarge,
+                                                                hdr.Vessel,
+                                                                hdr.PlaceOfDelivery,
+                                                                hdr.TotalInvoiceValue,
+                                                                hdr.TotalQuantity,
+                                                                hdr.OtherComments,
+                                                                hdr.Remarks,
+                                                                hdr.SealRequired.ToString());
+
+
+
+                         dbContext._setCertificateRequestDetails(certificatereqno,
+                                                                hdr.Goods_Item,
+                                                                hdr.ShippingMarks,
+                                                                hdr.PackageType,
+                                                                hdr.SummaryDescription,
+                                                                hdr.QtyNUnit,
+                                                                hdr.HSCode,
+                                                                hdr.Createdby);
+
+                         if (hdr.AddAsReff)
+                        {
+                            dbContext._setReffrennceRequest(hdr.Consignee, hdr.Client_Id, certificatereqno, hdr.ParentId, hdr.CTemplateName);
+                        }
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+                        return certificatereqno;
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        dbContext.Transaction.Rollback();
+                        return null;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
     }
 }

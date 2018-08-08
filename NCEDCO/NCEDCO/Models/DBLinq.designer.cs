@@ -505,6 +505,46 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, parentId);
 			return ((ISingleResult<getClientTemplateNNameResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setCertifcateRequestHeader]")]
+		public int _setCertifcateRequestHeader(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateId", DbType="VarChar(20)")] string templateId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(3)")] string status, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Consignor", DbType="VarChar(500)")] string consignor, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Consignee", DbType="VarChar(500)")] string consignee, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(50)")] string invoiceNo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceDate", DbType="Date")] System.Nullable<System.DateTime> invoiceDate, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CountryCode", DbType="VarChar(50)")] string countryCode, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LoadingPort", DbType="VarChar(50)")] string loadingPort, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PortOfDischarge", DbType="VarChar(50)")] string portOfDischarge, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vessel", DbType="VarChar(50)")] string vessel, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PlaceOfDelivery", DbType="VarChar(50)")] string placeOfDelivery, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TotalInvoiceValue", DbType="VarChar(50)")] string totalInvoiceValue, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TotalQuantity", DbType="VarChar(20)")] string totalQuantity, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="OtherComments", DbType="VarChar(150)")] string otherComments, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="OtherDetails", DbType="VarChar(250)")] string otherDetails, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SealRequired", DbType="VarChar(5)")] string sealRequired)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, templateId, customerId, createdBy, status, consignor, consignee, invoiceNo, invoiceDate, countryCode, loadingPort, portOfDischarge, vessel, placeOfDelivery, totalInvoiceValue, totalQuantity, otherComments, otherDetails, sealRequired);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setCertificateRequestDetails]")]
+		public int _setCertificateRequestDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GoodItem", DbType="VarChar(500)")] string goodItem, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ShippingMark", DbType="VarChar(500)")] string shippingMark, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PackageType", DbType="VarChar(500)")] string packageType, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SummaryDesc", DbType="VarChar(1000)")] string summaryDesc, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Quantity", DbType="VarChar(500)")] string quantity, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="HSCode", DbType="VarChar(500)")] string hSCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, goodItem, shippingMark, packageType, summaryDesc, quantity, hSCode, createdBy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setReffrennceRequest]")]
+		public int _setReffrennceRequest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Consignee", DbType="VarChar(250)")] string consignee, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentId", DbType="VarChar(20)")] string parentId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TemplateName", DbType="VarChar(150)")] string templateName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), consignee, customerID, requestId, parentId, templateName);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3920,7 +3960,7 @@ namespace NCEDCO.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(612) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(618) NOT NULL", CanBeNull=false)]
 		public string CustomerName
 		{
 			get

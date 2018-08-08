@@ -43,3 +43,23 @@
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
     </li>
 </ol>
+
+<input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+<script>
+	$(document).ready(function(){
+		//var date_input=$('input[name="date"]'); //our date input has the name "date"
+		//date_input.datepicker({
+		//    format: 'yyyy',
+		//    todayHighlight: true,
+		//    autoclose: true,
+		//    startView: "years",
+		//    minViewMode: "month"
+		//})
+
+		$('#date').daterangepicker({
+	        singleDatePicker: true,
+	        showDropdowns: true,
+	        todayHighlight: true
+	    })
+	})
+</script>

@@ -464,7 +464,7 @@ white-space: nowrap;
   border-color: #fafafa;
       font-family:'Oswald', sans-serif;
 }
-.form-control , .frm-btn , .datepicker{
+.form-control , .frm-btn {
     border: 1px solid #e0e0e0;
     padding: 5px 8px;
     color: #616161;
@@ -515,7 +515,7 @@ white-space: nowrap;
             line-height: 10px;
          }
 
-.form-control , .frm-btn , .datepicker{
+.form-control , .frm-btn {
     border: 1px solid #e0e0e0;
     padding: 5px 8px;
     color: #616161;
@@ -619,4 +619,8 @@ used to vertically center elements, may need modification if you're not using de
 
 .fileerror {
     border:#f10c0c;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 10px 0 0;
 }

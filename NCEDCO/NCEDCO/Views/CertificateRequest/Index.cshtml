@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Client_Id, new { @class = "col-sm-2 control-label" })
                                 <div class="col-sm-7">
-                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control" ,@onchange = "loadTemplate()" })
+                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control selectEx" ,@onchange = "loadTemplate()" })
                                 </div>
                                 @*<div class="col-sm-3">
                                     <button type="button" value="Save" id="btnLoadCertificate" onclick="CreateParentCustomer()" class="btn btn-primary">
@@ -88,7 +88,15 @@
 <script>
     
         
-    $(document).ready(function () { 
+    $(document).ready(function () {
+
+        $(".selectEx").select2({
+            placeholder: "Select Your Client",
+            allowClear: true,
+            width: '100%'
+        });
+
+
         $("#FrmCRq").validate({ 
             rules: { 
                 Consignor_Exporter: {

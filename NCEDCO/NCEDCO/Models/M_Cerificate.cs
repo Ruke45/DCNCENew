@@ -31,7 +31,7 @@ namespace NCEDCO.Models
         [Display(Name = "Invoice Date")]
         [Required(ErrorMessage = "Required!")]
         [DataType(DataType.Date)]
-        public System.DateTime InvoiceDate { get; set; }
+        public string InvoiceDate { get; set; }
 
         [Display(Name = "Country of Origin")]
         [Required(ErrorMessage = "Required!")]
@@ -107,6 +107,16 @@ namespace NCEDCO.Models
         [Display(Name = "Add as a Reffernece")]
         public bool AddAsReff { get; set; }
 
+        [Display(Name = "Created By")]
+        public string Createdby { get; set; }
+
+        [Display(Name = "Status")]
+        public string Status { get; set; }
+
+        [Display(Name = "Seal Required")]
+        public bool SealRequired { get; set; }
+
+        public string ParentId { get; set; }
 
         public List<M_SupportDocument> Support_Docs { get; set; }
     }

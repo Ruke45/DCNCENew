@@ -533,7 +533,48 @@
     <ElementType Name="getClientTemplateNNameResult">
       <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerName" Type="System.String" DbType="VarChar(612) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(618) NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.[_setCertifcateRequestHeader]" Method="_setCertifcateRequestHeader">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TemplateId" Parameter="templateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(3)" />
+    <Parameter Name="Consignor" Parameter="consignor" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="Consignee" Parameter="consignee" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="InvoiceDate" Parameter="invoiceDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="CountryCode" Parameter="countryCode" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="LoadingPort" Parameter="loadingPort" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PortOfDischarge" Parameter="portOfDischarge" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Vessel" Parameter="vessel" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PlaceOfDelivery" Parameter="placeOfDelivery" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TotalInvoiceValue" Parameter="totalInvoiceValue" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TotalQuantity" Parameter="totalQuantity" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="OtherComments" Parameter="otherComments" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="OtherDetails" Parameter="otherDetails" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="SealRequired" Parameter="sealRequired" Type="System.String" DbType="VarChar(5)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setCertificateRequestDetails]" Method="_setCertificateRequestDetails">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="GoodItem" Parameter="goodItem" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="ShippingMark" Parameter="shippingMark" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="PackageType" Parameter="packageType" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="SummaryDesc" Parameter="summaryDesc" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="HSCode" Parameter="hSCode" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setReffrennceRequest]" Method="_setReffrennceRequest">
+    <Parameter Name="Consignee" Parameter="consignee" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ParentId" Parameter="parentId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TemplateName" Parameter="templateName" Type="System.String" DbType="VarChar(150)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

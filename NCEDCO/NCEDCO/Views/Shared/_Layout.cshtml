@@ -8,9 +8,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.js"></script>
-    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+    @*<script src="~/Scripts/jquery.js"></script>*@
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
     <link href="~/Content/style.css" rel="stylesheet" />
 
     <link href="~/Scripts/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -19,21 +19,22 @@
     <link href="~/Scripts/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Scripts/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-
-        @*<link href="~/Content/css/select/select2.min.css" rel="stylesheet" />
-    <link href="~/Content/css/timepicki.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.min.js"></script>>*@
     <!-- Include Date Range Picker -->
     <script src="~/Scripts/moment.js"></script>
     <link href="~/Content/daterangepicker.css" rel="stylesheet" />
     <script src="~/Scripts/daterangepicker.js"></script>
     
+
+@*    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />*@
+    <link href="~/Content/select2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/select2.full.js"></script>
+@*    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>*@
     
     
     @*  @Styles.Render("~/Content/css")*@
     @*        @Scripts.Render("~/bundles/modernizr")*@
 </head>
-<body>
+<body class="body">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-static-top" role="navigation">

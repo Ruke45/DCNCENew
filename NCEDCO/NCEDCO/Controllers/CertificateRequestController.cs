@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using NCEDCO.Models;
 using NCEDCO.Models.Business;
-using NCEDCO.Models.Templates;
 using System.IO;
 
 namespace NCEDCO.Controllers
@@ -60,6 +59,7 @@ namespace NCEDCO.Controllers
             M_Cerificate C = new M_Cerificate();
             C = objCr.getCleintNTemplate(Reff, "PC3");
             C.Support_Docs = objCr.getTemplateSupportingDocs(C.Client_Id, C.TemplateId);
+            C.SealRequired = true;
             return PartialView("P_CertificateRequstForm",C);
         }
 
