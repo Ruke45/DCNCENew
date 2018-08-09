@@ -5,6 +5,8 @@
         <div class="panel-heading">Certificate Genaral Details</div>
         <div class="panel-body">
             <div class="form-group">
+                @Html.HiddenFor(m => m.TemplateId)
+                @Html.HiddenFor(m => m.Client_Id)
                 @Html.LabelFor(m => m.Consignor_Exporter, new { @class = "col-sm-2 control-label" })
                 <div class="col-sm-7">
                     @Html.TextAreaFor(model => model.Consignor_Exporter, new { @class = "form-control", @maxlength = "150", @id = "Consignor_Exporter", @name = "Consignor_Exporter", @cols = "50", @rows = "5", @style = "width:100%;" })
@@ -234,7 +236,8 @@
                 <thead>
                     <tr>
                         <th>Document Name</th>
-                        <th>Is Mandatory</th>
+                        <th>Is Mandatory</th>   
+                        <th>Signature Required</th>
                         <th>Upload File Location</th>
                     </tr>
                 </thead>
@@ -247,6 +250,7 @@
                         {
                             var fileupload1 = "file_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
                             var valdation = "val_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                            var signature = "sign_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
                             var mad = "mand_" + i;
                         <tr>
                             @Html.HiddenFor(m => m.Support_Docs[i].SupportingDocument_Id, new { id = @Model.Support_Docs[i].SupportingDocument_Id })
@@ -256,6 +260,7 @@
                             {<td>Yes</td>}
                             else
                             {<td>No</td>}
+                            <td>@Html.CheckBoxFor(model => model.Support_Docs[i].Signature_Required)</td>
                             <td><span class="btn btn-default btn-file">
                                 <input type="file" class="btn-file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
                             </span><span style="color:Red" id="@valdation"></span></td>
@@ -290,14 +295,12 @@
             </div>
         </div>
     </div>
-
-</div>
-
-<input id="Submit1" class="btn btn-success" type="submit" onclick="return Mandatory1();" value="Save Certificate" />
-
-<button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
+<div class="col-md-12">
+<input id="Submit1" class="btn btn-success" style="float:right;" type="submit" value="Save Certificate" />
+    </div>
+@*<button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
     <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
-        <img src="~/Images/ellipsis.gif" /></span></button>
+        <img src="~/Images/ellipsis.gif" /></span></button>*@
 <script>
     $(document).ready(function () {
         debugger

@@ -20,8 +20,14 @@
 <!-- /.row -->
 
 <div class="row">
-
-    <div class="col-lg-12">
+    
+     @if(ViewBag._Result == "Succes")
+      { 
+         <div class="alert alert-success alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Indicates a successful or positive action.
+</div>
+      }
         <div class="panel panel-default">
             <div class="panel-heading">Certificate Request Form</div>
             <div class="panel-body">
@@ -30,38 +36,28 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Pre Certificate Selection</div>
                         <div class="panel-body">
-                            
+
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Client_Id, new { @class = "col-sm-2 control-label" })
                                 <div class="col-sm-7">
-                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control selectEx" ,@onchange = "loadTemplate()" })
-                                </div>
-                                @*<div class="col-sm-3">
-                                    <button type="button" value="Save" id="btnLoadCertificate" onclick="CreateParentCustomer()" class="btn btn-primary">
-                                        <span class="fa fa-bookmark"></span>Load <span style="text-align: center; display: none" id="loaderDiv">
-                                            <img src="~/Images/ellipsis.gif" /></span></button>
-                                </div>*@
-                            </div>
-
-
-
-                            @*<div class="form-group" id="loadCRefference">
-                                @Html.LabelFor(m => m.CertificateReff, new { @class = "col-sm-2 control-label" })
-                                <div class="col-sm-7">
-                                    @Html.DropDownListFor(model => model.RefferencNo, ViewBag.Bag_RefferenceRequ as SelectList, "", new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control selectEx", @onchange = "loadTemplate()" })
                                 </div>
                                 <div class="col-sm-3">
-                                    <button type="button" value="Save" id="btnLoadCertificate" onclick="CreateParentCustomer()" class="btn btn-primary">
-                                        <span class="fa fa-bookmark"></span>Load <span style="text-align: center; display: none" id="loaderDiv">
-                                            <img src="~/Images/ellipsis.gif" /></span></button>
+                                    <label class="control-label">Or</label>
                                 </div>
-                            </div>*@
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.CertificateReff, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-7">
+                                    @Html.DropDownListFor(model => model.RefferencNo, ViewBag.Bag_RefferenceRequ as SelectList, "", new { @class = "form-control selectRf", @onchange = "loadTemplateByReff()" })
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <form id="FrmCRq" class="form-horizontal" autocomplete="off" enctype="multipart/form-data">
-                    <div class="col-md-12" id ="LoadTemplate"></div>
+                    <div class="col-md-12" id="LoadTemplate"></div>
 
                 </form>
 
@@ -86,8 +82,8 @@
     </div>
 </div>
 <script>
-    
-        
+
+
     $(document).ready(function () {
 
         $(".selectEx").select2({
@@ -95,15 +91,20 @@
             allowClear: true,
             width: '100%'
         });
+        $(".selectRf").select2({
+            placeholder: "Select Your Save Certificate Requests",
+            allowClear: true,
+            width: '100%'
+        });
 
 
-        $("#FrmCRq").validate({ 
-            rules: { 
+        $("#FrmCRq").validate({
+            rules: {
                 Consignor_Exporter: {
-                    required:true 
+                    required: true
                 },
-                Consignee:{
-                    required:true
+                Consignee: {
+                    required: true
                 },
                 InvoiceNo: {
                     required: true
@@ -135,8 +136,8 @@
                 HSCode: {
                     required: true
                 },
-            }, 
-            messages: { 
+            },
+            messages: {
                 Consignor_Exporter: {
                     required: "Consignor / Exporter should not be empty"
                 },
@@ -196,7 +197,7 @@
                 }
                 AjaxPost(form);
             }
-        }); 
+        });
     });
 
     function Mandatory() {
@@ -224,12 +225,12 @@
             data: new FormData(formData),
             success: function (result) {
                 if (result == "Succes") {
-                    alert(result);
+                    window.location.href = "/CertificateRequest/Index";
                 }
                 else {
                     alert(result);
                 }
-                
+
             }
         }
         if ($(formData).attr('enctype') == "multipart/form-data") {
@@ -246,6 +247,16 @@
         window.location.href = Url;
     }
 
+    var loadTemplateByReff = function () {
+        var tid = $('#RefferencNo').val();
+        debugger
+        if (tid != "") {
+            $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceByReq?Reff=' + tid);
+            $('#LoadTemplate').show();
+        } else {
+            $('#LoadTemplate').hide();
+        }
+    }
     var loadTemplate = function () {
         var tid = $('#Client_Id').val();
         debugger

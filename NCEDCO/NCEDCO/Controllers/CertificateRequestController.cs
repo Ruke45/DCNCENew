@@ -19,7 +19,7 @@ namespace NCEDCO.Controllers
             
 
             List<M_CertificateRefferance> ReffList = objCr.getRefferenceCRequest("PC3");
-            ViewBag.Bag_RefferenceRequ = new SelectList(ReffList, "RequestId", "TemplateName");
+            ViewBag.Bag_RefferenceRequ = new SelectList(ReffList, "RequestId", "Consignee");
 
             List<M_Customer> ClientList = objCr.getCustomerClients("PC3");
             ViewBag.Bag_ClientsofCustomer = new SelectList(ClientList, "ClientId", "Customer_Name");
@@ -30,27 +30,60 @@ namespace NCEDCO.Controllers
         [HttpPost]
         public ActionResult Index(M_Cerificate Model)
         {
-             string result = "Error";
-                 result = "Succes";
-                 var DocumentUpload = Model.Support_Docs;
-                 foreach (var Doc in DocumentUpload)
-                 {
-                     string strFileUpload = "file_" + Doc.SupportingDocument_Id; ;
-                     HttpPostedFileBase file = Request.Files[strFileUpload];
+            B_CertificateRequest objCreq = new B_CertificateRequest();
 
-                     if (file != null && file.ContentLength > 0)
-                     {
-                         // if you want to save in folder use this
-                         var fileName = Path.GetFileName(file.FileName);
-                         var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                         file.SaveAs(path);
+            string result = "Error";
+            Model.Createdby = "ADMIN";
+            Model.ParentId = "PC3";
+            Model.Status = "P";
 
-                         // if you want to store in Bytes in Database use this
-                         byte[] image = new byte[file.ContentLength];
-                         file.InputStream.Read(image, 0, image.Length);
+            string reff = objCreq.setCertificateRequest(Model);
 
-                     }
-                 }
+            string DirectoryPath = "~/Uploads/Web_SDcouments/" + 
+                                    DateTime.Now.ToString("yyyy") +
+                                    "/" + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
+            if (reff != null)
+            {
+                var DocumentUpload = Model.Support_Docs;
+                if (DocumentUpload != null)
+                {
+                    if (!Directory.Exists(Server.MapPath(DirectoryPath)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(DirectoryPath));
+                    }
+                    foreach (var Doc in DocumentUpload)
+                    {
+                        string strFileUpload = "file_" + Doc.SupportingDocument_Id;
+                        HttpPostedFileBase file = Request.Files[strFileUpload];
+                       
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName.Replace(" ", "_"));
+                            var path = Path.Combine(Server.MapPath(DirectoryPath), fileName);
+
+                            M_SupportDocumentUpload Su = new M_SupportDocumentUpload();
+                            Su.RequestRefNo = reff;
+                            Su.SignatureRequired = false;
+                            Su.SupportingDocumentID = Doc.SupportingDocument_Id;
+                            Su.UploadedBy = "Admin";
+                            Su.UploadedPath = DirectoryPath + "/" + fileName;
+                            Su.DocumentName = fileName;
+                            if (Doc.Signature_Required)
+                            {
+                                Su.SignatureRequired = true;
+                                Su.Remarks = "NCE_Certification";
+                            }
+                            else { Su.SignatureRequired = false; }
+                            objCreq.setSupportingDocumentFRequest(Su);
+                            file.SaveAs(path);
+                            result = "Succes";
+                            ViewBag._Result = "Succes";
+                        }
+                    }
+                }
+            }
+             
+                 
              return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -61,6 +94,15 @@ namespace NCEDCO.Controllers
             C.Support_Docs = objCr.getTemplateSupportingDocs(C.Client_Id, C.TemplateId);
             C.SealRequired = true;
             return PartialView("P_CertificateRequstForm",C);
+        }
+
+        public ActionResult LoadRefferenceByReq(string Reff)
+        {
+            M_Cerificate C = new M_Cerificate();
+            C = objCr.getSavedCertificateRequest(Reff);
+            C.Support_Docs = objCr.getTemplateSupportingDocs(C.Client_Id, C.TemplateId);
+            C.SealRequired = true;
+            return PartialView("P_CertificateRequstForm", C);
         }
 
     }

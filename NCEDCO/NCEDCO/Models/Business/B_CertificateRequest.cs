@@ -223,5 +223,73 @@ namespace NCEDCO.Models.Business
 
         }
 
+        public bool setSupportingDocumentFRequest(M_SupportDocumentUpload usr)
+        {
+
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setSupportingDocUpload(usr.RequestRefNo, usr.SupportingDocumentID, usr.Remarks, usr.UploadedBy, usr.UploadedPath, usr.DocumentName, usr.SignatureRequired.ToString());
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+
+        public M_Cerificate getSavedCertificateRequest(string RequestId)
+        {
+            try
+            {
+
+                M_Cerificate Cu = new M_Cerificate();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var lst = datacontext._getSavedCertificateRequest(RequestId).SingleOrDefault();
+                    if (lst != null)
+                    {
+                        Cu.Consignor_Exporter = lst.Consignor.Replace("<br />", "\r\n");
+                        Cu.Consignee = lst.Consignee.Replace("<br />", "\r\n");
+                        Cu.TemplateId = lst.TemplateId;
+                        Cu.Client_Id = lst.CustomerId;
+                        Cu.CountyOfOrigin = lst.CountryCode;
+                        Cu.Goods_Item = lst.GoodItem;
+                        Cu.HSCode = lst.HSCode;
+                        Cu.InvoiceDate = lst.InvoiceDate.Value.ToString("yyyy/MM/dd");
+                        //Cu.InvoiceNo = lst.InvoiceNo;
+                        Cu.OtherComments = lst.OtherComments;
+                        Cu.PackageType = lst.PackageType;
+                        Cu.PlaceOfDelivery = lst.PlaceOfDelivery;
+                        Cu.PortOfDischarge = lst.PortOfDischarge;
+                        Cu.PortOfLoading = lst.LoadingPort;
+                        Cu.QtyNUnit = lst.Quantity;
+                        Cu.Remarks = lst.OtherDetails;
+                        Cu.SealRequired = Convert.ToBoolean(lst.SealRequired);
+                        Cu.ShippingMarks = lst.ShippingMark;
+                        Cu.SummaryDescription = lst.SummaryDesc;
+                        Cu.TotalInvoiceValue = lst.TotalInvoiceValue;
+                        Cu.TotalQuantity = lst.TotalQuantity;
+                        Cu.Vessel = lst.Vessel;
+                    }
+                }
+
+                return Cu;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }

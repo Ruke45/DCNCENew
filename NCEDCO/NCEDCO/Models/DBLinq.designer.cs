@@ -545,6 +545,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), consignee, customerID, requestId, parentId, templateName);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setSupportingDocUpload]")]
+		public int _setSupportingDocUpload([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestRefNo", DbType="VarChar(20)")] string requestRefNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocumentId", DbType="VarChar(20)")] string documentId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Remarks", DbType="VarChar(150)")] string remarks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadedBy", DbType="VarChar(20)")] string uploadedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadPath", DbType="VarChar(250)")] string uploadPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocumentName", DbType="VarChar(150)")] string documentName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SignatureRequired", DbType="VarChar(5)")] string signatureRequired)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestRefNo, documentId, remarks, uploadedBy, uploadPath, documentName, signatureRequired);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSavedCertificateRequest]")]
+		public ISingleResult<_getSavedCertificateRequestResult> _getSavedCertificateRequest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId);
+			return ((ISingleResult<_getSavedCertificateRequestResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -3972,6 +3986,518 @@ namespace NCEDCO.Models
 				if ((this._CustomerName != value))
 				{
 					this._CustomerName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSavedCertificateRequestResult
+	{
+		
+		private string _RequestId;
+		
+		private string _TemplateId;
+		
+		private string _CustomerId;
+		
+		private System.DateTime _RequestDate;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private string _ModifiedBy;
+		
+		private string _Status;
+		
+		private string _Consignor;
+		
+		private string _Consignee;
+		
+		private string _InvoiceNo;
+		
+		private System.Nullable<System.DateTime> _InvoiceDate;
+		
+		private string _CountryCode;
+		
+		private string _LoadingPort;
+		
+		private string _PortOfDischarge;
+		
+		private string _Vessel;
+		
+		private string _PlaceOfDelivery;
+		
+		private string _TotalInvoiceValue;
+		
+		private string _TotalQuantity;
+		
+		private string _OtherComments;
+		
+		private string _OtherDetails;
+		
+		private string _ReasonCode;
+		
+		private string _SealRequired;
+		
+		private string _GoodItem;
+		
+		private string _ShippingMark;
+		
+		private string _PackageType;
+		
+		private string _SummaryDesc;
+		
+		private string _Quantity;
+		
+		private string _HSCode;
+		
+		public _getSavedCertificateRequestResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime NOT NULL")]
+		public System.DateTime RequestDate
+		{
+			get
+			{
+				return this._RequestDate;
+			}
+			set
+			{
+				if ((this._RequestDate != value))
+				{
+					this._RequestDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(20)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this._ModifiedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignor", DbType="VarChar(500)")]
+		public string Consignor
+		{
+			get
+			{
+				return this._Consignor;
+			}
+			set
+			{
+				if ((this._Consignor != value))
+				{
+					this._Consignor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(500)")]
+		public string Consignee
+		{
+			get
+			{
+				return this._Consignee;
+			}
+			set
+			{
+				if ((this._Consignee != value))
+				{
+					this._Consignee = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(50)")]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this._InvoiceNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> InvoiceDate
+		{
+			get
+			{
+				return this._InvoiceDate;
+			}
+			set
+			{
+				if ((this._InvoiceDate != value))
+				{
+					this._InvoiceDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryCode", DbType="VarChar(50)")]
+		public string CountryCode
+		{
+			get
+			{
+				return this._CountryCode;
+			}
+			set
+			{
+				if ((this._CountryCode != value))
+				{
+					this._CountryCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoadingPort", DbType="VarChar(50)")]
+		public string LoadingPort
+		{
+			get
+			{
+				return this._LoadingPort;
+			}
+			set
+			{
+				if ((this._LoadingPort != value))
+				{
+					this._LoadingPort = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortOfDischarge", DbType="VarChar(50)")]
+		public string PortOfDischarge
+		{
+			get
+			{
+				return this._PortOfDischarge;
+			}
+			set
+			{
+				if ((this._PortOfDischarge != value))
+				{
+					this._PortOfDischarge = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vessel", DbType="VarChar(50)")]
+		public string Vessel
+		{
+			get
+			{
+				return this._Vessel;
+			}
+			set
+			{
+				if ((this._Vessel != value))
+				{
+					this._Vessel = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceOfDelivery", DbType="VarChar(50)")]
+		public string PlaceOfDelivery
+		{
+			get
+			{
+				return this._PlaceOfDelivery;
+			}
+			set
+			{
+				if ((this._PlaceOfDelivery != value))
+				{
+					this._PlaceOfDelivery = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalInvoiceValue", DbType="VarChar(50)")]
+		public string TotalInvoiceValue
+		{
+			get
+			{
+				return this._TotalInvoiceValue;
+			}
+			set
+			{
+				if ((this._TotalInvoiceValue != value))
+				{
+					this._TotalInvoiceValue = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalQuantity", DbType="VarChar(20)")]
+		public string TotalQuantity
+		{
+			get
+			{
+				return this._TotalQuantity;
+			}
+			set
+			{
+				if ((this._TotalQuantity != value))
+				{
+					this._TotalQuantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherComments", DbType="VarChar(150)")]
+		public string OtherComments
+		{
+			get
+			{
+				return this._OtherComments;
+			}
+			set
+			{
+				if ((this._OtherComments != value))
+				{
+					this._OtherComments = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherDetails", DbType="VarChar(250)")]
+		public string OtherDetails
+		{
+			get
+			{
+				return this._OtherDetails;
+			}
+			set
+			{
+				if ((this._OtherDetails != value))
+				{
+					this._OtherDetails = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonCode", DbType="VarChar(10)")]
+		public string ReasonCode
+		{
+			get
+			{
+				return this._ReasonCode;
+			}
+			set
+			{
+				if ((this._ReasonCode != value))
+				{
+					this._ReasonCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SealRequired", DbType="VarChar(5)")]
+		public string SealRequired
+		{
+			get
+			{
+				return this._SealRequired;
+			}
+			set
+			{
+				if ((this._SealRequired != value))
+				{
+					this._SealRequired = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GoodItem", DbType="VarChar(500)")]
+		public string GoodItem
+		{
+			get
+			{
+				return this._GoodItem;
+			}
+			set
+			{
+				if ((this._GoodItem != value))
+				{
+					this._GoodItem = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingMark", DbType="VarChar(500)")]
+		public string ShippingMark
+		{
+			get
+			{
+				return this._ShippingMark;
+			}
+			set
+			{
+				if ((this._ShippingMark != value))
+				{
+					this._ShippingMark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PackageType", DbType="VarChar(500)")]
+		public string PackageType
+		{
+			get
+			{
+				return this._PackageType;
+			}
+			set
+			{
+				if ((this._PackageType != value))
+				{
+					this._PackageType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SummaryDesc", DbType="VarChar(1000)")]
+		public string SummaryDesc
+		{
+			get
+			{
+				return this._SummaryDesc;
+			}
+			set
+			{
+				if ((this._SummaryDesc != value))
+				{
+					this._SummaryDesc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="VarChar(500)")]
+		public string Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this._Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HSCode", DbType="VarChar(500)")]
+		public string HSCode
+		{
+			get
+			{
+				return this._HSCode;
+			}
+			set
+			{
+				if ((this._HSCode != value))
+				{
+					this._HSCode = value;
 				}
 			}
 		}

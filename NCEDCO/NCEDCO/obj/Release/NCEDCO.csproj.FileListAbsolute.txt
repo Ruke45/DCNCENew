@@ -11,10 +11,7 @@ C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\EntityFramework.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Newtonsoft.Json.dll
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Net.Http.Formatting.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Helpers.dll
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Http.dll
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Http.WebHost.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Mvc.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Optimization.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Razor.dll
@@ -26,10 +23,7 @@ C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\WebMatrix.Data.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\WebMatrix.WebData.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\EntityFramework.xml
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Newtonsoft.Json.xml
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Net.Http.Formatting.xml
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Helpers.xml
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Http.xml
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Http.WebHost.xml
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Mvc.xml
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.Razor.xml
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\System.Web.WebPages.xml

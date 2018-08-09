@@ -161,5 +161,14 @@ namespace NCEDCO.Models
             get { return IsMandatory; }
             set { IsMandatory = value; }
         }
+
+        bool SignatureRequired;
+        [Display(Name = "Signatuer Required")]
+        [Required(ErrorMessage = "Required!")]
+        public bool Signature_Required
+        {
+            get { return SignatureRequired; }
+            set { SignatureRequired = value; }
+        }
     }
 }
