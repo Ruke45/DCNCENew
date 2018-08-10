@@ -32,21 +32,22 @@ namespace NCEDCO.Controllers
         {
             B_CertificateRequest objCreq = new B_CertificateRequest();
 
-            string result = "Error";
+            string r = "Error";
             Model.Createdby = "ADMIN";
             Model.ParentId = "PC3";
             Model.Status = "P";
 
             string reff = objCreq.setCertificateRequest(Model);
 
-            string DirectoryPath = "~/Uploads/Web_SDcouments/" + 
-                                    DateTime.Now.ToString("yyyy") +
-                                    "/" + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
+            
             if (reff != null)
             {
                 var DocumentUpload = Model.Support_Docs;
                 if (DocumentUpload != null)
                 {
+                    string DirectoryPath = "~/Uploads/Web_SDcouments/" +
+                                    DateTime.Now.ToString("yyyy") +
+                                    "/" + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
                     if (!Directory.Exists(Server.MapPath(DirectoryPath)))
                     {
                         Directory.CreateDirectory(Server.MapPath(DirectoryPath));
@@ -55,7 +56,7 @@ namespace NCEDCO.Controllers
                     {
                         string strFileUpload = "file_" + Doc.SupportingDocument_Id;
                         HttpPostedFileBase file = Request.Files[strFileUpload];
-                       
+
                         if (file != null && file.ContentLength > 0)
                         {
                             var fileName = Path.GetFileName(file.FileName.Replace(" ", "_"));
@@ -76,15 +77,18 @@ namespace NCEDCO.Controllers
                             else { Su.SignatureRequired = false; }
                             objCreq.setSupportingDocumentFRequest(Su);
                             file.SaveAs(path);
-                            result = "Succes";
-                            ViewBag._Result = "Succes";
+
+
                         }
-                    }
+                    }                  
                 }
+
+                ViewBag._Result = "Succes";
+                r = "Succes";   
             }
-             
-                 
-             return Json(result, JsonRequestBehavior.AllowGet);
+
+            var result = new { Msg = r, Cid = Model.Client_Id, RqId = reff };    
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadRefferenceCR(string Reff)

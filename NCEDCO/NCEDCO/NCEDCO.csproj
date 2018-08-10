@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>dll\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -175,6 +178,14 @@
     <Compile Include="Models\Business\B_RecordSequence.cs" />
     <Compile Include="Models\Business\B_Settings.cs" />
     <Compile Include="Models\Business\B_Users.cs" />
+    <Compile Include="Models\Business\Template\Base_Certificate.cs" />
+    <Compile Include="Models\Business\Template\ColumnWithHSTemplate.cs" />
+    <Compile Include="Models\Business\Template\ColumnWithoutHSTemplate.cs" />
+    <Compile Include="Models\Business\Template\MassActiveCertificateTemplate.cs" />
+    <Compile Include="Models\Business\Template\NidroCertificateTemplate.cs" />
+    <Compile Include="Models\Business\Template\OrientGlobalCertificateTemplate.cs" />
+    <Compile Include="Models\Business\Template\RowWithHSTemplate.cs" />
+    <Compile Include="Models\Business\Template\RowWithoutHSTemplate.cs" />
     <Compile Include="Models\DBLinq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -379,6 +390,7 @@
     <Content Include="Views\CertificateRequest\P_CertificateRequstForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="dll\" />
     <Folder Include="Documents\" />
     <Folder Include="Signature\" />
     <Folder Include="Uploads\" />

@@ -20,14 +20,7 @@
 <!-- /.row -->
 
 <div class="row">
-    
-     @if(ViewBag._Result == "Succes")
-      { 
-         <div class="alert alert-success alert-dismissible">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Success!</strong> Indicates a successful or positive action.
-</div>
-      }
+   
         <div class="panel panel-default">
             <div class="panel-heading">Certificate Request Form</div>
             <div class="panel-body">
@@ -63,8 +56,11 @@
 
             </div>
         </div>
-    </div>
+             <div class="alert alert-success alert-dismissible" id="SMsg" style="display:none">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Certificate Request Successfully Saved Under Request Id : <label id="Rqid"></label>
 </div>
+    </div>
 
 <!--Notification Modals -->
 <div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
@@ -224,11 +220,16 @@
             url: "/CertificateRequest/Index",
             data: new FormData(formData),
             success: function (result) {
-                if (result == "Succes") {
-                    window.location.href = "/CertificateRequest/Index";
+                if (result.Msg == "Succes") {
+                    
+                    $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceCR?Reff=' + result.Cid);
+                    $('#LoadTemplate').show();
+                    $('#Rqid').text(result.RqId);
+                    $("#SMsg").show();
                 }
                 else {
-                    alert(result);
+                    $("#ErrorLable").text("Unable to Complete the Certificate Request. Please Contact the Administrator !");
+                    $("#errorModel").modal("show");
                 }
 
             }

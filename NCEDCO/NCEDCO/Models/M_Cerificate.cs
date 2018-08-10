@@ -118,6 +118,11 @@ namespace NCEDCO.Models
 
         public string ParentId { get; set; }
 
+        public string ClientContact_Name { get; set; }
+        public string ClientContact_Designation { get; set; }
+        public string ClientContact_Telephone { get; set; }
+        public DateTime RequestDate { get; set; }
+
         public List<M_SupportDocument> Support_Docs { get; set; }
     }
 }
