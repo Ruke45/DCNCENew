@@ -1,0 +1,171 @@
+﻿@model NCEDCO.Models.M_Cerificate
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Certificate Genaral Details</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Certificate File </label>
+                <div class="col-sm-7">
+                   <span class="btn btn-default btn-file">
+                       @{ var certificateFile = "Certificate_File";
+                          var cvaldation = "validation_";
+                       }
+                      <input type="file" class="btn-file" id="@certificateFile" name="@certificateFile" onchange="ValidateFile(this);" />
+                      </span><span style="color:Red" id="@cvaldation"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.TemplateId)
+                @Html.HiddenFor(m => m.Client_Id)
+                @Html.LabelFor(m => m.InvoiceNo, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-3">
+                    @Html.TextBoxFor(model => model.InvoiceNo, new { @class = "form-control", @maxlength = "50", @id = "InvoiceNo", @name = "InvoiceNo"})
+                </div>
+            </div>
+            
+             </div>
+        <div class="panel-footer">Certificate Genaral Details</div>
+
+    </div>
+
+</div>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Certificate Supporting Documents</div>
+        @* <input id="Submit1" class="btn btn-success" type="submit" onclick="return Savefiles();" value=" submit" />
+
+                            <button type="button" value="Save" id="btnRegister" onclick="CreateParentCustomer()" class="btn btn-primary">
+                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                                    <img src="~/Images/ellipsis.gif" /></span></button>*@
+
+        <div class="panel-body">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Is Mandatory</th>   
+                        <th>Signature Required</th>
+                        <th>Upload File Location</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.Support_Docs.Count; i++)
+                        {
+                            var fileupload1 = "file_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                            var valdation = "val_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                            var signature = "sign_" + Convert.ToString(Model.Support_Docs[i].SupportingDocument_Id);
+                            var mad = "mand_" + i;
+                        <tr>
+                            @Html.HiddenFor(m => m.Support_Docs[i].SupportingDocument_Id, new { id = @Model.Support_Docs[i].SupportingDocument_Id })
+                            @Html.HiddenFor(m => m.Support_Docs[i].Is_Mandatory, new { id = @mad })
+                            <td>@Model.Support_Docs[i].SupportingDocument_Name</td>
+                            @if (Model.Support_Docs[i].Is_Mandatory == "Y")
+                            {<td>Yes</td>}
+                            else
+                            {<td>No</td>}
+                            <td>@Html.CheckBoxFor(model => model.Support_Docs[i].Signature_Required)</td>
+                            <td><span class="btn btn-default btn-file">
+                                <input type="file" class="btn-file" id="@fileupload1" name="@fileupload1" onchange="ValidateFile(this);" />
+                            </span><span style="color:Red" id="@valdation"></span></td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">Certificate Supporting Documents</div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Post Refference Settings</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SealRequired, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-1">
+                    @Html.CheckBoxFor(model => model.SealRequired)
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+<div class="col-md-12">
+   @* <input id="Submit1" class="btn btn-success" style="float:right;" type="submit" value="Save Certificate" />&nbsp;*@
+    <input id="Submit2" class="btn btn-success" style="float:right;" type="submit" value="Send For Certificate Approval" />
+    </div>
+
+<script>
+    function getNameFromPath(strFilepath) {
+        var objRE = new RegExp(/([^\/\\]+)$/);
+        var strName = objRE.exec(strFilepath);
+        if (strName == null) { return null; }
+        else { return strName[0]; }
+    }
+
+    function ValidateFileSize(fileid) {
+        try {
+            var fileSize = 0;
+            if (navigator.userAgent.match(/msie/i)) {
+                var obaxo = new ActiveXObject("Scripting.FileSystemObject");
+                var filePath = $("#" + fileid)[0].value;
+                var objFile = obaxo.getFile(filePath);
+                var fileSize = objFile.size;
+                fileSize = fileSize / 1048576;
+            }
+            else {
+                fileSize = $(fileid)[0].files[0].size
+                fileSize = fileSize / 1048576;
+            }
+
+            return fileSize;
+        }
+        catch (e) {
+            alert("Error is :" + e);
+        }
+    }
+
+    function ValidateFile(value) {
+        debugger
+        var file = getNameFromPath($(value).val());
+        if (file != null) {
+            var extension = file.substr((file.lastIndexOf('.') + 1));
+            switch (extension) {
+                case 'pdf':
+                    flag = true;
+                    break;
+                default:
+                    flag = false;
+            }
+        }
+
+        if (flag == false) {
+            debugger
+            var str = value.name;
+            var res = str.split("_");
+            var data = "val_" + res[1];
+            $("#" + data).text("    You can upload only .pdf extension file Only");
+            $("#" + value.name).val('');
+            return false;
+        }
+        else {
+            var size = ValidateFileSize(value);
+            var str = value.name;
+            var res = str.split("_");
+            var data = "val_" + res[1];
+            if (size > 2) {
+                $("#" + data).text("  You Can Only Upload file Size Up to 2 MB.");
+                $("#" + value.name).val('');
+            }
+            else {
+                $("#" + data).text("");
+            }
+        }
+    }
+</script>

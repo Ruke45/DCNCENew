@@ -499,13 +499,6 @@ namespace NCEDCO.Models
 			return ((ISingleResult<getCustomerClientListResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getClientTemplateNName")]
-		public ISingleResult<getClientTemplateNNameResult> getClientTemplateNName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentId", DbType="VarChar(20)")] string parentId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, parentId);
-			return ((ISingleResult<getClientTemplateNNameResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setCertifcateRequestHeader]")]
 		public int _setCertifcateRequestHeader(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, 
@@ -558,6 +551,48 @@ namespace NCEDCO.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId);
 			return ((ISingleResult<_getSavedCertificateRequestResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setWebBasedCertificateCreation]")]
+		public int _setWebBasedCertificateCreation([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificatePath", DbType="VarChar(250)")] string certificatePath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateName", DbType="VarChar(50)")] string certificateName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, certificatePath, certificateName);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getClientTemplateNName")]
+		public ISingleResult<getClientTemplateNNameResult> getClientTemplateNName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentId", DbType="VarChar(20)")] string parentId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, parentId);
+			return ((ISingleResult<getClientTemplateNNameResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setCertificateApproval]")]
+		public int _setCertificateApproval([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateId", DbType="VarChar(20)")] string certificateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpiryDate", DbType="DateTime")] System.Nullable<System.DateTime> expiryDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsDownloaded", DbType="VarChar(2)")] string isDownloaded, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificatePath", DbType="VarChar(500)")] string certificatePath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateName", DbType="VarChar(150)")] string certificateName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsValid", DbType="VarChar(5)")] string isValid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), certificateId, requestId, expiryDate, createdBy, isDownloaded, certificatePath, certificateName, isValid);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setCertificateReject]")]
+		public int _setCertificateReject([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectBy", DbType="VarChar(20)")] string rejectBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ResonCode", DbType="VarChar(10)")] string resonCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID, rejectBy, resonCode);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setRejectUBCertificate]")]
+		public int _setRejectUBCertificate([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModifiedBy", DbType="VarChar(20)")] string modifiedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectReasonCode", DbType="VarChar(20)")] string rejectReasonCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), modifiedBy, requestId, rejectReasonCode);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUploadBasedCRequests]")]
+		public int _setUploadBasedCRequests([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(5)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadPath", DbType="VarChar(250)")] string uploadPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(50)")] string invoiceNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SealRequired", DbType="VarChar(5)")] string sealRequired)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, customerId, status, createdBy, uploadPath, invoiceNo, sealRequired);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -3929,68 +3964,6 @@ namespace NCEDCO.Models
 		}
 	}
 	
-	public partial class getClientTemplateNNameResult
-	{
-		
-		private string _TemplateId;
-		
-		private string _CustomerId;
-		
-		private string _CustomerName;
-		
-		public getClientTemplateNNameResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20)")]
-		public string TemplateId
-		{
-			get
-			{
-				return this._TemplateId;
-			}
-			set
-			{
-				if ((this._TemplateId != value))
-				{
-					this._TemplateId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string CustomerId
-		{
-			get
-			{
-				return this._CustomerId;
-			}
-			set
-			{
-				if ((this._CustomerId != value))
-				{
-					this._CustomerId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(618) NOT NULL", CanBeNull=false)]
-		public string CustomerName
-		{
-			get
-			{
-				return this._CustomerName;
-			}
-			set
-			{
-				if ((this._CustomerName != value))
-				{
-					this._CustomerName = value;
-				}
-			}
-		}
-	}
-	
 	public partial class _getSavedCertificateRequestResult
 	{
 		
@@ -4498,6 +4471,158 @@ namespace NCEDCO.Models
 				if ((this._HSCode != value))
 				{
 					this._HSCode = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getClientTemplateNNameResult
+	{
+		
+		private string _TemplateId;
+		
+		private string _CustomerId;
+		
+		private string _CustomerName;
+		
+		private string _ContactPersonName;
+		
+		private string _ContactPersonDesignation;
+		
+		private string _ContactPersonDirectPhoneNumber;
+		
+		private string _ContactPersonEmail;
+		
+		private string _ContactPersonMobile;
+		
+		public getClientTemplateNNameResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20)")]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(618) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonName", DbType="VarChar(150)")]
+		public string ContactPersonName
+		{
+			get
+			{
+				return this._ContactPersonName;
+			}
+			set
+			{
+				if ((this._ContactPersonName != value))
+				{
+					this._ContactPersonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonDesignation", DbType="VarChar(50)")]
+		public string ContactPersonDesignation
+		{
+			get
+			{
+				return this._ContactPersonDesignation;
+			}
+			set
+			{
+				if ((this._ContactPersonDesignation != value))
+				{
+					this._ContactPersonDesignation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonDirectPhoneNumber", DbType="VarChar(20)")]
+		public string ContactPersonDirectPhoneNumber
+		{
+			get
+			{
+				return this._ContactPersonDirectPhoneNumber;
+			}
+			set
+			{
+				if ((this._ContactPersonDirectPhoneNumber != value))
+				{
+					this._ContactPersonDirectPhoneNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonEmail", DbType="VarChar(50)")]
+		public string ContactPersonEmail
+		{
+			get
+			{
+				return this._ContactPersonEmail;
+			}
+			set
+			{
+				if ((this._ContactPersonEmail != value))
+				{
+					this._ContactPersonEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonMobile", DbType="VarChar(20)")]
+		public string ContactPersonMobile
+		{
+			get
+			{
+				return this._ContactPersonMobile;
+			}
+			set
+			{
+				if ((this._ContactPersonMobile != value))
+				{
+					this._ContactPersonMobile = value;
 				}
 			}
 		}

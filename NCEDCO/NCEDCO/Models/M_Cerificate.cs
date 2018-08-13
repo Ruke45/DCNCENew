@@ -123,6 +123,8 @@ namespace NCEDCO.Models
         public string ClientContact_Telephone { get; set; }
         public DateTime RequestDate { get; set; }
 
+        public string CertificateUploadPath { get; set; }
+
         public List<M_SupportDocument> Support_Docs { get; set; }
     }
 }

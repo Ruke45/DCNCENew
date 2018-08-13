@@ -173,6 +173,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Business\B_CertificateApprove.cs" />
     <Compile Include="Models\Business\B_CertificateRequest.cs" />
     <Compile Include="Models\Business\B_Customer.cs" />
     <Compile Include="Models\Business\B_RecordSequence.cs" />
@@ -192,6 +193,7 @@
       <DependentUpon>DBLinq.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\M_Cerificate.cs" />
+    <Compile Include="Models\M_CertificateApprove.cs" />
     <Compile Include="Models\M_CertificateRefferance.cs" />
     <Compile Include="Models\M_Customer.cs" />
     <Compile Include="Models\M_CustomerParent.cs" />
@@ -388,6 +390,8 @@
     <Content Include="Views\CertificateRequest\Index.cshtml" />
     <Content Include="Views\CertificateRequest\P_LoadRefferenceTemplates.cshtml" />
     <Content Include="Views\CertificateRequest\P_CertificateRequstForm.cshtml" />
+    <Content Include="Views\CertificateRequest\Upload.cshtml" />
+    <Content Include="Views\CertificateRequest\P_UploadBaseCRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

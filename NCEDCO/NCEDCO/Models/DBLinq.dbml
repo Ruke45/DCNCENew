@@ -527,15 +527,6 @@
       <Column Name="ParentCustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.getClientTemplateNName" Method="getClientTemplateNName">
-    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="ParentId" Parameter="parentId" Type="System.String" DbType="VarChar(20)" />
-    <ElementType Name="getClientTemplateNNameResult">
-      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerName" Type="System.String" DbType="VarChar(618) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.[_setCertifcateRequestHeader]" Method="_setCertifcateRequestHeader">
     <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="TemplateId" Parameter="templateId" Type="System.String" DbType="VarChar(20)" />
@@ -619,5 +610,58 @@
       <Column Name="Quantity" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="HSCode" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.[_setWebBasedCertificateCreation]" Method="_setWebBasedCertificateCreation">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CertificatePath" Parameter="certificatePath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="CertificateName" Parameter="certificateName" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getClientTemplateNName" Method="getClientTemplateNName">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ParentId" Parameter="parentId" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="getClientTemplateNNameResult">
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(618) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ContactPersonDesignation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPersonMobile" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setCertificateApproval]" Method="_setCertificateApproval">
+    <Parameter Name="CertificateId" Parameter="certificateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ExpiryDate" Parameter="expiryDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IsDownloaded" Parameter="isDownloaded" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="CertificatePath" Parameter="certificatePath" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="CertificateName" Parameter="certificateName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="IsValid" Parameter="isValid" Type="System.String" DbType="VarChar(5)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setCertificateReject]" Method="_setCertificateReject">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RejectBy" Parameter="rejectBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ResonCode" Parameter="resonCode" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setRejectUBCertificate]" Method="_setRejectUBCertificate">
+    <Parameter Name="ModifiedBy" Parameter="modifiedBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RejectReasonCode" Parameter="rejectReasonCode" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setUploadBasedCRequests]" Method="_setUploadBasedCRequests">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="UploadPath" Parameter="uploadPath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="SealRequired" Parameter="sealRequired" Type="System.String" DbType="VarChar(5)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

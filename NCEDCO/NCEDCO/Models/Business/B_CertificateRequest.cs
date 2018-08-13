@@ -127,6 +127,9 @@ namespace NCEDCO.Models.Business
                         Cu.Consignor_Exporter = lst.CustomerName.Replace("<br />", "\r\n");
                         Cu.TemplateId = lst.TemplateId;
                         Cu.Client_Id = lst.CustomerId;
+                        Cu.ClientContact_Name = lst.ContactPersonName;
+                        Cu.ClientContact_Designation = lst.ContactPersonDesignation;
+                        Cu.ClientContact_Telephone = lst.ContactPersonDirectPhoneNumber;
  
                     }
                 }
@@ -243,7 +246,6 @@ namespace NCEDCO.Models.Business
 
         }
 
-
         public M_Cerificate getSavedCertificateRequest(string RequestId)
         {
             try
@@ -282,6 +284,83 @@ namespace NCEDCO.Models.Business
                 }
 
                 return Cu;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public bool setWebBasedCertificateCreation(string RequestId, string CertificatePath, string CertificateName)
+        {
+
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = ConfigurationManager.ConnectionStrings["DocMgmtDBConnectionString"].ToString();
+                    datacontext._setWebBasedCertificateCreation(RequestId, CertificatePath, CertificateName);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public string setUploadBasedCertificateRequest(M_Cerificate EmR,string Filename)
+        {
+
+            try
+            {
+
+                string certificatereqno = string.Empty;
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+
+                        B_RecordSequence CParentId = new B_RecordSequence();
+                        Int64 RequestNo = CParentId.getNextSequence("CertificateRequestNo", dbContext);
+                        certificatereqno = "CRN" + RequestNo.ToString();
+                        dbContext._setUploadBasedCRequests(certificatereqno,
+                                                            EmR.Client_Id,
+                                                            "P",
+                                                            EmR.Createdby,
+                                                            EmR.CertificateUploadPath + certificatereqno +"/"+ Filename,
+                                                            EmR.InvoiceNo,
+                                                            EmR.SealRequired.ToString());
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+                        return certificatereqno;
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        dbContext.Transaction.Rollback();
+                        return null;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
             }
             catch (Exception ex)
             {

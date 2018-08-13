@@ -1,19 +1,19 @@
 ﻿@model NCEDCO.Models.M_Cerificate
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Upload";
 }
 
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">
-            <small>Certificate Request</small>
+            <small>Upload Based Certificate Request</small>
         </h3>
         <ol class="breadcrumb">
             <li><a href="index.html">Certificate </a>
             </li>
-            <li class="active">Certificate Request </li>
+            <li class="active">Upload Based Certificate Request </li>
         </ol>
     </div>
 </div>
@@ -33,16 +33,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Client_Id, new { @class = "col-sm-2 control-label" })
                                 <div class="col-sm-7">
-                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control selectEx", @onchange = "loadTemplate()" })
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="control-label">Or</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.CertificateReff, new { @class = "col-sm-2 control-label" })
-                                <div class="col-sm-7">
-                                    @Html.DropDownListFor(model => model.RefferencNo, ViewBag.Bag_RefferenceRequ as SelectList, "", new { @class = "form-control selectRf", @onchange = "loadTemplateByReff()" })
+                                    @Html.DropDownListFor(model => model.Client_Id, ViewBag.Bag_ClientsofCustomer as SelectList, "", new { @class = "form-control selectEx", @onchange = "loadUploadB()" })
                                 </div>
                             </div>
                         </div>
@@ -78,98 +69,29 @@
     </div>
 </div>
 <script>
-
-
     $(document).ready(function () {
-
         $(".selectEx").select2({
             placeholder: "Select Your Client",
             allowClear: true,
             width: '100%'
         });
-        $(".selectRf").select2({
-            placeholder: "Select Your Save Certificate Requests",
-            allowClear: true,
-            width: '100%'
-        });
-
 
         $("#FrmCRq").validate({
             rules: {
-                Consignor_Exporter: {
-                    required: true
-                },
-                Consignee: {
-                    required: true
-                },
                 InvoiceNo: {
                     required: true
                 },
-                InvoiceDate: {
-                    required: true
-                },
-                CountyOfOrigin: {
-                    required: true
-                },
-                PortOfLoading: {
-                    required: true
-                },
-                Vessel: {
-                    required: true
-                },
-                PortOfDischarge: {
-                    required: true
-                },
-                PlaceOfDelivery: {
-                    required: true
-                },
-                SummaryDescription: {
-                    required: true
-                },
-                QtyNUnit: {
-                    required: true
-                },
-                HSCode: {
+                Certificate_File: {
                     required: true
                 },
             },
             messages: {
-                Consignor_Exporter: {
-                    required: "Consignor / Exporter should not be empty"
-                },
-                Consignee: {
-                    required: "Consignee should not be empty"
-                },
                 InvoiceNo: {
                     required: "Invoice No should not be empty"
                 },
-                InvoiceDate: {
-                    required: "Invoice Date should not be empty"
+                Certificate_File: {
+                    required: "Certificate File should not be empty"
                 },
-                CountyOfOrigin: {
-                    required: "County Of Origin should not be empty"
-                },
-                PortOfLoading: {
-                    required: "Port Of Loading should not be empty"
-                },
-                Vessel: {
-                    required: "Vessel should not be empty"
-                },
-                PortOfDischarge: {
-                    required: "Port Of Discharge should not be empty"
-                },
-                PlaceOfDelivery: {
-                    required: "Place Of Delivery should not be empty"
-                },
-                SummaryDescription: {
-                    required: "Summary Description should not be empty"
-                },
-                QtyNUnit: {
-                    required: "Qty N Unit should not be empty"
-                },
-                HSCode: {
-                    required: "HS Code should not be empty"
-                }
             },
             highlight: function (element) {
                 $(element).closest('.form-group').addClass('has-error');
@@ -194,6 +116,7 @@
                 AjaxPost(form);
             }
         });
+
     });
 
     function Mandatory() {
@@ -213,16 +136,15 @@
         }
         return Booleandata;
     }
-
     function AjaxPost(formData) {
         var ajaxConfig = {
             type: "POST",
-            url: "/CertificateRequest/Index",
+            url: "/CertificateRequest/Upload",
             data: new FormData(formData),
             success: function (result) {
                 if (result.Msg == "Succes") {
-                    
-                    $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceCR?Reff=' + result.Cid);
+
+                    $('#LoadTemplate').load('/CertificateRequest/LoadUBTemplate?Reff=' + result.Cid);
                     $('#LoadTemplate').show();
                     $('#Rqid').text(result.RqId);
                     $("#SMsg").show();
@@ -241,25 +163,14 @@
         $.ajax(ajaxConfig);
         return false;
     }
-    var loadTemplateByReff = function () {
-        var tid = $('#RefferencNo').val();
-        debugger
-        if (tid != "") {
-            $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceByReq?Reff=' + tid);
-            $('#LoadTemplate').show();
-        } else {
-            $('#LoadTemplate').hide();
-        }
-    }
-    var loadTemplate = function () {
+    var loadUploadB = function () {
         var tid = $('#Client_Id').val();
         debugger
         if (tid != "") {
-            $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceCR?Reff=' + tid);
+            $('#LoadTemplate').load('/CertificateRequest/LoadUBTemplate?Reff=' + tid);
             $('#LoadTemplate').show();
         } else {
             $('#LoadTemplate').hide();
         }
-    }
+      }
 </script>
-
