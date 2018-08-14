@@ -664,4 +664,14 @@
     <Parameter Name="SealRequired" Parameter="sealRequired" Type="System.String" DbType="VarChar(5)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_setSupportingDocApproveRequest]" Method="_setSupportingDocApproveRequest">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="SupportingDocID" Parameter="supportingDocID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestBy" Parameter="requestBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="UploadPath" Parameter="uploadPath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="UploadDocName" Parameter="uploadDocName" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

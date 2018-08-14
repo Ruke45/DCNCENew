@@ -370,5 +370,53 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public string setSupportingDocSignRequest(M_SupportDocumentUpload Model)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext.Connection.Open();
+
+                    try
+                    {
+                        B_RecordSequence seqmanager = new B_RecordSequence();
+                        datacontext.Transaction = datacontext.Connection.BeginTransaction();
+                        string Doc_No = "SDR" + seqmanager.getNextSequence("SupportingDocSignRq", datacontext);
+                        datacontext._setSupportingDocApproveRequest(Doc_No,
+                                                                    Model.SupportingDocumentID,
+                                                                    Model.ClientId,
+                                                                    Model.UploadedBy,
+                                                                    Model.Status,
+                                                                    Model.UploadedPath + "/" + Doc_No + "/" + Model.DocumentName,
+                                                                    Model.DocumentName);
+                        datacontext.SubmitChanges();
+                        datacontext.Transaction.Commit();
+                        return Doc_No;
+                    }
+                    catch (Exception Ex)
+                    {
+                        ErrorLog.LogError(Ex);
+                        datacontext.Transaction.Rollback();
+                        return null;
+                    }
+                    finally
+                    {
+                        datacontext.Connection.Close();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
     }
 }

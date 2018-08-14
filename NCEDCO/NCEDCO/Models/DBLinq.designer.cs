@@ -594,6 +594,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, customerId, status, createdBy, uploadPath, invoiceNo, sealRequired);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setSupportingDocApproveRequest]")]
+		public int _setSupportingDocApproveRequest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocID", DbType="VarChar(20)")] string supportingDocID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestBy", DbType="VarChar(20)")] string requestBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(5)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadPath", DbType="VarChar(250)")] string uploadPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadDocName", DbType="VarChar(50)")] string uploadDocName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID, supportingDocID, customerID, requestBy, status, uploadPath, uploadDocName);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult

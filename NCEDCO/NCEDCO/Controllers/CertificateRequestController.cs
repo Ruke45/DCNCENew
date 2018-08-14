@@ -12,8 +12,6 @@ namespace NCEDCO.Controllers
 {
     public class CertificateRequestController : Controller
     {
-        //
-        // GET: /CertificateRequest/
         B_CertificateRequest objCr = new B_CertificateRequest();
 
         string HSCODEHAS = System.Configuration.ConfigurationManager.AppSettings["HSCODEHAS"];
@@ -54,7 +52,7 @@ namespace NCEDCO.Controllers
                 {
                     string DirectoryPath = "~/Uploads/Web_SDcouments/" +
                                     DateTime.Now.ToString("yyyy") +
-                                    "/" + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
+                                    "/" + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
                     if (!Directory.Exists(Server.MapPath(DirectoryPath)))
                     {
                         Directory.CreateDirectory(Server.MapPath(DirectoryPath));
@@ -123,7 +121,7 @@ namespace NCEDCO.Controllers
 
             string LogoPath = Server.MapPath("~/Images/NCELOGO.PNG"); // NCE Certificate logo Image path
             string DirectoryPath = "~/Temp/" + DateTime.Now.ToString("yyyy")
-                                    + "/Web_Certificates/" + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/" + Reff;
+                                    + "/Web_Certificates/" + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd") + "/" + Reff;
 
             //HeaderR.Customer_Telephone = usrSessiong.Telephone_;
             //HeaderR.CustomerName1 = usrSessiong.Customer_Name;
@@ -243,7 +241,7 @@ namespace NCEDCO.Controllers
 
 
             string DirectoryPath = "~/Uploads/" + DateTime.Now.ToString("yyyy")
-                                        + "/Upload_Certificates/" + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/";
+                                        + "/Upload_Certificates/" + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd") + "/";
 
             Model.CertificateUploadPath = DirectoryPath;
             string reff = string.Empty;
@@ -262,8 +260,8 @@ namespace NCEDCO.Controllers
                     var DocumentUpload = Model.Support_Docs;
                     if (DocumentUpload != null)
                     {
-                        string UDirectoryPath = "~/Uploads/" + DateTime.Now.ToString("yyyy") + "/Upload_SDcouments/"
-                                                   + DateTime.Now.ToString("MM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
+                        string UDirectoryPath = "~/Uploads/" + DateTime.Now.ToString("yyyy") + "/Upload_CSDcouments/"
+                                                   + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd") + "/" + reff;
 
                         if (!Directory.Exists(Server.MapPath(UDirectoryPath)))
                         {
@@ -306,6 +304,57 @@ namespace NCEDCO.Controllers
                 }
             }
             var result = new { Msg = r, Cid = Model.Client_Id, RqId = reff};
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Supporting()
+        {
+            B_Settings objSet = new B_Settings();
+
+            List<M_Customer> ClientList = objCr.getCustomerClients("PC3");
+            ViewBag.Bag_ClientsofCustomer = new SelectList(ClientList, "ClientId", "Customer_Name");
+
+            List<M_SupportDocument> SupList = objSet.SDocument_getSDcouments("%", "Y");
+            ViewBag.Bag_Supportdoc = new SelectList(SupList, "SupportingDocument_Id", "SupportingDocument_Name");
+
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Supporting(M_SupportDocumentUpload Model)
+        {
+
+            string r = "Error";
+
+            string DirectoryPath = "~/Uploads/" + DateTime.Now.ToString("yyyy") 
+                                    + "/Upload_ASDcouments/" + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd");
+
+            string SDocument_file = "Document_File";
+            HttpPostedFileBase Cfile = Request.Files[SDocument_file];
+
+            Model.UploadedBy = "ADMIN"; // Client's User;
+            Model.Status = "P";
+            Model.UploadedPath = DirectoryPath;
+            Model.DocumentName = Cfile.FileName.Replace(" ", "_");
+
+            string reff = string.Empty;
+            if (Cfile != null && Cfile.ContentLength > 0)
+            {
+                reff = objCr.setSupportingDocSignRequest(Model);
+                if (reff != null)
+                {
+                    DirectoryPath = DirectoryPath + "/" + reff; 
+                    if (!Directory.Exists(Server.MapPath(DirectoryPath)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(DirectoryPath));
+                    }
+                    var CfileName = Path.GetFileName(Cfile.FileName.Replace(" ", "_"));
+                    var Cpath = Path.Combine(Server.MapPath(DirectoryPath), CfileName);
+                    Cfile.SaveAs(Cpath);
+                    r = "Succes";
+                }
+            }           
+            var result = new { Msg = r, RqId = reff };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

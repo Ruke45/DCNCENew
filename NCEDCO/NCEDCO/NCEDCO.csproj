@@ -388,15 +388,16 @@
     <Content Include="Views\Settings\P_DeleteSupportDocForTemplate.cshtml" />
     <Content Include="Views\Settings\SignatorySignature.cshtml" />
     <Content Include="Views\CertificateRequest\Index.cshtml" />
-    <Content Include="Views\CertificateRequest\P_LoadRefferenceTemplates.cshtml" />
     <Content Include="Views\CertificateRequest\P_CertificateRequstForm.cshtml" />
     <Content Include="Views\CertificateRequest\Upload.cshtml" />
     <Content Include="Views\CertificateRequest\P_UploadBaseCRequest.cshtml" />
+    <Content Include="Views\CertificateRequest\Supporting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />
     <Folder Include="Documents\" />
     <Folder Include="Signature\" />
+    <Folder Include="Temp\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>

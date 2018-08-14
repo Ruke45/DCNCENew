@@ -41,3 +41,4 @@ C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\obj\Release\NCEDCO.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\obj\Release\NCEDCO.pdb
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\itextsharp.dll
+C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\obj\Release\NCEDCO.csprojResolveAssemblyReference.cache
