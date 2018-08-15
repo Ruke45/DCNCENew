@@ -160,7 +160,7 @@ namespace NCEDCO.Models.Business
 
         }
 
-        public bool SigantorySignatureUpload(M_Signatory Model,string pfxpath, string Imgpath)
+        public bool SigantorySignatureUpload(M_Signatory Model,string pfxpath, string Imgpath,string Createdby)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace NCEDCO.Models.Business
                     
                     if (result == null)
                     {
-                        datacontext._setSignatorySignatureDetails(Model.UserId, pfxpath, Imgpath, "Admin");
+                        datacontext._setSignatorySignatureDetails(Model.UserId, pfxpath, Imgpath, Createdby );
                         datacontext.SubmitChanges();
                         return true;
                     }
@@ -179,7 +179,7 @@ namespace NCEDCO.Models.Business
                     {
                         if (result.UserID.Equals(Model.UserId))
                         {
-                            datacontext._setUpdateUserSignatureDetails(Model.UserId, pfxpath, Imgpath, "Admin");
+                            datacontext._setUpdateUserSignatureDetails(Model.UserId, pfxpath, Imgpath, Createdby);
                             datacontext.SubmitChanges();
                             return true;
                         }

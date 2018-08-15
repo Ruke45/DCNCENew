@@ -1,4 +1,5 @@
-﻿using NCEDCO.Models;
+﻿using NCEDCO.Filters;
+using NCEDCO.Models;
 using NCEDCO.Models.Business;
 using NCEDCO.Models.Utility;
 using System;
@@ -17,7 +18,9 @@ namespace NCEDCO.Controllers
         // GET: /Settings/
         B_Settings objSettings = new B_Settings();
         B_Users objUser = new B_Users();
+        _USession _session = new _USession();
 
+        [UserFilter(Function_Id = "F_OWNR.CNTCT")]
         public ActionResult EditOwnerContact()
         {
             return View(objSettings.Owner_getContactPerson());
@@ -41,6 +44,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_OWNR.CMPNY")]
         public ActionResult EditOwnerCompany()
         {
             return View(objSettings.Owner_getCompanyDetails());
@@ -64,11 +68,13 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_SUPORT.DOC.V")]
         public ActionResult SupportDocument()
         {
             return View(objSettings.SDocument_getSDcouments("%","Y"));
         }
 
+        //[UserFilter(Function_Id = "F_SUPORT.DOC.N")]
         public ActionResult NewSupportDoc(string SD,string Name)
         {
             if (SD != "")
@@ -92,8 +98,10 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
+                Model.Created_By = _session.User_Id;
                 if (Model.SupportingDocument_Id == null)
                 {
+                    
                     if (objSettings.SDcoument_NewSDcoument(Model))
                     {
                         result = "Success";
@@ -138,6 +146,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_EXPRT.SECTR.V")]
         public ActionResult ExportSector()
         {
             return View(objSettings.ExportS_getExportSection("%"));
@@ -216,6 +225,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_REJCT.RESN.V")]
         public ActionResult RejectReasons()
         {
             return View(objSettings.RejectR_getRejectReasons("%","Y"));
@@ -297,6 +307,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_SUPORT.D.4TEMP.V")]
         public ActionResult SupportDocumentForTemplate()
         {
             return View(objSettings.STemp_getSDoctemplates("Y", "%"));
@@ -383,6 +394,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_SIGN.SIGNTUR")]
         public ActionResult SignatorySignature()
         {
             
@@ -406,7 +418,7 @@ namespace NCEDCO.Controllers
                 if (pfx != null && imgPath != null && Model.UserId == null)
                 {
                     if (objUser.SigantorySignatureUpload(Model, DirectoryPath + "/" + pfx.FileName.Replace(" ", "_"),
-                                                                DirectoryPath + "/" + imgPath.FileName.Replace(" ", "_")))
+                                                                DirectoryPath + "/" + imgPath.FileName.Replace(" ", "_"),_session.User_Id))
                     {
                         if (!Directory.Exists(Server.MapPath(DirectoryPath)))
                         {

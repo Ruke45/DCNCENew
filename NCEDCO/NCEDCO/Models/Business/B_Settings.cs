@@ -165,7 +165,7 @@ namespace NCEDCO.Models.Business
                     B_RecordSequence seqmanager = new B_RecordSequence();
                     Int64 sdid = seqmanager.getNextSequence("SupDocID", datacontext);
                     SupDocID = "SDID" + sdid.ToString();
-                    datacontext._setSupportingDocuments(SupDocID, sd.SupportingDocument_Name,"ADMIN","Y");
+                    datacontext._setSupportingDocuments(SupDocID, sd.SupportingDocument_Name,sd.Created_By,"Y");
                     datacontext.SubmitChanges();
 
                 }
@@ -188,7 +188,7 @@ namespace NCEDCO.Models.Business
                 {
 
                     datacontext.Connection.ConnectionString = Connection_;
-                    datacontext._setUpdateSupportingDocuments(sd.SupportingDocument_Id, sd.SupportingDocument_Name, "ADMIN");
+                    datacontext._setUpdateSupportingDocuments(sd.SupportingDocument_Id, sd.SupportingDocument_Name, sd.Created_By);
                     datacontext.SubmitChanges();
 
                 }

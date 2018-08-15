@@ -7,12 +7,15 @@ using NCEDCO.Models;
 using NCEDCO.Models.Business;
 using NCEDCO.Models.Business.Template;
 using System.IO;
+using NCEDCO.Filters;
+using NCEDCO.Models.Utility;
 
 namespace NCEDCO.Controllers
 {
     public class CertificateRequestController : Controller
     {
         B_CertificateRequest objCr = new B_CertificateRequest();
+        _USession _session = new _USession();
 
         string HSCODEHAS = System.Configuration.ConfigurationManager.AppSettings["HSCODEHAS"];
         string GOLOBALTMP = System.Configuration.ConfigurationManager.AppSettings["GOLOBALTMP"];
@@ -23,12 +26,13 @@ namespace NCEDCO.Controllers
         string COLUMNWITHOUTHS = System.Configuration.ConfigurationManager.AppSettings["COLUMNWITHOUTHS"];
         string COLUMNWITHOUTHS2 = System.Configuration.ConfigurationManager.AppSettings["COLUMNWITHOUTHS2"];
 
+        [UserFilter(Function_Id = "F_CERT_REQUST")]
         public ActionResult Index()
         {
-            List<M_CertificateRefferance> ReffList = objCr.getRefferenceCRequest("PC3");
+            List<M_CertificateRefferance> ReffList = objCr.getRefferenceCRequest(_session.Customer_ID);
             ViewBag.Bag_RefferenceRequ = new SelectList(ReffList, "RequestId", "Consignee");
 
-            List<M_Customer> ClientList = objCr.getCustomerClients("PC3");
+            List<M_Customer> ClientList = objCr.getCustomerClients(_session.Customer_ID);
             ViewBag.Bag_ClientsofCustomer = new SelectList(ClientList, "ClientId", "Customer_Name");
 
             return View();
@@ -40,8 +44,8 @@ namespace NCEDCO.Controllers
             B_CertificateRequest objCreq = new B_CertificateRequest();
 
             string r = "Error";
-            Model.Createdby = "ADMIN";
-            Model.ParentId = "PC3";
+            Model.Createdby = _session.User_Id;
+            Model.ParentId = _session.Customer_ID;
             Model.Status = "P";
 
             string reff = objCreq.setCertificateRequest(Model);
@@ -71,7 +75,7 @@ namespace NCEDCO.Controllers
                             Su.RequestRefNo = reff;
                             Su.SignatureRequired = false;
                             Su.SupportingDocumentID = Doc.SupportingDocument_Id;
-                            Su.UploadedBy = "Admin";
+                            Su.UploadedBy = _session.User_Id;
                             Su.UploadedPath = DirectoryPath + "/" + fileName;
                             Su.DocumentName = fileName;
                             if (Doc.Signature_Required)
@@ -99,7 +103,7 @@ namespace NCEDCO.Controllers
         public ActionResult LoadRefferenceCR(string Reff)
         {
             M_Cerificate C = new M_Cerificate();
-            C = objCr.getCleintNTemplate(Reff, "PC3");
+            C = objCr.getCleintNTemplate(Reff, _session.Customer_ID);
             C.Support_Docs = objCr.getTemplateSupportingDocs(C.Client_Id, C.TemplateId);
             C.SealRequired = true;
             return PartialView("P_CertificateRequstForm", C);
@@ -210,9 +214,10 @@ namespace NCEDCO.Controllers
             }
         }
 
+        [UserFilter(Function_Id = "F_CERT_UPLOD")]
         public ActionResult Upload()
         {
-            List<M_Customer> ClientList = objCr.getCustomerClients("PC3");
+            List<M_Customer> ClientList = objCr.getCustomerClients(_session.Customer_ID);
             ViewBag.Bag_ClientsofCustomer = new SelectList(ClientList, "ClientId", "Customer_Name");
 
             return View();
@@ -221,7 +226,7 @@ namespace NCEDCO.Controllers
         public ActionResult LoadUBTemplate(string Reff)
         {
             M_Cerificate C = new M_Cerificate();
-            C = objCr.getCleintNTemplate(Reff, "PC3");
+            C = objCr.getCleintNTemplate(Reff, _session.Customer_ID);
             C.Support_Docs = objCr.getTemplateSupportingDocs(C.Client_Id, C.TemplateId);
             C.SealRequired = true;
             return PartialView("P_UploadBaseCRequest", C);
@@ -232,8 +237,8 @@ namespace NCEDCO.Controllers
         {
 
             string r = "Error";
-            Model.Createdby = "ADMIN";
-            Model.ParentId = "PC3";
+            Model.Createdby = _session.User_Id;
+            Model.ParentId = _session.Customer_ID;
             Model.Status = "P";
 
             string CertificateFile = "Certificate_File";
@@ -281,7 +286,7 @@ namespace NCEDCO.Controllers
                                 Su.RequestRefNo = reff;
                                 Su.SignatureRequired = false;
                                 Su.SupportingDocumentID = Doc.SupportingDocument_Id;
-                                Su.UploadedBy = "Admin";
+                                Su.UploadedBy = _session.User_Id;
                                 Su.UploadedPath = UDirectoryPath + "/" + fileName;
                                 Su.DocumentName = fileName;
                                 if (Doc.Signature_Required)
@@ -307,11 +312,12 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_SUPORT_UPLOD")]
         public ActionResult Supporting()
         {
             B_Settings objSet = new B_Settings();
 
-            List<M_Customer> ClientList = objCr.getCustomerClients("PC3");
+            List<M_Customer> ClientList = objCr.getCustomerClients(_session.Customer_ID);
             ViewBag.Bag_ClientsofCustomer = new SelectList(ClientList, "ClientId", "Customer_Name");
 
             List<M_SupportDocument> SupList = objSet.SDocument_getSDcouments("%", "Y");
@@ -332,7 +338,7 @@ namespace NCEDCO.Controllers
             string SDocument_file = "Document_File";
             HttpPostedFileBase Cfile = Request.Files[SDocument_file];
 
-            Model.UploadedBy = "ADMIN"; // Client's User;
+            Model.UploadedBy = _session.User_Id; // Client's User;
             Model.Status = "P";
             Model.UploadedPath = DirectoryPath;
             Model.DocumentName = Cfile.FileName.Replace(" ", "_");

@@ -9,6 +9,7 @@ using System.Configuration;
 using NCEDCO.Models;
 using System.Xml;
 using System.IO;
+using NCEDCO.Filters;
 
 namespace NCEDCO.Controllers
 {
@@ -24,6 +25,7 @@ namespace NCEDCO.Controllers
             return View();
         }
 
+        [UserFilter(Function_Id = "F_DASHBOARD")]
         public ActionResult Dashboard()
         {
             return View();

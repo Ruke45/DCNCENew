@@ -22,13 +22,13 @@ namespace NCEDCO.Filters
 
             if (_session.User_Id != "" || _session.User_Group != "")
             {
-                if (objU.checkAuthorization(_session.User_Group,Function_Id))
+                if (!objU.checkAuthorization(_session.User_Group,Function_Id))
                 {
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
-            {
-                {"controller", "Shared"},
-                {"action", "Error"}
-            });
+                    {
+                        {"controller", "Shared"},
+                        {"action", "Error"}
+                    });
 
                 }
             }

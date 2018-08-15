@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NCEDCO.Models;
 using NCEDCO.Models.Business;
 using NCEDCO.Models.Utility;
+using NCEDCO.Filters;
 
 namespace NCEDCO.Controllers
 {
@@ -15,12 +16,14 @@ namespace NCEDCO.Controllers
         // GET: /Customer/
         B_Customer CustomerOBj = new B_Customer();
         B_Users objUser = new B_Users();
+        _USession _session = new _USession();
 
         public ActionResult Register()
         {
             return View();
         }
 
+        [UserFilter(Function_Id="F_CLENT_REGISTR")]
         public ActionResult CRegister()
         {
             ExportSector objExport = new ExportSector();
@@ -87,12 +90,13 @@ namespace NCEDCO.Controllers
             }// Only View Admin all template customers show -3 template 
             return HttpNotFound("Ooops, There is no page like this :/");
         }
-        //[UserFilter(Function_Id = "TINDX")]
+        [UserFilter(Function_Id = "F_PARNT.REQST")]
         public ActionResult ParentCustomerRequests()
         {
             return View(CustomerOBj.getParentCustomerRequest("P"));
         }
 
+        [UserFilter(Function_Id = "F_PARNT.REQST.DETL")]
         public ActionResult ParentCustomerRequestsDetails(string RequestId)
         {
             return View(CustomerOBj.getParentCustomerDetails(RequestId));
@@ -105,7 +109,7 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
-                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(Model.Request_Id));
+                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(Model.Request_Id),_session.User_Id);
 
                 if (result != null)
                 {
@@ -240,11 +244,13 @@ namespace NCEDCO.Controllers
             return Json(isExits, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_CLENT.REQST")]
         public ActionResult ClientCustomerRequests()
         {
             return View(CustomerOBj.getChildCustomerRequest("P"));
         }
 
+        [UserFilter(Function_Id = "F_CLENT.REQST.DETL")]
         public ActionResult ClientCustomerRequestsDetails(string RequestID)
         {
             return View(CustomerOBj.getChildCustomerDetails(RequestID));

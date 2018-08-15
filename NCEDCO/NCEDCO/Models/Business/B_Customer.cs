@@ -173,7 +173,7 @@ namespace NCEDCO.Models.Business
             }
         }
 
-        public string SetApproveCustomerParentRequest(M_CustomerParentRequest pr)
+        public string SetApproveCustomerParentRequest(M_CustomerParentRequest pr,string createdby)
         {
             try
             {
@@ -201,7 +201,7 @@ namespace NCEDCO.Models.Business
                                                                 pr.Address1,
                                                                 pr.Address2,
                                                                 pr.Address3,
-                                                                "ADMIN",
+                                                                createdby,
                                                                 pr.IsVat,
                                                                 pr.ContactPersonName,
                                                                 pr.ContactPersonDesignation,
