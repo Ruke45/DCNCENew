@@ -95,8 +95,8 @@ namespace NCEDCO.Models
         [Display(Name = "Remarks")]
         public string Remarks { get; set; }
 
-        [Display(Name = "Certificate Ref ")]
-        public string CertificateReff { get; set; }
+        [Display(Name = "Request")]
+        public string  RequestReff { get; set; }
 
         [Display(Name = "Certificate Template Name")]
         public string CTemplateName { get; set; }
@@ -118,12 +118,25 @@ namespace NCEDCO.Models
 
         public string ParentId { get; set; }
 
+        [Display(Name = "Customer's Client")]
+        public string ClientContact_Company { get; set; }
+
         public string ClientContact_Name { get; set; }
         public string ClientContact_Designation { get; set; }
         public string ClientContact_Telephone { get; set; }
-        public DateTime RequestDate { get; set; }
+
+        [Display(Name = "E-Mail")]
+        public string ClientContact_Email { get; set; }
+
+        [Display(Name = "Request Date")]
+        public System.DateTime RequestDate { get; set; }
 
         public string CertificateUploadPath { get; set; }
+
+        [Display(Name = "Type")]
+        public string CertificateType { get; set; }
+
+        public string Ctype { get; set; }
 
         public List<M_SupportDocument> Support_Docs { get; set; }
     }

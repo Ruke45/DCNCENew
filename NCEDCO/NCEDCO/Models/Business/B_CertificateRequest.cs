@@ -418,5 +418,47 @@ namespace NCEDCO.Models.Business
 
         }
 
+        public List<M_Cerificate> getAllPendingCertificateRequest(string ClientId)
+        {
+            try
+            {
+
+                List<M_Cerificate> lstSD = new List<M_Cerificate>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<getAllPendingCertificateRequestsResult> lst = datacontext.getAllPendingCertificateRequests(ClientId);
+
+                    foreach (getAllPendingCertificateRequestsResult result in lst)
+                    {
+                        M_Cerificate SD = new M_Cerificate();
+                        SD.CertificateType = result.CertificateType;
+                        SD.CertificateUploadPath = result.CertificatePath;
+                        SD.Client_Id = result.CustomerId;
+                        SD.ClientContact_Company = result.CustomerName;
+                        SD.Ctype = result.CType;
+                        SD.RequestReff = result.RequestId;
+                        SD.RequestDate = result.RequestDate;
+                        SD.ClientContact_Email = result.ContactPersonEmail;
+                        SD.InvoiceNo = result.InvoiceNo;
+                        SD.Status = result.Status;
+                        SD.TemplateId = result.TemplateId;
+                        SD.SealRequired = Convert.ToBoolean(result.SealRequired);
+                        SD.Createdby = result.Createdby;
+                        SD.SummaryDescription = result.SummaryDesc;
+                        SD.ParentId = result.ParentCustomer;
+                        lstSD.Add(SD);
+                    }
+                }
+
+                return lstSD;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+        }
+
     }
 }

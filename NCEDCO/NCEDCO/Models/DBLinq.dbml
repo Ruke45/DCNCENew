@@ -674,4 +674,26 @@
     <Parameter Name="UploadDocName" Parameter="uploadDocName" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.getAllPendingCertificateRequests" Method="getAllPendingCertificateRequests">
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="getAllPendingCertificateRequestsResult">
+      <Column Name="CertificateType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CType" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CertificatePath" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CertificateName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SealRequired" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CollectionType" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Createdby" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
+      <Column Name="SummaryDesc" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ParentCustomer" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

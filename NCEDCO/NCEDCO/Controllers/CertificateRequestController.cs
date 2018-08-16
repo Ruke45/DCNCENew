@@ -363,5 +363,15 @@ namespace NCEDCO.Controllers
             var result = new { Msg = r, RqId = reff };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Pending()
+        {
+            return View(objCr.getAllPendingCertificateRequest("%"));
+        }
+
+        public ActionResult ApproveC(string Req)
+        {
+            return PartialView("P_SignatoryPassword");
+        }
     }
 }

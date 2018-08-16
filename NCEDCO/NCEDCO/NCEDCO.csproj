@@ -392,6 +392,8 @@
     <Content Include="Views\CertificateRequest\Upload.cshtml" />
     <Content Include="Views\CertificateRequest\P_UploadBaseCRequest.cshtml" />
     <Content Include="Views\CertificateRequest\Supporting.cshtml" />
+    <Content Include="Views\CertificateRequest\Pending.cshtml" />
+    <Content Include="Views\CertificateRequest\P_SignatoryPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

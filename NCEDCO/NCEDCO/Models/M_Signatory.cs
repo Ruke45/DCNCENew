@@ -28,5 +28,7 @@ namespace NCEDCO.Models
             get { return SingatureImg; }
             set { SingatureImg = value; }
         }
+
+        public string RequestID { get; set; }
     }
 }
