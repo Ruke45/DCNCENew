@@ -178,7 +178,9 @@
     <Compile Include="Models\Business\B_Customer.cs" />
     <Compile Include="Models\Business\B_RecordSequence.cs" />
     <Compile Include="Models\Business\B_Settings.cs" />
+    <Compile Include="Models\Business\B_SupportDocApprove.cs" />
     <Compile Include="Models\Business\B_Users.cs" />
+    <Compile Include="Models\Business\Signature\Sign_.cs" />
     <Compile Include="Models\Business\Template\Base_Certificate.cs" />
     <Compile Include="Models\Business\Template\ColumnWithHSTemplate.cs" />
     <Compile Include="Models\Business\Template\ColumnWithoutHSTemplate.cs" />

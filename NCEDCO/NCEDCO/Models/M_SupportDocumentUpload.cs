@@ -21,5 +21,17 @@ namespace NCEDCO.Models
         public bool SignatureRequired { get; set; }
         [Display(Name="Client Id")]
         public string ClientId { get; set; }
+
+        public string ApprovedBy { get; set; }
+        public string CertifiedDocPathe { get; set; }
+        public string ExpiredOn { get; set; }
+        Int64 SeqNo;
+        public Int64 Seq_No
+        {
+            get { return SeqNo; }
+            set { SeqNo = value; }
+        }
+
+
     }
 }

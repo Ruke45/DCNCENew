@@ -6,16 +6,24 @@ using System.Web.Mvc;
 using NCEDCO.Models;
 using NCEDCO.Models.Business;
 using NCEDCO.Models.Business.Template;
+using NCEDCO.Models.Business.Signature;
 using System.IO;
 using NCEDCO.Filters;
 using NCEDCO.Models.Utility;
+using System.Transactions;
 
 namespace NCEDCO.Controllers
 {
     public class CertificateRequestController : Controller
     {
         B_CertificateRequest objCr = new B_CertificateRequest();
+        B_CertificateApprove objAprv = new B_CertificateApprove();
+        B_SupportDocApprove objSDAprv = new B_SupportDocApprove();
+        M_Cerificate CRHeader = new M_Cerificate();
         _USession _session = new _USession();
+
+        List<M_SupportDocumentUpload> SupList = new List<M_SupportDocumentUpload>();
+
 
         string HSCODEHAS = System.Configuration.ConfigurationManager.AppSettings["HSCODEHAS"];
         string GOLOBALTMP = System.Configuration.ConfigurationManager.AppSettings["GOLOBALTMP"];
@@ -25,6 +33,9 @@ namespace NCEDCO.Controllers
         string ROWWITH_HS = System.Configuration.ConfigurationManager.AppSettings["ROWWITH_HS"];
         string COLUMNWITHOUTHS = System.Configuration.ConfigurationManager.AppSettings["COLUMNWITHOUTHS"];
         string COLUMNWITHOUTHS2 = System.Configuration.ConfigurationManager.AppSettings["COLUMNWITHOUTHS2"];
+
+        string CertificateLOGO = System.Configuration.ConfigurationManager.AppSettings["CertificateLOGO"];
+        string CertificateSEAL = System.Configuration.ConfigurationManager.AppSettings["CertificateSEAL"];
 
         [UserFilter(Function_Id = "F_CERT_REQUST")]
         public ActionResult Index()
@@ -371,7 +382,430 @@ namespace NCEDCO.Controllers
 
         public ActionResult ApproveC(string Req)
         {
+            ViewBag.A_ID = Req;
             return PartialView("P_SignatoryPassword");
         }
+
+        private bool Approve_UCertificateRequest(string CustomerID, string RequestID, string CerificatePath, bool SealReqired)
+        {
+            using (TransactionScope transactionScope = new TransactionScope())
+            {
+                try
+                {
+
+                    B_RecordSequence seqmanager = new B_RecordSequence();
+                    string Certificate_No = "CE" + seqmanager.getNextSequence("CertificateSign").ToString();
+
+                    string DirectoryPath = "~/Documents/" + DateTime.Now.ToString("yyyy")
+                                            + "/Issued_Certificates/" + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd") + "/"
+                                            + Certificate_No;
+
+                    string Tempary_Direct = "~/Temp/" + DateTime.Now.ToString("yyyy")
+                                            + "/Issued_Certificates/" + DateTime.Now.ToString("yyyy_MM_dd") + "/"
+                                            + Certificate_No;
+                    //DirectoryPath which will save the NOT singed PDF File as NOT_Signed.pdf in the given Path
+                    if (!Directory.Exists(Server.MapPath(DirectoryPath)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(DirectoryPath));
+                    }
+
+                    if (!Directory.Exists(Server.MapPath(Tempary_Direct)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(Tempary_Direct));
+                    }
+
+                    Sign_ SignCertificate = new Sign_();
+
+                    string NotSigned = Server.MapPath(CerificatePath);
+                    string CertificateID_Added = Server.MapPath(Tempary_Direct + "/" + "Not_Signed" + "_Certificate.pdf");
+
+                    /* Method Which Create a New Document Withe Printed Certificate ID
+                     * Point is the Certificate ID Placement Area Object
+                     */
+                    System.Drawing.Point Point = new System.Drawing.Point();
+                    Point.X = 350;
+                    Point.Y = 55;
+                    SignCertificate.AddTextToPdf(NotSigned,
+                                                 CertificateID_Added,
+                                                 Certificate_No,
+                                                 Point,
+                                                 Server.MapPath(_session.SignatureIMG_Path),
+                                                 SealReqired,
+                                                 _session.Person_Name);
+
+                    // string NotSigned = Server.MapPath(CerificatePath);
+                    string Signed = Server.MapPath(DirectoryPath + "/" + Certificate_No + "_Certificate.pdf");
+                    string pathe = Server.MapPath(_session.PFX_path);//From DB
+                    //string pathe = Server.MapPath("~/Signature/Samitha/Samitha.pfx");//From DB
+                    string SignatureIMG = Server.MapPath(_session.SignatureIMG_Path);// From DB
+                    //string SignatureIMG = Server.MapPath("~/Signature/Samitha/Chernenko_Signature.png");// From DB
+
+                    var PFX = new FileStream(pathe, FileMode.OpenOrCreate);
+
+                    //  DCISDBManager.PDFCreator.Signature SignCertificate = new DCISDBManager.PDFCreator.Signature();
+                    bool singed = SignCertificate.signCertificate(CertificateID_Added, Signed, PFX, _session.C_Password);
+                    if (!singed)
+                    {
+                        PFX.Close();
+                       // lblError.Text = "Wrong password or Corrupted Certificate file.";
+                        _session.C_Password = "";
+                       // mp2.Show();
+                        return false;
+                    }
+
+
+                    M_CertificateApprove Approve = new M_CertificateApprove();
+                    Approve.Certificate_Name = Certificate_No + "_Certificate.pdf";
+                    Approve.Certificate_Path = DirectoryPath + "/" + Certificate_No + "_Certificate.pdf";
+                    //  Approve.Created_By = "SAMITHA";
+                    Approve.Created_By = _session.User_Id;
+                    Approve.Expiry_Date = DateTime.Today.AddDays(120);
+                    Approve.Is_Downloaded = "N";
+                    Approve.Is_Valid = "Y";
+                    Approve.Request_Id = RequestID;
+                    Approve.Certificate_Id = Certificate_No;
+
+                    bool r = objAprv.ApproveUCertificate(Approve);
+
+                    if (!Directory.Exists(Server.MapPath(DirectoryPath + "/Supporting-Doc")))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(DirectoryPath + "/Supporting-Doc"));
+                    }
+                    if (!Directory.Exists(Server.MapPath(Tempary_Direct + "/Supporting-Doc")))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(Tempary_Direct + "/Supporting-Doc"));
+                    }
+
+
+                    for (int i = 0; i < SupList.Count(); i++)
+                    {
+                        if (SupList[i].Remarks.Equals("NCE_Certification"))
+                        {
+                            string DocPath = Server.MapPath(DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName);
+                            string SealedPath = Server.MapPath(Tempary_Direct + "/Supporting-Doc/" + SupList[i].DocumentName);
+
+                            Sign_ SignDoc = new Sign_();
+
+                            SignDoc.AddSealSD(Server.MapPath(SupList[i].UploadedPath), SealedPath, Server.MapPath(_session.SignatureIMG_Path));
+
+                            var PFX2 = new FileStream(pathe, FileMode.OpenOrCreate);
+
+                            bool Sign = SignDoc.signSupportingDoc(Certificate_No,
+                                SealedPath,
+                                DocPath,
+                                PFX2, _session.C_Password);
+
+                            if (!Sign)
+                            {
+                                PFX.Close();
+                                PFX2.Close();
+                                _session.C_Password = "";
+                                //lblError.Text = "Corrupted Supporting Document file. Signature Placement Failed !";
+                                //mp2.Show();
+                                return false;
+                            }
+
+                            SupList[i].CertifiedDocPathe = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
+                            SupList[i].Status = "A";
+                            SupList[i].ClientId = CustomerID;
+                            SupList[i].ApprovedBy = _session.User_Id;
+                            SupList[i].ExpiredOn = DateTime.Today.AddDays(Convert.ToInt64(120)).ToString();
+
+                            objSDAprv.setSupportingDocSignRequestINCertRequest(SupList[i]);
+
+                            SupList[i].UploadedPath = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
+
+                            objCr.UpdateSupportingDocCertified(SupList[i]);
+
+
+                        }
+                    }
+                    transactionScope.Complete();
+                    transactionScope.Dispose();
+
+                    return true;
+                }
+
+                catch (TransactionAbortedException Ex)
+                {
+                    transactionScope.Dispose();
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+                catch (FileNotFoundException Ex)
+                {
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+                catch (FieldAccessException Ex)
+                {
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+                catch (Exception Ex)
+                {
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+
+            }
+        }
+
+        protected bool CreateCertificate(string Template)
+        {
+            using (TransactionScope transactionScope = new TransactionScope())
+            {
+                try
+                {
+                    bool Created = false;
+                    B_RecordSequence seqmanager = new B_RecordSequence();
+                    string Certificate_No = "CE" + seqmanager.getNextSequence("CertificateSign").ToString();
+
+                    CRHeader.RefferencNo = Certificate_No;
+
+                    string LogoPath = Server.MapPath(CertificateLOGO); // NCE Certificate logo Image path
+                    string DirectoryPath = "~/Documents/" + DateTime.Now.ToString("yyyy")
+                                            + "/Issued_Certificates/" + DateTime.Now.ToString("MMM") + "/" + DateTime.Now.ToString("dd") + "/"
+                                            + Certificate_No;
+
+                    string Tempary_Direct = "~/Temp/" + DateTime.Now.ToString("yyyy")
+                                            + "/Issued_Certificates/" + DateTime.Now.ToString("yyyy_MM_dd")
+                                            + "/" + Certificate_No;
+
+                    //DirectoryPath which will save the NOT singed PDF File as NOT_Signed.pdf in the given Path
+                    if (!Directory.Exists(Server.MapPath(DirectoryPath)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(DirectoryPath));
+                    }
+
+                    if (!Directory.Exists(Server.MapPath(Tempary_Direct)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(Tempary_Direct));
+                    }
+
+                    /**PDF Cerator 
+                     * Parameters
+                     * M_Certificate
+                     * Document Save Path
+                     * 
+                    */
+                    if (Template.Equals(ROWWITH_HS))
+                    {
+                        RowWithHSTemplate Certificate =
+                                new RowWithHSTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else if (Template.Equals(ROWWITHOUTHS))
+                    {
+                        RowWithoutHSTemplate Certificate =
+                                new RowWithoutHSTemplate(Certificate_No,
+                                                         CRHeader,
+                                                         LogoPath,
+                                                         Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                         _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else if (Template.Equals(GOLOBALTMP))
+                    {
+                        OrientGlobalCertificateTemplate Certificate =
+                                new OrientGlobalCertificateTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else if (Template.Equals(MASSACTIVE))
+                    {
+                        MassActiveCertificateTemplate Certificate =
+                                new MassActiveCertificateTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else if (Template.Equals(NINDROTMP))
+                    {
+                        NidroCertificateTemplate Certificate =
+                                new NidroCertificateTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else if (Template.Equals(COLUMNWITHOUTHS))
+                    {
+                       ColumnWithoutHSTemplate Certificate =
+                                new ColumnWithoutHSTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else if (Template.Equals(COLUMNWITHOUTHS2))
+                    {
+                        ColumnWithoutHSTemplate Certificate =
+                                new ColumnWithoutHSTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+                    else
+                    {
+                        ColumnWithHSTemplate Certificate =
+                                new ColumnWithHSTemplate(Certificate_No,
+                                                      CRHeader,
+                                                      LogoPath,
+                                                      Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"),
+                                                      _session.Person_Name, DateTime.Now.ToString("yyyy/MM/dd"));
+
+                        Created = Certificate.CreateCertificate("");
+                    }
+
+                    string Sealed = Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf");
+                    string NotSigned = Server.MapPath(Tempary_Direct + "/_Not_Signed.pdf"); ;
+                    string Signed = Server.MapPath(DirectoryPath + "/" + Certificate_No + "_Certificate.pdf");
+                    string pathe = Server.MapPath(_session.PFX_path);//From DB
+                    //  string pathe = Server.MapPath("~/Signature/Samitha/Samitha.pfx");//From DB
+                    string SignatureIMG = Server.MapPath(_session.SignatureIMG_Path);// From DB
+                    //   string SignatureIMG = Server.MapPath("~/Signature/Samitha/sign.JPG");// From DB
+
+                    var PFX = new FileStream(pathe, FileMode.OpenOrCreate);
+
+                    Sign_ SignCertificate = new Sign_();
+
+                    if (Convert.ToBoolean(CRHeader.SealRequired))
+                    {
+                        SignCertificate.AddSeal(Sealed, Server.MapPath(_session.SignatureIMG_Path));
+                        NotSigned = Server.MapPath(Tempary_Direct + "/_Not_Signed_S.pdf");
+                    }
+
+                    bool singed = SignCertificate.signCertificate(NotSigned, Signed,
+                                                                  PFX, _session.C_Password);
+                    if (!singed)
+                    {
+                        PFX.Close();
+                        //mp1.Show();
+                        //lblError.Text = "Wrong password or Corrupted Certificate file.";
+                        _session.C_Password = "";
+                        return false;
+                    }
+
+                    M_CertificateApprove Approve = new M_CertificateApprove();
+                    Approve.Certificate_Name = Certificate_No + "_Certificate.pdf";
+                    Approve.Certificate_Path = DirectoryPath + "/" + Certificate_No + "_Certificate.pdf";
+                    // Approve.Created_By = "SAMITHA";
+                    Approve.Created_By = _session.User_Id;
+                    Approve.Expiry_Date = DateTime.Today.AddDays(120);
+                    Approve.Is_Downloaded = "N";
+                    Approve.Is_Valid = "Y";
+                    Approve.Request_Id = CRHeader.RequestReff;
+                    Approve.Certificate_Id = Certificate_No;
+
+
+                    bool result = objAprv.ApproveCertificate(Approve);
+
+                    if (SupList.Count != 0)
+                    {
+                        if (!Directory.Exists(Server.MapPath(Tempary_Direct + "/Supporting-Doc")))
+                        {
+                            Directory.CreateDirectory(Server.MapPath(Tempary_Direct + "/Supporting-Doc"));
+                        }
+
+                        if (!Directory.Exists(Server.MapPath(DirectoryPath + "/Supporting-Doc")))
+                        {
+                            Directory.CreateDirectory(Server.MapPath(DirectoryPath + "/Supporting-Doc"));
+                        }
+                    }
+
+                    for (int i = 0; i < SupList.Count(); i++)
+                    {
+
+                        if (SupList[i].Remarks.Equals("NCE_Certification"))
+                        {
+                            string SignedSD = Server.MapPath(DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName);
+                            string SealedPath = Server.MapPath(Tempary_Direct + "/Supporting-Doc/" + SupList[i].DocumentName);
+
+                            Sign_ SignDoc = new Sign_();
+
+                            SignDoc.AddSealSD(Server.MapPath(SupList[i].UploadedPath), SealedPath, Server.MapPath(_session.SignatureIMG_Path));
+
+                            var PFX2 = new FileStream(pathe, FileMode.OpenOrCreate);
+
+                            bool Sign = SignDoc.signSupportingDoc(Certificate_No,
+                                SealedPath,
+                                SignedSD,
+                                PFX2, _session.C_Password);
+
+                            if (!Sign)
+                            {
+                                PFX.Close();
+                                PFX2.Close();
+                                //lblError.Text = "Corrupted Supporting Document file @ " + SupList[i].Request_Ref_No + ":" + SupList[i].Document_Id + ". Signature Placement Failed !";
+                                //mp1.Show();
+                                _session.C_Password = "";
+                                return false;
+                            }
+                            SupList[i].CertifiedDocPathe = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
+                            SupList[i].Status = "A";
+                            SupList[i].ClientId = CRHeader.Client_Id;
+                            SupList[i].ApprovedBy = _session.User_Id;
+                            SupList[i].ExpiredOn = DateTime.Today.AddDays(120).ToString();
+
+
+                            objSDAprv.setSupportingDocSignRequestINCertRequest(SupList[i]);
+
+                            SupList[i].UploadedPath = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
+                            objCr.UpdateSupportingDocCertified(SupList[i]);
+
+
+                        }
+                    }
+
+                    transactionScope.Complete();
+                    transactionScope.Dispose();
+                    return true;
+
+                }
+                catch (TransactionAbortedException Ex)
+                {
+                    transactionScope.Dispose();
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+                catch (FileNotFoundException Ex)
+                {
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+                catch (FieldAccessException Ex)
+                {
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+                catch (Exception Ex)
+                {
+                    ErrorLog.LogError(Ex);
+                    return false;
+                }
+            }
+        }
+
     }
 }

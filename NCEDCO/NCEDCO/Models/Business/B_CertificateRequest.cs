@@ -460,5 +460,24 @@ namespace NCEDCO.Models.Business
             }
         }
 
+
+        public bool UpdateSupportingDocCertified(M_SupportDocumentUpload SD)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setUpdateSupportingDocUpload(SD.Seq_No, SD.UploadedPath, SD.DocumentName);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
     }
 }

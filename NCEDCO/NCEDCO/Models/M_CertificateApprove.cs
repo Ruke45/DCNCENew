@@ -9,7 +9,7 @@ namespace NCEDCO.Models
     public class M_CertificateApprove
     {
         string RequestId;
-        [Display(Name = "Request Ic")]
+        [Display(Name = "Request ID")]
         public string Request_Id
         {
             get { return RequestId; }

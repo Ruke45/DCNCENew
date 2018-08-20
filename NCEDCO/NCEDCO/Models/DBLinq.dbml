@@ -696,4 +696,31 @@
       <Column Name="ParentCustomer" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setUpdateUploadBCertifcateRequest]" Method="_setUpdateUploadBCertifcateRequest">
+    <Parameter Name="ModifiedBy" Parameter="modifiedBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CertificateId" Parameter="certificateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setSupportingDocApproveFrmCRquest]" Method="_setSupportingDocApproveFrmCRquest">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="SupportingDocID" Parameter="supportingDocID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestBy" Parameter="requestBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="UploadPath" Parameter="uploadPath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="UploadDocName" Parameter="uploadDocName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ApprovedBy" Parameter="approvedBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RequestDate" Parameter="requestDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DownloadPath" Parameter="downloadPath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="DocExpireDate" Parameter="docExpireDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="CertificateRequestId" Parameter="certificateRequestId" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setUpdateSupportingDocUpload]" Method="_setUpdateSupportingDocUpload">
+    <Parameter Name="UploadSeqNo" Parameter="uploadSeqNo" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="UploadedPath" Parameter="uploadedPath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="DocumentName" Parameter="documentName" Type="System.String" DbType="VarChar(150)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

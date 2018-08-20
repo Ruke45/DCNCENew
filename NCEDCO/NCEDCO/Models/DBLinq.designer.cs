@@ -608,6 +608,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerID);
 			return ((ISingleResult<getAllPendingCertificateRequestsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateUploadBCertifcateRequest]")]
+		public int _setUpdateUploadBCertifcateRequest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModifiedBy", DbType="VarChar(20)")] string modifiedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateId", DbType="VarChar(20)")] string certificateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), modifiedBy, certificateId, requestId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setSupportingDocApproveFrmCRquest]")]
+		public int _setSupportingDocApproveFrmCRquest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SupportingDocID", DbType="VarChar(20)")] string supportingDocID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestBy", DbType="VarChar(20)")] string requestBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(5)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadPath", DbType="VarChar(250)")] string uploadPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadDocName", DbType="VarChar(50)")] string uploadDocName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ApprovedBy", DbType="VarChar(20)")] string approvedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestDate", DbType="DateTime")] System.Nullable<System.DateTime> requestDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DownloadPath", DbType="VarChar(250)")] string downloadPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocExpireDate", DbType="Date")] System.Nullable<System.DateTime> docExpireDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateRequestId", DbType="VarChar(20)")] string certificateRequestId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID, supportingDocID, customerID, requestBy, status, uploadPath, uploadDocName, approvedBy, requestDate, downloadPath, docExpireDate, certificateRequestId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateSupportingDocUpload]")]
+		public int _setUpdateSupportingDocUpload([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadSeqNo", DbType="BigInt")] System.Nullable<long> uploadSeqNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UploadedPath", DbType="VarChar(250)")] string uploadedPath, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocumentName", DbType="VarChar(150)")] string documentName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), uploadSeqNo, uploadedPath, documentName);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult

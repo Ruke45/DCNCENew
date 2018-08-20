@@ -93,5 +93,54 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public bool ApproveUCertificate(M_CertificateApprove usr)
+        {
+
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = ConfigurationManager.ConnectionStrings["DocMgmtDBConnectionString"].ToString();
+                    datacontext.Connection.Open();
+                    try
+                    {
+                        datacontext.Transaction = datacontext.Connection.BeginTransaction();
+                        datacontext._setCertificateApproval(usr.Certificate_Id,
+                                                            usr.Request_Id,
+                                                            usr.Expiry_Date,
+                                                            usr.Created_By,
+                                                            usr.Is_Downloaded,
+                                                            usr.Certificate_Path,
+                                                            usr.Certificate_Name,
+                                                            usr.Is_Valid);
+
+                        datacontext._setUpdateUploadBCertifcateRequest(usr.Created_By, usr.Certificate_Id, usr.Request_Id);
+
+
+                        datacontext.SubmitChanges();
+                        datacontext.Transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError(ex);
+                        datacontext.Transaction.Rollback();
+                        return false;
+                    }
+                    finally
+                    {
+                        datacontext.Connection.Close();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
     }
 }
