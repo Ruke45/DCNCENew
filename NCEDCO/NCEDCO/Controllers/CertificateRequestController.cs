@@ -737,45 +737,47 @@ namespace NCEDCO.Controllers
 
                     for (int i = 0; i < SupList.Count(); i++)
                     {
-
-                        if (SupList[i].Remarks.Equals("NCE_Certification"))
+                        if (SupList[i].Remarks != null)
                         {
-                            string SignedSD = Server.MapPath(DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName);
-                            string SealedPath = Server.MapPath(Tempary_Direct + "/Supporting-Doc/" + SupList[i].DocumentName);
-
-                            Sign_ SignDoc = new Sign_();
-
-                            SignDoc.AddSealSD(Server.MapPath(SupList[i].UploadedPath), SealedPath, Server.MapPath(_session.SignatureIMG_Path));
-
-                            var PFX2 = new FileStream(pathe, FileMode.OpenOrCreate);
-
-                            bool Sign = SignDoc.signSupportingDoc(Certificate_No,
-                                SealedPath,
-                                SignedSD,
-                                PFX2, _session.C_Password);
-
-                            if (!Sign)
+                            if (SupList[i].Remarks.Equals("NCE_Certification"))
                             {
-                                PFX.Close();
-                                PFX2.Close();
-                                //lblError.Text = "Corrupted Supporting Document file @ " + SupList[i].Request_Ref_No + ":" + SupList[i].Document_Id + ". Signature Placement Failed !";
-                                //mp1.Show();
-                                _session.C_Password = "";
-                                return false;
+                                string SignedSD = Server.MapPath(DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName);
+                                string SealedPath = Server.MapPath(Tempary_Direct + "/Supporting-Doc/" + SupList[i].DocumentName);
+
+                                Sign_ SignDoc = new Sign_();
+
+                                SignDoc.AddSealSD(Server.MapPath(SupList[i].UploadedPath), SealedPath, Server.MapPath(_session.SignatureIMG_Path));
+
+                                var PFX2 = new FileStream(pathe, FileMode.OpenOrCreate);
+
+                                bool Sign = SignDoc.signSupportingDoc(Certificate_No,
+                                    SealedPath,
+                                    SignedSD,
+                                    PFX2, _session.C_Password);
+
+                                if (!Sign)
+                                {
+                                    PFX.Close();
+                                    PFX2.Close();
+                                    //lblError.Text = "Corrupted Supporting Document file @ " + SupList[i].Request_Ref_No + ":" + SupList[i].Document_Id + ". Signature Placement Failed !";
+                                    //mp1.Show();
+                                    _session.C_Password = "";
+                                    return false;
+                                }
+                                SupList[i].CertifiedDocPathe = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
+                                SupList[i].Status = "A";
+                                SupList[i].ClientId = CRHeader.Client_Id;
+                                SupList[i].ApprovedBy = _session.User_Id;
+                                SupList[i].ExpiredOn = DateTime.Today.AddDays(120).ToString();
+
+
+                                objSDAprv.setSupportingDocSignRequestINCertRequest(SupList[i]);
+
+                                SupList[i].UploadedPath = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
+                                objCr.UpdateSupportingDocCertified(SupList[i]);
+
+
                             }
-                            SupList[i].CertifiedDocPathe = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
-                            SupList[i].Status = "A";
-                            SupList[i].ClientId = CRHeader.Client_Id;
-                            SupList[i].ApprovedBy = _session.User_Id;
-                            SupList[i].ExpiredOn = DateTime.Today.AddDays(120).ToString();
-
-
-                            objSDAprv.setSupportingDocSignRequestINCertRequest(SupList[i]);
-
-                            SupList[i].UploadedPath = DirectoryPath + "/Supporting-Doc/" + SupList[i].DocumentName;
-                            objCr.UpdateSupportingDocCertified(SupList[i]);
-
-
                         }
                     }
 
