@@ -30,5 +30,6 @@ namespace NCEDCO.Models
         }
 
         public string RequestID { get; set; }
+        public string RequestType { get; set; }
     }
 }

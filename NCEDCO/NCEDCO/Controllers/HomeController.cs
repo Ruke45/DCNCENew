@@ -54,6 +54,8 @@ namespace NCEDCO.Controllers
                 Session.User_Id = loggedU.User_ID;
                 Session.User_Group = loggedU.UserGroup_ID;
                 Session.Person_Name = loggedU.Person_Name;
+                Session.PFX_path = "~/Signature/DesmondM/W_M_S_L_Weerasinghe_NCE.pfx";
+                Session.SignatureIMG_Path = "~/Signature/DesmondM/Sachithra-Weerasinghe's_signature_in_high_res.png";
 
                 result = "Succes";
             }

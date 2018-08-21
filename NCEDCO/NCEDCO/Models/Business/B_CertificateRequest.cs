@@ -265,8 +265,8 @@ namespace NCEDCO.Models.Business
                         Cu.CountyOfOrigin = lst.CountryCode;
                         Cu.Goods_Item = lst.GoodItem;
                         Cu.HSCode = lst.HSCode;
-                        Cu.InvoiceDate = lst.InvoiceDate.Value.ToString("yyyy/MM/dd");
-                        //Cu.InvoiceNo = lst.InvoiceNo;
+                        Cu.InvoiceDate = lst.InvoiceDate.Value.ToString("yyyy/MMM/dd");
+                        Cu.InvoiceNo = lst.InvoiceNo;
                         Cu.OtherComments = lst.OtherComments;
                         Cu.PackageType = lst.PackageType;
                         Cu.PlaceOfDelivery = lst.PlaceOfDelivery;
@@ -280,6 +280,7 @@ namespace NCEDCO.Models.Business
                         Cu.TotalInvoiceValue = lst.TotalInvoiceValue;
                         Cu.TotalQuantity = lst.TotalQuantity;
                         Cu.Vessel = lst.Vessel;
+                        Cu.RequestReff = lst.RequestId;
                     }
                 }
 
@@ -301,7 +302,7 @@ namespace NCEDCO.Models.Business
             {
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
-                    datacontext.Connection.ConnectionString = ConfigurationManager.ConnectionStrings["DocMgmtDBConnectionString"].ToString();
+                    datacontext.Connection.ConnectionString = Connection_;
                     datacontext._setWebBasedCertificateCreation(RequestId, CertificatePath, CertificateName);
                     return true;
                 }
@@ -476,6 +477,46 @@ namespace NCEDCO.Models.Business
             {
                 ErrorLog.LogError(ex);
                 return false;
+            }
+
+        }
+
+        public List<M_SupportDocumentUpload> getSupportingDOCfRequest(string ID)
+        {
+            try
+            {
+                List<M_SupportDocumentUpload> DocList = new List<M_SupportDocumentUpload>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getCRequestSupportingDOCResult> lst = datacontext._getCRequestSupportingDOC(ID);
+                    foreach (_getCRequestSupportingDOCResult result in lst)
+                    {
+                        M_SupportDocumentUpload SUP = new M_SupportDocumentUpload();
+                        SUP.SupportingDocumentID = result.SupportingDocumentId;
+                        SUP.Remarks = result.Remarks;
+                        SUP.RequestRefNo = result.RequestRefNo;
+                        SUP.UploadedBy = result.UploadedBy;
+                        SUP.UploadedPath = result.UploadedPath;
+                        SUP.DocumentName = result.DocumentName;
+                        SUP.Seq_No = result.UploadSeqNo;
+                        SUP.DocumentTitle = result.SupportingDocumentName;
+                        SUP.UploadedDate = result.RequestDate.ToString();
+                        SUP.SignatureRequired = Convert.ToBoolean(result.SignatureRequired);
+
+                        DocList.Add(SUP);
+
+                    }
+                }
+                return DocList;
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
             }
 
         }

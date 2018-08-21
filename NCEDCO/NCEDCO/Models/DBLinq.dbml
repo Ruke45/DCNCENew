@@ -723,4 +723,20 @@
     <Parameter Name="DocumentName" Parameter="documentName" Type="System.String" DbType="VarChar(150)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getCRequestSupportingDOC]" Method="_getCRequestSupportingDOC">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getCRequestSupportingDOCResult">
+      <Column Name="RequestRefNo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SupportingDocumentId" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="SupportingDocumentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="UploadedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UploadedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadedPath" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadSeqNo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DocumentName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SignatureRequired" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

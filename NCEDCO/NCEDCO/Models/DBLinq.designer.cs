@@ -629,6 +629,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), uploadSeqNo, uploadedPath, documentName);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getCRequestSupportingDOC]")]
+		public ISingleResult<_getCRequestSupportingDOCResult> _getCRequestSupportingDOC([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID);
+			return ((ISingleResult<_getCRequestSupportingDOCResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -4972,6 +4979,212 @@ namespace NCEDCO.Models
 				if ((this._ParentCustomer != value))
 				{
 					this._ParentCustomer = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getCRequestSupportingDOCResult
+	{
+		
+		private string _RequestRefNo;
+		
+		private string _SupportingDocumentId;
+		
+		private string _SupportingDocumentName;
+		
+		private string _Remarks;
+		
+		private System.DateTime _UploadedDate;
+		
+		private string _UploadedBy;
+		
+		private string _UploadedPath;
+		
+		private long _UploadSeqNo;
+		
+		private string _DocumentName;
+		
+		private System.DateTime _RequestDate;
+		
+		private string _SignatureRequired;
+		
+		public _getCRequestSupportingDOCResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestRefNo", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestRefNo
+		{
+			get
+			{
+				return this._RequestRefNo;
+			}
+			set
+			{
+				if ((this._RequestRefNo != value))
+				{
+					this._RequestRefNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentId", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string SupportingDocumentId
+		{
+			get
+			{
+				return this._SupportingDocumentId;
+			}
+			set
+			{
+				if ((this._SupportingDocumentId != value))
+				{
+					this._SupportingDocumentId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentName", DbType="VarChar(100)")]
+		public string SupportingDocumentName
+		{
+			get
+			{
+				return this._SupportingDocumentName;
+			}
+			set
+			{
+				if ((this._SupportingDocumentName != value))
+				{
+					this._SupportingDocumentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="VarChar(150)")]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this._Remarks = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime UploadedDate
+		{
+			get
+			{
+				return this._UploadedDate;
+			}
+			set
+			{
+				if ((this._UploadedDate != value))
+				{
+					this._UploadedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadedBy", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UploadedBy
+		{
+			get
+			{
+				return this._UploadedBy;
+			}
+			set
+			{
+				if ((this._UploadedBy != value))
+				{
+					this._UploadedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadedPath", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string UploadedPath
+		{
+			get
+			{
+				return this._UploadedPath;
+			}
+			set
+			{
+				if ((this._UploadedPath != value))
+				{
+					this._UploadedPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadSeqNo", DbType="BigInt NOT NULL")]
+		public long UploadSeqNo
+		{
+			get
+			{
+				return this._UploadSeqNo;
+			}
+			set
+			{
+				if ((this._UploadSeqNo != value))
+				{
+					this._UploadSeqNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentName", DbType="VarChar(150)")]
+		public string DocumentName
+		{
+			get
+			{
+				return this._DocumentName;
+			}
+			set
+			{
+				if ((this._DocumentName != value))
+				{
+					this._DocumentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime NOT NULL")]
+		public System.DateTime RequestDate
+		{
+			get
+			{
+				return this._RequestDate;
+			}
+			set
+			{
+				if ((this._RequestDate != value))
+				{
+					this._RequestDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignatureRequired", DbType="VarChar(5)")]
+		public string SignatureRequired
+		{
+			get
+			{
+				return this._SignatureRequired;
+			}
+			set
+			{
+				if ((this._SignatureRequired != value))
+				{
+					this._SignatureRequired = value;
 				}
 			}
 		}

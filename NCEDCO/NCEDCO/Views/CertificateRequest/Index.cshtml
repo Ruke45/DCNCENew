@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.CertificateReff, new { @class = "col-sm-2 control-label" })
+                                @Html.LabelFor(m => m.RefferencNo, new { @class = "col-sm-2 control-label" })
                                 <div class="col-sm-7">
                                     @Html.DropDownListFor(model => model.RefferencNo, ViewBag.Bag_RefferenceRequ as SelectList, "", new { @class = "form-control selectRf", @onchange = "loadTemplateByReff()" })
                                 </div>

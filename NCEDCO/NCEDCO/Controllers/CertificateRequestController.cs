@@ -57,7 +57,7 @@ namespace NCEDCO.Controllers
             string r = "Error";
             Model.Createdby = _session.User_Id;
             Model.ParentId = _session.Customer_ID;
-            Model.Status = "P";
+            Model.Status = "G";/// need to be change if the save certificate implemented including the CreateSample()
 
             string reff = objCreq.setCertificateRequest(Model);
             if (reff != null)
@@ -380,9 +380,10 @@ namespace NCEDCO.Controllers
             return View(objCr.getAllPendingCertificateRequest("%"));
         }
 
-        public ActionResult ApproveC(string Req)
+        public ActionResult ApproveC(string Req, string Ctyp)
         {
             ViewBag.A_ID = Req;
+            ViewBag.A_Type = Ctyp;
             return PartialView("P_SignatoryPassword");
         }
 
@@ -807,5 +808,19 @@ namespace NCEDCO.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult Approve_Certificate(M_Signatory Model)
+        {
+            String result = "Error";
+            _session.C_Password = Model.Password_;
+            if (Model.RequestType.Equals("W"))
+            {
+                CRHeader = objCr.getSavedCertificateRequest(Model.RequestID);
+                SupList = objCr.getSupportingDOCfRequest(Model.RequestID);
+                bool r = CreateCertificate(CRHeader.TemplateId);
+                if (r) { result = "Success"; }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

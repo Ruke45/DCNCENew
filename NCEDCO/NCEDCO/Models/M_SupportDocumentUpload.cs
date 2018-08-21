@@ -25,6 +25,7 @@ namespace NCEDCO.Models
         public string ApprovedBy { get; set; }
         public string CertifiedDocPathe { get; set; }
         public string ExpiredOn { get; set; }
+        public string DocumentTitle { get; set; }
         Int64 SeqNo;
         public Int64 Seq_No
         {

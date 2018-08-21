@@ -64,7 +64,7 @@
                                 <td align="center"><input type="checkbox" name="@item.RequestReff"></td>
                                 <td align="center">
                                     <div class="btn-group">
-                                        <a href="#"  onclick='Approve("@item.RequestReff")'>Approve</a> | 
+                                        <a href="#"  onclick='Approve("@item.RequestReff","@item.CertificateType")'>Approve</a> | 
                                         <a href="#" onclick='Reject("@item.RequestReff")'>Reject</a>
                                     </div>
                                 </td>
@@ -128,8 +128,8 @@
  </script>
                             
 <script>
-    var Approve = function (Req) {
-        var Url = "/CertificateRequest/ApproveC?Req="+ Req;
+    var Approve = function (Req,Ctyp) {
+        var Url = "/CertificateRequest/ApproveC?Req=" + Req + "&Ctyp=" + Ctyp;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })
