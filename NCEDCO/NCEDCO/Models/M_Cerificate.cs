@@ -116,6 +116,7 @@ namespace NCEDCO.Models
         [Display(Name = "Seal Required")]
         public bool SealRequired { get; set; }
 
+        [Display(Name = "Parent Id")]
         public string ParentId { get; set; }
 
         [Display(Name = "Customer's Client")]

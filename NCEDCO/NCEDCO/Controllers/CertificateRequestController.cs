@@ -11,6 +11,12 @@ using System.IO;
 using NCEDCO.Filters;
 using NCEDCO.Models.Utility;
 using System.Transactions;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net;
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
+
 
 namespace NCEDCO.Controllers
 {
@@ -220,8 +226,8 @@ namespace NCEDCO.Controllers
             if (Created)
             {
                 objCr.setWebBasedCertificateCreation(Reff,
-                    DirectoryPath + "/" + Reff + "_Sample_Cert.pdf",
-                    Reff + "_Sample_Cert.pdf");
+                    DirectoryPath + "/" + Reff + "_Sample.pdf",
+                    Reff + "_Sample.pdf");
             }
         }
 
@@ -823,6 +829,61 @@ namespace NCEDCO.Controllers
                 if (r) { result = "Success"; }
             }
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ViewPDF(String ID)
+        {
+            try
+            {
+                WebClient user = new WebClient();
+
+                string p = Server.MapPath(ID.ToString());
+
+                Byte[] FileBuffer = user.DownloadData(p);
+                if (FileBuffer != null)
+                {
+                    return File(FileBuffer, "application/pdf");
+                }
+                else
+                {
+                    return Content("No file");
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError("Certificate Request View @ CertificateRequest", Ex);
+                return Content("Can't Access the Location of the File");
+            }
+        }
+        public ActionResult P_SupportingDoc(string Req)
+        {
+
+            return PartialView("P_SupportingDocTbl",objCr.getSupportingDOCfRequest(Req));
+        }
+
+        [HttpPost]
+        public JsonResult BulkSign(string function_param)
+        {
+            string result = "Error";
+            var strin = new JavaScriptSerializer().DeserializeObject(function_param);
+            string[] arr = strin.ToString().Split(',');
+
+            for (int a = 0; a < arr.Length; a++)
+            {
+                string[] s = arr[a].Split('_');
+                if (s[1].Equals("U"))
+                {
+                    result = s[0];
+                }
+                else if(s[1].Equals("W"))
+                {
+                    result = s[0];
+                }
+            }
+
+
+            return Json(arr, JsonRequestBehavior.AllowGet);
         }
     }
 }

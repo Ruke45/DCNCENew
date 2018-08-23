@@ -57,12 +57,16 @@
             </div>
             </div>
         </div>
-             <div class="alert alert-success alert-dismissible" id="SMsg" style="display:none">
+             
+    </div>
+<div class="row">
+   <div class="col-lg-12">
+<div class="alert alert-success alert-dismissible" id="SMsg" style="display:none">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Success!</strong> Certificate Request Successfully Saved Under Request Id : <label id="Rqid"></label>
 </div>
+       </div>
     </div>
-
 <!--Notification Modals -->
 <div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
@@ -192,6 +196,7 @@
                 if (!Mandatory()) {
                     return;
                 }
+                $("loaderDiv").show();
                 AjaxPost(form);
             }
         });

@@ -344,7 +344,9 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\pace\pace.min.js" />
     <Content Include="Scripts\select2.full.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -396,6 +398,8 @@
     <Content Include="Views\CertificateRequest\Supporting.cshtml" />
     <Content Include="Views\CertificateRequest\Pending.cshtml" />
     <Content Include="Views\CertificateRequest\P_SignatoryPassword.cshtml" />
+    <Content Include="Views\CertificateRequest\PDFView.cshtml" />
+    <Content Include="Views\CertificateRequest\P_SupportingDocTbl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />
