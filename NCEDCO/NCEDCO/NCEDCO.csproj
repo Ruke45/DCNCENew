@@ -400,6 +400,8 @@
     <Content Include="Views\CertificateRequest\P_SignatoryPassword.cshtml" />
     <Content Include="Views\CertificateRequest\PDFView.cshtml" />
     <Content Include="Views\CertificateRequest\P_SupportingDocTbl.cshtml" />
+    <Content Include="Views\CertificateRequest\P_Error.cshtml" />
+    <Content Include="Views\CertificateRequest\P_SignatoryPasswordBulk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

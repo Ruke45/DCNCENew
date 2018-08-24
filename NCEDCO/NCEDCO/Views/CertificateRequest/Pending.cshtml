@@ -158,6 +158,12 @@
         window.open(Url, "_blank")
     }
 
+    var ApproveBulk = function (Req) {
+        var Url = "/CertificateRequest/BulkSign_Model?IDs=" + Req;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
 
     function getValueUsingClass() {
         /* declare an checkbox array */
@@ -173,7 +179,7 @@
 
         /* check if there is selected checkboxes, by default the length is 1 as it contains one single comma */
         if (selected.length > 0) {
-            AjaxPost(selected)
+            ApproveBulk(selected)
         } else {
             alert("Please at least check one of the checkbox");
         }

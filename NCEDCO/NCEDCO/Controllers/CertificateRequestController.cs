@@ -388,6 +388,35 @@ namespace NCEDCO.Controllers
 
         public ActionResult ApproveC(string Req, string Ctyp)
         {
+            bool r = false;
+            if (_session.C_Password != "")
+            {
+                if (Ctyp.Equals("W"))
+                {
+                    CRHeader = objCr.getSavedCertificateRequest(Req);
+                    SupList = objCr.getSupportingDOCfRequest(Req);
+                    r = CreateCertificate(CRHeader.TemplateId);
+                    
+                }
+                else if (Ctyp.Equals("U"))
+                {
+                    CRHeader = objCr.getUploadedCertificateRequest(Req);
+                    SupList = objCr.getSupportingDOCfRequest(Req);
+                    r = Approve_UCertificateRequest(CRHeader.Client_Id,
+                                                         CRHeader.RequestReff,
+                                                         CRHeader.CertificateUploadPath,
+                                                         CRHeader.SealRequired);
+                }
+                if (r)
+                {
+                    return RedirectToAction("Pending", "CertificateRequest");
+                }
+                else
+                {
+                    return PartialView("P_Error");
+                }
+                
+            }
             ViewBag.A_ID = Req;
             ViewBag.A_Type = Ctyp;
             return PartialView("P_SignatoryPassword");
@@ -820,14 +849,25 @@ namespace NCEDCO.Controllers
         public JsonResult Approve_Certificate(M_Signatory Model)
         {
             String result = "Error";
+            bool r = false;
             _session.C_Password = Model.Password_;
             if (Model.RequestType.Equals("W"))
             {
                 CRHeader = objCr.getSavedCertificateRequest(Model.RequestID);
                 SupList = objCr.getSupportingDOCfRequest(Model.RequestID);
-                bool r = CreateCertificate(CRHeader.TemplateId);
-                if (r) { result = "Success"; }
+                r = CreateCertificate(CRHeader.TemplateId);
+                
             }
+            else if (Model.RequestType.Equals("U"))
+            {
+                CRHeader = objCr.getUploadedCertificateRequest(Model.RequestID);
+                SupList = objCr.getSupportingDOCfRequest(Model.RequestID);
+                r = Approve_UCertificateRequest(CRHeader.Client_Id,
+                                                     CRHeader.RequestReff,
+                                                     CRHeader.CertificateUploadPath,
+                                                     CRHeader.SealRequired);
+            }
+            if (r) { result = "Success"; }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -856,17 +896,25 @@ namespace NCEDCO.Controllers
                 return Content("Can't Access the Location of the File");
             }
         }
+
         public ActionResult P_SupportingDoc(string Req)
         {
 
             return PartialView("P_SupportingDocTbl",objCr.getSupportingDOCfRequest(Req));
         }
 
+        public ActionResult BulkSign_Model(string IDs)
+        {
+            ViewBag.A_IDs = IDs;
+            return PartialView("P_SignatoryPasswordBulk");
+        }
+
         [HttpPost]
-        public JsonResult BulkSign(string function_param)
+        public JsonResult BulkSign(M_Signatory Model)
         {
             string result = "Error";
-            var strin = new JavaScriptSerializer().DeserializeObject(function_param);
+            //var strin = new JavaScriptSerializer().DeserializeObject(Model.RequestID);
+            var strin = Model.RequestID;
             string[] arr = strin.ToString().Split(',');
 
             for (int a = 0; a < arr.Length; a++)
@@ -874,15 +922,20 @@ namespace NCEDCO.Controllers
                 string[] s = arr[a].Split('_');
                 if (s[1].Equals("U"))
                 {
-                    result = s[0];
+                    CRHeader = objCr.getUploadedCertificateRequest(s[0]);
+                    SupList = objCr.getSupportingDOCfRequest(s[0]);
+                    bool r = Approve_UCertificateRequest(CRHeader.Client_Id,
+                                                         CRHeader.RequestReff,
+                                                         CRHeader.CertificateUploadPath,
+                                                         CRHeader.SealRequired);
                 }
                 else if(s[1].Equals("W"))
                 {
-                    result = s[0];
+                    CRHeader = objCr.getSavedCertificateRequest(s[0]);
+                    SupList = objCr.getSupportingDOCfRequest(s[0]);
+                    bool r = CreateCertificate(CRHeader.TemplateId);
                 }
             }
-
-
             return Json(arr, JsonRequestBehavior.AllowGet);
         }
     }

@@ -520,5 +520,36 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public M_Cerificate getUploadedCertificateRequest(string RequestId)
+        {
+            try
+            {
+
+                M_Cerificate Cu = new M_Cerificate();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var lst = datacontext._getUploadBCrequest(RequestId).SingleOrDefault();
+                    if (lst != null)
+                    {
+                        Cu.Client_Id = lst.CustomerId;
+                        Cu.InvoiceNo = lst.InvoiceNo;
+                        Cu.SealRequired = Convert.ToBoolean(lst.SealRequired);;
+                        Cu.RequestReff = lst.RequestId;
+                        Cu.CertificateUploadPath = lst.UploadPath;
+                    }
+                }
+
+                return Cu;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }
