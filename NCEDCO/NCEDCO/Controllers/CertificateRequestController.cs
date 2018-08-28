@@ -914,6 +914,7 @@ namespace NCEDCO.Controllers
         {
             string result = "Error";
             //var strin = new JavaScriptSerializer().DeserializeObject(Model.RequestID);
+            _session.C_Password = Model.Password_;
             var strin = Model.RequestID;
             string[] arr = strin.ToString().Split(',');
 
@@ -928,15 +929,17 @@ namespace NCEDCO.Controllers
                                                          CRHeader.RequestReff,
                                                          CRHeader.CertificateUploadPath,
                                                          CRHeader.SealRequired);
+                    result = r.ToString();
                 }
                 else if(s[1].Equals("W"))
                 {
                     CRHeader = objCr.getSavedCertificateRequest(s[0]);
                     SupList = objCr.getSupportingDOCfRequest(s[0]);
                     bool r = CreateCertificate(CRHeader.TemplateId);
+                    result = r.ToString();
                 }
             }
-            return Json(arr, JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

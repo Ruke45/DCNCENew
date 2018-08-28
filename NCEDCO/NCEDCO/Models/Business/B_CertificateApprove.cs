@@ -101,7 +101,7 @@ namespace NCEDCO.Models.Business
             {
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
-                    datacontext.Connection.ConnectionString = ConfigurationManager.ConnectionStrings["DocMgmtDBConnectionString"].ToString();
+                    datacontext.Connection.ConnectionString = Connection_;
                     datacontext.Connection.Open();
                     try
                     {
