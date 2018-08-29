@@ -95,5 +95,27 @@ namespace NCEDCO.Controllers
            }
             return Json(r, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult BulkSign_Model(string IDs)
+        {
+            ViewBag.A_IDs = IDs;
+            return PartialView("P_BulkApprove");
+        }
+
+        public JsonResult BulkSign(M_Signatory Model)
+        {
+            bool r = false;
+            _session.C_Password = Model.Password_;
+            var strin = Model.RequestID;
+            string[] arr = strin.ToString().Split(',');
+
+            for (int a = 0; a < arr.Length; a++)
+            {
+                M_SupportDocumentUpload SModel = objSDApprv.getSDocbyID(arr[a]);
+                _session.C_Password = Model.Password_;
+                r = Sign_SDocument(SModel.RequestRefNo, SModel.UploadedPath);
+            }
+            return Json(r, JsonRequestBehavior.AllowGet);
+        }
     }
 }

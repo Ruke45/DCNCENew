@@ -407,6 +407,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\SupportDcoument\Pending.cshtml" />
     <Content Include="Views\SupportDcoument\P_ApproveSD.cshtml" />
+    <Content Include="Views\SupportDcoument\P_BulkApprove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

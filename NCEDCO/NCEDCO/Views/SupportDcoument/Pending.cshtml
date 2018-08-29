@@ -136,25 +136,13 @@
             $("#OModel").modal("show");
         })
     }
-
-    var ViewSD = function (ID) {
-        var Url = "/CertificateRequest/P_SupportingDoc?Req=" + ID;
-        $("#OModelBody").load(Url, function () {
-            $("#OModel").modal("show");
-        })
-    }
-
-    var viewCertificate = function (ID) {
-        var Url = "/CertificateRequest/ViewPDF?ID=" + ID;
-        window.open(Url, "_blank")
-    }
     var viewSupporting = function (ID) {
         var Url = "/CertificateRequest/ViewPDF?ID=" + ID;
         window.open(Url, "_blank")
     }
 
     var ApproveBulk = function (Req) {
-        var Url = "/CertificateRequest/BulkSign_Model?IDs=" + Req;
+        var Url = "/SupportDcoument/BulkSign_Model?IDs=" + Req;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })
