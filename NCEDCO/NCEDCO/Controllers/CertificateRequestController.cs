@@ -941,5 +941,40 @@ namespace NCEDCO.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult RejectC(string Rid, string Ctyp)
+        {
+            Rejectitem objReject = new Rejectitem();
+            string ParentReject_Category = System.Configuration.ConfigurationManager.AppSettings["Certifi_Rject"].ToString();
+
+            List<M_Reject> Rlist = objReject.getReasons(ParentReject_Category);
+            
+            ViewBag.Bag_RejectReasons = new SelectList(Rlist, "Reject_ReasonId", "Reject_ReasonName");
+            ViewBag.Bag_RejectingID = Rid;
+            ViewBag.Bag_Ctype = Ctyp;
+
+            return PartialView("P_RejectCertificate");
+        }
+
+        [HttpPost]
+        public JsonResult Reject_Certificate(M_Reject Model)
+        {
+            String result = "Error";
+            bool r = false;
+            if (Model.Ctype_.Equals("W"))
+            {
+               r = objAprv.RejectCertificate(Model.Rejecting_ID,
+                                          _session.User_Id,
+                                          Model.Reject_ReasonId);
+            }
+            else if (Model.Ctype_.Equals("U"))
+            {
+               r = objAprv.RejectUBCertificate(Model.Rejecting_ID,
+                                            _session.User_Id,
+                                            Model.Reject_ReasonId);
+            }
+            if (r) { result = "Success"; }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -62,6 +62,14 @@ namespace NCEDCO.Models
         [Display(Name = "Created Date")]
         [Required(ErrorMessage = "Required!")]
         public DateTime CreatedDate { get; set; }
+
+        string Ctype;
+
+        public string Ctype_
+        {
+            get { return Ctype; }
+            set { Ctype = value; }
+        }
     }
 
     public class M_RejectCategory

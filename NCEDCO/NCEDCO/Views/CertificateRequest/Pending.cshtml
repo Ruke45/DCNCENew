@@ -68,7 +68,7 @@
                                 <td align="center">
                                     <div class="btn-group btn-group-sm">
                                         <a href="#" class="btn btn-primary"  onclick='Approve("@item.RequestReff","@item.CertificateType")'>Approve</a> 
-                                        <a href="#" class="btn btn-default" onclick='Reject("@item.RequestReff")'>Reject</a>
+                                        <a href="#" class="btn btn-default" onclick='Reject("@item.RequestReff","@item.CertificateType")'>Reject</a>
                                     </div>
                                 </td>
                             </tr>
@@ -160,6 +160,13 @@
 
     var ApproveBulk = function (Req) {
         var Url = "/CertificateRequest/BulkSign_Model?IDs=" + Req;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+
+    var Reject = function (Req,Ctyp) {
+        var Url = "/CertificateRequest/RejectC?Rid=" + Req + "&Ctyp=" + Ctyp;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })
