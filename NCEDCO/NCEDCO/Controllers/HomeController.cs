@@ -25,6 +25,13 @@ namespace NCEDCO.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+
+            return View();
+        }
+
         [UserFilter(Function_Id = "F_DASHBOARD")]
         public ActionResult Dashboard()
         {

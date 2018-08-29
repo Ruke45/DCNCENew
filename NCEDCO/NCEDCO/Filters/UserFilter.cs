@@ -26,7 +26,7 @@ namespace NCEDCO.Filters
                 {
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                     {
-                        {"controller", "Shared"},
+                        {"controller", "Home"},
                         {"action", "Error"}
                     });
 

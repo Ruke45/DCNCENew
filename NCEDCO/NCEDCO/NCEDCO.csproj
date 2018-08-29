@@ -169,6 +169,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SupportDcoumentController.cs" />
     <Compile Include="Filters\UserFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -403,6 +404,9 @@
     <Content Include="Views\CertificateRequest\P_Error.cshtml" />
     <Content Include="Views\CertificateRequest\P_SignatoryPasswordBulk.cshtml" />
     <Content Include="Views\CertificateRequest\P_RejectCertificate.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\SupportDcoument\Pending.cshtml" />
+    <Content Include="Views\SupportDcoument\P_ApproveSD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

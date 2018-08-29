@@ -755,4 +755,45 @@
       <Column Name="SealRequired" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getPendingSDocApprovals]" Method="_getPendingSDocApprovals">
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getPendingSDocApprovalsResult">
+      <Column Name="RequestID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SupportingDocID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SupportingDocumentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RequestBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadPath" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadDocName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setUpdateSDApproveReq]" Method="_setUpdateSDApproveReq">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ApprovedBy" Parameter="approvedBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DownloadPath" Parameter="downloadPath" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="DownloadDocName" Parameter="downloadDocName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DocExpireDate" Parameter="docExpireDate" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getPendingSDoc_byID]" Method="_getPendingSDoc_byID">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getPendingSDoc_byIDResult">
+      <Column Name="RequestID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SupportingDocID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SupportingDocumentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RequestBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadPath" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadDocName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

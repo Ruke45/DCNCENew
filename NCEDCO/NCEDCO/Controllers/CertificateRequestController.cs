@@ -30,7 +30,6 @@ namespace NCEDCO.Controllers
 
         List<M_SupportDocumentUpload> SupList = new List<M_SupportDocumentUpload>();
 
-
         string HSCODEHAS = System.Configuration.ConfigurationManager.AppSettings["HSCODEHAS"];
         string GOLOBALTMP = System.Configuration.ConfigurationManager.AppSettings["GOLOBALTMP"];
         string MASSACTIVE = System.Configuration.ConfigurationManager.AppSettings["MASSACTIVE"];
@@ -42,6 +41,8 @@ namespace NCEDCO.Controllers
 
         string CertificateLOGO = System.Configuration.ConfigurationManager.AppSettings["CertificateLOGO"];
         string CertificateSEAL = System.Configuration.ConfigurationManager.AppSettings["CertificateSEAL"];
+
+        /* ------- Certificate Request Methods -------*/
 
         [UserFilter(Function_Id = "F_CERT_REQUST")]
         public ActionResult Index()
@@ -55,6 +56,7 @@ namespace NCEDCO.Controllers
             return View();
         }
 
+        [UserFilter(Function_Id = "F_CERT_REQUST")]
         [HttpPost]
         public ActionResult Index(M_Cerificate Model)
         {
@@ -249,6 +251,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_UploadBaseCRequest", C);
         }
 
+        [UserFilter(Function_Id = "F_CERT_UP")]
         [HttpPost]
         public JsonResult Upload(M_Cerificate Model)
         {
@@ -343,6 +346,7 @@ namespace NCEDCO.Controllers
             return View();
         }
 
+        [UserFilter(Function_Id = "F_SUPORT_UPLOD")]
         [HttpPost]
         public JsonResult Supporting(M_SupportDocumentUpload Model)
         {
@@ -381,11 +385,17 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        /* ------- Certificate Request Methods -------*/
+
+        /* ------- Certificate Approval Methods -------*/
+
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         public ActionResult Pending()
         {
             return View(objCr.getAllPendingCertificateRequest("%"));
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         public ActionResult ApproveC(string Req, string Ctyp)
         {
             bool r = false;
@@ -845,6 +855,7 @@ namespace NCEDCO.Controllers
             }
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         [HttpPost]
         public JsonResult Approve_Certificate(M_Signatory Model)
         {
@@ -871,6 +882,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         [HttpGet]
         public ActionResult ViewPDF(String ID)
         {
@@ -899,16 +911,17 @@ namespace NCEDCO.Controllers
 
         public ActionResult P_SupportingDoc(string Req)
         {
-
             return PartialView("P_SupportingDocTbl",objCr.getSupportingDOCfRequest(Req));
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         public ActionResult BulkSign_Model(string IDs)
         {
             ViewBag.A_IDs = IDs;
             return PartialView("P_SignatoryPasswordBulk");
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         [HttpPost]
         public JsonResult BulkSign(M_Signatory Model)
         {
@@ -942,6 +955,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         public ActionResult RejectC(string Rid, string Ctyp)
         {
             Rejectitem objReject = new Rejectitem();
@@ -956,6 +970,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_RejectCertificate");
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         [HttpPost]
         public JsonResult Reject_Certificate(M_Reject Model)
         {
@@ -976,5 +991,8 @@ namespace NCEDCO.Controllers
             if (r) { result = "Success"; }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        /* ------- Certificate Approval Methods -------*/
+
     }
 }
