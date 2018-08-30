@@ -56,7 +56,7 @@
                                 <td>@item.UploadedDate</td>
                                 <td>@Html.DisplayFor(modelItem => item.UploadedBy)</td>
                                 <td>@Html.DisplayFor(modelItem => item.ParentId)</td>
-                                <td align="center"><a href="#" class="btn btn-primary btn-xs" onclick='viewCertificate("@item.UploadedPath")'>View</a></td>
+                                <td align="center"><a href="#" class="btn btn-primary btn-xs" onclick='viewSupporting("@item.UploadedPath")'>View</a></td>
                                 @{
                                     var Checkedid = item.RequestRefNo;
                                     }
@@ -128,7 +128,8 @@
         });
     });
     TableManageButtons.init();
-    </script>
+  
+</script>
 <script>
     var ApproveSD = function (Req) {
         var Url = "/SupportDcoument/ApproveSD?Id=" + Req;
@@ -137,7 +138,7 @@
         })
     }
     var viewSupporting = function (ID) {
-        var Url = "/CertificateRequest/ViewPDF?ID=" + ID;
+        var Url = "/SupportDcoument/ViewPDF?ID=" + ID;
         window.open(Url, "_blank")
     }
 
@@ -148,8 +149,8 @@
         })
     }
 
-    var Reject = function (Req,Ctyp) {
-        var Url = "/CertificateRequest/RejectC?Rid=" + Req + "&Ctyp=" + Ctyp;
+    var Reject = function (Req) {
+        var Url = "/SupportDcoument/RejectSD?Rid=" + Req;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })

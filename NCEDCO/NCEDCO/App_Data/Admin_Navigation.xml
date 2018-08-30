@@ -23,5 +23,6 @@
   </Navigation>
   <Navigation title="Pending For Approval" action="#" controller="#" url="#" isParent ="true">
     <Child title="Pending Certificate Requests" action="Pending" controller="CertificateRequest" url="#"/>
+    <Child title="Pending Support Doucment Requests" action="Pending" controller="SupportDcoument" url="#"/>
   </Navigation>
 </Navigations>

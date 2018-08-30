@@ -408,6 +408,7 @@
     <Content Include="Views\SupportDcoument\Pending.cshtml" />
     <Content Include="Views\SupportDcoument\P_ApproveSD.cshtml" />
     <Content Include="Views\SupportDcoument\P_BulkApprove.cshtml" />
+    <Content Include="Views\SupportDcoument\P_RejectSupportDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

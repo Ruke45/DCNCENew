@@ -1,4 +1,5 @@
-﻿using NCEDCO.Models;
+﻿using NCEDCO.Filters;
+using NCEDCO.Models;
 using NCEDCO.Models.Business;
 using NCEDCO.Models.Business.Signature;
 using NCEDCO.Models.Utility;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -83,6 +85,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_ApproveSD");
         }
 
+        [HttpPost]
         public ActionResult Approve_Support(M_Signatory Model)
         {
            M_SupportDocumentUpload SModel = objSDApprv.getSDocbyID(Model.RequestID);
@@ -102,6 +105,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_BulkApprove");
         }
 
+        [HttpPost]
         public JsonResult BulkSign(M_Signatory Model)
         {
             bool r = false;
@@ -117,5 +121,58 @@ namespace NCEDCO.Controllers
             }
             return Json(r, JsonRequestBehavior.AllowGet);
         }
+
+        //[UserFilter(Function_Id = "F_CERT_APRUV")]
+        public ActionResult ViewPDF(String ID)
+        {
+            try
+            {
+                WebClient user = new WebClient();
+
+                string p = Server.MapPath(ID.ToString());
+
+                Byte[] FileBuffer = user.DownloadData(p);
+                if (FileBuffer != null)
+                {
+                    return File(FileBuffer, "application/pdf");
+                }
+                else
+                {
+                    return Content("No file");
+                }
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError("Certificate Request View @ CertificateRequest", Ex);
+                return Content("Can't Access the Location of the File");
+            }
+        }
+
+        //[UserFilter(Function_Id = "F_CERT_APRUV")]
+        public ActionResult RejectSD(string Rid)
+        {
+            Rejectitem objReject = new Rejectitem();
+            string ParentReject_Category = System.Configuration.ConfigurationManager.AppSettings["Certifi_Rject"].ToString();
+
+            List<M_Reject> Rlist = objReject.getReasons(ParentReject_Category);
+
+            ViewBag.Bag_RejectReasons = new SelectList(Rlist, "Reject_ReasonId", "Reject_ReasonName");
+            ViewBag.Bag_RejectingID = Rid;
+
+            return PartialView("P_RejectSupportDoc");
+        }
+
+        [HttpPost]
+        public JsonResult Reject_SDocument(M_Reject Model)
+        {
+            String result = "Error";
+            bool r = false;
+            r = objSDApprv.RejectSDocument(Model.Rejecting_ID,
+                                       _session.User_Id,
+                                       Model.Reject_ReasonId);
+            if (r) { result = "Success"; }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

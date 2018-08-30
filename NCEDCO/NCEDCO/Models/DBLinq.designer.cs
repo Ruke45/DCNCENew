@@ -664,6 +664,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID);
 			return ((ISingleResult<_getPendingSDoc_byIDResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setRejectSDocumentRequest]")]
+		public int _setRejectSDocumentRequest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ApprovedBy", DbType="VarChar(20)")] string approvedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectReasonCode", DbType="VarChar(20)")] string rejectReasonCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID, approvedBy, rejectReasonCode);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setRejectSupportDoc]")]
+		public int _setRejectSupportDoc([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ApprovedBy", DbType="VarChar(20)")] string approvedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RejectReasonCode", DbType="VarChar(20)")] string rejectReasonCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID, approvedBy, rejectReasonCode);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult

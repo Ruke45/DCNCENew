@@ -42,8 +42,7 @@
                 data: myformdata,
                 success: function (result) {
                     $("#loaderDiv").hide();
-                    if (result == "true") {
-                        debugger
+                    if (result) {
                         window.location.href = "/SupportDcoument/Pending?Result=Successfull";
                     }
                     else if (result == "Error") {

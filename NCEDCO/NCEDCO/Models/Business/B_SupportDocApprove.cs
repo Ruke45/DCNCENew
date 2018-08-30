@@ -166,5 +166,26 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public bool RejectSDocument(string RequestID, string RejectedBy, string ReasonCode)
+        {
+
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext._setRejectSupportDoc(RequestID,RejectedBy,ReasonCode);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
     }
 }

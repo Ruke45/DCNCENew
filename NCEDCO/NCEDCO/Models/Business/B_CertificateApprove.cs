@@ -81,6 +81,7 @@ namespace NCEDCO.Models.Business
             {
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
+
                     datacontext.Connection.ConnectionString = Connection_;
                     datacontext._setRejectUBCertificate(RejectedBy, RequestID, ReasonCode);
                     return true;

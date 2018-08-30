@@ -796,4 +796,16 @@
       <Column Name="ParentName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setRejectSDocumentRequest]" Method="_setRejectSDocumentRequest">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ApprovedBy" Parameter="approvedBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RejectReasonCode" Parameter="rejectReasonCode" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setRejectSupportDoc]" Method="_setRejectSupportDoc">
+    <Parameter Name="RequestID" Parameter="requestID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ApprovedBy" Parameter="approvedBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RejectReasonCode" Parameter="rejectReasonCode" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

@@ -8,6 +8,7 @@ C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OAuth.
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\EntityFramework.dll
+C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\itextsharp.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\Newtonsoft.Json.dll
@@ -40,5 +41,4 @@ C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\obj\Release\NCEDCO.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\obj\Release\NCEDCO.pdb
-C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\bin\itextsharp.dll
 C:\Users\Admin\Documents\GitHub\DCNCENew\NCEDCO\NCEDCO\obj\Release\NCEDCO.csprojResolveAssemblyReference.cache
