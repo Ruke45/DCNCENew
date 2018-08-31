@@ -808,4 +808,35 @@
     <Parameter Name="RejectReasonCode" Parameter="rejectReasonCode" Type="System.String" DbType="VarChar(20)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getDownloadCertificate]" Method="_getDownloadCertificate">
+    <Parameter Name="RequestId" Parameter="requestId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CertificateId" Parameter="certificateId" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="sealrequired" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ParentId" Parameter="parentId" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getDownloadCertificateResult">
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CertificateId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CertificateName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CertificatePath" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="IsValid" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="IsDownloaded" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SealRequired" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="PersonName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Designation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Consignor" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Consignee" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="created" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Ctype" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

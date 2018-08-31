@@ -30,23 +30,11 @@
 
         $("#btnSubmit").click(function (e) {
             debugger
-            //if (!$("#CategoryId").val()) {
-            //    $("#CategoryId").closest('.form-group').addClass('has-error');
-            //    //$("#CategoryIdError").text("Required");
-            //    return;
-            //}
-            //if (!$("#CategoryName").val()) {
-            //    $("#CategoryName").closest('.form-group').addClass('has-error');
-            //    //$("#CategoryNameError").text("Required");
-            //    return;
-            //}
-            //$("#loaderDiv").show();
-
+            if (!$("#Reject_ReasonId").val()) {
+                $("#Reject_ReasonId").closest('.form-group').addClass('has-error');
+                return;
+            }
             var myformdata = $("#FrmRCC").serialize();
-            //if (!$("#myForm").valid()) {
-
-            //    return false;
-            //}
             $.ajax({
 
                 type: "POST",

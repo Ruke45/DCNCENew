@@ -165,6 +165,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CertificateDownloadController.cs" />
     <Compile Include="Controllers\CertificateRequestController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -175,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Business\B_CertificateApprove.cs" />
+    <Compile Include="Models\Business\B_CertificateDownload.cs" />
     <Compile Include="Models\Business\B_CertificateRequest.cs" />
     <Compile Include="Models\Business\B_Customer.cs" />
     <Compile Include="Models\Business\B_RecordSequence.cs" />
@@ -195,6 +197,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\M_CDownload.cs" />
     <Compile Include="Models\M_Cerificate.cs" />
     <Compile Include="Models\M_CertificateApprove.cs" />
     <Compile Include="Models\M_CertificateRefferance.cs" />
@@ -409,6 +412,8 @@
     <Content Include="Views\SupportDcoument\P_ApproveSD.cshtml" />
     <Content Include="Views\SupportDcoument\P_BulkApprove.cshtml" />
     <Content Include="Views\SupportDcoument\P_RejectSupportDoc.cshtml" />
+    <Content Include="Views\CertificateDownload\Index.cshtml" />
+    <Content Include="Views\CertificateDownload\P_CDownloadList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

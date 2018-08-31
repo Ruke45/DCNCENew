@@ -1,0 +1,198 @@
+﻿@model IEnumerable<NCEDCO.Models.M_CDownload>
+@{
+    ViewBag.Title = "Certificate Download";
+}
+
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Approved Certificate Download<a href="#" id="bulkS" class="btn btn-primary btn-sm" style="float:right"">Bulk Sign</a></div> 
+
+
+
+            <div class="panel-body">
+                <table id="datatable" class="table table-striped table-bordered" style="font-size:11px;">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.RequestID)</th>
+                            <th>@Html.DisplayNameFor(model => model.RefNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.ReqType)</th>
+                            <th>@Html.DisplayNameFor(model => model.ClientName)</th>
+                            <th>@Html.DisplayNameFor(model => model.InvoiceNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsPrinted)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsStamped)</th>
+                            <th>@Html.DisplayNameFor(model => model.ApproveDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.ApprovedBy)</th>
+                            <th>Bulk</th>
+                            <th>Documents</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.RequestID)</td>
+                                <td>@Html.DisplayFor(modelItem => item.RefNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ReqType)</td>
+                                <td><a data-toggle="tooltip" title="Parent : @item.ParentN">@item.ClientName</a></td>
+                                <td>@Html.DisplayFor(modelItem => item.InvoiceNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IsPrinted)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IsStamped)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApproveDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApprovedBy)</td>
+                                
+                                @{
+                                    var Checkedid = item.RefNo;
+                                    }
+                                <td align="center"><input type="checkbox" class="chk" id='@Checkedid' name="@Checkedid" value='@Checkedid'></td>
+                                <td align="center">
+                                    <div class="btn-group ">
+                                        <a href="#"  onclick='ApproveSD("@item.RefNo")'>Certificate</a> | 
+                                        <a href="#"  onclick='Reject("@item.RefNo")'>Support</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+             <div class="panel-footer">Approved Certificate Download</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="OModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content"  id="OModelBody">
+
+    </div>
+
+  </div>
+</div>
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/pace/pace.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+        $('#datatable-responsive').DataTable();
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+        var table = $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        $("#bulkS").click(function () {
+            getValueUsingClass();
+        });
+    });
+    TableManageButtons.init();
+  
+</script>
+<script>
+    var ApproveSD = function (Req) {
+        var Url = "/SupportDcoument/ApproveSD?Id=" + Req;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+    var viewSupporting = function (ID) {
+        var Url = "/SupportDcoument/ViewPDF?ID=" + ID;
+        window.open(Url, "_blank")
+    }
+
+    var ApproveBulk = function (Req) {
+        var Url = "/SupportDcoument/BulkSign_Model?IDs=" + Req;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+
+    var Reject = function (Req) {
+        var Url = "/SupportDcoument/RejectSD?Rid=" + Req;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+
+    function getValueUsingClass() {
+        /* declare an checkbox array */
+        var chkArray = [];
+        /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
+        $(".chk:checked").each(function () {
+            chkArray.push($(this).val());
+        });
+
+        /* we join the array separated by the comma */
+        var selected;
+        selected = chkArray.join(',');
+
+        /* check if there is selected checkboxes, by default the length is 1 as it contains one single comma */
+        if (selected.length > 0) {
+            ApproveBulk(selected)
+        } else {
+            alert("Please at least check one of the checkbox");
+        }
+    }
+
+    function AjaxPost(countryArray) {
+        var ajaxConfig = {
+            type: "POST",
+            url: "/CertificateRequest/BulkSign",
+            //contentType: 'application/json',
+            data: { function_param: JSON.stringify(countryArray) },
+            success: function (result) {
+                if (result.Msg == "Succes") {
+
+                    $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceCR?Reff=' + result.Cid);
+                    $('#LoadTemplate').show();
+                    $('#Rqid').text(result.RqId);
+                    $("#SMsg").show();
+                }
+                else {
+                    $("#ErrorLable").text("Unable to Complete the Certificate Request. Please Contact the Administrator !");
+                    $("#errorModel").modal("show");
+                }
+
+            }
+        }
+        $.ajax(ajaxConfig);
+        return false;
+    }
+</script>
+
+
+
