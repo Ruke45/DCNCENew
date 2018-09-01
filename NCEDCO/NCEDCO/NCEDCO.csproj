@@ -414,6 +414,7 @@
     <Content Include="Views\SupportDcoument\P_RejectSupportDoc.cshtml" />
     <Content Include="Views\CertificateDownload\Index.cshtml" />
     <Content Include="Views\CertificateDownload\P_CDownloadList.cshtml" />
+    <Content Include="Views\CertificateDownload\P_CSupportdocDownload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

@@ -685,6 +685,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, customerId, certificateId, sealrequired, invoiceNo, parentId);
 			return ((ISingleResult<_getDownloadCertificateResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSignedCertificateSupportDoc]")]
+		public ISingleResult<_getSignedCertificateSupportDocResult> _getSignedCertificateSupportDoc([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Certid", DbType="VarChar(20)")] string certid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), certid);
+			return ((ISingleResult<_getSignedCertificateSupportDocResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -6238,6 +6245,104 @@ namespace NCEDCO.Models
 				if ((this._ParentName != value))
 				{
 					this._ParentName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSignedCertificateSupportDocResult
+	{
+		
+		private string _RequestRefNo;
+		
+		private string _DPath;
+		
+		private string _Dname;
+		
+		private string _DId;
+		
+		private string _IsSigned;
+		
+		public _getSignedCertificateSupportDocResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestRefNo", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestRefNo
+		{
+			get
+			{
+				return this._RequestRefNo;
+			}
+			set
+			{
+				if ((this._RequestRefNo != value))
+				{
+					this._RequestRefNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DPath", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string DPath
+		{
+			get
+			{
+				return this._DPath;
+			}
+			set
+			{
+				if ((this._DPath != value))
+				{
+					this._DPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dname", DbType="VarChar(100)")]
+		public string Dname
+		{
+			get
+			{
+				return this._Dname;
+			}
+			set
+			{
+				if ((this._Dname != value))
+				{
+					this._Dname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DId", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string DId
+		{
+			get
+			{
+				return this._DId;
+			}
+			set
+			{
+				if ((this._DId != value))
+				{
+					this._DId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSigned", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string IsSigned
+		{
+			get
+			{
+				return this._IsSigned;
+			}
+			set
+			{
+				if ((this._IsSigned != value))
+				{
+					this._IsSigned = value;
 				}
 			}
 		}

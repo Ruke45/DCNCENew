@@ -50,5 +50,7 @@ namespace NCEDCO.Models
         [Display(Name = "Parent Name")]
         public string ParentN { get; set; }
 
+        public string CPath { get; set; }
+
     }
 }

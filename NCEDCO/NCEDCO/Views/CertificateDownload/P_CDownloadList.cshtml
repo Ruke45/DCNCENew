@@ -9,7 +9,7 @@
 
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Approved Certificate Download<a href="#" id="bulkS" class="btn btn-primary btn-sm" style="float:right"">Bulk Sign</a></div> 
+            <div class="panel-heading">Approved Certificate Download<a href="#" id="bulkS" class="btn btn-primary btn-sm" style="float:right"">Download</a></div> 
 
 
 
@@ -55,8 +55,8 @@
                                 <td align="center"><input type="checkbox" class="chk" id='@Checkedid' name="@Checkedid" value='@Checkedid'></td>
                                 <td align="center">
                                     <div class="btn-group ">
-                                        <a href="#"  onclick='ApproveSD("@item.RefNo")'>Certificate</a> | 
-                                        <a href="#"  onclick='Reject("@item.RefNo")'>Support</a>
+                                        <a href="#"  onclick='DwnCertificate("@item.CertPath")'>Certificate</a> | 
+                                        <a href="#"  onclick='SupportD("@item.RequestID")'>Support</a>
                                     </div>
                                 </td>
                             </tr>
@@ -129,8 +129,8 @@
             $("#OModel").modal("show");
         })
     }
-    var viewSupporting = function (ID) {
-        var Url = "/SupportDcoument/ViewPDF?ID=" + ID;
+    var DwnCertificate = function (ID) {
+        var Url = "/CertificateDownload/ViewPDF?ID=" + ID;
         window.open(Url, "_blank")
     }
 
@@ -141,8 +141,8 @@
         })
     }
 
-    var Reject = function (Req) {
-        var Url = "/SupportDcoument/RejectSD?Rid=" + Req;
+    var SupportD = function (Req) {
+        var Url = "/CertificateDownload/getCertificateSupportDocs?Cid=" + Req;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })

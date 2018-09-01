@@ -48,6 +48,42 @@ namespace NCEDCO.Models.Business
                         cd.InvoiceNo = result.InvoiceNo;
                         cd.ApprovedBy = result.created;
                         cd.ParentN = result.ParentName;
+                        cd.CertPath = result.CertificatePath;
+                        lstpackage.Add(cd);
+
+                    }
+                }
+
+                return lstpackage;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public List<M_SupportDocument> getCertificateSupportDocs(string CertificateId)
+        {
+            try
+            {
+
+                List<M_SupportDocument> lstpackage = new List<M_SupportDocument>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getSignedCertificateSupportDocResult> lst = datacontext._getSignedCertificateSupportDoc(CertificateId);
+
+                    foreach (_getSignedCertificateSupportDocResult result in lst)
+                    {
+                        M_SupportDocument cd = new M_SupportDocument();
+                        cd.Download_Path = result.DPath;
+                        cd.Certificate_RequestId = result.RequestRefNo;
+                        cd.SupportingDocument_Name = result.Dname;
+                        cd.SupportingDocument_Id = result.DId;
+                        cd.Status_ = result.IsSigned;
                         lstpackage.Add(cd);
 
                     }
