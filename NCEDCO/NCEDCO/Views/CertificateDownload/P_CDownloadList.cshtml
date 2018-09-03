@@ -9,7 +9,7 @@
 
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Approved Certificate Download<a href="#" id="bulkS" class="btn btn-primary btn-sm" style="float:right"">Download</a></div> 
+            <div class="panel-heading">Approved Certificate Download<a href="#" id="bulkS" onclick="CheckIds()" class="btn btn-primary btn-sm" style="float:right">Download</a></div> 
 
 
 
@@ -50,7 +50,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.ApprovedBy)</td>
                                 
                                 @{
-                                    var Checkedid = item.RefNo;
+                                var Checkedid = item.RequestID;
                                     }
                                 <td align="center"><input type="checkbox" class="chk" id='@Checkedid' name="@Checkedid" value='@Checkedid'></td>
                                 <td align="center">
@@ -123,12 +123,6 @@
   
 </script>
 <script>
-    var ApproveSD = function (Req) {
-        var Url = "/SupportDcoument/ApproveSD?Id=" + Req;
-        $("#OModelBody").load(Url, function () {
-            $("#OModel").modal("show");
-        })
-    }
     var DwnCertificate = function (ID) {
         var Url = "/CertificateDownload/ViewPDF?ID=" + ID;
         window.open(Url, "_blank")
@@ -148,7 +142,7 @@
         })
     }
 
-    function getValueUsingClass() {
+    function CheckIds() {
         /* declare an checkbox array */
         var chkArray = [];
         /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
@@ -162,7 +156,7 @@
 
         /* check if there is selected checkboxes, by default the length is 1 as it contains one single comma */
         if (selected.length > 0) {
-            ApproveBulk(selected)
+            AjaxPost(selected)
         } else {
             alert("Please at least check one of the checkbox");
         }
@@ -171,15 +165,15 @@
     function AjaxPost(countryArray) {
         var ajaxConfig = {
             type: "POST",
-            url: "/CertificateRequest/BulkSign",
+            url: "/CertificateDownload/BulkDownload",
             //contentType: 'application/json',
-            data: { function_param: JSON.stringify(countryArray) },
+            data: { IDs: JSON.stringify(countryArray) },
             success: function (result) {
                 if (result.Msg == "Succes") {
 
-                    $('#LoadTemplate').load('/CertificateRequest/LoadRefferenceCR?Reff=' + result.Cid);
-                    $('#LoadTemplate').show();
-                    $('#Rqid').text(result.RqId);
+                    //$('#LoadTemplate').load('/CertificateDownload?Reff=' + result.Cid);
+                    //$('#LoadTemplate').show();
+                    //$('#Rqid').text(result.RqId);
                     $("#SMsg").show();
                 }
                 else {

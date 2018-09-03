@@ -16,6 +16,7 @@ namespace NCEDCO.Controllers
     public class SupportDcoumentController : Controller
     {
         B_SupportDocApprove objSDApprv = new B_SupportDocApprove();
+        B_CertificateDownload objCd = new B_CertificateDownload();
         _USession _session = new _USession();
 
         public ActionResult Index()
@@ -174,5 +175,14 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Download()
+        {
+            return View();
+        }
+
+        public ActionResult getApprovedSDbyParent()
+        {
+            return PartialView("P_SDDownload",objCd.getSupportingDocumentDownload("PC3"));
+        }
     }
 }

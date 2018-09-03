@@ -99,5 +99,120 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public M_CDownload getCertificateLinks(string RequestId)
+        {
+            try
+            {
+
+                M_CDownload Cu = new M_CDownload();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var lst = datacontext._getDownloadCertificateByID(RequestId).SingleOrDefault();
+                    if (lst != null)
+                    {
+                        Cu.RequestID = lst.RequestId;
+                        Cu.InvoiceNo = lst.InvoiceNo;
+                        Cu.CertPath = lst.CertificatePath;
+                        Cu.CPath = lst.CertificateName;
+                        Cu.RefNo = lst.CertificateId;
+                    }
+                }
+
+                return Cu;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public List<M_SupportDocument> getSignedSupportDocs(string CertificateId)
+        {
+            try
+            {
+
+                List<M_SupportDocument> lstpackage = new List<M_SupportDocument>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getSignedCertificateSupportDocForDownLoadResult> lst 
+                                    = datacontext._getSignedCertificateSupportDocForDownLoad(CertificateId);
+
+                    foreach (_getSignedCertificateSupportDocForDownLoadResult result in lst)
+                    {
+                        M_SupportDocument cd = new M_SupportDocument();
+                        cd.Download_Path = result.DPath;
+                        cd.Certificate_RequestId = result.RequestRefNo;
+                        cd.SupportingDocument_Name = result.Dname;
+                        cd.SupportingDocument_Id = result.DId;
+                        cd.Status_ = result.IsSigned;
+                        lstpackage.Add(cd);
+
+                    }
+                }
+
+                return lstpackage;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public List<M_SupportDocument> getSupportingDocumentDownload(string ParentId)
+        {
+            try
+            {
+
+                List<M_SupportDocument> lstSDDoc = new List<M_SupportDocument>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getSupportingDocumentDownloadResult> lst = datacontext._getSupportingDocumentDownload(ParentId);
+
+                    foreach (_getSupportingDocumentDownloadResult result in lst)
+                    {
+                        M_SupportDocument SD = new M_SupportDocument();
+
+                        SD.SupportingDocument_Id = result.SupportingDocID;
+                        SD.SupportingDocument_Name = result.SupportingDocumentName;
+                        SD.Request_ID = result.RequestID;
+                        SD.Download_Path = result.DownloadPath;
+                        SD.Certificate_RequestId = result.CertificateRequestId;
+                        SD.Request_By = result.RequestBy;
+                        SD.Description_ = result.InvoiceNo;
+                        // SD.Request_Date = result.RequestDate.ToString();
+                        SD.Request_Date = result.RequestDate.Value.ToString("dd/MMM/yy");
+                        SD.Approved_Date = result.ApprovedDate.Value.ToString("dd/MMM/yy");
+                        SD.Approved_BY = result.ApprovedBy;
+                        string Con = result.Consignor.Split('<')[0];
+                        string Cone = result.Consignee.Split('<')[0];
+                        SD.Consignee_ = Cone;
+                        SD.Consignor_ = Con;
+                        SD.Is_Downloaded = result.IsDownloaded;
+
+                        lstSDDoc.Add(SD);
+
+                    }
+                }
+
+                return lstSDDoc;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }

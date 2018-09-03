@@ -692,6 +692,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), certid);
 			return ((ISingleResult<_getSignedCertificateSupportDocResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getDownloadCertificateByID]")]
+		public ISingleResult<_getDownloadCertificateByIDResult> _getDownloadCertificateByID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId);
+			return ((ISingleResult<_getDownloadCertificateByIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSignedCertificateSupportDocForDownLoad]")]
+		public ISingleResult<_getSignedCertificateSupportDocForDownLoadResult> _getSignedCertificateSupportDocForDownLoad([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Certid", DbType="VarChar(20)")] string certid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), certid);
+			return ((ISingleResult<_getSignedCertificateSupportDocForDownLoadResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSupportingDocumentDownload]")]
+		public ISingleResult<_getSupportingDocumentDownloadResult> _getSupportingDocumentDownload([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentCustomer", DbType="VarChar(20)")] string parentCustomer)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), parentCustomer);
+			return ((ISingleResult<_getSupportingDocumentDownloadResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -6343,6 +6364,462 @@ namespace NCEDCO.Models
 				if ((this._IsSigned != value))
 				{
 					this._IsSigned = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getDownloadCertificateByIDResult
+	{
+		
+		private string _RequestId;
+		
+		private string _CertificateId;
+		
+		private string _CertificateName;
+		
+		private string _CertificatePath;
+		
+		private string _InvoiceNo;
+		
+		public _getDownloadCertificateByIDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CertificateId
+		{
+			get
+			{
+				return this._CertificateId;
+			}
+			set
+			{
+				if ((this._CertificateId != value))
+				{
+					this._CertificateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateName", DbType="VarChar(150)")]
+		public string CertificateName
+		{
+			get
+			{
+				return this._CertificateName;
+			}
+			set
+			{
+				if ((this._CertificateName != value))
+				{
+					this._CertificateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificatePath", DbType="VarChar(500)")]
+		public string CertificatePath
+		{
+			get
+			{
+				return this._CertificatePath;
+			}
+			set
+			{
+				if ((this._CertificatePath != value))
+				{
+					this._CertificatePath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(50)")]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this._InvoiceNo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSignedCertificateSupportDocForDownLoadResult
+	{
+		
+		private string _RequestRefNo;
+		
+		private string _DPath;
+		
+		private string _Dname;
+		
+		private string _DId;
+		
+		private string _IsSigned;
+		
+		public _getSignedCertificateSupportDocForDownLoadResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestRefNo", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestRefNo
+		{
+			get
+			{
+				return this._RequestRefNo;
+			}
+			set
+			{
+				if ((this._RequestRefNo != value))
+				{
+					this._RequestRefNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DPath", DbType="VarChar(250)")]
+		public string DPath
+		{
+			get
+			{
+				return this._DPath;
+			}
+			set
+			{
+				if ((this._DPath != value))
+				{
+					this._DPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dname", DbType="VarChar(100)")]
+		public string Dname
+		{
+			get
+			{
+				return this._Dname;
+			}
+			set
+			{
+				if ((this._Dname != value))
+				{
+					this._Dname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DId", DbType="VarChar(20)")]
+		public string DId
+		{
+			get
+			{
+				return this._DId;
+			}
+			set
+			{
+				if ((this._DId != value))
+				{
+					this._DId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSigned", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		public string IsSigned
+		{
+			get
+			{
+				return this._IsSigned;
+			}
+			set
+			{
+				if ((this._IsSigned != value))
+				{
+					this._IsSigned = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSupportingDocumentDownloadResult
+	{
+		
+		private string _SupportingDocumentName;
+		
+		private string _SupportingDocID;
+		
+		private string _RequestID;
+		
+		private string _DownloadPath;
+		
+		private string _RequestBy;
+		
+		private System.Nullable<System.DateTime> _RequestDate;
+		
+		private string _CertificateRequestId;
+		
+		private System.Nullable<System.DateTime> _ApprovedDate;
+		
+		private string _ApprovedBy;
+		
+		private string _IsDownloaded;
+		
+		private string _Consignor;
+		
+		private string _Consignee;
+		
+		private string _InvoiceNo;
+		
+		private string _CertificateId;
+		
+		public _getSupportingDocumentDownloadResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentName", DbType="VarChar(100)")]
+		public string SupportingDocumentName
+		{
+			get
+			{
+				return this._SupportingDocumentName;
+			}
+			set
+			{
+				if ((this._SupportingDocumentName != value))
+				{
+					this._SupportingDocumentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocID", DbType="VarChar(20)")]
+		public string SupportingDocID
+		{
+			get
+			{
+				return this._SupportingDocID;
+			}
+			set
+			{
+				if ((this._SupportingDocID != value))
+				{
+					this._SupportingDocID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this._RequestID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DownloadPath", DbType="VarChar(250)")]
+		public string DownloadPath
+		{
+			get
+			{
+				return this._DownloadPath;
+			}
+			set
+			{
+				if ((this._DownloadPath != value))
+				{
+					this._DownloadPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestBy", DbType="VarChar(20)")]
+		public string RequestBy
+		{
+			get
+			{
+				return this._RequestBy;
+			}
+			set
+			{
+				if ((this._RequestBy != value))
+				{
+					this._RequestBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> RequestDate
+		{
+			get
+			{
+				return this._RequestDate;
+			}
+			set
+			{
+				if ((this._RequestDate != value))
+				{
+					this._RequestDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateRequestId", DbType="VarChar(20)")]
+		public string CertificateRequestId
+		{
+			get
+			{
+				return this._CertificateRequestId;
+			}
+			set
+			{
+				if ((this._CertificateRequestId != value))
+				{
+					this._CertificateRequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ApprovedDate
+		{
+			get
+			{
+				return this._ApprovedDate;
+			}
+			set
+			{
+				if ((this._ApprovedDate != value))
+				{
+					this._ApprovedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedBy", DbType="VarChar(20)")]
+		public string ApprovedBy
+		{
+			get
+			{
+				return this._ApprovedBy;
+			}
+			set
+			{
+				if ((this._ApprovedBy != value))
+				{
+					this._ApprovedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDownloaded", DbType="VarChar(5)")]
+		public string IsDownloaded
+		{
+			get
+			{
+				return this._IsDownloaded;
+			}
+			set
+			{
+				if ((this._IsDownloaded != value))
+				{
+					this._IsDownloaded = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignor", DbType="VarChar(500)")]
+		public string Consignor
+		{
+			get
+			{
+				return this._Consignor;
+			}
+			set
+			{
+				if ((this._Consignor != value))
+				{
+					this._Consignor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(500)")]
+		public string Consignee
+		{
+			get
+			{
+				return this._Consignee;
+			}
+			set
+			{
+				if ((this._Consignee != value))
+				{
+					this._Consignee = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(50)")]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this._InvoiceNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CertificateId
+		{
+			get
+			{
+				return this._CertificateId;
+			}
+			set
+			{
+				if ((this._CertificateId != value))
+				{
+					this._CertificateId = value;
 				}
 			}
 		}
