@@ -713,6 +713,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), parentCustomer);
 			return ((ISingleResult<_getSupportingDocumentDownloadResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSupportDocDownloadData]")]
+		public ISingleResult<_getSupportDocDownloadDataResult> _getSupportDocDownloadData([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestID", DbType="VarChar(20)")] string requestID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestID);
+			return ((ISingleResult<_getSupportDocDownloadDataResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -6820,6 +6827,68 @@ namespace NCEDCO.Models
 				if ((this._CertificateId != value))
 				{
 					this._CertificateId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSupportDocDownloadDataResult
+	{
+		
+		private string _RequestID;
+		
+		private string _DownloadPath;
+		
+		private string _DownloadDocName;
+		
+		public _getSupportDocDownloadDataResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this._RequestID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DownloadPath", DbType="VarChar(250)")]
+		public string DownloadPath
+		{
+			get
+			{
+				return this._DownloadPath;
+			}
+			set
+			{
+				if ((this._DownloadPath != value))
+				{
+					this._DownloadPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DownloadDocName", DbType="VarChar(50)")]
+		public string DownloadDocName
+		{
+			get
+			{
+				return this._DownloadDocName;
+			}
+			set
+			{
+				if ((this._DownloadDocName != value))
+				{
+					this._DownloadDocName = value;
 				}
 			}
 		}

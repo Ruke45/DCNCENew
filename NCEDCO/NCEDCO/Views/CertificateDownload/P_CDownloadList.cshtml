@@ -99,7 +99,7 @@
 <script src="~/Scripts/pace/pace.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datatable').dataTable();
+        $('#datatable').dataTable({ "order": [[7, "desc"]] });
         $('#datatable-keytable').DataTable({
             keys: true
         });

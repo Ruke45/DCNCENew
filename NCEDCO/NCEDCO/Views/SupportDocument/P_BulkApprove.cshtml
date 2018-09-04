@@ -38,12 +38,12 @@
             $.ajax({
 
                 type: "POST",
-                url: "/SupportDcoument/BulkSign",
+                url: "/SupportDocument/BulkSign",
                 data: myformdata,
                 success: function (result) {
                     $("#loaderDiv").hide();
                     if (result) {
-                        window.location.href = "/SupportDcoument/Pending?Result=Successfull";
+                        window.location.href = "/SupportDocument/Pending?Result=Successfull";
                     }
                     else if (result == "Error") {
                         $("#OModel").modal("hide");

@@ -172,7 +172,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\SupportDcoumentController.cs" />
+    <Compile Include="Controllers\SupportDocumentController.cs" />
     <Compile Include="Filters\UserFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -410,15 +410,15 @@
     <Content Include="Views\CertificateRequest\P_SignatoryPasswordBulk.cshtml" />
     <Content Include="Views\CertificateRequest\P_RejectCertificate.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\SupportDcoument\Pending.cshtml" />
-    <Content Include="Views\SupportDcoument\P_ApproveSD.cshtml" />
-    <Content Include="Views\SupportDcoument\P_BulkApprove.cshtml" />
-    <Content Include="Views\SupportDcoument\P_RejectSupportDoc.cshtml" />
+    <Content Include="Views\SupportDocument\Pending.cshtml" />
+    <Content Include="Views\SupportDocument\P_ApproveSD.cshtml" />
+    <Content Include="Views\SupportDocument\P_BulkApprove.cshtml" />
+    <Content Include="Views\SupportDocument\P_RejectSupportDoc.cshtml" />
     <Content Include="Views\CertificateDownload\Index.cshtml" />
     <Content Include="Views\CertificateDownload\P_CDownloadList.cshtml" />
     <Content Include="Views\CertificateDownload\P_CSupportdocDownload.cshtml" />
-    <Content Include="Views\SupportDcoument\Download.cshtml" />
-    <Content Include="Views\SupportDcoument\P_SDDownload.cshtml" />
+    <Content Include="Views\SupportDocument\Download.cshtml" />
+    <Content Include="Views\SupportDocument\P_SDDownload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

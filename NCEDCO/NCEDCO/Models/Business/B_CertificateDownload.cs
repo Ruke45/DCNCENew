@@ -13,7 +13,7 @@ namespace NCEDCO.Models.Business
 
         public List<M_CDownload> getCertificateDownload(string RequestId,
                                                         string CustID,
-                                                        string certID, string seal, string invoiceNo,string ParentId)
+                                                        string certID, string seal, string invoiceNo, string ParentId)
         {
             try
             {
@@ -23,16 +23,16 @@ namespace NCEDCO.Models.Business
                 {
                     datacontext.Connection.ConnectionString = Connection_;
                     System.Data.Linq.ISingleResult<_getDownloadCertificateResult> lst = datacontext._getDownloadCertificate(RequestId,
-                                                                                                                            CustID, 
-                                                                                                                            certID, 
-                                                                                                                            seal, 
+                                                                                                                            CustID,
+                                                                                                                            certID,
+                                                                                                                            seal,
                                                                                                                             invoiceNo,
                                                                                                                             ParentId);
                     foreach (_getDownloadCertificateResult result in lst)
                     {
                         M_CDownload cd = new M_CDownload();
-                        if (result.SealRequired == "True"){cd.IsStamped = "Yes";}
-                        else{ cd.IsStamped = "No"; }
+                        if (result.SealRequired == "True") { cd.IsStamped = "Yes"; }
+                        else { cd.IsStamped = "No"; }
                         cd.IsDownloaded = result.IsDownloaded;
                         cd.RequestBy = result.CreatedBy;
                         cd.RefNo = result.CertificateId;
@@ -140,7 +140,7 @@ namespace NCEDCO.Models.Business
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
                     datacontext.Connection.ConnectionString = Connection_;
-                    System.Data.Linq.ISingleResult<_getSignedCertificateSupportDocForDownLoadResult> lst 
+                    System.Data.Linq.ISingleResult<_getSignedCertificateSupportDocForDownLoadResult> lst
                                     = datacontext._getSignedCertificateSupportDocForDownLoad(CertificateId);
 
                     foreach (_getSignedCertificateSupportDocForDownLoadResult result in lst)
@@ -211,8 +211,35 @@ namespace NCEDCO.Models.Business
                 ErrorLog.LogError(ex);
                 return null;
             }
+        }
 
+        public M_SupportDocument getSupportDocLinks(string RequestId)
+        {
+            try
+            {
+
+                M_SupportDocument Cu = new M_SupportDocument();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var lst = datacontext._getSupportDocDownloadData(RequestId).SingleOrDefault();
+                    if (lst != null)
+                    {
+                        Cu.Download_Path = lst.DownloadPath;
+                        Cu.SupportingDocument_Name = lst.DownloadDocName;
+                        Cu.Request_ID = lst.RequestID;
+                    }
+                }
+
+                return Cu;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
 
         }
     }
+       
 }

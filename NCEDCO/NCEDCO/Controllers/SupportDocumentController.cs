@@ -6,14 +6,16 @@ using NCEDCO.Models.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace NCEDCO.Controllers
 {
-    public class SupportDcoumentController : Controller
+    public class SupportDocumentController : Controller
     {
         B_SupportDocApprove objSDApprv = new B_SupportDocApprove();
         B_CertificateDownload objCd = new B_CertificateDownload();
@@ -183,6 +185,46 @@ namespace NCEDCO.Controllers
         public ActionResult getApprovedSDbyParent()
         {
             return PartialView("P_SDDownload",objCd.getSupportingDocumentDownload("PC3"));
+        }
+
+        [HttpPost]
+        public ActionResult BulkDownload(string IDs)
+        {
+            try
+            {
+                var strin = new JavaScriptSerializer().DeserializeObject(IDs);
+                string[] arr = strin.ToString().Split(',');
+
+                if (System.IO.File.Exists(Server.MapPath
+                                  ("~/Temp/Supportdocs.zip")))
+                {
+                    System.IO.File.Delete(Server.MapPath
+                                  ("~/Temp/Supportdocs.zip"));
+                }
+                ZipArchive zip = ZipFile.Open(Server.MapPath
+                         ("~/Temp/Supportdocs.zip"), ZipArchiveMode.Create);
+
+                for (int a = 0; a < arr.Length; a++)
+                {
+                    M_SupportDocument D = new M_SupportDocument();
+                    D = objCd.getSupportDocLinks(arr[a]);
+
+                    string Folder = arr[a] + "/";
+                    zip.CreateEntryFromFile(Server.MapPath
+                             (D.Download_Path), Folder + D.SupportingDocument_Name);
+                }
+                zip.Dispose();
+                return File(Server.MapPath("~/Temp/Supportdocs.zip"),
+                      "application/zip", DateTime.Now.ToString("dd.MM.yyyy.ss") + ".zip");
+                //byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Temp/Certificates.zip"));
+                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, DateTime.Now.ToString("dd.MM.yyyy.ss") + ".zip");
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+                return View();
+            }
+
         }
     }
 }

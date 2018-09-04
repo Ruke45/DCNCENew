@@ -38,12 +38,12 @@
             $.ajax({
 
                 type: "POST",
-                url: "/SupportDcoument/Approve_Support",
+                url: "/SupportDocument/Approve_Support",
                 data: myformdata,
                 success: function (result) {
                     $("#loaderDiv").hide();
                     if (result == "Sucess") {
-                        window.location.href = "/SupportDcoument/Pending";
+                        window.location.href = "/SupportDocument/Pending";
                     }
                     else if (result == "Error") {
                         $("#OModel").modal("hide");

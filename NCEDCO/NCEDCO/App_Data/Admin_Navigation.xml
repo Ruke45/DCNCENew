@@ -19,10 +19,14 @@
   <Navigation title="Certificate / Supporting Doc" action="#" controller="#" url="#" isParent ="true">
     <Child title="Web Certificate Requests" action="Index" controller="CertificateRequest" url="#"/>
     <Child title="Upload Certificate Requests" action="Upload" controller="CertificateRequest" url="#"/>
-    <Child title="Supporting Dcoument Requests" action="Supporting" controller="CertificateRequest" url="#"/>
+    <Child title="Supporting Document Requests" action="Supporting" controller="CertificateRequest" url="#"/>
   </Navigation>
   <Navigation title="Pending For Approval" action="#" controller="#" url="#" isParent ="true">
     <Child title="Pending Certificate Requests" action="Pending" controller="CertificateRequest" url="#"/>
-    <Child title="Pending Support Doucment Requests" action="Pending" controller="SupportDcoument" url="#"/>
+    <Child title="Pending Support Document Requests" action="Pending" controller="SupportDocument" url="#"/>
+  </Navigation>
+  <Navigation title="Download" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Pending Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
+    <Child title="Pending Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
 </Navigations>
