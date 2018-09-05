@@ -896,4 +896,20 @@
       <Column Name="DownloadDocName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getAllCertificateCancelDetails]" Method="_getAllCertificateCancelDetails">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="startdate" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="enddate" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="invoiceSupDoc" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="refNo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getAllCertificateCancelDetailsResult">
+      <Column Name="CertificateId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="docTypes" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="Invoice" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Parent" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

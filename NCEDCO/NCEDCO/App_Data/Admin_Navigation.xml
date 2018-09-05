@@ -29,4 +29,7 @@
     <Child title="Pending Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
     <Child title="Pending Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
+<Navigation title="Cancelation" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>
+  </Navigation>
 </Navigations>
