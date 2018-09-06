@@ -721,6 +721,20 @@ namespace NCEDCO.Models
 			return ((ISingleResult<_getSupportDocDownloadDataResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setDocumentCancelation]")]
+		public int _setDocumentCancelation([global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocID", DbType="VarChar(20)")] string docID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Remark", DbType="VarChar(200)")] string remark, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CancelBy", DbType="VarChar(20)")] string cancelBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocType", DbType="VarChar(1)")] string docType)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), docID, customerId, remark, cancelBy, docType);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSupportingDocUsingCertificateId]")]
+		public ISingleResult<_getSupportingDocUsingCertificateIdResult> _getSupportingDocUsingCertificateId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateId", DbType="VarChar(20)")] string certificateId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string invoiceSupDocID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), certificateId, invoiceSupDocID);
+			return ((ISingleResult<_getSupportingDocUsingCertificateIdResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getAllCertificateCancelDetails]")]
 		public ISingleResult<_getAllCertificateCancelDetailsResult> _getAllCertificateCancelDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(1)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string startdate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string enddate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string invoiceSupDoc, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string refNo)
 		{
@@ -6901,14 +6915,76 @@ namespace NCEDCO.Models
 		}
 	}
 	
+	public partial class _getSupportingDocUsingCertificateIdResult
+	{
+		
+		private string _RequestID;
+		
+		private string _CustomerID;
+		
+		private string _DocType;
+		
+		public _getSupportingDocUsingCertificateIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this._RequestID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="VarChar(20)")]
+		public string CustomerID
+		{
+			get
+			{
+				return this._CustomerID;
+			}
+			set
+			{
+				if ((this._CustomerID != value))
+				{
+					this._CustomerID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocType", DbType="VarChar(7) NOT NULL", CanBeNull=false)]
+		public string DocType
+		{
+			get
+			{
+				return this._DocType;
+			}
+			set
+			{
+				if ((this._DocType != value))
+				{
+					this._DocType = value;
+				}
+			}
+		}
+	}
+	
 	public partial class _getAllCertificateCancelDetailsResult
 	{
 		
-		private string _CertificateId;
+		private string _Ref_;
 		
 		private string _CustomerName;
 		
-		private System.Nullable<System.DateTime> _CreatedDate;
+		private System.Nullable<System.DateTime> _Approve_Date;
 		
 		private string _docTypes;
 		
@@ -6916,22 +6992,32 @@ namespace NCEDCO.Models
 		
 		private string _Parent;
 		
+		private string _Approved_by;
+		
+		private string _Path_;
+		
+		private string _IsDownloaded;
+		
+		private string _Req_id;
+		
+		private string _CustomerId;
+		
 		public _getAllCertificateCancelDetailsResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string CertificateId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ref_", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Ref_
 		{
 			get
 			{
-				return this._CertificateId;
+				return this._Ref_;
 			}
 			set
 			{
-				if ((this._CertificateId != value))
+				if ((this._Ref_ != value))
 				{
-					this._CertificateId = value;
+					this._Ref_ = value;
 				}
 			}
 		}
@@ -6952,18 +7038,18 @@ namespace NCEDCO.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approve_Date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Approve_Date
 		{
 			get
 			{
-				return this._CreatedDate;
+				return this._Approve_Date;
 			}
 			set
 			{
-				if ((this._CreatedDate != value))
+				if ((this._Approve_Date != value))
 				{
-					this._CreatedDate = value;
+					this._Approve_Date = value;
 				}
 			}
 		}
@@ -6984,7 +7070,7 @@ namespace NCEDCO.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Invoice", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Invoice", DbType="VarChar(13) NOT NULL", CanBeNull=false)]
 		public string Invoice
 		{
 			get
@@ -7012,6 +7098,86 @@ namespace NCEDCO.Models
 				if ((this._Parent != value))
 				{
 					this._Parent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved_by", DbType="VarChar(20)")]
+		public string Approved_by
+		{
+			get
+			{
+				return this._Approved_by;
+			}
+			set
+			{
+				if ((this._Approved_by != value))
+				{
+					this._Approved_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path_", DbType="VarChar(500)")]
+		public string Path_
+		{
+			get
+			{
+				return this._Path_;
+			}
+			set
+			{
+				if ((this._Path_ != value))
+				{
+					this._Path_ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDownloaded", DbType="VarChar(5)")]
+		public string IsDownloaded
+		{
+			get
+			{
+				return this._IsDownloaded;
+			}
+			set
+			{
+				if ((this._IsDownloaded != value))
+				{
+					this._IsDownloaded = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Req_id", DbType="VarChar(20)")]
+		public string Req_id
+		{
+			get
+			{
+				return this._Req_id;
+			}
+			set
+			{
+				if ((this._Req_id != value))
+				{
+					this._Req_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
 				}
 			}
 		}

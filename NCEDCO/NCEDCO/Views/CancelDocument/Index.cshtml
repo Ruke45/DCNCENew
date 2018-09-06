@@ -31,11 +31,15 @@
                     <thead>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Ref_No)</th>
+                            <th>@Html.DisplayNameFor(model => model.RequestId)</th>
                             <th>@Html.DisplayNameFor(model => model.Dtype)</th>
+                            <th>@Html.DisplayNameFor(model => model.InvoicNo)</th>
                             <th>@Html.DisplayNameFor(model => model.ApprovedDate)</th>
-                            @*<th>@Html.DisplayNameFor(model => model.InvoicNo)</th>*@
+                            <th>@Html.DisplayNameFor(model => model.ApprovedBy)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsDownloaded)</th>
                             <th>@Html.DisplayNameFor(model => model.Client)</th>
                             <th>Details</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -48,13 +52,26 @@
 
                             <tr>
                                 <td>@Html.DisplayFor(modelItem => item.Ref_No)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Dtype)</td>
+                                @if(item.RequestId != null){
+                                <td>@Html.DisplayFor(modelItem => item.RequestId)</td>
+                                }else{<td>N/A</td>}
+                                <td>@Html.DisplayFor(modelItem => item.Dtype)</td>                             
+                                <td>@Html.DisplayFor(modelItem => item.InvoicNo)</td>
                                 <td>@Html.DisplayFor(modelItem => item.ApprovedDate)</td>
-                                @*<td>@Html.DisplayFor(modelItem => item.InvoicNo)</td>*@
+                                <td>@Html.DisplayFor(modelItem => item.ApprovedBy)</td>
+                                @if(item.IsDownloaded == "Y"){
+                                <td>Yes</td>
+                                }
+                                else{<td>No</td>}
                                 <td><a data-toggle="tooltip" title="Parent : @item.Parent">@item.Client</a></td>
                                 <td align="center">
                                     <div class="btn-group ">
-                                        <a href="#"  onclick='DwnCertificate("@item.Ref_No")'>Details</a> 
+                                        <a href="#" class="btn btn-primary btn-xs"  onclick='DwnCertificate("@item.Path")'>View</a> 
+                                    </div>
+                                </td>
+                                <td align="center">
+                                    <div class="btn-group ">
+                                        <a href="#" class="btn btn-primary btn-xs" onclick='CancelDoc("@item.Ref_No","@item.ClientId","@item.Dtype")' >Cancel</a> 
                                     </div>
                                 </td>
                             </tr>
@@ -96,7 +113,7 @@
 <script src="~/Scripts/pace/pace.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datatable').dataTable({ "order": [[2, "desc"]] });
+        $('#datatable').dataTable({ "order": [[4, "desc"]] });
         $('#datatable-keytable').DataTable({
             keys: true
         });
@@ -118,4 +135,16 @@
     });
     TableManageButtons.init();
   
+</script>
+<script>
+    var DwnCertificate = function (ID) {
+        var Url = "/CancelDocument/ViewPDF?ID=" + ID;
+        window.open(Url, "_blank")
+    }
+    var CancelDoc = function (Ref, Client, Doctype) {
+        var Url = "/CancelDocument/Cancel_Doc?Ref=" + Ref + "&Client=" + Client + "&Doctype=" + Doctype;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
 </script>

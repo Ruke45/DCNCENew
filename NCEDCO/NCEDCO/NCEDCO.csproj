@@ -425,6 +425,7 @@
     <Content Include="Views\SupportDocument\Download.cshtml" />
     <Content Include="Views\SupportDocument\P_SDDownload.cshtml" />
     <Content Include="Views\CancelDocument\Index.cshtml" />
+    <Content Include="Views\CancelDocument\P_CancelDocument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

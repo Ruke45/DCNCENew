@@ -23,6 +23,7 @@ namespace NCEDCO.Models
         [Display(Name = "Client")]
         [Required(ErrorMessage = "Required!")]
         public string Client { get; set; }
+        public string ClientId { get; set; }
 
         [Display(Name = "Parent Customer")]
         [Required(ErrorMessage = "Required!")]
@@ -36,9 +37,26 @@ namespace NCEDCO.Models
         [Required(ErrorMessage = "Required!")]
         public string Dtype { get; set; }
 
-        [Display(Name = "Invoice No")]
+        [Display(Name = "Invoice")]
         [Required(ErrorMessage = "Required!")]
         public string InvoicNo { get; set; }
+
+        [Display(Name = "Approved By")]
+        [Required(ErrorMessage = "Required!")]
+        public string ApprovedBy { get; set; }
+
+        public string Path { get; set; }
+
+        [Display(Name = "Is Downloded")]
+        [Required(ErrorMessage = "Required!")]
+        public string IsDownloaded { get; set; }
+
+        [Display(Name = "Request ID")]
+        [Required(ErrorMessage = "Required!")]
+        public string RequestId { get; set; }
+
+        public string CanceledBy { get; set; }
+        public string Canceled_Date { get; set; }
 
     }
 }

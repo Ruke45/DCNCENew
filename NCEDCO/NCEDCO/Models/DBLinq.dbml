@@ -896,6 +896,23 @@
       <Column Name="DownloadDocName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setDocumentCancelation]" Method="_setDocumentCancelation">
+    <Parameter Name="DocID" Parameter="docID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Remark" Parameter="remark" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="CancelBy" Parameter="cancelBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DocType" Parameter="docType" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getSupportingDocUsingCertificateId]" Method="_getSupportingDocUsingCertificateId">
+    <Parameter Name="CertificateId" Parameter="certificateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="invoiceSupDocID" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getSupportingDocUsingCertificateIdResult">
+      <Column Name="RequestID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DocType" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.[_getAllCertificateCancelDetails]" Method="_getAllCertificateCancelDetails">
     <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(1)" />
@@ -904,12 +921,17 @@
     <Parameter Name="invoiceSupDoc" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="refNo" Type="System.String" DbType="VarChar(20)" />
     <ElementType Name="_getAllCertificateCancelDetailsResult">
-      <Column Name="CertificateId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Ref_" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Approve_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="docTypes" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
-      <Column Name="Invoice" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Invoice" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
       <Column Name="Parent" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Approved_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Path_" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="IsDownloaded" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Req_id" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>
