@@ -219,6 +219,7 @@
     <Compile Include="Models\M_Signatory.cs" />
     <Compile Include="Models\M_SupportDocument.cs" />
     <Compile Include="Models\M_SupportDocumentUpload.cs" />
+    <Compile Include="Models\M_TaxNRates.cs" />
     <Compile Include="Models\M_Users.cs" />
     <Compile Include="Models\Utility\Encrypt_Decrypt.cs" />
     <Compile Include="Models\Utility\ErrorLog.cs" />
@@ -426,6 +427,8 @@
     <Content Include="Views\SupportDocument\P_SDDownload.cshtml" />
     <Content Include="Views\CancelDocument\Index.cshtml" />
     <Content Include="Views\CancelDocument\P_CancelDocument.cshtml" />
+    <Content Include="Views\Customer\RateNTax.cshtml" />
+    <Content Include="Views\Customer\P_RatesSetCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

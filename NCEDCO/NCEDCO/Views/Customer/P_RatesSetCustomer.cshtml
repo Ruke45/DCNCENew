@@ -1,0 +1,6 @@
+﻿@model NCEDCO.Models.M_TaxNRates
+
+@Html.LabelFor(m => m.CustomerID, new { @class = "col-sm-2 control-label" })
+<div class="col-sm-7">
+    @Html.DropDownListFor(model => model.CustomerID, ViewBag.CustomerIDs as SelectList, "", new { @class = "form-control selectC", @onchange = "loadRates()" })
+</div>

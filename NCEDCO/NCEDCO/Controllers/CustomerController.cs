@@ -255,5 +255,26 @@ namespace NCEDCO.Controllers
         {
             return View(CustomerOBj.getChildCustomerDetails(RequestID));
         }
+
+       // [UserFilter(Function_Id = "F_CLENT.REQST.DETL")]
+        public ActionResult RateNTax()
+        {
+
+            List<M_CustomerParent> par = CustomerOBj.getAllParents();
+            ViewBag.ParentsIDs = new SelectList(par, "Parent_Id", "Customer_Name"); 
+            //ViewBag.CustomerIDs = null;
+            return View();
+        }
+
+        public ActionResult GetParentChild(string Pid)
+        {
+            B_CertificateRequest R = new B_CertificateRequest();
+            List<M_Customer> C = R.getCustomerClients(Pid);
+            ViewBag.CustomerIDs = new SelectList(C, "ClientId", "Customer_Name");
+
+            return PartialView("P_RatesSetCustomer");
+        }
+
+
     }
 }

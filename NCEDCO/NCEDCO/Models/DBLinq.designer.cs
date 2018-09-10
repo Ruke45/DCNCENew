@@ -741,6 +741,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, status, startdate, enddate, invoiceSupDoc, refNo);
 			return ((ISingleResult<_getAllCertificateCancelDetailsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getAllParentCustomers]")]
+		public ISingleResult<_getAllParentCustomersResult> _getAllParentCustomers()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<_getAllParentCustomersResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -7178,6 +7185,50 @@ namespace NCEDCO.Models
 				if ((this._CustomerId != value))
 				{
 					this._CustomerId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getAllParentCustomersResult
+	{
+		
+		private string _ParentCustomerId;
+		
+		private string _CustomerName;
+		
+		public _getAllParentCustomersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentCustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string ParentCustomerId
+		{
+			get
+			{
+				return this._ParentCustomerId;
+			}
+			set
+			{
+				if ((this._ParentCustomerId != value))
+				{
+					this._ParentCustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
 				}
 			}
 		}

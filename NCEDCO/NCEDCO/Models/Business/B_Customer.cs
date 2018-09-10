@@ -609,6 +609,41 @@ namespace NCEDCO.Models.Business
                 return result;
             }
         }
+
+        public List<M_CustomerParent> getAllParents()
+        {
+            try
+            {
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    List<M_CustomerParent> PList = new List<M_CustomerParent>();
+
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getAllParentCustomersResult> lst = dbContext._getAllParentCustomers();
+                    foreach (_getAllParentCustomersResult result in lst)
+                    {
+                        M_CustomerParent M = new M_CustomerParent();
+                        M.Customer_Name = result.CustomerName;
+                        M.Parent_Id = result.ParentCustomerId;
+
+                        PList.Add(M);
+                    }
+
+                    return PList;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                // Console.WriteLine(ex.Message.ToString());
+                return null;
+            }
+
+        }
     }
 
 }

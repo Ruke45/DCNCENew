@@ -16,6 +16,14 @@ namespace NCEDCO.Models
             set { RequestId = value; }
         }
 
+        private string ParentID;
+
+        public string Parent_Id
+        {
+            get { return ParentID; }
+            set { ParentID = value; }
+        }
+
         [Display(Name = "Customer Name")]
         [Required(ErrorMessage = "Customer Name is Required! ")]
         [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Special Characters Are Not  Allowed.")]
