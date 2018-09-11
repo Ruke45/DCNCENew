@@ -44,7 +44,7 @@
                 </div>
 
                 <form id="FrmCRq" class="form-horizontal">
-                    <div class="col-md-12" id="LoadTemplate"></div>
+                    <div class="col-md-12" id="LoadRates"></div>
 
                 </form>
 
@@ -52,7 +52,39 @@
             </div>
         </div>
     </div>
- 
+ <!--Notification Modals -->
+<div id="errorModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="MyModelBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="ErrorLable" class="control-label" style="color: #e83a3a"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="SModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content"  id="SModelBody">
+        <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Successful !</h4>
+            </div>
+        <div class="modal-body">
+        <label id="lblSuccess">Rate Updated...</label>
+            </div>
+    </div>
+
+  </div>
+</div>
     <script>
         $(document).ready(function () {
 
@@ -79,5 +111,53 @@
             } else {
                 $('#setChild').hide();
             }
+        }
+
+        var loadRates = function () {
+            var tid = $('#CustomerID').val();
+            debugger
+            if (tid != "") {
+                $('#LoadRates').load('/Customer/GetChildRates?Cid=' + tid);
+                $('#LoadRates').show();
+            } else {
+                $('#LoadRates').hide();
+            }
+        }
+
+        var updateR = function (rid, cid) {
+            $("#loaderDiv").show();
+            var tid = $('#' + rid).val();
+            debugger
+            if (tid != "") {
+
+                var data = new FormData;
+                data.append("CustomerID", cid);
+                data.append("RateID", rid);
+                data.append("RateValue", tid);
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Customer/setUpdateRate",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        $("#loaderDiv").hide();
+                        if (result) {
+                            $("#btnRegister").prop('value', 'Saved Successfully');
+                            $("#SModel").modal("show");                
+                        }
+                        else {
+
+                            $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                            $("#btnCreateTeacher").prop('value', 'Save');
+                            $("#errorModel").modal("show");
+                        }
+
+                    }
+
+                })
+            } 
         }
     </script>         

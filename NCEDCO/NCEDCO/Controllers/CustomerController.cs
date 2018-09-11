@@ -275,6 +275,27 @@ namespace NCEDCO.Controllers
             return PartialView("P_RatesSetCustomer");
         }
 
+        public ActionResult GetChildRates(string Cid)
+        {
+            List<M_TaxNRates> C = CustomerOBj.getCustomerRates(Cid,"Y");
+            return PartialView("P_ChildRatesTable",C);
+        }
+
+        [HttpPost]
+        public JsonResult setUpdateRate(M_TaxNRates Model)
+        {
+            bool result = false;
+            try
+            {
+                result = CustomerOBj.ModifyRateData(Model);
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
     }
 }

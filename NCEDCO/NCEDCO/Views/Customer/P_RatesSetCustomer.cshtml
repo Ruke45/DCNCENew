@@ -4,3 +4,14 @@
 <div class="col-sm-7">
     @Html.DropDownListFor(model => model.CustomerID, ViewBag.CustomerIDs as SelectList, "", new { @class = "form-control selectC", @onchange = "loadRates()" })
 </div>
+
+<script>
+        $(document).ready(function () {
+            $(".selectC").select2({
+                placeholder: "Select Sub Customer",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+        
+    </script>

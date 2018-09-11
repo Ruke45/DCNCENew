@@ -1,0 +1,72 @@
+﻿@model IEnumerable<NCEDCO.Models.M_TaxNRates>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Client's Customer Rates</div>
+
+
+
+            <div class="panel-body">
+                <table id="datatable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.RateName)</th>
+                            <th>@Html.DisplayNameFor(model => model.RateValue)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+
+                            <tr>
+                                <td>@item.RateID : @item.RateName</td>
+                                <td>@Html.TextBoxFor(modelItem => item.RateValue, new {@id= @item.RateID})</td>
+                                <td align="center">
+                                    @*<div class="btn-group">
+                                        <button type="button" class="btn btn-primary" onclick="DetailsView(@item.TeacherId)"><span class="fa fa-info"></span></button>
+                                        <button type="button" class="btn btn-primary" onclick='EditView(@item.TeacherId,"@item.Name")'><span class="fa fa-pencil"></span></button>
+                                        <button type="button" class="btn btn-primary" onclick="DeleteView(@item.TeacherId)"><span class="fa fa-trash"></span></button>
+                                    </div>*@
+                                    <a href="#" onclick='updateR("@item.RateID","@item.CustomerID")'>Update</a>
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+             <div class="panel-footer">Client's Customer Rates</div>
+        </div>
+
+
+
+
+<script src="~/Scripts/pace/pace.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+        $('#datatable-responsive').DataTable();
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+        var table = $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+    });
+    TableManageButtons.init();
+ </script>
+
+<script>
+   
+</script>

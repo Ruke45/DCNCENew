@@ -429,6 +429,7 @@
     <Content Include="Views\CancelDocument\P_CancelDocument.cshtml" />
     <Content Include="Views\Customer\RateNTax.cshtml" />
     <Content Include="Views\Customer\P_RatesSetCustomer.cshtml" />
+    <Content Include="Views\Customer\P_ChildRatesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

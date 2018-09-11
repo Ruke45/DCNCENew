@@ -940,4 +940,21 @@
       <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getCustomerRateDetails]" Method="_getCustomerRateDetails">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="status" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="_getCustomerRateDetailsResult">
+      <Column Name="RateId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RateName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rates" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PaidType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_ModifyCustomerRate]" Method="_ModifyCustomerRate">
+    <Parameter Name="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RateId" Parameter="rateId" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Rate" Parameter="rate" Type="System.Decimal" DbType="Decimal(18,6)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

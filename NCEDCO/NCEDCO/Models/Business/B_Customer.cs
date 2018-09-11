@@ -644,6 +644,77 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public List<M_TaxNRates> getCustomerRates(string CustometId, string Status)
+        {
+            try
+            {
+
+                List<M_TaxNRates> Requests = new List<M_TaxNRates>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getCustomerRateDetailsResult> lst = datacontext._getCustomerRateDetails(CustometId, Status);
+
+                    foreach (_getCustomerRateDetailsResult result in lst)
+                    {
+                        M_TaxNRates req = new M_TaxNRates();
+                        req.RateID = result.RateId;
+                        req.RateName = result.RateName;
+                        req.RateValue = result.Rates;
+                        req.PayType = result.PaidType;
+                        req.CustomerID = result.CustomerId;
+
+                        Requests.Add(req);
+
+
+
+                    }
+                }
+
+                return Requests;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public bool ModifyRateData(M_TaxNRates req)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext.Connection.Open();
+                    try
+                    {
+                        datacontext.Transaction = datacontext.Connection.BeginTransaction();
+                        datacontext._ModifyCustomerRate(req.CustomerID, req.RateID, req.RateValue);
+
+                        datacontext.SubmitChanges();
+                        datacontext.Transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        datacontext.Transaction.Rollback();
+                        ErrorLog.LogError(ex);
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+        }
     }
 
 }
