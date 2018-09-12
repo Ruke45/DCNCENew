@@ -278,6 +278,12 @@ namespace NCEDCO.Controllers
         public ActionResult GetChildRates(string Cid)
         {
             List<M_TaxNRates> C = CustomerOBj.getCustomerRates(Cid,"Y");
+            if (C.Count == 0)
+            {
+                C = CustomerOBj.getCustomerRates(Cid);
+                return PartialView("P_NewChildRatesTbl", C);
+            }
+           
             return PartialView("P_ChildRatesTable",C);
         }
 
@@ -288,6 +294,21 @@ namespace NCEDCO.Controllers
             try
             {
                 result = CustomerOBj.ModifyRateData(Model);
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult setAddRate(M_TaxNRates Model)
+        {
+            bool result = false;
+            try
+            {
+                result = CustomerOBj.AddRateData(Model);
             }
             catch (Exception Ex)
             {

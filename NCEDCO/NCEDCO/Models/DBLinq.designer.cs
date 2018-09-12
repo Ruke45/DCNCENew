@@ -762,6 +762,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, rateId, rate);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getChildDeafaultRates]")]
+		public ISingleResult<_getChildDeafaultRatesResult> _getChildDeafaultRates([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cid", DbType="VarChar(20)")] string cid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cid);
+			return ((ISingleResult<_getChildDeafaultRatesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setChildNewRates]")]
+		public int _setChildNewRates([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cid", DbType="VarChar(20)")] string cid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RatesId", DbType="VarChar(10)")] string ratesId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Value", DbType="Decimal(18,2)")] System.Nullable<decimal> value)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cid, ratesId, value);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -7330,6 +7344,86 @@ namespace NCEDCO.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getChildDeafaultRatesResult
+	{
+		
+		private string _RateId;
+		
+		private string _RateName;
+		
+		private decimal _RateValue;
+		
+		private string _CustomerId;
+		
+		public _getChildDeafaultRatesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RateId", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string RateId
+		{
+			get
+			{
+				return this._RateId;
+			}
+			set
+			{
+				if ((this._RateId != value))
+				{
+					this._RateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RateName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string RateName
+		{
+			get
+			{
+				return this._RateName;
+			}
+			set
+			{
+				if ((this._RateName != value))
+				{
+					this._RateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RateValue", DbType="Decimal(2,2) NOT NULL")]
+		public decimal RateValue
+		{
+			get
+			{
+				return this._RateValue;
+			}
+			set
+			{
+				if ((this._RateValue != value))
+				{
+					this._RateValue = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20)")]
 		public string CustomerId
 		{
 			get

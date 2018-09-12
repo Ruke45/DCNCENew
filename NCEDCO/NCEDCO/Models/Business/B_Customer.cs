@@ -666,9 +666,6 @@ namespace NCEDCO.Models.Business
                         req.CustomerID = result.CustomerId;
 
                         Requests.Add(req);
-
-
-
                     }
                 }
 
@@ -679,8 +676,38 @@ namespace NCEDCO.Models.Business
                 ErrorLog.LogError(ex);
                 return null;
             }
+        }
 
+        public List<M_TaxNRates> getCustomerRates(string CustometId)
+        {
+            try
+            {
 
+                List<M_TaxNRates> Requests = new List<M_TaxNRates>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getChildDeafaultRatesResult> lst = datacontext._getChildDeafaultRates(CustometId);
+
+                    foreach (_getChildDeafaultRatesResult result in lst)
+                    {
+                        M_TaxNRates req = new M_TaxNRates();
+                        req.RateID = result.RateId;
+                        req.RateName = result.RateName;
+                        req.RateValue = result.RateValue;
+                        req.CustomerID = result.CustomerId;
+
+                        Requests.Add(req);
+                    }
+                }
+
+                return Requests;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
         }
 
         public bool ModifyRateData(M_TaxNRates req)
@@ -696,6 +723,39 @@ namespace NCEDCO.Models.Business
                     {
                         datacontext.Transaction = datacontext.Connection.BeginTransaction();
                         datacontext._ModifyCustomerRate(req.CustomerID, req.RateID, req.RateValue);
+
+                        datacontext.SubmitChanges();
+                        datacontext.Transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        datacontext.Transaction.Rollback();
+                        ErrorLog.LogError(ex);
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+        }
+
+        public bool AddRateData(M_TaxNRates req)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    datacontext.Connection.Open();
+                    try
+                    {
+                        datacontext.Transaction = datacontext.Connection.BeginTransaction();
+                        datacontext._setChildNewRates(req.CustomerID, req.RateID, req.RateValue);
 
                         datacontext.SubmitChanges();
                         datacontext.Transaction.Commit();

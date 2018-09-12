@@ -957,4 +957,19 @@
     <Parameter Name="Rate" Parameter="rate" Type="System.Decimal" DbType="Decimal(18,6)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getChildDeafaultRates]" Method="_getChildDeafaultRates">
+    <Parameter Name="Cid" Parameter="cid" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getChildDeafaultRatesResult">
+      <Column Name="RateId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RateName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RateValue" Type="System.Decimal" DbType="Decimal(2,2) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setChildNewRates]" Method="_setChildNewRates">
+    <Parameter Name="Cid" Parameter="cid" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RatesId" Parameter="ratesId" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Value" Parameter="value" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

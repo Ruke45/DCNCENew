@@ -24,14 +24,14 @@
 
                             <tr>
                                 <td>@item.RateID : @item.RateName</td>
-                                <td>@Html.TextBoxFor(modelItem => item.RateValue, new { @class = "form-control" ,@id= @item.RateID})</td>
+                                <td>@Html.TextBoxFor(modelItem => item.RateValue, new { @class = "form-control", @id= @item.RateID})</td>
                                 <td align="center">
                                     @*<div class="btn-group">
                                         <button type="button" class="btn btn-primary" onclick="DetailsView(@item.TeacherId)"><span class="fa fa-info"></span></button>
                                         <button type="button" class="btn btn-primary" onclick='EditView(@item.TeacherId,"@item.Name")'><span class="fa fa-pencil"></span></button>
                                         <button type="button" class="btn btn-primary" onclick="DeleteView(@item.TeacherId)"><span class="fa fa-trash"></span></button>
                                     </div>*@
-                                    <a href="#" onclick='updateR("@item.RateID","@item.CustomerID")'>Update</a>
+                                    <a href="#" onclick='addR("@item.RateID","@item.CustomerID")'>Update</a>
                                 </td>
                             </tr>
                             }

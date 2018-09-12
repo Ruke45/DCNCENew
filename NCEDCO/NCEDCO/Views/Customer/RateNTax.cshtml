@@ -160,4 +160,41 @@
                 })
             } 
         }
+
+        var addR = function (rid, cid) {
+            $("#loaderDiv").show();
+            var tid = $('#' + rid).val();
+            debugger
+            if (tid != "") {
+
+                var data = new FormData;
+                data.append("CustomerID", cid);
+                data.append("RateID", rid);
+                data.append("RateValue", tid);
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Customer/setAddRate",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        $("#loaderDiv").hide();
+                        if (result) {
+                            $("#btnRegister").prop('value', 'Saved Successfully');
+                            $("#SModel").modal("show");
+                        }
+                        else {
+
+                            $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later !!");
+                            $("#btnCreateTeacher").prop('value', 'Save');
+                            $("#errorModel").modal("show");
+                        }
+
+                    }
+
+                })
+            }
+        }
     </script>         

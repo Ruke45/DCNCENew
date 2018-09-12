@@ -12,7 +12,7 @@ html {
 body {
 /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 
- background:#e6e6e;
+ background:#e6e6e6;
  font-size:12px;
  min-height:100%;/*Important to footer*/
  position: relative; /*Important to footer*/
