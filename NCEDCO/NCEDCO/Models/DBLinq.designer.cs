@@ -776,6 +776,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cid, ratesId, value);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getCanceleCertificate]")]
+		public ISingleResult<_getCanceleCertificateResult> _getCanceleCertificate([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string startDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string enddate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string refNo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), startDate, enddate, customerId, refNo);
+			return ((ISingleResult<_getCanceleCertificateResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -7435,6 +7442,140 @@ namespace NCEDCO.Models
 				if ((this._CustomerId != value))
 				{
 					this._CustomerId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getCanceleCertificateResult
+	{
+		
+		private string _DocumentId;
+		
+		private string _CustomerName;
+		
+		private string _Remark;
+		
+		private string _CancelBy;
+		
+		private System.DateTime _CancelDate;
+		
+		private string _DocumentType;
+		
+		private string _Parent;
+		
+		public _getCanceleCertificateResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string DocumentId
+		{
+			get
+			{
+				return this._DocumentId;
+			}
+			set
+			{
+				if ((this._DocumentId != value))
+				{
+					this._DocumentId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="VarChar(200)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this._Remark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CancelBy", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CancelBy
+		{
+			get
+			{
+				return this._CancelBy;
+			}
+			set
+			{
+				if ((this._CancelBy != value))
+				{
+					this._CancelBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CancelDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CancelDate
+		{
+			get
+			{
+				return this._CancelDate;
+			}
+			set
+			{
+				if ((this._CancelDate != value))
+				{
+					this._CancelDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentType", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string DocumentType
+		{
+			get
+			{
+				return this._DocumentType;
+			}
+			set
+			{
+				if ((this._DocumentType != value))
+				{
+					this._DocumentType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Parent", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Parent
+		{
+			get
+			{
+				return this._Parent;
+			}
+			set
+			{
+				if ((this._Parent != value))
+				{
+					this._Parent = value;
 				}
 			}
 		}

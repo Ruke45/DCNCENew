@@ -25,6 +25,7 @@ namespace NCEDCO.Controllers
         B_CertificateRequest objCr = new B_CertificateRequest();
         B_CertificateApprove objAprv = new B_CertificateApprove();
         B_SupportDocApprove objSDAprv = new B_SupportDocApprove();
+        B_CertificateDownload objDown = new B_CertificateDownload();
         M_Cerificate CRHeader = new M_Cerificate();
         _USession _session = new _USession();
 
@@ -993,6 +994,11 @@ namespace NCEDCO.Controllers
         }
 
         /* ------- Certificate Approval Methods -------*/
+
+        //public ActionResult ApprovedCertificates()
+        //{
+        //    return View(objDown.getCertificateDownload("%", "%", "%", "%", "%", "%"));// need to get Session Parent Id
+        //}
 
     }
 }

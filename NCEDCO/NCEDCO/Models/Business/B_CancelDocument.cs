@@ -92,6 +92,57 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public List<M_CancelDocument> getCancelCertificate(string start, string end, string cutomerId, string refNo)
+        {
+            try
+            {
+                List<M_CancelDocument> DocList = new List<M_CancelDocument>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    string doc = null;
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getCanceleCertificateResult> lst = datacontext._getCanceleCertificate(start, end, cutomerId, refNo);
+                    foreach (_getCanceleCertificateResult result in lst)
+                    {
+                        M_CancelDocument SRH = new M_CancelDocument();
+                        SRH.Ref_No = result.DocumentId;
+                        SRH.Client = result.CustomerName;
+                        SRH.Remark = result.Remark;
+                        SRH.CanceledBy = result.CancelBy;
+                        doc = result.DocumentType;
+                        if (doc == "C")
+                        {
+                            SRH.Dtype = "Certificate";
+                        }
+                        else if (doc == "O")
+                        {
+                            SRH.Dtype = "Other Document";
+                        }
+                        else if (doc == "I")
+                        {
+                            SRH.Dtype = "Invoice";
+                        }
+                        SRH.Canceled_Date = result.CancelDate.ToString("dd/MMM/yyyy");
+                        SRH.Parent = result.Parent;
+
+
+                        DocList.Add(SRH);
+
+                    }
+                }
+                return DocList;
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                Console.WriteLine(ex.Message.ToString());
+                return null;
+            }
+
+        }
     }
 
 }

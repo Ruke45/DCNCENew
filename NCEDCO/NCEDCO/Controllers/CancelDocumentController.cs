@@ -66,5 +66,20 @@ namespace NCEDCO.Controllers
             return Json(re, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Canceled()
+        {
+            ViewBag.Fdate = DateTime.Now.AddDays(-30).ToString("dd/MMM/yyyy");
+            ViewBag.Tdate = DateTime.Now.ToString("dd/MMM/yyyy");
+            return View(objCncl.getCancelCertificate(DateTime.Now.AddDays(-30).ToString("yyyyMMdd"),
+                                                     DateTime.Now.ToString("yyyyMMdd"), "%", "%"));
+        }
+        [AllowAnonymous]
+        public ActionResult CanceledD(DateTime fdate,DateTime tdate)
+        {
+            ViewBag.Fdate = fdate.ToString("dd/MMM/yyyy");
+            ViewBag.Tdate = tdate.ToString("dd/MMM/yyyy");
+            return View("Canceled", objCncl.getCancelCertificate(fdate.ToString("yyyyMMdd"), tdate.ToString("yyyyMMdd"), "%", "%"));
+        }
+
     }
 }

@@ -972,4 +972,19 @@
     <Parameter Name="Value" Parameter="value" Type="System.Decimal" DbType="Decimal(18,2)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getCanceleCertificate]" Method="_getCanceleCertificate">
+    <Parameter Name="startDate" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="enddate" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="refNo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getCanceleCertificateResult">
+      <Column Name="DocumentId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CancelBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CancelDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DocumentType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Parent" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

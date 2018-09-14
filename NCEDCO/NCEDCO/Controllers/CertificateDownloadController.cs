@@ -28,7 +28,7 @@ namespace NCEDCO.Controllers
         public ActionResult getCertificateDownloadByParent()
         {       
             return PartialView("P_CDownloadList",
-                   objCd.getCertificateDownload("%","%","%","%","%","%"));
+                   objCd.getCertificateDownload("%","%","%","%","%","%")); // need to be considered by Parent Id
         }
 
         //[UserFilter(Function_Id = "F_CERT_APRUV")]

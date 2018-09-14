@@ -54,9 +54,11 @@ namespace NCEDCO.Models
         [Display(Name = "Request ID")]
         [Required(ErrorMessage = "Required!")]
         public string RequestId { get; set; }
-
+        [Display(Name = "Canceled By")]
         public string CanceledBy { get; set; }
+        [Display(Name = "Canceled Date")]
         public string Canceled_Date { get; set; }
+        public string Remark { get; set; }
 
     }
 }
