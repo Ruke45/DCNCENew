@@ -1000,5 +1000,11 @@ namespace NCEDCO.Controllers
         //    return View(objDown.getCertificateDownload("%", "%", "%", "%", "%", "%"));// need to get Session Parent Id
         //}
 
+        public ActionResult RequestStatus()
+        {
+            return View(objCr.getCertificateRequestStatus("%", "%", "%",
+                DateTime.Now.AddDays(-30).ToString("yyyyMMdd"), DateTime.Now.ToString("yyyyMMdd"),"%","%"));
+        }
+
     }
 }

@@ -551,5 +551,61 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public List<M_Cerificate> getCertificateRequestStatus(string requestid, string customerid, string status,
+                                                              string Startdate, string Enddate, string type, string InvoiceNo)
+        {
+            try
+            {
+
+                List<M_Cerificate> lstpackage = new List<M_Cerificate>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getCertificateRequestStatusResult> lst = datacontext._getCertificateRequestStatus(requestid,
+                                                                                                                                      customerid,
+                                                                                                                                      status,
+                                                                                                                                      Startdate,
+                                                                                                                                      Enddate,
+                                                                                                                                      type,
+                                                                                                                                      InvoiceNo);
+
+                    foreach (_getCertificateRequestStatusResult result in lst)
+                    {
+                        string statuss = null;
+                        if (result.Status.ToUpper().Equals("Y")){statuss = "Yes"; }
+                        else if (result.Status == "A"){statuss = "Approved";}
+                        else if (result.Status == "R"){statuss = "Reject";}
+                        else if (result.Status == "P"){statuss = "Pending";}
+                        else if (result.Status == "G"){statuss = "Pending";}
+
+                        M_Cerificate pt = new M_Cerificate();
+                        pt.InvoiceNo = result.InvoiceNo;
+                        pt.Client_Id = result.CustomerId +" : "+ result.CustomerName;
+                        pt.RequestReff = result.RequestId;;
+                        pt.Ctype = result.Method;
+                        pt.Status = statuss;
+                        DateTime a;
+                        if (result.CreatedDate == null)
+                        {a = DateTime.Now;}
+                        else
+                        {a = result.CreatedDate.Value;}
+                        pt.RequestDate = a;
+                        pt.ParentId = result.Parent;
+                        lstpackage.Add(pt);
+
+                    }
+                }
+
+                return lstpackage;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }

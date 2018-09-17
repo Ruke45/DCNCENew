@@ -432,6 +432,7 @@
     <Content Include="Views\Customer\P_ChildRatesTable.cshtml" />
     <Content Include="Views\Customer\P_NewChildRatesTbl.cshtml" />
     <Content Include="Views\CancelDocument\Canceled.cshtml" />
+    <Content Include="Views\CertificateRequest\RequestStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

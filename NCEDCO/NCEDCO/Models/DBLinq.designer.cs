@@ -783,6 +783,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), startDate, enddate, customerId, refNo);
 			return ((ISingleResult<_getCanceleCertificateResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getCertificateRequestStatus]")]
+		public ISingleResult<_getCertificateRequestStatusResult> _getCertificateRequestStatus([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(3)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StartDate", DbType="VarChar(10)")] string startDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EndDate", DbType="VarChar(10)")] string endDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string type, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, customerId, status, startDate, endDate, type, invoiceNo);
+			return ((ISingleResult<_getCertificateRequestStatusResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -7560,6 +7567,176 @@ namespace NCEDCO.Models
 				if ((this._DocumentType != value))
 				{
 					this._DocumentType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Parent", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Parent
+		{
+			get
+			{
+				return this._Parent;
+			}
+			set
+			{
+				if ((this._Parent != value))
+				{
+					this._Parent = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getCertificateRequestStatusResult
+	{
+		
+		private string _Method;
+		
+		private string _RequestId;
+		
+		private string _CustomerId;
+		
+		private string _Status;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private string _CustomerName;
+		
+		private string _RejectReasonCode;
+		
+		private string _InvoiceNo;
+		
+		private string _Parent;
+		
+		public _getCertificateRequestStatusResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Method", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Method
+		{
+			get
+			{
+				return this._Method;
+			}
+			set
+			{
+				if ((this._Method != value))
+				{
+					this._Method = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20)")]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RejectReasonCode", DbType="VarChar(20)")]
+		public string RejectReasonCode
+		{
+			get
+			{
+				return this._RejectReasonCode;
+			}
+			set
+			{
+				if ((this._RejectReasonCode != value))
+				{
+					this._RejectReasonCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this._InvoiceNo = value;
 				}
 			}
 		}
