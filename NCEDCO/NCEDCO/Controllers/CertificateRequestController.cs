@@ -1002,8 +1002,12 @@ namespace NCEDCO.Controllers
 
         public ActionResult RequestStatus()
         {
-            return View(objCr.getCertificateRequestStatus("%", "%", "%",
-                DateTime.Now.AddDays(-30).ToString("yyyyMMdd"), DateTime.Now.ToString("yyyyMMdd"),"%","%"));
+            return View();
+        }
+        public ActionResult getRequestStatus()
+        {
+            return PartialView("P_RequestStatus", objCr.getCertificateRequestStatus("%", "%", "%",
+                DateTime.Now.AddDays(-30).ToString("yyyyMMdd"), DateTime.Now.ToString("yyyyMMdd"), "%", "%"));
         }
 
     }

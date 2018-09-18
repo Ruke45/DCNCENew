@@ -1,65 +1,115 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout_.cshtml";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
+
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">
+            <small>National Chamber of Exporters of Sri Lanka</small>
+        </h3>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!-- Heading Row -->
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <a href="http://www.nce.lk/" target="_blank">
+                            <img id="Logo" runat="server" class="img-responsive img-rounded" src="~/Images/NCE_Home_logo.png" alt="" /></a>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                    <!-- /.col-md-8 -->
+                    <div class="col-md-12" style="margin-top: 28px; font-size: 17px;">
+                        @* <h2>National Chamber of Exporters</h2*@
+                        <p id="fgh" runat="server" style="text-align: center;">
+                            The NCE is the only private sector Chamber which exclusively serves Sri Lankan 
+                    Exporters and is the ‘Voice of the Exporter’. Incorporated in 1994 The Chamber has 
+                    a membership of over 450 export oriented companies covering all 
+                    products & most services sectors, as well as service providers to exporters.
+                        </p>
+                        @* <a class="btn btn-primary btn-lg" href="http://www.nce.lk/" target="_blank">Find Out More</a>*@
+                    </div>
+                    <!-- /.col-md-4 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-10" style="padding-top: 20px;">
+                        <div class="well well-sm" style="border: none">
+                            <h2 style="font-size: 33px; padding-left: 18px;">Digitally Certified Certificates of Origin Issuance System</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="~/Images/CerGlobe.png" style="padding-bottom: 20px;" class="img-responsive img-rounded">
+                    </div>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="~/Images/Line.png" height="600" class="img-responsive img-rounded" alt="Cinque Terre">
+                    </div>
+
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well well-sm" style="background-color: white">
+                            <h4 style="font-size: 17px;">The NCE is a designated Chamber by the state authorities to issue Certificates of Origin and related documents to exporters.The service is provided to both member exporters as well as non-members of the Chamber. However, members could enjoy the service at a concessionary rate. COs are issued both manually and online depending on the requirements of exporters.
+                            </h4>
+                            <h4 style="font-size: 17px;">The NCE has introduced a fully and semi authenticated system which will issue digitally signed country of origin documents (COs), which will speed up the process and greatly reduce the time taken to manually process COs. The new procedure will also mean that the number times that an exporter has to visit the Chamber will be only once. 
+                            </h4>
+                            <h4 style="font-size: 17px;">The Online service is useful to those who require a number of COs at a time without delays. The service is provided;</h4>
+                            <h4 style="font-size: 17px; padding-left: 100px;">- On a semi-automated basis where application could be made online and processed documents collected manually.</h4>
+                            <h4 style="font-size: 17px; padding-left: 100px;">- A customized fully automated service where both submission and issue and receive of documents is online </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well well-sm" style="background-color: white">
+                            <h4 style="font-size: 17px;">Further details could be obtained from the Manager I.C.T. - <i class="fa fa-user"></i>
+                                <label runat="server" id="AuthorizedName"></label>
+                                | <i class="fa fa-mobile"></i>-
+                        <label runat="server" id="PhoneNo"></label>
+                                |<i class="fa fa-envelope"></i> - 
+                        <label runat="server" id="email"></label>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <div class="col-sm-4">
+                            <img id="Img1" runat="server" class="img-responsive img-rounded" src="../../img/banner/Logo_1.jpg" alt="" />
+                        </div>
+                        <div class="col-sm-4">
+                            <img id="Img2" style="margin-top: 20px" runat="server" class="img-responsive img-rounded" src="../../img/banner/Logo_2.jpg" alt="" />
+                        </div>
+                        <div class="col-sm-4">
+                            <img id="Img3" style="margin-top: 35px" runat="server" class="img-responsive img-rounded" src="../../img/banner/Logo_3.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
         </div>
-    </section>
-}
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
-
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
-
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
-
-<input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
-<script>
-	$(document).ready(function(){
-		//var date_input=$('input[name="date"]'); //our date input has the name "date"
-		//date_input.datepicker({
-		//    format: 'yyyy',
-		//    todayHighlight: true,
-		//    autoclose: true,
-		//    startView: "years",
-		//    minViewMode: "month"
-		//})
-
-		$('#date').daterangepicker({
-	        singleDatePicker: true,
-	        showDropdowns: true,
-	        todayHighlight: true
-	    })
-	})
-</script>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">
+            <small>National Chamber of Exporters of Sri Lanka</small>
+        </h3>
+    </div>
+</div>
