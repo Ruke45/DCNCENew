@@ -790,6 +790,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId, customerId, status, startDate, endDate, type, invoiceNo);
 			return ((ISingleResult<_getCertificateRequestStatusResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getCertificateStatus]")]
+		public ISingleResult<_getCertificateStatusResult> _getCertificateStatus([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateNo", DbType="VarChar(20)")] string certificateNo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), certificateNo);
+			return ((ISingleResult<_getCertificateStatusResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -7753,6 +7760,104 @@ namespace NCEDCO.Models
 				if ((this._Parent != value))
 				{
 					this._Parent = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getCertificateStatusResult
+	{
+		
+		private string _CustomerName;
+		
+		private System.Nullable<System.DateTime> _InvoiceDate;
+		
+		private string _Consignee;
+		
+		private string _InvoiceNo;
+		
+		private string _TotalInvoiceValue;
+		
+		public _getCertificateStatusResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> InvoiceDate
+		{
+			get
+			{
+				return this._InvoiceDate;
+			}
+			set
+			{
+				if ((this._InvoiceDate != value))
+				{
+					this._InvoiceDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(500)")]
+		public string Consignee
+		{
+			get
+			{
+				return this._Consignee;
+			}
+			set
+			{
+				if ((this._Consignee != value))
+				{
+					this._Consignee = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(50)")]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this._InvoiceNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalInvoiceValue", DbType="VarChar(50)")]
+		public string TotalInvoiceValue
+		{
+			get
+			{
+				return this._TotalInvoiceValue;
+			}
+			set
+			{
+				if ((this._TotalInvoiceValue != value))
+				{
+					this._TotalInvoiceValue = value;
 				}
 			}
 		}

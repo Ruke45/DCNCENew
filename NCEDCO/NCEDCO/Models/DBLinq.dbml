@@ -1007,4 +1007,14 @@
       <Column Name="Parent" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getCertificateStatus]" Method="_getCertificateStatus">
+    <Parameter Name="CertificateNo" Parameter="certificateNo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getCertificateStatusResult">
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Consignee" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TotalInvoiceValue" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -144,5 +144,17 @@ namespace NCEDCO.Controllers
             }
             return PartialView("P_Navigation", _menu);
         }
+
+        public ActionResult Verification()
+        {
+            B_Settings objsting = new B_Settings();
+            return View(objsting.Owner_getContactPerson());
+        }
+
+        public ActionResult VerifyID(string Ref)
+        {
+            B_CertificateApprove objCa = new B_CertificateApprove();
+            return PartialView("P_Verifyed", objCa.getRequestDetails(Ref));
+        }
     }
 }

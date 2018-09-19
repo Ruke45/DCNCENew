@@ -338,6 +338,10 @@
       <LastGenOutput>DBLinq.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="LankaSignFile\a002243cc041dbe8838c756e9d7d907e.rar" />
+    <Content Include="LankaSignFile\help.pdf" />
+    <Content Include="LankaSignFile\IntermediateFile.rar" />
+    <Content Include="LankaSignFile\rootFile.rar" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
@@ -434,6 +438,8 @@
     <Content Include="Views\CancelDocument\Canceled.cshtml" />
     <Content Include="Views\CertificateRequest\RequestStatus.cshtml" />
     <Content Include="Views\CertificateRequest\P_RequestStatus.cshtml" />
+    <Content Include="Views\Home\Verification.cshtml" />
+    <Content Include="Views\Home\P_Verifyed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

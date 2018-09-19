@@ -77,6 +77,10 @@ namespace NCEDCO.Models
         [Required(ErrorMessage = "Required!")]
         public string Address3 { get; set; }
 
+        [Display(Name = "Reference No (CO)")]
+        [Required(ErrorMessage = "Required!")]
+        public string Ref { get; set; }
+
       
     }
 }

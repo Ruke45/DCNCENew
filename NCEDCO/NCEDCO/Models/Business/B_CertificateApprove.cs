@@ -143,5 +143,38 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public M_Cerificate getRequestDetails(string CertifiateNo)
+        {
+            try
+            {
+
+                M_Cerificate req = new M_Cerificate();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    var result = datacontext._getCertificateStatus(CertifiateNo).SingleOrDefault();
+                    if (result != null)
+                    {
+                        req.Consignor_Exporter = result.CustomerName;
+                        req.InvoiceDate = result.InvoiceDate.Value.ToString("dd/MMM/yyyy");
+                        req.Consignee = result.Consignee;
+                        req.InvoiceNo = result.InvoiceNo;
+                        req.TotalInvoiceValue = result.TotalInvoiceValue;
+                        return req;
+                    }
+
+                }
+                return null;
+                
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 }

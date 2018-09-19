@@ -1,0 +1,128 @@
+﻿@model NCEDCO.Models.M_ProductOwner
+
+@{
+    Layout = "~/Views/Shared/_Layout_.cshtml";
+    ViewBag.Title = "Certificate Authentication";
+}
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">National Chamber of Exporters Sri Lanka
+            <small>Verification of Certificate</small>
+        </h3>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Certificate</a>
+            </li>
+            <li class="active">Verification</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Verify Here</div>
+            <div class="panel-body">
+                <form id="FrmPCRegister" class="form-horizontal" autocomplete="off">
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Ref, new { @class = "col-sm-3 control-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.Ref, new { @class = "form-control", @maxlength = "20" })
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="#" id="bulkS" onclick="verifyD()" class="btn btn-primary btn-sm">Verify</a>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Ref, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </form>
+
+                <div id="VerifyLoad">
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">For Further Clarifications</div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Contact_Person, new { @class = "col-sm-3 control-label" })
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(model => model.Contact_Person, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Telephone_, new { @class = "col-sm-3 control-label" })
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(model => model.Telephone_, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Fax_, new { @class = "col-sm-3 control-label" })
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(model => model.Fax_, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email_, new { @class = "col-sm-3 control-label" })
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(model => model.Email_, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Web_, new { @class = "col-sm-3 control-label" })
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(model => model.Web_, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">For Digital Signature Verification</div>
+            <div class="panel-body">
+                <label>Please download below two files and install to your computer to verify Digital Signature verified.</label>
+                <ul>
+                    <li><a href="../../LankaSignFile/rootFile.rar" target="_blank">Root File</a></li>
+                    <li><a href="../../LankaSignFile/IntermediateFile.rar" target="_blank">Intermediate File</a></li>
+                </ul>
+                <label>Installation Guide</label>
+                <ul>
+                    <li><a href="../../LankaSignFile/help.pdf" target="_blank">Installation guid</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var verifyD = function () {
+        if (!$("#Ref").val()) {
+            $("#Ref").closest('.form-group').addClass('has-error');
+            //$("#CategoryIdError").text("Required");
+            return;
+        }
+        var Url = "/Home/VerifyID?Ref=" + $("#Ref").val();
+        $('#VerifyLoad').load(Url);
+        $('#VerifyLoad').show();
+    }
+</script>
+
