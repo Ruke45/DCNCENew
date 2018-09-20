@@ -195,6 +195,41 @@ namespace NCEDCO.Models.Business
             }
             
         }
+
+        public List<M_Users> getBackEndUsers()
+        {
+            try
+            {
+
+                List<M_Users> lstUser = new List<M_Users>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getBackendSystemUsersResult> lst = datacontext._getBackendSystemUsers();
+                    foreach (_getBackendSystemUsersResult result in lst)
+                    {
+                        M_Users usr = new M_Users();
+                        usr.UserId = result.UserID;
+                        usr.UserGroup = result.UserGroupID;
+                        usr.UserName = result.PersonName;
+                        usr.IsActive = result.IsActive;
+                        usr.Email = result.Email;
+                        usr.Designation = result.Designation;
+                        lstUser.Add(usr);
+
+                    }
+                }
+
+                return lstUser;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
  
     }
 }

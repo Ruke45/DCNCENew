@@ -4,9 +4,19 @@
 * Author : Tharaka Madusanka
 -->
 <Navigations>
+  <Navigation title="Dashboard" action="Dashboard" controller="Home" url="#" isParent ="false"></Navigation>
   <Navigation title="Customer Requests" action="#" controller="#" url="#" isParent ="true">
     <Child title="Main Customer Requests" action="ParentCustomerRequests" controller="Customer" url="#"/>
     <Child title="Client's Customer Requests" action="ClientCustomerRequests" controller="Customer" url="#"/>
+    <Child title="Client's Customer Rates" action="RateNTax" controller="Customer" url="#"/>
+     <!--Customer Details View Needed -->
+  </Navigation>
+  <Navigation title="Cancelation" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>
+    <Child title="Cancel History" action="Canceled" controller="CancelDocument" url="#"/>
+  </Navigation>
+  <Navigation title="System User" action="#" controller="#" url="#" isParent ="true">
+    <Child title="New User" action="Index" controller="User" url="#"/>
   </Navigation>
   <Navigation title="Settings" action="#" controller="#" url="#" isParent ="true">
     <Child title="Export Sector (Add/Edit)" action="ExportSector" controller="Settings" url="#"/>
@@ -29,11 +39,9 @@
     <Child title="Pending Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
     <Child title="Pending Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
-  <Navigation title="Cancelation" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>
-    <Child title="Cancel History" action="Canceled" controller="CancelDocument" url="#"/>
-  </Navigation>
-  <Navigation title="Customer Settings" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Customer Rates" action="RateNTax" controller="Customer" url="#"/>
+<Navigation title="View" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Cancel Documents" action="RequestStatus" controller="CertificateRequests" url="#"/>
   </Navigation>
 </Navigations>
+
+<!--Add Edit Users -->

@@ -18,6 +18,18 @@ namespace NCEDCO.Models
         [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Special Characters Are Not  Allowed.")]
         public string UserName { get; set; }
 
+        [Required(ErrorMessage = "User Group")]
+        [Display(Name = "Group")]
+        public string UserGroup { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Designation")]
+        public string Designation { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Is Active")]
+        public string IsActive { get; set; }
+
         [Required(ErrorMessage = "E-Mail")]
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
