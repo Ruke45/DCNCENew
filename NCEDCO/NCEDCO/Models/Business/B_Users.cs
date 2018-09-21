@@ -290,6 +290,88 @@ namespace NCEDCO.Models.Business
             }
 
         }
+
+        public bool Edit_User(M_Users Model, string Createdby)
+        {
+            try
+            {
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    datacontext._setEditUser(Model.UserId, Model.UserGroup, Model.UserName,
+                                            Model.Designation, Model.Email, Createdby,Model.IsActive);
+                    datacontext.SubmitChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public M_Users _getUserInfo(string UId)
+        {
+            try
+            {
+                M_Users s = new M_Users();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    System.Data.Linq.ISingleResult<_getUserInfoResult> ckuser = datacontext._getUserInfo(UId);
+                    foreach (_getUserInfoResult result in ckuser)
+                    {
+                        s.Designation = result.Designation;
+                        s.UserName = result.PersonName;
+                        s.UserId = result.UserID;
+                        s.IsActive = result.IsActive;
+                        s.Email = result.Email;
+                        s.UserGroup = result.UserGroupID;
+
+                    }
+                }
+                return s;
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public bool ResetPassword(M_Users Model)
+        {
+            try
+            {
+                string pass = Encrypt_Decrypt.Encrypt(Model.Password_, Password);
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    datacontext._setResetPassword(Model.UserId,pass);
+                    datacontext.SubmitChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
  
     }
 }

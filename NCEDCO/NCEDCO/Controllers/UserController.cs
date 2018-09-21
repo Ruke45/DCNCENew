@@ -42,5 +42,47 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult EditUser(string id)
+        {
+            List<M_UGroup> UCategorylist = objUsr._getUserGroups();
+            ViewBag.UGroups = new SelectList(UCategorylist, "GroupId", "GroupName");
+            return PartialView("P_EditUser",objUsr._getUserInfo(id));
+        }
+
+        [HttpPost]
+        public JsonResult UpdateUser(M_Users Model)
+        {
+            bool result = false;
+            try
+            {
+                result = objUsr.Edit_User(Model, "Admin");
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ResetPasswrd(string Uid)
+        {
+            return PartialView("P_ResetP", objUsr._getUserInfo(Uid));
+        }
+
+        [HttpPost]
+        public JsonResult ResetP(M_Users Model)
+        {
+            bool result = false;
+            try
+            {
+                result = objUsr.ResetPassword(Model);
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

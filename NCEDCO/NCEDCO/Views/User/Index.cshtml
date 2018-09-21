@@ -59,7 +59,8 @@
                                 else{<td>No</td>}
                                 <td align="center">
                                     <div class="btn-group ">
-                                        <a href="#" class="" onclick='CancelDoc("@item.UserId")' >Edit</a> 
+                                        <a href="#" class="" onclick='EidtUser("@item.UserId")' >Edit</a> |
+                                        <a href="#" class="" onclick='resetP("@item.UserId")' >Reset Password</a> 
                                     </div>
                                 </td>
                             </tr>
@@ -98,6 +99,21 @@
         </div>
     </div>
 </div>
+
+<div id="SModel" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="SBody">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Success !</h4>
+            </div>
+            <div class="modal-body">
+                <label id="SLable" class="control-label" style="color: #00ff21"></label>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/pace/pace.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -127,6 +143,18 @@
 <script>
     var NewUser = function () {
         var Url = "/User/NewUser";
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+    var EidtUser = function (id) {
+        var Url = "/User/EditUser?id="+id;
+        $("#OModelBody").load(Url, function () {
+            $("#OModel").modal("show");
+        })
+    }
+    var resetP = function (id) {
+        var Url = "/User/ResetPasswrd?Uid=" + id;
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })

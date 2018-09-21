@@ -1045,4 +1045,30 @@
     <Parameter Name="Createdby" Parameter="createdby" Type="System.String" DbType="VarChar(20)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_setEditUser]" Method="_setEditUser">
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Groupid" Parameter="groupid" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="PersonName" Parameter="personName" Type="System.String" DbType="VarChar(149)" />
+    <Parameter Name="Designation" Parameter="designation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Createdby" Parameter="createdby" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="isactive" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_getUserInfo]" Method="_getUserInfo">
+    <Parameter Name="Userid" Parameter="userid" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getUserInfoResult">
+      <Column Name="UserID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UserGroupID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PersonName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Designation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setResetPassword]" Method="_setResetPassword">
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Passwrod" Parameter="passwrod" Type="System.String" DbType="NVarChar(200)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

@@ -444,6 +444,8 @@
     <Content Include="Views\Home\P_Verifyed.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\P_NewUser.cshtml" />
+    <Content Include="Views\User\P_EditUser.cshtml" />
+    <Content Include="Views\User\P_ResetP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

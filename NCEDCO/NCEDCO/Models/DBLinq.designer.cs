@@ -818,6 +818,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, groupid, personName, password, designation, email, createdby);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setEditUser]")]
+		public int _setEditUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(20)")] string userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Groupid", DbType="VarChar(20)")] string groupid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonName", DbType="VarChar(149)")] string personName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Designation", DbType="VarChar(50)")] string designation, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Createdby", DbType="VarChar(20)")] string createdby, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(1)")] string isactive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, groupid, personName, designation, email, createdby, isactive);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getUserInfo]")]
+		public ISingleResult<_getUserInfoResult> _getUserInfo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Userid", DbType="VarChar(20)")] string userid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userid);
+			return ((ISingleResult<_getUserInfoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setResetPassword]")]
+		public int _setResetPassword([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(20)")] string userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Passwrod", DbType="NVarChar(200)")] string passwrod)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, passwrod);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -8075,6 +8096,122 @@ namespace NCEDCO.Models
 				if ((this._GroupName != value))
 				{
 					this._GroupName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getUserInfoResult
+	{
+		
+		private string _UserID;
+		
+		private string _UserGroupID;
+		
+		private string _PersonName;
+		
+		private string _IsActive;
+		
+		private string _Designation;
+		
+		private string _Email;
+		
+		public _getUserInfoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroupID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string UserGroupID
+		{
+			get
+			{
+				return this._UserGroupID;
+			}
+			set
+			{
+				if ((this._UserGroupID != value))
+				{
+					this._UserGroupID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PersonName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string PersonName
+		{
+			get
+			{
+				return this._PersonName;
+			}
+			set
+			{
+				if ((this._PersonName != value))
+				{
+					this._PersonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Designation", DbType="VarChar(50)")]
+		public string Designation
+		{
+			get
+			{
+				return this._Designation;
+			}
+			set
+			{
+				if ((this._Designation != value))
+				{
+					this._Designation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
 				}
 			}
 		}
