@@ -221,6 +221,7 @@
     <Compile Include="Models\M_SupportDocument.cs" />
     <Compile Include="Models\M_SupportDocumentUpload.cs" />
     <Compile Include="Models\M_TaxNRates.cs" />
+    <Compile Include="Models\M_UGroup.cs" />
     <Compile Include="Models\M_Users.cs" />
     <Compile Include="Models\Utility\Encrypt_Decrypt.cs" />
     <Compile Include="Models\Utility\ErrorLog.cs" />
@@ -442,6 +443,7 @@
     <Content Include="Views\Home\Verification.cshtml" />
     <Content Include="Views\Home\P_Verifyed.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\P_NewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

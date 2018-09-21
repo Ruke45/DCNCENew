@@ -22,7 +22,7 @@
 
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">System Users Table <a href="#" id="bulkS" class="btn btn-primary btn-sm" style="float:right"">New User</a></div> 
+            <div class="panel-heading">System Users Table <a href="#" onclick="NewUser()" class="btn btn-primary btn-sm" style="float:right"">New User</a></div> 
 
 
 
@@ -33,7 +33,7 @@
                             <th>@Html.DisplayNameFor(model => model.UserId)</th>
                             <th>@Html.DisplayNameFor(model => model.UserName)</th>
                             <th>@Html.DisplayNameFor(model => model.Email)</th>
-                            <th>@Html.DisplayNameFor(model => model.ContactPersonMobile)</th>
+                           @* <th>@Html.DisplayNameFor(model => model.ContactPersonMobile)</th>*@
                             <th>@Html.DisplayNameFor(model => model.UserGroup)</th>
                             <th>@Html.DisplayNameFor(model => model.IsActive)</th>
                             <th>Action</th>
@@ -51,7 +51,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.UserId)</td>
                                 <td>@Html.DisplayFor(modelItem => item.UserName)</td>                             
                                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                <td>@Html.DisplayFor(modelItem => item.ContactPersonMobile)</td>
+                                @*<td>@Html.DisplayFor(modelItem => item.ContactPersonMobile)</td>*@
                                 <td>@Html.DisplayFor(modelItem => item.UserGroup)</td>
                                 @if(item.IsActive == "Y"){
                                 <td>Yes</td>
@@ -125,8 +125,8 @@
   
 </script>
 <script>
-    var CancelDoc = function (Ref, Client, Doctype) {
-        var Url = "/CancelDocument/Cancel_Doc?Ref=" + Ref + "&Client=" + Client + "&Doctype=" + Doctype;
+    var NewUser = function () {
+        var Url = "/User/NewUser";
         $("#OModelBody").load(Url, function () {
             $("#OModel").modal("show");
         })

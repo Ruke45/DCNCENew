@@ -1,0 +1,114 @@
+﻿@model NCEDCO.Models.M_Users
+
+<div>
+    <form id="FrmRPC" class="form-horizontal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">New User</h4>
+        </div>
+        <div class="modal-body">
+             <div class="form-group">
+                @Html.LabelFor(m => m.UserId, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBoxFor(model => model.UserId, new { @class = "form-control", @maxlength = "150", @id = "UserId", @name = "UserId" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-7">
+                   @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @maxlength = "150", @id = "UserName", @name = "UserName" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Designation, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-7">
+                   @Html.TextBoxFor(model => model.Designation, new { @class = "form-control", @maxlength = "150", @id = "Designation", @name = "Designation" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserGroup, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-7">
+                    @Html.DropDownListFor(model => model.UserGroup, ViewBag.UGroups as SelectList, "", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-7">
+                   @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @maxlength = "150", @id = "Email", @name = "Email" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password_, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-7">
+                   @Html.TextBoxFor(model => model.Password_, new { @class = "form-control", @maxlength = "150", @id = "Password_", @name = "Password_" })
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="btnSubmit" class="btn btn-primary"><span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                <img src="~/Images/ellipsis.gif" /></span></a>
+        </div>
+    </form>
+</div>
+<script>
+
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function (e) {
+            if (!$("#UserId").val()) {
+                $("#UserId").closest('.form-group').addClass('has-error');
+                return;
+            }
+            if (!$("#UserName").val()) {
+                $("#UserName").closest('.form-group').addClass('has-error');
+                return;
+            }
+            if (!$("#Designation").val()) {
+                $("#Designation").closest('.form-group').addClass('has-error');
+                return;
+            }
+            if (!$("#UserGroup").val()) {
+                $("#UserGroup").closest('.form-group').addClass('has-error');
+                return;
+            }
+            if (!$("#Email").val()) {
+                $("#Email").closest('.form-group').addClass('has-error');
+                return;
+            }
+            if (!$("#Password_").val()) {
+                $("#Password_").closest('.form-group').addClass('has-error');
+                return;
+            }
+            $("#loaderDiv").show();
+            debugger
+            var myformdata = $("#FrmRPC").serialize();
+            $.ajax({
+
+                type: "POST",
+                url: "/User/AddNewUser",
+                data: myformdata,
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    if (result == "Success") {
+                        debugger
+                        window.location.href = "/User/Index?Result=Successfull";
+                    }
+                    else if (result == "IN") {
+                        $("#OModel").modal("hide");
+                        $("#ErrorLable").text("User ID is Already In the System.");
+                        $("#errorModel").modal("show");
+                    }
+                    else {
+                        $("#OModel").modal("hide");
+                        $("#ErrorLable").text("An Error Occoured while Completing the Request. Please Try Again Later");
+                        $("#errorModel").modal("show");
+                    }
+                }
+
+            })
+        })
+
+    })
+
+
+</script>

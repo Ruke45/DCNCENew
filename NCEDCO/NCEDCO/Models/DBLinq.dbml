@@ -1029,4 +1029,20 @@
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getUserGroups]" Method="_getUserGroups">
+    <ElementType Name="_getUserGroupsResult">
+      <Column Name="GroupId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="GroupName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setNewUser]" Method="_setNewUser">
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Groupid" Parameter="groupid" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="PersonName" Parameter="personName" Type="System.String" DbType="VarChar(149)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Designation" Parameter="designation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Createdby" Parameter="createdby" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

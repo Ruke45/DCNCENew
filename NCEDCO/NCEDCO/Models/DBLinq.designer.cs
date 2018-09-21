@@ -804,6 +804,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<_getBackendSystemUsersResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getUserGroups]")]
+		public ISingleResult<_getUserGroupsResult> _getUserGroups()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<_getUserGroupsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setNewUser]")]
+		public int _setNewUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(20)")] string userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Groupid", DbType="VarChar(20)")] string groupid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonName", DbType="VarChar(149)")] string personName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(200)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Designation", DbType="VarChar(50)")] string designation, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Createdby", DbType="VarChar(20)")] string createdby)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, groupid, personName, password, designation, email, createdby);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -8017,6 +8031,50 @@ namespace NCEDCO.Models
 				if ((this._Email != value))
 				{
 					this._Email = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getUserGroupsResult
+	{
+		
+		private string _GroupId;
+		
+		private string _GroupName;
+		
+		public _getUserGroupsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string GroupId
+		{
+			get
+			{
+				return this._GroupId;
+			}
+			set
+			{
+				if ((this._GroupId != value))
+				{
+					this._GroupId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string GroupName
+		{
+			get
+			{
+				return this._GroupName;
+			}
+			set
+			{
+				if ((this._GroupName != value))
+				{
+					this._GroupName = value;
 				}
 			}
 		}

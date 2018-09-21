@@ -66,7 +66,6 @@ namespace NCEDCO.Models.Business
 
         }
 
-
         public bool checkUserName(string UserName)
         {
             try
@@ -228,6 +227,67 @@ namespace NCEDCO.Models.Business
                 return null;
             }
 
+
+        }
+
+        public List<M_UGroup> _getUserGroups()
+        {
+            try
+            {
+                List<M_UGroup> list = new List<M_UGroup>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    System.Data.Linq.ISingleResult<_getUserGroupsResult> ckuser = datacontext._getUserGroups();
+                    foreach (_getUserGroupsResult result in ckuser)
+                    {
+                        M_UGroup s = new M_UGroup();
+                        s.GroupId = result.GroupId;
+                        s.GroupName = result.GroupName;
+                        list.Add(s);
+                    }
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
+
+        public string setNewUser(M_Users Model,string Createdby)
+        {
+            try
+            {
+                bool Uname = checkUserName(Model.UserId);
+                if(Uname)
+                {
+                    return "IN";
+                }
+                string pass = Encrypt_Decrypt.Encrypt(Model.Password_, Password);
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+                    datacontext.Connection.ConnectionString = Connection_;
+
+                    datacontext._setNewUser(Model.UserId, Model.UserGroup, Model.UserName, pass,
+                                            Model.Designation, Model.Email, Createdby);
+                    datacontext.SubmitChanges();
+                    return "Success";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message.ToString());
+                ErrorLog.LogError(ex);
+                return "Error";
+            }
 
         }
  
