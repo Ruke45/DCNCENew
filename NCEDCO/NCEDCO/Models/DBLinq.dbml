@@ -1071,4 +1071,28 @@
     <Parameter Name="Passwrod" Parameter="passwrod" Type="System.String" DbType="NVarChar(200)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.[_getAllParentCustomersDetails]" Method="_getAllParentCustomersDetails">
+    <ElementType Name="_getAllParentCustomersDetailsResult">
+      <Column Name="ParentCustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Telephone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSVat" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ContactPersonDesignation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonMobile" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NCEMember" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PaidType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

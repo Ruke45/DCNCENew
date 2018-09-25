@@ -10,6 +10,7 @@ namespace NCEDCO.Models
     {
         private string RequestId;
 
+        [Display(Name = "Request Id")]
         public string Request_Id
         {
             get { return RequestId; }
@@ -17,7 +18,7 @@ namespace NCEDCO.Models
         }
 
         private string ParentID;
-
+        [Display(Name = "Client Id")]
         public string Parent_Id
         {
             get { return ParentID; }

@@ -775,6 +775,55 @@ namespace NCEDCO.Models.Business
                 return false;
             }
         }
+
+        public List<M_CustomerParent> getAllCustomerDetails_()
+        {
+            try
+            {
+
+                List<M_CustomerParent> Requests = new List<M_CustomerParent>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getAllParentCustomersDetailsResult> lst = datacontext._getAllParentCustomersDetails();
+
+                    foreach (_getAllParentCustomersDetailsResult result in lst)
+                    {
+                        M_CustomerParent req = new M_CustomerParent();
+                        req.Customer_Name = result.CustomerName;
+                        req.Address1 = result.Address1 + " ," + result.Address2 + " ," + result.Address3;
+                        req.ContactPersonDesignation = result.ContactPersonDesignation;
+                        req.ContactPersonDirectPhone = result.ContactPersonDirectPhoneNumber;
+                        req.ContactPersonEmail = result.ContactPersonEmail;
+                        req.ContactPersonMobile = result.ContactPersonMobile;
+                        req.ContactPersonName = result.ContactPersonName;
+                        req.CreatedDate = result.CreatedDate;
+                        req.Email = result.Email;
+                        req.Fax = result.Fax;
+                        req.IsNCEMember = result.NCEMember;
+                        req.IsVat = result.IsSVat;
+                        req.Parent_Id = result.ParentCustomerId;
+                        req.Request_Id = result.RequestId;
+                        req.Status = result.Status;
+                        req.Telephone = result.Telephone;
+
+                        Requests.Add(req);
+
+
+
+                    }
+                }
+
+                return Requests;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 
 }

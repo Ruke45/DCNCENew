@@ -317,6 +317,11 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Details()
+        {
+            return View(CustomerOBj.getAllCustomerDetails_());
+        }
+
 
     }
 }

@@ -446,6 +446,7 @@
     <Content Include="Views\User\P_NewUser.cshtml" />
     <Content Include="Views\User\P_EditUser.cshtml" />
     <Content Include="Views\User\P_ResetP.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

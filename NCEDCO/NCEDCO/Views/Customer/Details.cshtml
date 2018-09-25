@@ -1,0 +1,114 @@
+﻿@model IEnumerable<NCEDCO.Models.M_CustomerParent>
+@{
+    ViewBag.Title = "Parent Customer Details";
+}
+
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">
+            <small>Parent Customer Details </small>
+        </h3>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Customer </a>
+            </li>
+            <li class="active">Parent Customer Details</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Parent Customer Details Table</div>
+
+
+
+            <div class="panel-body">
+                <table id="datatable" class="table table-striped table-bordered" style="font-size:12px">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Parent_Id)</th>
+                            <th>@Html.DisplayNameFor(model => model.Request_Id)</th>
+                            <th>Client's Details</th>
+                            <th>Client's Address</th>
+                            <th>@Html.DisplayNameFor(model => model.Telephone)</th>
+                            <th>@Html.DisplayNameFor(model => model.Fax)</th>
+                            <th>Contact Person Details</th>
+  
+                            @*<th></th>*@
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Parent_Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Request_Id)</td>                              
+                                <td>@Html.DisplayFor(modelItem => item.Customer_Name) @Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Address1)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Telephone)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Fax)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ContactPersonName) :  
+                                    @item.ContactPersonDesignation |
+                                    @Html.DisplayFor(modelItem => item.ContactPersonDirectPhone),
+                                    @Html.DisplayFor(modelItem => item.ContactPersonMobile),
+                                    @Html.DisplayFor(modelItem => item.ContactPersonEmail)
+                             @*   <td align="center">*@
+                                    @*<div class="btn-group">
+                                        <button type="button" class="btn btn-primary" onclick="DetailsView(@item.TeacherId)"><span class="fa fa-info"></span></button>
+                                        <button type="button" class="btn btn-primary" onclick='EditView(@item.TeacherId,"@item.Name")'><span class="fa fa-pencil"></span></button>
+                                        <button type="button" class="btn btn-primary" onclick="DeleteView(@item.TeacherId)"><span class="fa fa-trash"></span></button>
+                                    </div>*@
+                                @*    <a href="#" class="btn btn-primary btn-sm" onclick='DetailsView("@item.Request_Id")'>Detail View </a>
+                                </td>*@
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+             <div class="panel-footer">Parent Customer Details Table</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Scripts/pace/pace.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+        $('#datatable-responsive').DataTable();
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+        var table = $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+    });
+    TableManageButtons.init();
+ </script>
+                            
+<script>
+    var DetailsView = function (RequestId) {
+        debugger
+        var Url = "/Customer/ParentCustomerRequestsDetails?RequestId=" + RequestId;
+        window.location.href = Url;
+    }
+</script>
