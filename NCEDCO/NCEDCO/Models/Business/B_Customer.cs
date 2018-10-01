@@ -824,6 +824,55 @@ namespace NCEDCO.Models.Business
 
 
         }
+
+        public List<M_Customer> getAllParentsChildren__(string Parentid)
+        {
+            try
+            {
+
+                List<M_Customer> Requests = new List<M_Customer>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getParentsChildrenDetailsResult> lst = datacontext._getParentsChildrenDetails(Parentid);
+
+                    foreach (_getParentsChildrenDetailsResult result in lst)
+                    {
+                        M_Customer req = new M_Customer();
+                        req.Customer_Name = result.CustomerName;
+                        req.Address1 = result.Address1 + " ," + result.Address2 + " ," + result.Address3;
+                        req.ContactPersonDesignation = result.ContactPersonDesignation;
+                        req.ContactPersonDirectPhone = result.ContactPersonDirectPhoneNumber;
+                        req.ContactPersonEmail = result.ContactPersonEmail;
+                        req.ContactPersonMobile = result.ContactPersonMobile;
+                        req.ContactPersonName = result.ContactPersonName;
+                        req.CreatedDate = result.CreatedDate;
+                        req.Email = result.Email;
+                        req.Fax = result.Fax;
+                        req.IsNCEMember = result.NCEMember;
+                        req.IsVat = result.IsSVat;
+                        req.Parent_Id = result.ParentCustomerId;
+                        req.PaidType = result.PaidType;
+                        req.Request_Id = result.RequestId;
+                        req.Status = result.Status;
+                        req.Telephone = result.Telephone;
+                        req.TemplateId = result.TemplateName;
+                        req.ClientId = result.CustomerId;
+
+                        Requests.Add(req);
+                    }
+                }
+
+                return Requests;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+
+        }
     }
 
 }

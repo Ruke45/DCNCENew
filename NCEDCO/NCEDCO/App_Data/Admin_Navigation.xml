@@ -9,7 +9,8 @@
     <Child title="Main Customer Requests" action="ParentCustomerRequests" controller="Customer" url="#"/>
     <Child title="Client's Customer Requests" action="ClientCustomerRequests" controller="Customer" url="#"/>
     <Child title="Client's Customer Rates" action="RateNTax" controller="Customer" url="#"/>
-     <!--Customer Details View Needed -->
+    <Child title="Client/Parent Details" action="Details" controller="Customer" url="#"/>
+    <Child title="Client's Customer Details" action="Children" controller="Customer" url="#"/>   
   </Navigation>
   <Navigation title="Cancelation" action="#" controller="#" url="#" isParent ="true">
     <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>

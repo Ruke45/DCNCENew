@@ -1,28 +1,7 @@
-﻿@model IEnumerable<NCEDCO.Models.M_CustomerParent>
-@{
-    ViewBag.Title = "Parent Customer Details";
-}
+﻿@model IEnumerable<NCEDCO.Models.M_Customer>
 
-<!-- Page Heading/Breadcrumbs -->
-<div class="row">
-    <div class="col-lg-12">
-        <h3 class="page-header">
-            <small>Parent Customer Details </small>
-        </h3>
-        <ol class="breadcrumb">
-            <li><a href="index.html">Customer </a>
-            </li>
-            <li class="active">Parent Customer Details</li>
-        </ol>
-    </div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-
-    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Parent Customer Details Table</div>
+            <div class="panel-heading">Client's Customer Details Table</div>
 
 
 
@@ -37,6 +16,8 @@
                             <th>@Html.DisplayNameFor(model => model.Telephone)</th>
                             <th>@Html.DisplayNameFor(model => model.Fax)</th>
                             <th>Contact Person Details</th>
+                            <th>Certificate Template</th>
+                           @* <th>Payment Method</th>*@
   
                             @*<th></th>*@
                         </tr>
@@ -50,7 +31,7 @@
                             {
 
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => item.Parent_Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ClientId)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Request_Id)</td>                              
                                 <td>@Html.DisplayFor(modelItem => item.Customer_Name) @Html.DisplayFor(modelItem => item.Email)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Address1)</td>
@@ -61,6 +42,8 @@
                                     @Html.DisplayFor(modelItem => item.ContactPersonDirectPhone),
                                     @Html.DisplayFor(modelItem => item.ContactPersonMobile),
                                     @Html.DisplayFor(modelItem => item.ContactPersonEmail)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TemplateId)</td>
+                               @* <td>@Html.DisplayFor(modelItem => item.PaidType)</td>*@
                              @*   <td align="center">*@
                                     @*<div class="btn-group">
                                         <button type="button" class="btn btn-primary" onclick="DetailsView(@item.TeacherId)"><span class="fa fa-info"></span></button>
@@ -75,13 +58,8 @@
                     </tbody>
                 </table>
             </div>
-             <div class="panel-footer">Parent Customer Details Table</div>
+             <div class="panel-footer">Client's Customer Details Table</div>
         </div>
-    </div>
-</div>
-
-
-
 
 <script src="~/Scripts/pace/pace.min.js"></script>
 <script type="text/javascript">
@@ -104,11 +82,3 @@
     });
     TableManageButtons.init();
  </script>
-                            
-<script>
-    var DetailsView = function (RequestId) {
-        debugger
-        var Url = "/Customer/ParentCustomerRequestsDetails?RequestId=" + RequestId;
-        window.location.href = Url;
-    }
-</script>

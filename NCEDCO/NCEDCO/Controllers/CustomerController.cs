@@ -322,6 +322,18 @@ namespace NCEDCO.Controllers
             return View(CustomerOBj.getAllCustomerDetails_());
         }
 
+        public ActionResult Children()
+        {
+            List<M_CustomerParent> par = CustomerOBj.getAllParents();
+            ViewBag.ParentsIDs = new SelectList(par, "Parent_Id", "Customer_Name"); 
+            return View();
+        }
+
+        public ActionResult ViewChildren(string Parentid)
+        {
+            return PartialView("P_CustomersChildren",
+                CustomerOBj.getAllParentsChildren__(Parentid));
+        }
 
     }
 }

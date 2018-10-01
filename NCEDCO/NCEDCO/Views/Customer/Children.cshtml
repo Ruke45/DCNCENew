@@ -1,0 +1,63 @@
+﻿@model NCEDCO.Models.M_Customer
+@{
+    ViewBag.Title = "Customer's Clients Details";
+}
+
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">
+            <small>Client's Customer Details </small>
+        </h3>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Customer </a>
+            </li>
+            <li class="active">Client's Customer Details</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+   <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Certificate Request Form</div>
+            <div class="panel-body">
+
+                <div class="col-md-12 form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Select Client</div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Parent_Id, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-7">
+                                    @Html.DropDownListFor(model => model.Parent_Id, ViewBag.ParentsIDs as SelectList, "", new { @class = "form-control selectEx", @onchange = "loadTemplate()" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="FrmCRq" class="form-horizontal" autocomplete="off" enctype="multipart/form-data">
+                    <div class="col-md-12" id="LoadTemplate"></div>
+
+                </form>
+
+            </div>
+            </div>
+        </div>
+             
+    </div>
+
+<script>
+    var loadTemplate = function () {
+        var tid = $('#Parent_Id').val();
+        debugger
+        if (tid != "") {
+            $('#LoadTemplate').load('/Customer/ViewChildren?Parentid=' + tid);
+            $('#LoadTemplate').show();
+        } else {
+            $('#LoadTemplate').hide();
+        }
+    }
+</script>
