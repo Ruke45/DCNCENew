@@ -32,7 +32,16 @@
                     <div class="col-sm-2">
                         <input class="form-control" id="tdate" name="date" placeholder="YYYY/MM/DD" type="text" />
                     </div>
+                    <label class="col-sm-1 control-label">Status : </label>
+                    <div class="col-sm-2">
+                    <select class="form-control" id="cStatus" name="cStatus">
+                        <option value="A">Approved</option> 
+                        <option value="R">Rejected</option> 
+                        <option value="G">Pending</option>
+                    </select>
+                        </div>
                     <a href="#" id="bulkS" class="btn btn-primary btn-sm" onclick="FindD()">Search</a>
+                    
                 </div>
                     </div>
             </div>
@@ -71,11 +80,6 @@
 <script src="~/Scripts/pace/pace.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $("#bulkS").click(function () {
-            getValueUsingClass();
-        });
-
         $('#fdate').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -90,13 +94,19 @@
         })
         loadHerere();
     });
-    TableManageButtons.init();
+    //TableManageButtons.init();
 
 </script>
 <script>
     var FindD = function () {
-        var Url = "/CancelDocument/CanceledD?fdate=" + $("#fdate").val() + "&tdate=" + $("#tdate").val();
-        window.location.href = Url;
+        var Url = "/CertificateRequest/getRequestStatus_?fdate=" + $("#fdate").val() + "&tdate=" + $("#tdate").val() + "&status=" + $("#cStatus").val();
+        debugger
+        if ($("#fdate").val() != "") {
+            $('#loadHere').load(Url);
+            $('#loadHere').show();
+        } else {
+            $('#loadHere').hide();
+        }
     }
     var CancelDoc = function (Ref, Client, Doctype) {
         var Url = "/CancelDocument/Cancel_Doc?Ref=" + Ref + "&Client=" + Client + "&Doctype=" + Doctype;
@@ -105,14 +115,8 @@
         })
     }
     var loadHerere = function () {
-        var tid = $('#RefferencNo').val();
-        debugger
-        if (tid != "") {
-            $('#loadHere').load('/CertificateRequest/getRequestStatus');
-            $('#loadHere').show();
-        } else {
-            $('#loadHere').hide();
-        }
+        $('#loadHere').load('/CertificateRequest/getRequestStatus');
+        $('#loadHere').show();
     }
 </script>
 

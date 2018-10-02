@@ -41,7 +41,7 @@
     <Child title="Pending Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
 <Navigation title="View" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Cancel Documents" action="RequestStatus" controller="CertificateRequests" url="#"/>
+    <Child title="Certificate Request Status" action="RequestStatus" controller="CertificateRequests" url="#"/>
   </Navigation>
 </Navigations>
 

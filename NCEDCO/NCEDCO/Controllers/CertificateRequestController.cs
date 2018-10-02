@@ -1006,8 +1006,18 @@ namespace NCEDCO.Controllers
         }
         public ActionResult getRequestStatus()
         {
+            ViewBag.Fdate = DateTime.Now.AddDays(-30).ToString("yyyy/MMM/dd");
+            ViewBag.Tdate = DateTime.Now.ToString("yyyy/MMM/dd");
             return PartialView("P_RequestStatus", objCr.getCertificateRequestStatus("%", "%", "%",
                 DateTime.Now.AddDays(-30).ToString("yyyyMMdd"), DateTime.Now.ToString("yyyyMMdd"), "%", "%"));
+        }
+
+        public ActionResult getRequestStatus_(DateTime fdate, DateTime tdate, string status)
+        {
+            ViewBag.Fdate = fdate.ToString("yyyy/MMM/dd");
+            ViewBag.Tdate = tdate.ToString("yyyy/MMM/dd");
+            return PartialView("P_RequestStatus", objCr.getCertificateRequestStatus("%", "%", status,
+               fdate.ToString("yyyyMMdd"), tdate.ToString("yyyyMMdd"), "%", "%"));
         }
 
     }
