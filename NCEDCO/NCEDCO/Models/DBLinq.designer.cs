@@ -853,6 +853,13 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), parentId);
 			return ((ISingleResult<_getParentsChildrenDetailsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getAllInvoice]")]
+		public ISingleResult<_getAllInvoiceResult> _getAllInvoice([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string startdate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string enddate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(1)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentId", DbType="VarChar(20)")] string parentId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), startdate, enddate, status, parentId);
+			return ((ISingleResult<_getAllInvoiceResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -9052,6 +9059,50 @@ namespace NCEDCO.Models
 				if ((this._TemplateName != value))
 				{
 					this._TemplateName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getAllInvoiceResult
+	{
+		
+		private string _CustomerId;
+		
+		private string _CustomerName;
+		
+		public _getAllInvoiceResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
 				}
 			}
 		}

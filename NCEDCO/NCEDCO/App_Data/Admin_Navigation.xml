@@ -16,7 +16,7 @@
     <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>
     <Child title="Cancel History" action="Canceled" controller="CancelDocument" url="#"/>
   </Navigation>
-  <Navigation title="System User" action="#" controller="#" url="#" isParent ="true">
+  <Navigation title="User" action="#" controller="#" url="#" isParent ="true">
     <Child title="New User" action="Index" controller="User" url="#"/>
   </Navigation>
   <Navigation title="Settings" action="#" controller="#" url="#" isParent ="true">
@@ -27,12 +27,12 @@
     <Child title="Supporting Document (Add/Edit)" action="SupportDocument" controller="Settings" url="#"/>
     <Child title="Support Document For Template" action="SupportDocumentForTemplate" controller="Settings" url="#"/>
   </Navigation>
-  <Navigation title="Certificate / Supporting Doc" action="#" controller="#" url="#" isParent ="true">
+  <Navigation title="Cert/Doc Request" action="#" controller="#" url="#" isParent ="true">
     <Child title="Web Certificate Requests" action="Index" controller="CertificateRequest" url="#"/>
     <Child title="Upload Certificate Requests" action="Upload" controller="CertificateRequest" url="#"/>
     <Child title="Supporting Document Requests" action="Supporting" controller="CertificateRequest" url="#"/>
   </Navigation>
-  <Navigation title="Pending For Approval" action="#" controller="#" url="#" isParent ="true">
+  <Navigation title="Pending Approval" action="#" controller="#" url="#" isParent ="true">
     <Child title="Pending Certificate Requests" action="Pending" controller="CertificateRequest" url="#"/>
     <Child title="Pending Support Document Requests" action="Pending" controller="SupportDocument" url="#"/>
   </Navigation>
@@ -40,8 +40,8 @@
     <Child title="Pending Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
     <Child title="Pending Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
-<Navigation title="View" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Certificate Request Status" action="RequestStatus" controller="CertificateRequests" url="#"/>
+  <Navigation title="Invoice" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Invoiceing" action="Index" controller="Invoice" url="#"/>
   </Navigation>
 </Navigations>
 

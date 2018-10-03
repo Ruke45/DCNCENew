@@ -108,12 +108,6 @@
             $('#loadHere').hide();
         }
     }
-    var CancelDoc = function (Ref, Client, Doctype) {
-        var Url = "/CancelDocument/Cancel_Doc?Ref=" + Ref + "&Client=" + Client + "&Doctype=" + Doctype;
-        $("#OModelBody").load(Url, function () {
-            $("#OModel").modal("show");
-        })
-    }
     var loadHerere = function () {
         $('#loadHere').load('/CertificateRequest/getRequestStatus');
         $('#loadHere').show();
