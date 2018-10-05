@@ -170,5 +170,26 @@ namespace NCEDCO.Models
             get { return SignatureRequired; }
             set { SignatureRequired = value; }
         }
+
+        string RateID;
+        public string Rate_Id
+        {
+            get { return RateID; }
+            set { RateID = value; }
+        }
+
+        decimal Rate;
+        public decimal Rate_
+        {
+            get { return Rate; }
+            set { Rate = value; }
+        }
+
+        string InvoiceNo;
+        public string Invoice_No
+        {
+            get { return InvoiceNo; }
+            set { InvoiceNo = value; }
+        }
     }
 }

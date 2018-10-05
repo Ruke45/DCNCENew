@@ -11,6 +11,12 @@ namespace NCEDCO.Models.Business
     {
         string Connection_ = ConfigurationManager.ConnectionStrings["NCEDCOConnectionString"].ToString();
 
+        //CertificateManager CM;
+        //CustometTaxDetailManager tax;
+        //InvoiceDetailSavingManager InvoicesaveManager;
+        //InvoiceDetailSaving invoice;
+
+
         public List<M_InvoiceDetails> getAllInvoice(string Start, string End, string Status, string ParentId)
         {
             try
@@ -42,6 +48,28 @@ namespace NCEDCO.Models.Business
             }
 
 
+        }
+
+        public void setInvoiceHeader()
+        {
+        }
+
+        public bool setInvoiceRate(M_SupportDocument M)
+        {
+            try
+            {
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext._setInvoiceRate(M.ClientID_,M.Invoice_No,M.SupportingDocument_Name,M.Rate_Id,M.Rate_,M.Created_By);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
         }
     }
 }

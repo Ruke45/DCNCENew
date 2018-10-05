@@ -1135,4 +1135,31 @@
       <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getSuppotingDocumentPeriodicDetail]" Method="_getSuppotingDocumentPeriodicDetail">
+    <Parameter Name="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="status" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="startDate" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="endDate" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="InvoiceRateId" Parameter="invoiceRateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="OtherRateId" Parameter="otherRateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="supdocInvoiceRateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="supdocOtherRateId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="AtachSheetId" Parameter="atachSheetId" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getSuppotingDocumentPeriodicDetailResult">
+      <Column Name="RequestID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadDocName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SupportingDocID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Rates" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="RatesId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setInvoiceRate]" Method="_setInvoiceRate">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="SuportingDocName" Parameter="suportingDocName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="RateId" Parameter="rateId" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="RateValue" Parameter="rateValue" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

@@ -860,6 +860,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), startdate, enddate, status, parentId);
 			return ((ISingleResult<_getAllInvoiceResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getSuppotingDocumentPeriodicDetail]")]
+		public ISingleResult<_getSuppotingDocumentPeriodicDetailResult> _getSuppotingDocumentPeriodicDetail([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(1)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string startDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(8)")] string endDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceRateId", DbType="VarChar(20)")] string invoiceRateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OtherRateId", DbType="VarChar(20)")] string otherRateId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string supdocInvoiceRateId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string supdocOtherRateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AtachSheetId", DbType="VarChar(20)")] string atachSheetId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, status, startDate, endDate, invoiceRateId, otherRateId, supdocInvoiceRateId, supdocOtherRateId, atachSheetId);
+			return ((ISingleResult<_getSuppotingDocumentPeriodicDetailResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setInvoiceRate]")]
+		public int _setInvoiceRate([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SuportingDocName", DbType="VarChar(50)")] string suportingDocName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RateId", DbType="VarChar(10)")] string rateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RateValue", DbType="Decimal(18,2)")] System.Nullable<decimal> rateValue, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, invoiceNo, suportingDocName, rateId, rateValue, createdBy);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -9103,6 +9117,104 @@ namespace NCEDCO.Models
 				if ((this._CustomerName != value))
 				{
 					this._CustomerName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getSuppotingDocumentPeriodicDetailResult
+	{
+		
+		private string _RequestID;
+		
+		private string _UploadDocName;
+		
+		private string _SupportingDocID;
+		
+		private decimal _Rates;
+		
+		private string _RatesId;
+		
+		public _getSuppotingDocumentPeriodicDetailResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this._RequestID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadDocName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UploadDocName
+		{
+			get
+			{
+				return this._UploadDocName;
+			}
+			set
+			{
+				if ((this._UploadDocName != value))
+				{
+					this._UploadDocName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocID", DbType="VarChar(20)")]
+		public string SupportingDocID
+		{
+			get
+			{
+				return this._SupportingDocID;
+			}
+			set
+			{
+				if ((this._SupportingDocID != value))
+				{
+					this._SupportingDocID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rates", DbType="Decimal(18,6) NOT NULL")]
+		public decimal Rates
+		{
+			get
+			{
+				return this._Rates;
+			}
+			set
+			{
+				if ((this._Rates != value))
+				{
+					this._Rates = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RatesId", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string RatesId
+		{
+			get
+			{
+				return this._RatesId;
+			}
+			set
+			{
+				if ((this._RatesId != value))
+				{
+					this._RatesId = value;
 				}
 			}
 		}

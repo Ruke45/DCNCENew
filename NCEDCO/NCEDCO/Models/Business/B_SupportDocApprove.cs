@@ -187,5 +187,52 @@ namespace NCEDCO.Models.Business
 
         }
 
+
+        //For Invoice Genaration
+        public List<M_SupportDocument> getSuuportingDocumentApproval(M_InvoiceData M)
+        {
+            try
+            {
+                List<M_SupportDocument> DocList = new List<M_SupportDocument>();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+
+
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getSuppotingDocumentPeriodicDetailResult> lst = datacontext._getSuppotingDocumentPeriodicDetail(M.CustomerId,
+                                                                                                                                                    M.Status,
+                                                                                                                                                    M.StartDate,
+                                                                                                                                                    M.EndDate,
+                                                                                                                                                    M.InvoiceRateId,
+                                                                                                                                                    M.OtherRateId,
+                                                                                                                                                    M.SupDocInvoiceRateId,
+                                                                                                                                                    M.SupDocOtherRateId,
+                                                                                                                                                    M.AttachSheetId);
+                    foreach (_getSuppotingDocumentPeriodicDetailResult result in lst)
+                    {
+                        M_SupportDocument SRH = new M_SupportDocument();
+                        SRH.Request_ID = result.RequestID;
+                        SRH.SupportingDocument_Id = result.SupportingDocID;
+                        SRH.SupportingDocument_Name = result.UploadDocName;
+                        SRH.Rate_Id = result.RatesId;
+                        SRH.Rate_ = result.Rates;
+
+
+                        DocList.Add(SRH);
+
+                    }
+                }
+                return DocList;
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+        }
+
+
     }
 }

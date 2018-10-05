@@ -27,6 +27,5 @@ namespace NCEDCO.Controllers
             return PartialView("P_InvoiceCustomers"
                 , objInv.getAllInvoice(S.ToString("yyyyMMdd"), E.ToString("yyyyMMdd"), "A", P));
         }
-
     }
 }

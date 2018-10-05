@@ -214,6 +214,7 @@
     <Compile Include="Models\M_CustomerParentRequest.cs" />
     <Compile Include="Models\M_CustomerRequest.cs" />
     <Compile Include="Models\M_ExportSector.cs" />
+    <Compile Include="Models\M_InvoiceData.cs" />
     <Compile Include="Models\M_InvoiceDetails.cs" />
     <Compile Include="Models\M_Login.cs" />
     <Compile Include="Models\M_NCETemplate.cs" />
