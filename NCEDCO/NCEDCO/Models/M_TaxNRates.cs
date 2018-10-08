@@ -31,5 +31,9 @@ namespace NCEDCO.Models
         [Display(Name = "Pay Type")]
         [Required(ErrorMessage = "Required! ")]
         public string PayType { get; set; }
+
+        [Display(Name = "Priority")]
+        [Required(ErrorMessage = "Required! ")]
+        public int Priority { get; set; }
     }
 }

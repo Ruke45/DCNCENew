@@ -99,5 +99,12 @@ namespace NCEDCO.Models
             get { return To; }
             set { To = value; }
         }
+        string IsSVAT;
+        [Display(Name = "Is SVAT")]
+        public string Is_SVAT
+        {
+            get { return IsSVAT; }
+            set { IsSVAT = value; }
+        }
     }
 }

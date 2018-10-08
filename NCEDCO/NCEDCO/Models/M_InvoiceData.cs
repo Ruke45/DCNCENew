@@ -7,8 +7,8 @@ namespace NCEDCO.Models
 {
     public class M_InvoiceData
     {
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string CustomerId { get; set; }
         public string Start { get; set; }
         public string End { get; set; }

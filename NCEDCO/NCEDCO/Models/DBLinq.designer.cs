@@ -874,6 +874,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, invoiceNo, suportingDocName, rateId, rateValue, createdBy);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getTaxDetails]")]
+		public ISingleResult<_getTaxDetailsResult> _getTaxDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(1)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsVat", DbType="VarChar(4)")] string isVat)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, isVat);
+			return ((ISingleResult<_getTaxDetailsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getInvoiceDetails_Certificate]")]
+		public ISingleResult<_getInvoiceDetails_CertificateResult> _getInvoiceDetails_Certificate([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(3)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StartDate", DbType="VarChar(10)")] string startDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EndDate", DbType="VarChar(10)")] string endDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string rateId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, startDate, endDate, customerId, rateId);
+			return ((ISingleResult<_getInvoiceDetails_CertificateResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -9215,6 +9229,274 @@ namespace NCEDCO.Models
 				if ((this._RatesId != value))
 				{
 					this._RatesId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getTaxDetailsResult
+	{
+		
+		private string _TaxCode;
+		
+		private string _TaxName;
+		
+		private decimal _TaxPercentage;
+		
+		private System.Nullable<int> _TaxPriority;
+		
+		private string _IsActive;
+		
+		private string _ModifiedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		public _getTaxDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string TaxCode
+		{
+			get
+			{
+				return this._TaxCode;
+			}
+			set
+			{
+				if ((this._TaxCode != value))
+				{
+					this._TaxCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string TaxName
+		{
+			get
+			{
+				return this._TaxName;
+			}
+			set
+			{
+				if ((this._TaxName != value))
+				{
+					this._TaxName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxPercentage", DbType="Decimal(18,2) NOT NULL")]
+		public decimal TaxPercentage
+		{
+			get
+			{
+				return this._TaxPercentage;
+			}
+			set
+			{
+				if ((this._TaxPercentage != value))
+				{
+					this._TaxPercentage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxPriority", DbType="Int")]
+		public System.Nullable<int> TaxPriority
+		{
+			get
+			{
+				return this._TaxPriority;
+			}
+			set
+			{
+				if ((this._TaxPriority != value))
+				{
+					this._TaxPriority = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="VarChar(1)")]
+		public string IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(20)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this._ModifiedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getInvoiceDetails_CertificateResult
+	{
+		
+		private string _RequestId;
+		
+		private string _CustomerId;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private string _Consignor;
+		
+		private string _Consignee;
+		
+		private decimal _Rates;
+		
+		private string _IsSVat;
+		
+		public _getInvoiceDetails_CertificateResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignor", DbType="VarChar(500)")]
+		public string Consignor
+		{
+			get
+			{
+				return this._Consignor;
+			}
+			set
+			{
+				if ((this._Consignor != value))
+				{
+					this._Consignor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(500)")]
+		public string Consignee
+		{
+			get
+			{
+				return this._Consignee;
+			}
+			set
+			{
+				if ((this._Consignee != value))
+				{
+					this._Consignee = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rates", DbType="Decimal(18,6) NOT NULL")]
+		public decimal Rates
+		{
+			get
+			{
+				return this._Rates;
+			}
+			set
+			{
+				if ((this._Rates != value))
+				{
+					this._Rates = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSVat", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string IsSVat
+		{
+			get
+			{
+				return this._IsSVat;
+			}
+			set
+			{
+				if ((this._IsSVat != value))
+				{
+					this._IsSVat = value;
 				}
 			}
 		}
