@@ -23,6 +23,11 @@ namespace NCEDCO.Models
         public string AttachSheetId { get; set; }
         public decimal Rate { get; set; }
         public decimal GrossTotal { get; set; }
+        public decimal InvoiceTotal { get; set; }
         public string invoiceNo { get; set; }
+        public string RequestId { get; set; }
+        public string IsTaxInvoice { get; set; }
+        public string Createdby { get; set; }
+        public int PrintCount { get; set; }
     }
 }

@@ -888,6 +888,27 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, startDate, endDate, customerId, rateId);
 			return ((ISingleResult<_getInvoiceDetails_CertificateResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setInvoiceHeader]")]
+		public int _setInvoiceHeader([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(10)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FromDate", DbType="DateTime")] System.Nullable<System.DateTime> fromDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ToDate", DbType="DateTime")] System.Nullable<System.DateTime> toDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GrossTotal", DbType="Decimal(18,6)")] System.Nullable<decimal> grossTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceTotal", DbType="Decimal(18,6)")] System.Nullable<decimal> invoiceTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsTaxInvoice", DbType="VarChar(4)")] string isTaxInvoice, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(50)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrintTimes", DbType="Int")] System.Nullable<int> printTimes)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), invoiceNo, customerId, fromDate, toDate, grossTotal, invoiceTotal, isTaxInvoice, createdBy, printTimes);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setInvoiceDetails]")]
+		public int _setInvoiceDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestNo", DbType="VarChar(20)")] string requestNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UnitCharge", DbType="Decimal(18,8)")] System.Nullable<decimal> unitCharge, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(20)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestNo, unitCharge, createdBy, invoiceNo);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setInvoiceTax]")]
+		public int _setInvoiceTax([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TaxCode", DbType="VarChar(50)")] string taxCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Amount", DbType="Decimal(10,6)")] System.Nullable<decimal> amount, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreatedBy", DbType="VarChar(50)")] string createdBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TaxPercentage", DbType="Decimal(18,2)")] System.Nullable<decimal> taxPercentage)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), invoiceNo, taxCode, amount, createdBy, taxPercentage);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult

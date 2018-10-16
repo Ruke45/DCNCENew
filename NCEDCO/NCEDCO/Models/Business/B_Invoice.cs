@@ -50,10 +50,6 @@ namespace NCEDCO.Models.Business
 
         }
 
-        public void setInvoiceHeader()
-        {
-        }
-
         public bool setInvoiceRate(M_SupportDocument M)
         {
             try
@@ -148,6 +144,95 @@ namespace NCEDCO.Models.Business
             }
 
 
+        }
+
+        public string setInvoiceHeader(M_InvoiceData req)
+        {
+
+         //   InvoiceDetailSaving Check = new InvoiceDetailSaving();
+
+            string RequestId = req.RequestId;
+
+            try
+            {
+                string InvoiceNo = string.Empty;
+
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        if (req.GrossTotal != 0)
+                        {
+                            dbContext.Transaction = dbContext.Connection.BeginTransaction();
+                            B_RecordSequence seqmanager = new B_RecordSequence();
+                            Int64 RequestNo = seqmanager.getNextSequence("InvoiceNo", dbContext);
+
+                            InvoiceNo = "STM" + DateTime.Now.ToString("yy") + String.Format("{0:D9}", RequestNo);
+                            dbContext._setInvoiceHeader(InvoiceNo,
+                                                        req.CustomerId,
+                                                        req.StartDate, 
+                                                        req.EndDate, 
+                                                        req.GrossTotal, 
+                                                        req.InvoiceTotal, 
+                                                        req.IsTaxInvoice, 
+                                                        req.Createdby, 
+                                                        req.PrintCount);
+
+                            dbContext.SubmitChanges();
+                            dbContext.Transaction.Commit();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Transaction.Rollback();
+                        ErrorLog.LogError(ex);
+                    }
+
+                    return InvoiceNo;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return string.Empty;
+            }
+        }
+
+        public bool setInvoiceDetails(M_InvoiceData req)
+        {
+            try
+            {
+                DBLinqDataContext datacontext = new DBLinqDataContext();
+                datacontext.Connection.ConnectionString = Connection_;
+                datacontext._setInvoiceDetails(req.RequestId, req.Rate, req.Createdby, req.invoiceNo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+        }
+
+        public bool setInvoiceTaxDetails(M_TaxNRates req)
+        {
+            try
+            {
+                DBLinqDataContext datacontext = new DBLinqDataContext();
+                datacontext.Connection.ConnectionString = Connection_;
+                datacontext._setInvoiceTax(req.InvoiceId, req.RateID, req.RateValue, req.CreatedBy, req.TaxPresentage);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
         }
     }
 }

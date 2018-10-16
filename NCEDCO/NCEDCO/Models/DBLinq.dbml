@@ -1191,4 +1191,31 @@
       <Column Name="IsSVat" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_setInvoiceHeader]" Method="_setInvoiceHeader">
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="GrossTotal" Parameter="grossTotal" Type="System.Decimal" DbType="Decimal(18,6)" />
+    <Parameter Name="InvoiceTotal" Parameter="invoiceTotal" Type="System.Decimal" DbType="Decimal(18,6)" />
+    <Parameter Name="IsTaxInvoice" Parameter="isTaxInvoice" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PrintTimes" Parameter="printTimes" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setInvoiceDetails]" Method="_setInvoiceDetails">
+    <Parameter Name="RequestNo" Parameter="requestNo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="UnitCharge" Parameter="unitCharge" Type="System.Decimal" DbType="Decimal(18,8)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.[_setInvoiceTax]" Method="_setInvoiceTax">
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TaxCode" Parameter="taxCode" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,6)" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TaxPercentage" Parameter="taxPercentage" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

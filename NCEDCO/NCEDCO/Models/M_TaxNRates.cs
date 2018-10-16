@@ -35,5 +35,10 @@ namespace NCEDCO.Models
         [Display(Name = "Priority")]
         [Required(ErrorMessage = "Required! ")]
         public int Priority { get; set; }
+
+        public string InvoiceId { get; set; }
+        public string CreatedBy { get; set; }
+
+        public decimal TaxPresentage { get; set; }
     }
 }
