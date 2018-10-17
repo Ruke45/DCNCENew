@@ -123,5 +123,12 @@
         }
         $("#loaderDiv").hide();
     }
+
+    var InvoiceH = function (C) {
+        debugger
+        var Url = "/Invoice/Genarate_SetValueToHeader?S=" + $("#From_").val() + "&E=" + $("#To_").val() + "&C=" + C;
+
+        window.open(Url, "_blank")
+    }
 </script>
 

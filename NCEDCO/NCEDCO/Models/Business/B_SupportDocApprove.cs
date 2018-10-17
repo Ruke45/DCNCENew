@@ -201,8 +201,8 @@ namespace NCEDCO.Models.Business
                     datacontext.Connection.ConnectionString = Connection_;
                     System.Data.Linq.ISingleResult<_getSuppotingDocumentPeriodicDetailResult> lst = datacontext._getSuppotingDocumentPeriodicDetail(M.CustomerId,
                                                                                                                                                     M.SupportingDocStatus,
-                                                                                                                                                    M.StartDate.ToString(),
-                                                                                                                                                    M.EndDate.ToString(),
+                                                                                                                                                    M.Start.ToString(),
+                                                                                                                                                    M.End.ToString(),
                                                                                                                                                     M.InvoiceRateId,
                                                                                                                                                     M.OtherRateId,
                                                                                                                                                     M.SupDocInvoiceRateId,

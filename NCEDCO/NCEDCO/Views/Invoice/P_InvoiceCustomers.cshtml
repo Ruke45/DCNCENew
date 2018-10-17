@@ -24,7 +24,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Customer_Name)</td>
                             <td align="center">
                                 <div class="btn-group ">
-                                    <a href="#" class="btn btn-primary btn-xs" onclick='CancelDoc("@item.Customer_Id")' >Genarate</a>
+                                    <a href="#" class="btn btn-primary btn-xs" onclick='InvoiceH("@item.Customer_Id")' >Invoice</a>
                                 </div>
                             </td>
                         </tr>
@@ -64,3 +64,4 @@
     TableManageButtons.init();
   
 </script>
+

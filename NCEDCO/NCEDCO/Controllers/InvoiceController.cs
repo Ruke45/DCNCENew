@@ -62,6 +62,8 @@ namespace NCEDCO.Controllers
             Invo_data.SupDocOtherRateId = SupDocOtherRateId;
             Invo_data.AttachSheetId = AttachSheetId;
             Invo_data.SupportingDocStatus = SDoc_Status;
+            Invo_data.StartDate = S;
+            Invo_data.EndDate = E;
 
             decimal Cost_Certificate = 0;
             decimal Cost_SupprotDoc = 0;
