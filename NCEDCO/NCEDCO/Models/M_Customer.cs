@@ -18,7 +18,7 @@ namespace NCEDCO.Models
 
         [Display(Name = "Modified Date")]
         [Required(ErrorMessage = "Required!")]
-        public DateTime ModifiedDate { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
 
         [Display(Name = "Template ID")]
         public string TemplateId { get; set; }

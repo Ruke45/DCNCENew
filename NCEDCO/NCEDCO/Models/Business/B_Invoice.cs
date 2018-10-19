@@ -234,5 +234,54 @@ namespace NCEDCO.Models.Business
                 return false;
             }
         }
+
+        public M_InvoiceView getInvoice_HeaderNData(string InvoiceNo)
+        {
+            try
+            {
+                M_InvoiceView req = new M_InvoiceView();
+                req.InvoiceNo = InvoiceNo;
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getInvoiceHeaderResult> lst = datacontext._getInvoiceHeader(InvoiceNo);
+
+                    foreach (_getInvoiceHeaderResult result in lst)
+                    {
+                        req.Customer_Name = result.CustomerName;
+                        req.ClientId = result.CustomerId;
+                        req.InvoicedDate = result.CreatedDate.ToString("dd/MMM/yyyy");
+                        req.Address1 = result.Address1;
+                        req.Address2 = result.Address2;
+                        req.Address3 = result.Address3;
+                        req.FromDate = result.FromDate.ToString("dd/MMM/yyyy");
+                        req.ToDate = result.ToDate.ToString("dd/MMM/yyyy");
+                    }
+
+                    System.Data.Linq.ISingleResult<_getInvoiceBodyResult> bdy = datacontext._getInvoiceBody(InvoiceNo);
+
+                    foreach (_getInvoiceBodyResult result in bdy)
+                    {
+                        M_InvoiceDetails In = new M_InvoiceDetails();
+                        decimal value = Math.Round(result.UnitCharge, 2);
+                        In.Certificate_ID = result.CertificateId;
+                        In.Request_Id = result.RequestNo;
+                        In.Rate_ = value;
+                        In.Consignee_ = result.Consignee;
+                        In.Consignor_ = result.Consignor;
+                        In.Created_Date = result.CreatedDate.ToShortDateString();
+
+                        req.InvoiceBody.Add(In);
+                    }
+                }
+                return req;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+
+        }
     }
 }

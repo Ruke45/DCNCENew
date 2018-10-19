@@ -30,7 +30,7 @@ namespace NCEDCO.Controllers
                 , objInv.getAllInvoice(S.ToString("yyyyMMdd"), E.ToString("yyyyMMdd"), "A", P));
         }
 
-        public ActionResult Genarate_SetValueToHeader(DateTime S, DateTime E,string C)
+        public ActionResult GenarateInvoice(DateTime S, DateTime E,string C)
         {
             /*Start get data for Calculate And Insert to invoice Header for get Invoice No*/
             String Start = S.ToString("yyyyMMdd");
@@ -156,27 +156,58 @@ namespace NCEDCO.Controllers
             decimal TaxCounts = 0;
             decimal NetTotal = BeforTax_Total;
 
-            foreach (var money in objInv.getTaxDetails(Invo_data.CustomerId, "Y"))
+            if (Is_SVat.Equals("Y"))
             {
-                /*---------------------insert value to invoice tax------------------*/
 
-                decimal presentage = money.RateValue;
+                foreach (var money in objInv.getTaxDetails("Y", "Y"))
+                {
+                    /*---------------------insert value to invoice tax------------------*/
 
-                TaxCounts = presentage * BeforTax_Total / 100;
-                NetTotal = NetTotal + TaxCounts;
+                    decimal presentage = money.RateValue;
 
-                M_TaxNRates taxdeta = new M_TaxNRates();
+                    TaxCounts = presentage * BeforTax_Total / 100;
+                    NetTotal = NetTotal + TaxCounts;
 
-                taxdeta.InvoiceId = Invoice_No;
-                taxdeta.RateID = money.RateID;
-                taxdeta.RateValue = TaxCounts;
-                taxdeta.CreatedBy = "Admin";
-                taxdeta.TaxPresentage = presentage;
+                    M_TaxNRates taxdeta = new M_TaxNRates();
 
-                objInv.setInvoiceTaxDetails(taxdeta);
+                    taxdeta.InvoiceId = Invoice_No;
+                    taxdeta.RateID = money.RateID;
+                    taxdeta.RateValue = TaxCounts;
+                    taxdeta.CreatedBy = "Admin";
+                    taxdeta.TaxPresentage = presentage;
+
+                    objInv.setInvoiceTaxDetails(taxdeta);
+                }
+            }
+            else
+            {
+                foreach (var money in objInv.getTaxDetails("Y", VATCode))
+                {
+                    /*---------------------insert value to invoice tax------------------*/
+
+                    decimal presentage = money.RateValue;
+
+                    TaxCounts = presentage * BeforTax_Total / 100;
+                    NetTotal = NetTotal + TaxCounts;
+
+                    M_TaxNRates taxdeta = new M_TaxNRates();
+
+                    taxdeta.InvoiceId = Invoice_No;
+                    taxdeta.RateID = money.RateID;
+                    taxdeta.RateValue = TaxCounts;
+                    taxdeta.CreatedBy = "Admin";
+                    taxdeta.TaxPresentage = presentage;
+
+                    objInv.setInvoiceTaxDetails(taxdeta);
+                }
             }
 
-            return View();
+            return RedirectToAction("InvoiceView", new { Invo = Invoice_No});
+        }
+
+        public ActionResult InvoiceView(string Invo)
+        {
+            return View(objInv.getInvoice_HeaderNData(Invo));
         }
     }
 }

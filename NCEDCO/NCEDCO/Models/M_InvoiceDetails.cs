@@ -25,6 +25,14 @@ namespace NCEDCO.Models
             set { RequestId = value; }
         }
 
+        string CertificateID;
+        [Display(Name = "Certificate ID")]
+        public string Certificate_ID
+        {
+            get { return CertificateID; }
+            set { CertificateID = value; }
+        }
+
         string CustomerId;
         [Display(Name = "Customer ID")]
         public string Customer_Id

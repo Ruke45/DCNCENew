@@ -216,6 +216,7 @@
     <Compile Include="Models\M_ExportSector.cs" />
     <Compile Include="Models\M_InvoiceData.cs" />
     <Compile Include="Models\M_InvoiceDetails.cs" />
+    <Compile Include="Models\M_InvoiceView.cs" />
     <Compile Include="Models\M_Login.cs" />
     <Compile Include="Models\M_NCETemplate.cs" />
     <Compile Include="Models\M_Parameters.cs" />
@@ -455,6 +456,9 @@
     <Content Include="Views\Customer\P_CustomersChildren.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Invoice\P_InvoiceCustomers.cshtml" />
+    <Content Include="Views\Invoice\GenarateInvoice.cshtml" />
+    <Content Include="Views\Invoice\TestIn.cshtml" />
+    <Content Include="Views\Invoice\InvoiceView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />
