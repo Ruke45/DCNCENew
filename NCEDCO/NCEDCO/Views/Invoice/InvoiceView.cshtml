@@ -40,13 +40,13 @@
     				</address>
     			</div>
     			<div class="col-xs-6 text-right">
-    				<address>
+    				@*<address>
         			<strong>Shipped To:</strong><br>
     					Jane Smith<br>
     					1234 Main<br>
     					Apt. 4B<br>
     					Springfield, ST 54321
-    				</address>
+    				</address>*@
     			</div>
     		</div>
     		<div class="row">
@@ -72,17 +72,17 @@
     	<div class="col-md-12">
     		<div class="panel panel-default">
     			<div class="panel-heading">
-    				<h3 class="panel-title"><strong>Order summary</strong></h3>
+    				<h3 class="panel-title"><strong>Invoice Details</strong></h3>
     			</div>
     			<div class="panel-body">
     				<div class="table-responsive">
-    					<table class="table table-condensed">
+    					<table class="table table-striped table-bordered">
     						<thead>
                                 <tr>
-        							<td><strong>Document ID</strong></td>      							
-        							<td class="text-center"><strong>Quantity</strong></td>
-                                    <td class="text-center"><strong>Price</strong></td>
-        							<td class="text-right"><strong>Totals</strong></td>
+        							<td><strong>Document ID</strong></td>  
+                                    <td><strong>Document Request ID</strong></td>    							
+        							<td><strong>Consignee</strong></td>
+                                    <td><strong>Rate</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
@@ -90,12 +90,31 @@
                                 @foreach(var item in Model.InvoiceBody){
     							<tr>
     								<td>@item.Certificate_ID</td>
-    								<td class="text-center">@item.Rate_</td>
-    								<td class="text-center">@item.Consignee_</td>
-    								<td class="text-right">@item.Consignor_</td>
+                                    <td>@item.Request_Id</td>
+                                    <td >@item.Consignee_</td>
+    								<td class="text-right">@item.Rate_ LKR</td>
     							</tr>
                                 }
-                                
+                                <tr>
+    								<td class="thick-line"></td>
+    								<td class="thick-line"></td>
+    								<td class="thick-line text-center"><strong>Gross Total</strong></td>
+    								<td class="thick-line text-right">@Model.GrossTotal LKR</td>
+    							</tr>
+                                @foreach(var tax in Model.InvoicTaxs){
+    							<tr>
+    								<td class="no-line"></td>
+    								<td class="no-line"></td>
+    								<td class="no-line text-center"><strong>@tax.RateID</strong>(@tax.TaxPresentage %)</td>
+    								<td class="no-line text-right"> @tax.RateValue LKR</td>
+    							</tr>
+                                }
+    							<tr>
+    								<td class="no-line"></td>
+    								<td class="no-line"></td>
+    								<td class="no-line text-center"><strong>Invoice Total</strong></td>
+    								<td class="no-line text-right">@Model.InvoiceTotal LKR</td>
+    							</tr>
     						</tbody>
     					</table>
     				</div>

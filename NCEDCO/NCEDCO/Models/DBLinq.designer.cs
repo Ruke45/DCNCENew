@@ -910,6 +910,13 @@ namespace NCEDCO.Models
 			return ((ISingleResult<_getSuppotingDocumentPeriodicDetailResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getInvoiceBody]")]
+		public ISingleResult<_getInvoiceBodyResult> _getInvoiceBody([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), invoiceNo);
+			return ((ISingleResult<_getInvoiceBodyResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getInvoiceHeader]")]
 		public ISingleResult<_getInvoiceHeaderResult> _getInvoiceHeader([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo)
 		{
@@ -917,11 +924,11 @@ namespace NCEDCO.Models
 			return ((ISingleResult<_getInvoiceHeaderResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getInvoiceBody]")]
-		public ISingleResult<_getInvoiceBodyResult> _getInvoiceBody([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getInvoiceTax]")]
+		public ISingleResult<_getInvoiceTaxResult> _getInvoiceTax([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InvoiceNo", DbType="VarChar(20)")] string invoiceNo)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), invoiceNo);
-			return ((ISingleResult<_getInvoiceBodyResult>)(result.ReturnValue));
+			return ((ISingleResult<_getInvoiceTaxResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -9555,6 +9562,122 @@ namespace NCEDCO.Models
 		}
 	}
 	
+	public partial class _getInvoiceBodyResult
+	{
+		
+		private string _RequestNo;
+		
+		private string _CertificateId;
+		
+		private string _Consignee;
+		
+		private string _Consignor;
+		
+		private decimal _UnitCharge;
+		
+		private System.DateTime _CreatedDate;
+		
+		public _getInvoiceBodyResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string RequestNo
+		{
+			get
+			{
+				return this._RequestNo;
+			}
+			set
+			{
+				if ((this._RequestNo != value))
+				{
+					this._RequestNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CertificateId
+		{
+			get
+			{
+				return this._CertificateId;
+			}
+			set
+			{
+				if ((this._CertificateId != value))
+				{
+					this._CertificateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(500)")]
+		public string Consignee
+		{
+			get
+			{
+				return this._Consignee;
+			}
+			set
+			{
+				if ((this._Consignee != value))
+				{
+					this._Consignee = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignor", DbType="VarChar(500)")]
+		public string Consignor
+		{
+			get
+			{
+				return this._Consignor;
+			}
+			set
+			{
+				if ((this._Consignor != value))
+				{
+					this._Consignor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitCharge", DbType="Decimal(20,8) NOT NULL")]
+		public decimal UnitCharge
+		{
+			get
+			{
+				return this._UnitCharge;
+			}
+			set
+			{
+				if ((this._UnitCharge != value))
+				{
+					this._UnitCharge = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+	}
+	
 	public partial class _getInvoiceHeaderResult
 	{
 		
@@ -9579,6 +9702,12 @@ namespace NCEDCO.Models
 		private string _ParentCustomerId;
 		
 		private string _ParentN;
+		
+		private string _IsTaxInvoice;
+		
+		private decimal _GrossTotal;
+		
+		private decimal _InvoiceTotal;
 		
 		public _getInvoiceHeaderResult()
 		{
@@ -9759,103 +9888,135 @@ namespace NCEDCO.Models
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsTaxInvoice", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string IsTaxInvoice
+		{
+			get
+			{
+				return this._IsTaxInvoice;
+			}
+			set
+			{
+				if ((this._IsTaxInvoice != value))
+				{
+					this._IsTaxInvoice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrossTotal", DbType="Decimal(18,2) NOT NULL")]
+		public decimal GrossTotal
+		{
+			get
+			{
+				return this._GrossTotal;
+			}
+			set
+			{
+				if ((this._GrossTotal != value))
+				{
+					this._GrossTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceTotal", DbType="Decimal(18,6) NOT NULL")]
+		public decimal InvoiceTotal
+		{
+			get
+			{
+				return this._InvoiceTotal;
+			}
+			set
+			{
+				if ((this._InvoiceTotal != value))
+				{
+					this._InvoiceTotal = value;
+				}
+			}
+		}
 	}
 	
-	public partial class _getInvoiceBodyResult
+	public partial class _getInvoiceTaxResult
 	{
 		
-		private string _RequestNo;
+		private string _InvoiceNo;
 		
-		private string _CertificateId;
+		private string _TaxCode;
 		
-		private string _Consignee;
+		private decimal _Amount;
 		
-		private string _Consignor;
-		
-		private decimal _UnitCharge;
+		private string _CreatedBy;
 		
 		private System.DateTime _CreatedDate;
 		
-		public _getInvoiceBodyResult()
+		private decimal _TaxPercentage;
+		
+		public _getInvoiceTaxResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestNo", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string RequestNo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string InvoiceNo
 		{
 			get
 			{
-				return this._RequestNo;
+				return this._InvoiceNo;
 			}
 			set
 			{
-				if ((this._RequestNo != value))
+				if ((this._InvoiceNo != value))
 				{
-					this._RequestNo = value;
+					this._InvoiceNo = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string CertificateId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string TaxCode
 		{
 			get
 			{
-				return this._CertificateId;
+				return this._TaxCode;
 			}
 			set
 			{
-				if ((this._CertificateId != value))
+				if ((this._TaxCode != value))
 				{
-					this._CertificateId = value;
+					this._TaxCode = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignee", DbType="VarChar(500)")]
-		public string Consignee
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,6) NOT NULL")]
+		public decimal Amount
 		{
 			get
 			{
-				return this._Consignee;
+				return this._Amount;
 			}
 			set
 			{
-				if ((this._Consignee != value))
+				if ((this._Amount != value))
 				{
-					this._Consignee = value;
+					this._Amount = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Consignor", DbType="VarChar(500)")]
-		public string Consignor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
 		{
 			get
 			{
-				return this._Consignor;
+				return this._CreatedBy;
 			}
 			set
 			{
-				if ((this._Consignor != value))
+				if ((this._CreatedBy != value))
 				{
-					this._Consignor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitCharge", DbType="Decimal(18,8) NOT NULL")]
-		public decimal UnitCharge
-		{
-			get
-			{
-				return this._UnitCharge;
-			}
-			set
-			{
-				if ((this._UnitCharge != value))
-				{
-					this._UnitCharge = value;
+					this._CreatedBy = value;
 				}
 			}
 		}
@@ -9872,6 +10033,22 @@ namespace NCEDCO.Models
 				if ((this._CreatedDate != value))
 				{
 					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxPercentage", DbType="Decimal(18,2) NOT NULL")]
+		public decimal TaxPercentage
+		{
+			get
+			{
+				return this._TaxPercentage;
+			}
+			set
+			{
+				if ((this._TaxPercentage != value))
+				{
+					this._TaxPercentage = value;
 				}
 			}
 		}

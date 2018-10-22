@@ -57,7 +57,7 @@ namespace NCEDCO.Models.Business
                 using (DBLinqDataContext dbContext = new DBLinqDataContext())
                 {
                     dbContext.Connection.ConnectionString = Connection_;
-                    dbContext._setInvoiceRate(M.ClientID_,M.Invoice_No,M.SupportingDocument_Name,M.Rate_Id,M.Rate_,M.Created_By);
+                    dbContext._setInvoiceRate(M.ClientID_,M.Invoice_No,M.Request_ID,M.Rate_Id,M.Rate_,M.Created_By);
                     return true;
                 }
             }
@@ -256,6 +256,9 @@ namespace NCEDCO.Models.Business
                         req.Address3 = result.Address3;
                         req.FromDate = result.FromDate.ToString("dd/MMM/yyyy");
                         req.ToDate = result.ToDate.ToString("dd/MMM/yyyy");
+                        req.IsTaxInvoice = result.IsTaxInvoice;
+                        req.GrossTotal = Math.Round(result.GrossTotal,2).ToString();
+                        req.InvoiceTotal = Math.Round(result.InvoiceTotal,2).ToString();
                     }
 
                     System.Data.Linq.ISingleResult<_getInvoiceBodyResult> bdy = datacontext._getInvoiceBody(InvoiceNo);
@@ -272,6 +275,19 @@ namespace NCEDCO.Models.Business
                         In.Created_Date = result.CreatedDate.ToShortDateString();
 
                         req.InvoiceBody.Add(In);
+                    }
+
+                    System.Data.Linq.ISingleResult<_getInvoiceTaxResult> tx = datacontext._getInvoiceTax(InvoiceNo);
+
+                    foreach (_getInvoiceTaxResult result in tx)
+                    {
+                        M_TaxNRates In = new M_TaxNRates();
+                        decimal value = Math.Round(result.Amount, 2);
+                        In.RateID = result.TaxCode;
+                        In.TaxPresentage = result.TaxPercentage;
+                        In.RateValue = value;
+
+                        req.InvoicTaxs.Add(In);
                     }
                 }
                 return req;

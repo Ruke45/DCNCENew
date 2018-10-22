@@ -1219,6 +1219,17 @@
       <Column Name="IsSVat" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getInvoiceBody]" Method="_getInvoiceBody">
+    <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getInvoiceBodyResult">
+      <Column Name="RequestNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CertificateId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Consignee" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Consignor" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="UnitCharge" Type="System.Decimal" DbType="Decimal(20,8) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.[_getInvoiceHeader]" Method="_getInvoiceHeader">
     <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
     <ElementType Name="_getInvoiceHeaderResult">
@@ -1233,17 +1244,20 @@
       <Column Name="ToDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="ParentCustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="ParentN" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="IsTaxInvoice" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="GrossTotal" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceTotal" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.[_getInvoiceBody]" Method="_getInvoiceBody">
+  <Function Name="dbo.[_getInvoiceTax]" Method="_getInvoiceTax">
     <Parameter Name="InvoiceNo" Parameter="invoiceNo" Type="System.String" DbType="VarChar(20)" />
-    <ElementType Name="_getInvoiceBodyResult">
-      <Column Name="RequestNo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="CertificateId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Consignee" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Consignor" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="UnitCharge" Type="System.Decimal" DbType="Decimal(18,8) NOT NULL" CanBeNull="false" />
+    <ElementType Name="_getInvoiceTaxResult">
+      <Column Name="InvoiceNo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TaxPercentage" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

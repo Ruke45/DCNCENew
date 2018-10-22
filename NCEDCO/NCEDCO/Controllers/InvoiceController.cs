@@ -139,7 +139,7 @@ namespace NCEDCO.Controllers
             foreach (var supporting in objSDApp.getSuuportingDocumentApproval(Invo_data))
             {
                 string RateId = supporting.Rate_Id;
-                string SuportingId = supporting.SupportingDocument_Id;
+               // string SuportingId = supporting.SupportingDocument_Id;
 
                 M_SupportDocument CRH = new M_SupportDocument();
                 CRH.ClientID_ = Invo_data.CustomerId;
