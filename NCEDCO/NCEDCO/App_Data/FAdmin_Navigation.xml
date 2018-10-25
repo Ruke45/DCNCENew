@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+* Created Date : 2018/7/24
+* Author : Tharaka Madusanka
+-->
+<Navigations>
+  <Navigation title="Dashboard" action="Dashboard" controller="Home" url="#" isParent ="false"></Navigation>
+  <Navigation title="Invoice" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Invoicing" action="Index" controller="Invoice" url="#"/>
+    <!--Invoice Details Report Needed-->
+  </Navigation>
+  <Navigation title="Cancelation" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>
+    <Child title="Cancel History" action="Canceled" controller="CancelDocument" url="#"/>
+  </Navigation>
+  <Navigation title="Issued Certificate / Doc" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
+    <Child title="Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
+  </Navigation>
+  <Navigation title="View" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Client/Parent Details" action="Details" controller="Customer" url="#"/>
+    <Child title="Client's Customer Details" action="Children" controller="Customer" url="#"/>
+    <Child title="Certificate Request Status" action="RequestStatus" controller="CertificateRequest" url="#"/>
+  </Navigation>
+</Navigations>

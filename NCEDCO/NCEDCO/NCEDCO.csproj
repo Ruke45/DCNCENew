@@ -242,6 +242,9 @@
     <Content Include="App_Data\Admin_Navigation.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\CAdmin_Navigation.xml" />
+    <Content Include="App_Data\FAdmin_Navigation.xml" />
+    <Content Include="App_Data\SAdmin_Navigation.xml" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\style.css" />

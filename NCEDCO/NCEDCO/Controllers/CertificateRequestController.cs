@@ -1000,6 +1000,7 @@ namespace NCEDCO.Controllers
         //    return View(objDown.getCertificateDownload("%", "%", "%", "%", "%", "%"));// need to get Session Parent Id
         //}
 
+        [UserFilter(Function_Id = "F_CERT_STTUS")]
         public ActionResult RequestStatus()
         {
             return View();

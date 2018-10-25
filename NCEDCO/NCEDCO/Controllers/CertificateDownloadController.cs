@@ -18,17 +18,18 @@ namespace NCEDCO.Controllers
         //
         // GET: /CertificateDownload/
         B_CertificateDownload objCd = new B_CertificateDownload();
+        _USession _session = new _USession();
 
+        [UserFilter(Function_Id = "F_DOWNLD_INDX")]
         public ActionResult Index()
         {
-
             return View();
         }
 
         public ActionResult getCertificateDownloadByParent()
         {       
             return PartialView("P_CDownloadList",
-                   objCd.getCertificateDownload("%","%","%","%","%","%")); // need to be considered by Parent Id
+                   objCd.getCertificateDownload("%","%","%","%","%",_session.Customer_ID)); // need to be considered by Parent Id
         }
 
         //[UserFilter(Function_Id = "F_CERT_APRUV")]
@@ -64,6 +65,7 @@ namespace NCEDCO.Controllers
                         objCd.getCertificateSupportDocs(Cid));
         }
 
+        [UserFilter(Function_Id = "F_CERT_APRUV")]
         [HttpPost]
         public ActionResult BulkDownload(string IDs)
         {

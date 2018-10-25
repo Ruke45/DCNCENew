@@ -1,5 +1,7 @@
-﻿using NCEDCO.Models;
+﻿using NCEDCO.Filters;
+using NCEDCO.Models;
 using NCEDCO.Models.Business;
+using NCEDCO.Models.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,9 @@ namespace NCEDCO.Controllers
         B_Customer CustomerOBj = new B_Customer();
         B_Invoice objInv = new B_Invoice();
         B_SupportDocApprove objSDApp = new B_SupportDocApprove();
+        _USession _session = new _USession();
 
+        [UserFilter(Function_Id = "F_INVO_INDX")]
         public ActionResult Index()
         {
             List<M_CustomerParent> par = CustomerOBj.getAllParents();
@@ -205,6 +209,7 @@ namespace NCEDCO.Controllers
             return RedirectToAction("InvoiceView", new { Invo = Invoice_No});
         }
 
+       [UserFilter(Function_Id = "F_INVO_INDX")]
         public ActionResult InvoiceView(string Invo)
         {
             return View(objInv.getInvoice_HeaderNData(Invo));

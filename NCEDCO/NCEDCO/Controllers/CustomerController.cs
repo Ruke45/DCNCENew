@@ -102,7 +102,7 @@ namespace NCEDCO.Controllers
             return View(CustomerOBj.getParentCustomerDetails(RequestId));
         }
 
-        //[UserFilter(Function_Id = "TINDX")]
+        [UserFilter(Function_Id = "F_APPRV_PRNT")]
         [HttpPost]
         public JsonResult ApprovePCustomer(M_CustomerParentRequest Model)
         {
@@ -123,6 +123,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_APPRV_CHILD")]
         [HttpPost]
         public JsonResult ApproveCCustomer(M_CustomerRequest Model)
         {
@@ -170,6 +171,7 @@ namespace NCEDCO.Controllers
             return PartialView("C_ChildCustomerReject");
         }
 
+        [UserFilter(Function_Id = "F_REJCT_PRNT")]
         [HttpPost]
         public JsonResult RejectPCustomer(M_Reject Model)
         {
@@ -190,6 +192,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_REJCT_PRNT")]
         [HttpPost]
         public JsonResult RejectCCustomer(M_Reject Model)
         {
@@ -256,7 +259,7 @@ namespace NCEDCO.Controllers
             return View(CustomerOBj.getChildCustomerDetails(RequestID));
         }
 
-       // [UserFilter(Function_Id = "F_CLENT.REQST.DETL")]
+        [UserFilter(Function_Id = "F_CLENT.REQST.DETL")]
         public ActionResult RateNTax()
         {
 
@@ -287,6 +290,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_ChildRatesTable",C);
         }
 
+        [UserFilter(Function_Id = "F_UPDTE_RATE")]
         [HttpPost]
         public JsonResult setUpdateRate(M_TaxNRates Model)
         {
@@ -302,6 +306,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_UPDTE_RATE")]
         [HttpPost]
         public JsonResult setAddRate(M_TaxNRates Model)
         {
@@ -317,6 +322,7 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_VIEW_DETLS")]
         public ActionResult Details()
         {
             return View(CustomerOBj.getAllCustomerDetails_());
@@ -329,6 +335,7 @@ namespace NCEDCO.Controllers
             return View();
         }
 
+        [UserFilter(Function_Id = "F_VIEW_CHILDRN")]
         public ActionResult ViewChildren(string Parentid)
         {
             return PartialView("P_CustomersChildren",

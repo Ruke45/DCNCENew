@@ -21,16 +21,19 @@ namespace NCEDCO.Controllers
         B_CertificateDownload objCd = new B_CertificateDownload();
         _USession _session = new _USession();
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult Pending()
         {
             return View(objSDApprv.getPendingSDRequests("%", "P"));
         }
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         private bool Sign_SDocument(string Ref, string UPath)
         {
             bool result = false;
@@ -88,6 +91,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_ApproveSD");
         }
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         [HttpPost]
         public ActionResult Approve_Support(M_Signatory Model)
         {
@@ -108,6 +112,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_BulkApprove");
         }
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         [HttpPost]
         public JsonResult BulkSign(M_Signatory Model)
         {
@@ -126,6 +131,7 @@ namespace NCEDCO.Controllers
         }
 
         //[UserFilter(Function_Id = "F_CERT_APRUV")]
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult ViewPDF(String ID)
         {
             try
@@ -152,6 +158,7 @@ namespace NCEDCO.Controllers
         }
 
         //[UserFilter(Function_Id = "F_CERT_APRUV")]
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult RejectSD(string Rid)
         {
             Rejectitem objReject = new Rejectitem();
@@ -165,6 +172,7 @@ namespace NCEDCO.Controllers
             return PartialView("P_RejectSupportDoc");
         }
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         [HttpPost]
         public JsonResult Reject_SDocument(M_Reject Model)
         {
@@ -177,14 +185,21 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_DOWN_SDOC")]
         public ActionResult Download()
         {
             return View();
         }
 
+        [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult getApprovedSDbyParent()
         {
-            return PartialView("P_SDDownload",objCd.getSupportingDocumentDownload("PC3"));
+            string UserGroupID_CustomerAdmin = System.Configuration.ConfigurationManager.AppSettings["UserGroupID_CustomerAdmin"];
+            if (!_session.User_Group.Equals(UserGroupID_CustomerAdmin))
+            {
+                return PartialView("P_SDDownload", objCd.getSupportingDocumentDownload("%"));
+            }
+            return PartialView("P_SDDownload", objCd.getSupportingDocumentDownload(_session.Customer_ID));
         }
 
         [HttpPost]

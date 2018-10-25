@@ -1,4 +1,5 @@
-﻿using NCEDCO.Models;
+﻿using NCEDCO.Filters;
+using NCEDCO.Models;
 using NCEDCO.Models.Business;
 using NCEDCO.Models.Utility;
 using System;
@@ -17,9 +18,11 @@ namespace NCEDCO.Controllers
         B_CancelDocument objCncl = new B_CancelDocument();
         _USession _session = new _USession();
 
+        [UserFilter(Function_Id = "F_CANCL_INDX")]
         public ActionResult Index()
         {
-            return View(objCncl.getDocumentCancelList("%", "A", "20180801", "20180905", "SDID1","%"));
+            return View(objCncl.getDocumentCancelList("%", "A", DateTime.Now.AddDays(-30).ToString("yyyyMMdd"), 
+                                                      DateTime.Now.ToString("yyyyMMdd"), "SDID1", "%"));
         }
 
         [HttpGet]
@@ -56,6 +59,8 @@ namespace NCEDCO.Controllers
             return PartialView("P_CancelDocument");
 
         }
+
+        [UserFilter(Function_Id = "F_CANCL_DOC")]
         [HttpPost]
         public JsonResult Cancel_Doc(M_CancelDocument Model)
         {
@@ -66,6 +71,7 @@ namespace NCEDCO.Controllers
             return Json(re, JsonRequestBehavior.AllowGet);
         }
 
+        [UserFilter(Function_Id = "F_CANCL_CANCLED")]
         public ActionResult Canceled()
         {
             ViewBag.Fdate = DateTime.Now.AddDays(-30).ToString("dd/MMM/yyyy");
@@ -73,6 +79,8 @@ namespace NCEDCO.Controllers
             return View(objCncl.getCancelCertificate(DateTime.Now.AddDays(-30).ToString("yyyyMMdd"),
                                                      DateTime.Now.ToString("yyyyMMdd"), "%", "%"));
         }
+
+        [UserFilter(Function_Id = "F_CANCL_CANCLED")]
         [AllowAnonymous]
         public ActionResult CanceledD(DateTime fdate,DateTime tdate)
         {
