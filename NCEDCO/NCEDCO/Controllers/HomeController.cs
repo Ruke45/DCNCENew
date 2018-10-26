@@ -77,7 +77,7 @@ namespace NCEDCO.Controllers
             Session.Abandon();
             Session.Clear();
             Session.RemoveAll();
-            return View();
+            return View("Index");
         }
 
         [ChildActionOnly]
@@ -85,16 +85,8 @@ namespace NCEDCO.Controllers
         {
             var _menu = new Navigation_Menu();
 
-            string naviga = "~/App_Data/Admin_Navigation.xml";
+            string naviga = "~/App_Data/"+ _session.User_Group +"_Navigation.xml";
 
-            //if (_session.User_Group == "Admin")
-            //{
-            //    naviga = "~/App_Data/Admin_Navigation.xml";
-            //}
-            //else
-            //{
-            //    naviga = "~/App_Data/navigation.xml";
-            //}
 
             var xmlData = System.Web.HttpContext.Current.Server.MapPath(naviga);
             if (xmlData == null)

@@ -239,12 +239,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Admin_Navigation.xml">
+    <Content Include="App_Data\ADMIN_Navigation.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\CAdmin_Navigation.xml" />
-    <Content Include="App_Data\FAdmin_Navigation.xml" />
-    <Content Include="App_Data\SAdmin_Navigation.xml" />
+    <Content Include="App_Data\CADMIN_Navigation.xml" />
+    <Content Include="App_Data\FADMIN_Navigation.xml" />
+    <Content Include="App_Data\SADMIN_Navigation.xml" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\style.css" />
@@ -462,6 +462,9 @@
     <Content Include="Views\Invoice\GenarateInvoice.cshtml" />
     <Content Include="Views\Invoice\TestIn.cshtml" />
     <Content Include="Views\Invoice\InvoiceView.cshtml" />
+    <Content Include="Views\Customer\MyChildern.cshtml" />
+    <Content Include="Views\CertificateRequest\Pending_C.cshtml" />
+    <Content Include="Views\SupportDocument\Pending_C.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

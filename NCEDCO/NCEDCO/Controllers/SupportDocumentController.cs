@@ -30,7 +30,12 @@ namespace NCEDCO.Controllers
         [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult Pending()
         {
-            return View(objSDApprv.getPendingSDRequests("%", "P"));
+            return View(objSDApprv.getPendingSDRequests("%", "P","%"));
+        }
+
+        public ActionResult Pending_C()
+        {
+            return View(objSDApprv.getPendingSDRequests("%", "P",_session.Customer_ID));
         }
 
         [UserFilter(Function_Id = "F_APPRV_SDOC")]
@@ -191,7 +196,7 @@ namespace NCEDCO.Controllers
             return View();
         }
 
-        [UserFilter(Function_Id = "F_APPRV_SDOC")]
+       // [UserFilter(Function_Id = "F_APPRV_SDOC")]
         public ActionResult getApprovedSDbyParent()
         {
             string UserGroupID_CustomerAdmin = System.Configuration.ConfigurationManager.AppSettings["UserGroupID_CustomerAdmin"];

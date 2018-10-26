@@ -602,13 +602,6 @@ namespace NCEDCO.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllPendingCertificateRequests")]
-		public ISingleResult<getAllPendingCertificateRequestsResult> getAllPendingCertificateRequests([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerID);
-			return ((ISingleResult<getAllPendingCertificateRequestsResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateUploadBCertifcateRequest]")]
 		public int _setUpdateUploadBCertifcateRequest([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModifiedBy", DbType="VarChar(20)")] string modifiedBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CertificateId", DbType="VarChar(20)")] string certificateId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestId", DbType="VarChar(20)")] string requestId)
 		{
@@ -642,13 +635,6 @@ namespace NCEDCO.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), requestId);
 			return ((ISingleResult<_getUploadBCrequestResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getPendingSDocApprovals]")]
-		public ISingleResult<_getPendingSDocApprovalsResult> _getPendingSDocApprovals([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(5)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, customerID);
-			return ((ISingleResult<_getPendingSDocApprovalsResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateSDApproveReq]")]
@@ -929,6 +915,20 @@ namespace NCEDCO.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), invoiceNo);
 			return ((ISingleResult<_getInvoiceTaxResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllPendingCertificateRequests")]
+		public ISingleResult<getAllPendingCertificateRequestsResult> getAllPendingCertificateRequests([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentId", DbType="VarChar(20)")] string parentId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerID, parentId);
+			return ((ISingleResult<getAllPendingCertificateRequestsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getPendingSDocApprovals]")]
+		public ISingleResult<_getPendingSDocApprovalsResult> _getPendingSDocApprovals([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="VarChar(5)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Parentid", DbType="VarChar(20)")] string parentid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, customerID, parentid);
+			return ((ISingleResult<_getPendingSDocApprovalsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -4964,320 +4964,6 @@ namespace NCEDCO.Models
 		}
 	}
 	
-	public partial class getAllPendingCertificateRequestsResult
-	{
-		
-		private string _CertificateType;
-		
-		private string _CType;
-		
-		private string _RequestId;
-		
-		private string _CertificatePath;
-		
-		private string _CertificateName;
-		
-		private string _CustomerName;
-		
-		private string _CustomerId;
-		
-		private string _ContactPersonEmail;
-		
-		private System.DateTime _RequestDate;
-		
-		private string _InvoiceNo;
-		
-		private string _Status;
-		
-		private string _TemplateId;
-		
-		private string _SealRequired;
-		
-		private string _CollectionType;
-		
-		private string _Createdby;
-		
-		private string _SummaryDesc;
-		
-		private string _ParentCustomer;
-		
-		public getAllPendingCertificateRequestsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateType", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
-		public string CertificateType
-		{
-			get
-			{
-				return this._CertificateType;
-			}
-			set
-			{
-				if ((this._CertificateType != value))
-				{
-					this._CertificateType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CType", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
-		public string CType
-		{
-			get
-			{
-				return this._CType;
-			}
-			set
-			{
-				if ((this._CType != value))
-				{
-					this._CType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string RequestId
-		{
-			get
-			{
-				return this._RequestId;
-			}
-			set
-			{
-				if ((this._RequestId != value))
-				{
-					this._RequestId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificatePath", DbType="VarChar(250)")]
-		public string CertificatePath
-		{
-			get
-			{
-				return this._CertificatePath;
-			}
-			set
-			{
-				if ((this._CertificatePath != value))
-				{
-					this._CertificatePath = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string CertificateName
-		{
-			get
-			{
-				return this._CertificateName;
-			}
-			set
-			{
-				if ((this._CertificateName != value))
-				{
-					this._CertificateName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string CustomerName
-		{
-			get
-			{
-				return this._CustomerName;
-			}
-			set
-			{
-				if ((this._CustomerName != value))
-				{
-					this._CustomerName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string CustomerId
-		{
-			get
-			{
-				return this._CustomerId;
-			}
-			set
-			{
-				if ((this._CustomerId != value))
-				{
-					this._CustomerId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonEmail", DbType="VarChar(50)")]
-		public string ContactPersonEmail
-		{
-			get
-			{
-				return this._ContactPersonEmail;
-			}
-			set
-			{
-				if ((this._ContactPersonEmail != value))
-				{
-					this._ContactPersonEmail = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime NOT NULL")]
-		public System.DateTime RequestDate
-		{
-			get
-			{
-				return this._RequestDate;
-			}
-			set
-			{
-				if ((this._RequestDate != value))
-				{
-					this._RequestDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(50)")]
-		public string InvoiceNo
-		{
-			get
-			{
-				return this._InvoiceNo;
-			}
-			set
-			{
-				if ((this._InvoiceNo != value))
-				{
-					this._InvoiceNo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20)")]
-		public string TemplateId
-		{
-			get
-			{
-				return this._TemplateId;
-			}
-			set
-			{
-				if ((this._TemplateId != value))
-				{
-					this._TemplateId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SealRequired", DbType="VarChar(5)")]
-		public string SealRequired
-		{
-			get
-			{
-				return this._SealRequired;
-			}
-			set
-			{
-				if ((this._SealRequired != value))
-				{
-					this._SealRequired = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CollectionType", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
-		public string CollectionType
-		{
-			get
-			{
-				return this._CollectionType;
-			}
-			set
-			{
-				if ((this._CollectionType != value))
-				{
-					this._CollectionType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Createdby", DbType="VarChar(201) NOT NULL", CanBeNull=false)]
-		public string Createdby
-		{
-			get
-			{
-				return this._Createdby;
-			}
-			set
-			{
-				if ((this._Createdby != value))
-				{
-					this._Createdby = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SummaryDesc", DbType="VarChar(1000)")]
-		public string SummaryDesc
-		{
-			get
-			{
-				return this._SummaryDesc;
-			}
-			set
-			{
-				if ((this._SummaryDesc != value))
-				{
-					this._SummaryDesc = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentCustomer", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string ParentCustomer
-		{
-			get
-			{
-				return this._ParentCustomer;
-			}
-			set
-			{
-				if ((this._ParentCustomer != value))
-				{
-					this._ParentCustomer = value;
-				}
-			}
-		}
-	}
-	
 	public partial class _getCRequestSupportingDOCResult
 	{
 		
@@ -5685,212 +5371,6 @@ namespace NCEDCO.Models
 				if ((this._SealRequired != value))
 				{
 					this._SealRequired = value;
-				}
-			}
-		}
-	}
-	
-	public partial class _getPendingSDocApprovalsResult
-	{
-		
-		private string _RequestID;
-		
-		private string _SupportingDocID;
-		
-		private string _SupportingDocumentName;
-		
-		private string _CustomerID;
-		
-		private string _CustomerName;
-		
-		private System.Nullable<System.DateTime> _RequestDate;
-		
-		private string _RequestBy;
-		
-		private string _Status;
-		
-		private string _UploadPath;
-		
-		private string _UploadDocName;
-		
-		private string _ParentName;
-		
-		public _getPendingSDocApprovalsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string RequestID
-		{
-			get
-			{
-				return this._RequestID;
-			}
-			set
-			{
-				if ((this._RequestID != value))
-				{
-					this._RequestID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocID", DbType="VarChar(20)")]
-		public string SupportingDocID
-		{
-			get
-			{
-				return this._SupportingDocID;
-			}
-			set
-			{
-				if ((this._SupportingDocID != value))
-				{
-					this._SupportingDocID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentName", DbType="VarChar(100)")]
-		public string SupportingDocumentName
-		{
-			get
-			{
-				return this._SupportingDocumentName;
-			}
-			set
-			{
-				if ((this._SupportingDocumentName != value))
-				{
-					this._SupportingDocumentName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="VarChar(20)")]
-		public string CustomerID
-		{
-			get
-			{
-				return this._CustomerID;
-			}
-			set
-			{
-				if ((this._CustomerID != value))
-				{
-					this._CustomerID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string CustomerName
-		{
-			get
-			{
-				return this._CustomerName;
-			}
-			set
-			{
-				if ((this._CustomerName != value))
-				{
-					this._CustomerName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> RequestDate
-		{
-			get
-			{
-				return this._RequestDate;
-			}
-			set
-			{
-				if ((this._RequestDate != value))
-				{
-					this._RequestDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestBy", DbType="VarChar(20)")]
-		public string RequestBy
-		{
-			get
-			{
-				return this._RequestBy;
-			}
-			set
-			{
-				if ((this._RequestBy != value))
-				{
-					this._RequestBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadPath", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string UploadPath
-		{
-			get
-			{
-				return this._UploadPath;
-			}
-			set
-			{
-				if ((this._UploadPath != value))
-				{
-					this._UploadPath = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadDocName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string UploadDocName
-		{
-			get
-			{
-				return this._UploadDocName;
-			}
-			set
-			{
-				if ((this._UploadDocName != value))
-				{
-					this._UploadDocName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string ParentName
-		{
-			get
-			{
-				return this._ParentName;
-			}
-			set
-			{
-				if ((this._ParentName != value))
-				{
-					this._ParentName = value;
 				}
 			}
 		}
@@ -10049,6 +9529,526 @@ namespace NCEDCO.Models
 				if ((this._TaxPercentage != value))
 				{
 					this._TaxPercentage = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getAllPendingCertificateRequestsResult
+	{
+		
+		private string _CertificateType;
+		
+		private string _CType;
+		
+		private string _RequestId;
+		
+		private string _CertificatePath;
+		
+		private string _CertificateName;
+		
+		private string _CustomerName;
+		
+		private string _CustomerId;
+		
+		private string _ContactPersonEmail;
+		
+		private System.DateTime _RequestDate;
+		
+		private string _InvoiceNo;
+		
+		private string _Status;
+		
+		private string _TemplateId;
+		
+		private string _SealRequired;
+		
+		private string _CollectionType;
+		
+		private string _Createdby;
+		
+		private string _SummaryDesc;
+		
+		private string _ParentCustomer;
+		
+		public getAllPendingCertificateRequestsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateType", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string CertificateType
+		{
+			get
+			{
+				return this._CertificateType;
+			}
+			set
+			{
+				if ((this._CertificateType != value))
+				{
+					this._CertificateType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CType", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		public string CType
+		{
+			get
+			{
+				return this._CType;
+			}
+			set
+			{
+				if ((this._CType != value))
+				{
+					this._CType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificatePath", DbType="VarChar(250)")]
+		public string CertificatePath
+		{
+			get
+			{
+				return this._CertificatePath;
+			}
+			set
+			{
+				if ((this._CertificatePath != value))
+				{
+					this._CertificatePath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CertificateName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CertificateName
+		{
+			get
+			{
+				return this._CertificateName;
+			}
+			set
+			{
+				if ((this._CertificateName != value))
+				{
+					this._CertificateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonEmail", DbType="VarChar(50)")]
+		public string ContactPersonEmail
+		{
+			get
+			{
+				return this._ContactPersonEmail;
+			}
+			set
+			{
+				if ((this._ContactPersonEmail != value))
+				{
+					this._ContactPersonEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime NOT NULL")]
+		public System.DateTime RequestDate
+		{
+			get
+			{
+				return this._RequestDate;
+			}
+			set
+			{
+				if ((this._RequestDate != value))
+				{
+					this._RequestDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(50)")]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this._InvoiceNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateId", DbType="VarChar(20)")]
+		public string TemplateId
+		{
+			get
+			{
+				return this._TemplateId;
+			}
+			set
+			{
+				if ((this._TemplateId != value))
+				{
+					this._TemplateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SealRequired", DbType="VarChar(5)")]
+		public string SealRequired
+		{
+			get
+			{
+				return this._SealRequired;
+			}
+			set
+			{
+				if ((this._SealRequired != value))
+				{
+					this._SealRequired = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CollectionType", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		public string CollectionType
+		{
+			get
+			{
+				return this._CollectionType;
+			}
+			set
+			{
+				if ((this._CollectionType != value))
+				{
+					this._CollectionType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Createdby", DbType="VarChar(201) NOT NULL", CanBeNull=false)]
+		public string Createdby
+		{
+			get
+			{
+				return this._Createdby;
+			}
+			set
+			{
+				if ((this._Createdby != value))
+				{
+					this._Createdby = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SummaryDesc", DbType="VarChar(1000)")]
+		public string SummaryDesc
+		{
+			get
+			{
+				return this._SummaryDesc;
+			}
+			set
+			{
+				if ((this._SummaryDesc != value))
+				{
+					this._SummaryDesc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentCustomer", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string ParentCustomer
+		{
+			get
+			{
+				return this._ParentCustomer;
+			}
+			set
+			{
+				if ((this._ParentCustomer != value))
+				{
+					this._ParentCustomer = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getPendingSDocApprovalsResult
+	{
+		
+		private string _RequestID;
+		
+		private string _SupportingDocID;
+		
+		private string _SupportingDocumentName;
+		
+		private string _CustomerID;
+		
+		private string _CustomerName;
+		
+		private System.Nullable<System.DateTime> _RequestDate;
+		
+		private string _RequestBy;
+		
+		private string _Status;
+		
+		private string _UploadPath;
+		
+		private string _UploadDocName;
+		
+		private string _ParentName;
+		
+		public _getPendingSDocApprovalsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this._RequestID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocID", DbType="VarChar(20)")]
+		public string SupportingDocID
+		{
+			get
+			{
+				return this._SupportingDocID;
+			}
+			set
+			{
+				if ((this._SupportingDocID != value))
+				{
+					this._SupportingDocID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportingDocumentName", DbType="VarChar(100)")]
+		public string SupportingDocumentName
+		{
+			get
+			{
+				return this._SupportingDocumentName;
+			}
+			set
+			{
+				if ((this._SupportingDocumentName != value))
+				{
+					this._SupportingDocumentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="VarChar(20)")]
+		public string CustomerID
+		{
+			get
+			{
+				return this._CustomerID;
+			}
+			set
+			{
+				if ((this._CustomerID != value))
+				{
+					this._CustomerID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> RequestDate
+		{
+			get
+			{
+				return this._RequestDate;
+			}
+			set
+			{
+				if ((this._RequestDate != value))
+				{
+					this._RequestDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestBy", DbType="VarChar(20)")]
+		public string RequestBy
+		{
+			get
+			{
+				return this._RequestBy;
+			}
+			set
+			{
+				if ((this._RequestBy != value))
+				{
+					this._RequestBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadPath", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string UploadPath
+		{
+			get
+			{
+				return this._UploadPath;
+			}
+			set
+			{
+				if ((this._UploadPath != value))
+				{
+					this._UploadPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UploadDocName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UploadDocName
+		{
+			get
+			{
+				return this._UploadDocName;
+			}
+			set
+			{
+				if ((this._UploadDocName != value))
+				{
+					this._UploadDocName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string ParentName
+		{
+			get
+			{
+				return this._ParentName;
+			}
+			set
+			{
+				if ((this._ParentName != value))
+				{
+					this._ParentName = value;
 				}
 			}
 		}

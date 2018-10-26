@@ -393,7 +393,13 @@ namespace NCEDCO.Controllers
         [UserFilter(Function_Id = "F_CERT_APRUV")]
         public ActionResult Pending()
         {
-            return View(objCr.getAllPendingCertificateRequest("%"));
+            return View(objCr.getAllPendingCertificateRequest("%","%"));
+        }
+
+        [UserFilter(Function_Id = "F_CERT_C.PENDN")]
+        public ActionResult Pending_C()
+        {
+            return View(objCr.getAllPendingCertificateRequest("%",_session.Customer_ID));
         }
 
         [UserFilter(Function_Id = "F_CERT_APRUV")]

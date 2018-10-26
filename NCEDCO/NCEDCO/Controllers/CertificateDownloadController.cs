@@ -20,6 +20,8 @@ namespace NCEDCO.Controllers
         B_CertificateDownload objCd = new B_CertificateDownload();
         _USession _session = new _USession();
 
+        String UserGroupID_CustomerAdmin = System.Configuration.ConfigurationManager.AppSettings["UserGroupID_CustomerAdmin"];
+
         [UserFilter(Function_Id = "F_DOWNLD_INDX")]
         public ActionResult Index()
         {
@@ -27,9 +29,14 @@ namespace NCEDCO.Controllers
         }
 
         public ActionResult getCertificateDownloadByParent()
-        {       
+        {
+            if (_session.User_Group.Equals(UserGroupID_CustomerAdmin))
+            {
+                return PartialView("P_CDownloadList",
+                       objCd.getCertificateDownload("%", "%", "%", "%", "%", _session.Customer_ID)); // need to be considered by Parent Id
+            }
             return PartialView("P_CDownloadList",
-                   objCd.getCertificateDownload("%","%","%","%","%",_session.Customer_ID)); // need to be considered by Parent Id
+                       objCd.getCertificateDownload("%", "%", "%", "%", "%", "%")); 
         }
 
         //[UserFilter(Function_Id = "F_CERT_APRUV")]

@@ -419,7 +419,7 @@ namespace NCEDCO.Models.Business
 
         }
 
-        public List<M_Cerificate> getAllPendingCertificateRequest(string ClientId)
+        public List<M_Cerificate> getAllPendingCertificateRequest(string ClientId, string ParentId)
         {
             try
             {
@@ -428,7 +428,7 @@ namespace NCEDCO.Models.Business
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
                     datacontext.Connection.ConnectionString = Connection_;
-                    System.Data.Linq.ISingleResult<getAllPendingCertificateRequestsResult> lst = datacontext.getAllPendingCertificateRequests(ClientId);
+                    System.Data.Linq.ISingleResult<getAllPendingCertificateRequestsResult> lst = datacontext.getAllPendingCertificateRequests(ClientId,ParentId);
 
                     foreach (getAllPendingCertificateRequestsResult result in lst)
                     {

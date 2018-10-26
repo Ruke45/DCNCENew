@@ -68,7 +68,7 @@ namespace NCEDCO.Models.Business
 
         }
 
-        public List<M_SupportDocumentUpload> getPendingSDRequests(string ClientId,string Status)
+        public List<M_SupportDocumentUpload> getPendingSDRequests(string ClientId,string Status, string Parent)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace NCEDCO.Models.Business
                 using (DBLinqDataContext datacontext = new DBLinqDataContext())
                 {
                     datacontext.Connection.ConnectionString = Connection_;
-                    System.Data.Linq.ISingleResult<_getPendingSDocApprovalsResult> lst = datacontext._getPendingSDocApprovals(Status,ClientId);
+                    System.Data.Linq.ISingleResult<_getPendingSDocApprovalsResult> lst = datacontext._getPendingSDocApprovals(Status,ClientId,Parent);
 
                     foreach (_getPendingSDocApprovalsResult result in lst)
                     {

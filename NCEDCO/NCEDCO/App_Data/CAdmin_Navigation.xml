@@ -12,17 +12,18 @@
     <Child title="Supporting Document Requests" action="Supporting" controller="CertificateRequest" url="#"/>   
   </Navigation>
   <Navigation title="Pending Approval" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Pending Certificate Requests" action="Pending" controller="CertificateRequest" url="#"/>
-    <Child title="Pending Support Document Requests" action="Pending" controller="SupportDocument" url="#"/>
+    <Child title="Pending Certificate Requests" action="Pending_C" controller="CertificateRequest" url="#"/>
+    <Child title="Pending Support Document Requests" action="Pending_C" controller="SupportDocument" url="#"/>
   </Navigation>
   <Navigation title="View" action="#" controller="#" url="#" isParent ="true">
     <Child title="Client/Parent Details" action="Details" controller="Customer" url="#"/>
-    <Child title="Client's Customer Details" action="Children" controller="Customer" url="#"/>
-    <Child title="Certificate Request Status" action="RequestStatus" controller="CertificateRequest" url="#"/>
+    <Child title="Client's Customer Details" action="MyChildern" controller="Customer" url="#"/>
   </Navigation>
   <Navigation title="Download" action="#" controller="#" url="#" isParent ="true">
     <Child title="Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
     <Child title="Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
-  <!--Edit Customer Information Needed-->
+  <!--Edit Customer Information Needed
+      Edit Customer Clients Needed
+  -->
 </Navigations>

@@ -328,6 +328,7 @@ namespace NCEDCO.Controllers
             return View(CustomerOBj.getAllCustomerDetails_());
         }
 
+        [UserFilter(Function_Id = "F_VIEW_CHILDRN")]
         public ActionResult Children()
         {
             List<M_CustomerParent> par = CustomerOBj.getAllParents();
@@ -335,7 +336,13 @@ namespace NCEDCO.Controllers
             return View();
         }
 
-        [UserFilter(Function_Id = "F_VIEW_CHILDRN")]
+        [UserFilter(Function_Id = "F_VIEW_MYCHLRN")]
+        public ActionResult MyChildern()
+        {
+            @ViewBag.ParentId = _session.Customer_ID;
+            return View();
+        }
+        
         public ActionResult ViewChildren(string Parentid)
         {
             return PartialView("P_CustomersChildren",
