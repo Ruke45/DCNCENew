@@ -314,7 +314,7 @@ namespace NCEDCO.Models.Business
                                                                 pr.Address1,
                                                                 pr.Address2,
                                                                 pr.Address3,
-                                                                "CLIENT",// User Session Parent User ID Here
+                                                                pr.CreatedBy,// User Session Parent User ID Here
                                                                 pr.IsVat,
                                                                 pr.ContactPersonName,
                                                                 pr.ContactPersonDesignation,
@@ -322,7 +322,7 @@ namespace NCEDCO.Models.Business
                                                                 pr.ContactPersonMobile,
                                                                 pr.ContactPersonEmail,
                                                                 pr.IsNCEMember,
-                                                                "PC3", // User Session Parent Customer ID Here
+                                                                pr.Parent_Id, // User Session Parent Customer ID Here
                                                                 pr.ProductDetails,
                                                                 pr.ExportSectorId);
 
@@ -872,6 +872,100 @@ namespace NCEDCO.Models.Business
             }
 
 
+        }
+
+        public bool Update_ParentCustomerDetails(M_CustomerParent pr)
+        {
+            try
+            {
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+                        dbContext._setUpdateParentCustomer(pr.Parent_Id,
+                                                            pr.Customer_Name,
+                                                            pr.Telephone,
+                                                            pr.Fax,
+                                                            pr.Email,
+                                                            pr.Address1,
+                                                            pr.Address2,
+                                                            pr.Address3,
+                                                            pr.ContactPersonName,
+                                                            pr.ContactPersonDesignation,
+                                                            pr.ContactPersonDirectPhone,
+                                                            pr.ContactPersonMobile,
+                                                            pr.ContactPersonEmail);
+
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return false;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
+        }
+
+        public M_CustomerParent getParentCustomerDetails_(string CustomerId)
+        {
+            try
+            {
+
+                M_CustomerParentRequest req = new M_CustomerParentRequest();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getParentCustomerRequestDetailsResult> lst = datacontext._getParentCustomerRequestDetails(CustomerId);
+
+                    foreach (_getParentCustomerRequestDetailsResult r in lst)
+                    {
+                        req.Address1 = r.Address1;
+                        req.Address2 = r.Address2;
+                        req.Address3 = r.Address3;
+                        req.ContactPersonDesignation = r.ContactPersonDesignation;
+                        req.ContactPersonDirectPhone = r.ContactPersonDirectPhoneNumber;
+                        req.ContactPersonEmail = r.ContactPersonEmail;
+                        req.ContactPersonMobile = r.ContactPersonMobile;
+                        req.ContactPersonName = r.ContactPersonName;
+                        req.CreatedDate = r.CreatedDate;
+                        req.Customer_Name = r.CustomerName;
+                        req.Email = r.Email;
+                        req.Fax = r.Fax;
+                        req.Request_Id = r.RequestId;
+                        req.Telephone = r.Telephone;
+                        req.IsNCEMember = r.NCEMember;
+                        req.IsVat = r.IsSVat;
+                    }
+                }
+
+                return req;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
         }
     }
 

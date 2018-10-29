@@ -242,7 +242,9 @@
     <Content Include="App_Data\ADMIN_Navigation.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\CADMIN_Navigation.xml" />
+    <Content Include="App_Data\CADMIN_Navigation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\FADMIN_Navigation.xml" />
     <Content Include="App_Data\SADMIN_Navigation.xml" />
     <Content Include="Content\daterangepicker.css" />
@@ -465,6 +467,7 @@
     <Content Include="Views\Customer\MyChildern.cshtml" />
     <Content Include="Views\CertificateRequest\Pending_C.cshtml" />
     <Content Include="Views\SupportDocument\Pending_C.cshtml" />
+    <Content Include="Views\Customer\EditCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

@@ -26,7 +26,7 @@
             <div class="panel-heading">
                 Parent Customer Requests Table
                 <div style="float: right">
-                    <button type="button" class="btn btn-primary" onclick="ApproveParentCustomer()">Approve </button>
+                    <button type="button" class="btn btn-primary" id="btnApprove" onclick="ApproveParentCustomer()">Approve </button>
                     <button type="button" class="btn btn-danger" onclick='ShowRejectView("@Model.Request_Id")'>Reject</button>
                     <button type="button" class="btn btn-warning">Return</button>
 
@@ -251,7 +251,7 @@
     var ApproveParentCustomer = function () {
         debugger
         var formdata = $("#FrmPCDetails").serialize();
-        //$("#loaderDiv").show();
+        $("#btnApprove").text("Approving ...");
         //$("#btnRegister").prop('value', 'Saving');
         $.ajax({
             

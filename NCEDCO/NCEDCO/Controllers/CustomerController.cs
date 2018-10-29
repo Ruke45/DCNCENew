@@ -60,6 +60,8 @@ namespace NCEDCO.Controllers
             string ID = "";
             try
             {
+                Model.Parent_Id = _session.Customer_ID;
+                Model.CreatedBy = _session.User_Id;
                 if (!objUser.checkUserName(Model.Admin_UserId))
                 {
                     var cid = CustomerOBj.SetChildCustomerRequest(Model);
@@ -109,7 +111,8 @@ namespace NCEDCO.Controllers
             string result = "Error";
             try
             {
-                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(Model.Request_Id),_session.User_Id);
+                result = CustomerOBj.SetApproveCustomerParentRequest(CustomerOBj.getParentCustomerDetails(Model.Request_Id),
+                                                                                                          _session.User_Id);
 
                 if (result != null)
                 {
@@ -347,6 +350,28 @@ namespace NCEDCO.Controllers
         {
             return PartialView("P_CustomersChildren",
                 CustomerOBj.getAllParentsChildren__(Parentid));
+        }
+
+        public ActionResult EditCustomer()
+        {
+            return View(CustomerOBj.getParentCustomerDetails_(_session.Customer_ID));
+        }
+
+        [HttpPost]
+        public JsonResult EditCustomer(M_CustomerParent Model)
+        {
+
+            bool result = false;
+            Model.Parent_Id = _session.Customer_ID;
+            try
+            {
+                result = CustomerOBj.Update_ParentCustomerDetails(Model);
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
     }

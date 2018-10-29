@@ -930,6 +930,20 @@ namespace NCEDCO.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), status, customerID, parentid);
 			return ((ISingleResult<_getPendingSDocApprovalsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_setUpdateParentCustomer]")]
+		public int _setUpdateParentCustomer([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerId", DbType="VarChar(20)")] string customerId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerName", DbType="VarChar(150)")] string customerName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telephone", DbType="VarChar(20)")] string telephone, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fax", DbType="VarChar(20)")] string fax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address1", DbType="VarChar(150)")] string address1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address2", DbType="VarChar(150)")] string address2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address3", DbType="VarChar(150)")] string address3, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactPerson", DbType="VarChar(150)")] string contactPerson, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactDesignation", DbType="VarChar(50)")] string contactDesignation, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactDirectPhone", DbType="VarChar(20)")] string contactDirectPhone, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactMobile", DbType="VarChar(20)")] string contactMobile, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactEmail", DbType="VarChar(50)")] string contactEmail)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerId, customerName, telephone, fax, email, address1, address2, address3, contactPerson, contactDesignation, contactDirectPhone, contactMobile, contactEmail);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[_getParentCustomerRequestDetails]")]
+		public ISingleResult<_getParentCustomerRequestDetailsResult> _getParentCustomerRequestDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CustomerID", DbType="VarChar(20)")] string customerID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), customerID);
+			return ((ISingleResult<_getParentCustomerRequestDetailsResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class DCISgetSequenceResult
@@ -10049,6 +10063,374 @@ namespace NCEDCO.Models
 				if ((this._ParentName != value))
 				{
 					this._ParentName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class _getParentCustomerRequestDetailsResult
+	{
+		
+		private string _RequestId;
+		
+		private string _ParentCustomerId;
+		
+		private string _CustomerName;
+		
+		private string _Telephone;
+		
+		private string _IsSVat;
+		
+		private string _Fax;
+		
+		private string _Email;
+		
+		private string _Address1;
+		
+		private string _Address2;
+		
+		private string _Address3;
+		
+		private string _Status;
+		
+		private System.DateTime _CreatedDate;
+		
+		private string _CreatedBy;
+		
+		private string _ContactPersonName;
+		
+		private string _ContactPersonDesignation;
+		
+		private string _ContactPersonDirectPhoneNumber;
+		
+		private string _ContactPersonMobile;
+		
+		private string _ContactPersonEmail;
+		
+		private string _NCEMember;
+		
+		private string _PaidType;
+		
+		public _getParentCustomerRequestDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestId", DbType="VarChar(20)")]
+		public string RequestId
+		{
+			get
+			{
+				return this._RequestId;
+			}
+			set
+			{
+				if ((this._RequestId != value))
+				{
+					this._RequestId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentCustomerId", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string ParentCustomerId
+		{
+			get
+			{
+				return this._ParentCustomerId;
+			}
+			set
+			{
+				if ((this._ParentCustomerId != value))
+				{
+					this._ParentCustomerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telephone", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Telephone
+		{
+			get
+			{
+				return this._Telephone;
+			}
+			set
+			{
+				if ((this._Telephone != value))
+				{
+					this._Telephone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSVat", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string IsSVat
+		{
+			get
+			{
+				return this._IsSVat;
+			}
+			set
+			{
+				if ((this._IsSVat != value))
+				{
+					this._IsSVat = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="VarChar(20)")]
+		public string Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this._Fax = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address1", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Address1
+		{
+			get
+			{
+				return this._Address1;
+			}
+			set
+			{
+				if ((this._Address1 != value))
+				{
+					this._Address1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address2", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Address2
+		{
+			get
+			{
+				return this._Address2;
+			}
+			set
+			{
+				if ((this._Address2 != value))
+				{
+					this._Address2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address3", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Address3
+		{
+			get
+			{
+				return this._Address3;
+			}
+			set
+			{
+				if ((this._Address3 != value))
+				{
+					this._Address3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonName", DbType="VarChar(150)")]
+		public string ContactPersonName
+		{
+			get
+			{
+				return this._ContactPersonName;
+			}
+			set
+			{
+				if ((this._ContactPersonName != value))
+				{
+					this._ContactPersonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonDesignation", DbType="VarChar(50)")]
+		public string ContactPersonDesignation
+		{
+			get
+			{
+				return this._ContactPersonDesignation;
+			}
+			set
+			{
+				if ((this._ContactPersonDesignation != value))
+				{
+					this._ContactPersonDesignation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonDirectPhoneNumber", DbType="VarChar(20)")]
+		public string ContactPersonDirectPhoneNumber
+		{
+			get
+			{
+				return this._ContactPersonDirectPhoneNumber;
+			}
+			set
+			{
+				if ((this._ContactPersonDirectPhoneNumber != value))
+				{
+					this._ContactPersonDirectPhoneNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonMobile", DbType="VarChar(20)")]
+		public string ContactPersonMobile
+		{
+			get
+			{
+				return this._ContactPersonMobile;
+			}
+			set
+			{
+				if ((this._ContactPersonMobile != value))
+				{
+					this._ContactPersonMobile = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonEmail", DbType="VarChar(50)")]
+		public string ContactPersonEmail
+		{
+			get
+			{
+				return this._ContactPersonEmail;
+			}
+			set
+			{
+				if ((this._ContactPersonEmail != value))
+				{
+					this._ContactPersonEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NCEMember", DbType="VarChar(10)")]
+		public string NCEMember
+		{
+			get
+			{
+				return this._NCEMember;
+			}
+			set
+			{
+				if ((this._NCEMember != value))
+				{
+					this._NCEMember = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidType", DbType="VarChar(10)")]
+		public string PaidType
+		{
+			get
+			{
+				return this._PaidType;
+			}
+			set
+			{
+				if ((this._PaidType != value))
+				{
+					this._PaidType = value;
 				}
 			}
 		}

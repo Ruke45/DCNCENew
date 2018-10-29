@@ -5,7 +5,7 @@
 -->
 <Navigations>
   <Navigation title="Dashboard" action="Dashboard" controller="Home" url="#" isParent ="false"></Navigation>
-
+  <Navigation title="New Client's Request" action="CRegister" controller="Customer" url="#" isParent="false"></Navigation>
   <Navigation title="Cert/Doc Request" action="#" controller="#" url="#" isParent ="true">
     <Child title="Web Certificate Requests" action="Index" controller="CertificateRequest" url="#"/>
     <Child title="Upload Certificate Requests" action="Upload" controller="CertificateRequest" url="#"/>
@@ -14,6 +14,10 @@
   <Navigation title="Pending Approval" action="#" controller="#" url="#" isParent ="true">
     <Child title="Pending Certificate Requests" action="Pending_C" controller="CertificateRequest" url="#"/>
     <Child title="Pending Support Document Requests" action="Pending_C" controller="SupportDocument" url="#"/>
+  </Navigation>
+  <Navigation title="Edit" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Edit Customer Details" action="EditCustomer" controller="Customer" url="#"/>
+    <Child title="Edit Customer's Client Details" action="MyChildern" controller="Customer" url="#"/>
   </Navigation>
   <Navigation title="View" action="#" controller="#" url="#" isParent ="true">
     <Child title="Client/Parent Details" action="Details" controller="Customer" url="#"/>
