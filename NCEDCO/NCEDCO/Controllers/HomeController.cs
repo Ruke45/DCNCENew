@@ -85,6 +85,11 @@ namespace NCEDCO.Controllers
         {
             var _menu = new Navigation_Menu();
 
+            if (_session.User_Group.Equals(""))
+            {
+                return View("Login");
+            }
+
             string naviga = "~/App_Data/"+ _session.User_Group +"_Navigation.xml";
 
 

@@ -44,14 +44,14 @@
                                     @Html.DisplayFor(modelItem => item.ContactPersonEmail)</td>
                                 <td>@Html.DisplayFor(modelItem => item.TemplateId)</td>
                                @* <td>@Html.DisplayFor(modelItem => item.PaidType)</td>*@
-                             @*   <td align="center">*@
+                                <td align="center">
                                     @*<div class="btn-group">
                                         <button type="button" class="btn btn-primary" onclick="DetailsView(@item.TeacherId)"><span class="fa fa-info"></span></button>
                                         <button type="button" class="btn btn-primary" onclick='EditView(@item.TeacherId,"@item.Name")'><span class="fa fa-pencil"></span></button>
                                         <button type="button" class="btn btn-primary" onclick="DeleteView(@item.TeacherId)"><span class="fa fa-trash"></span></button>
                                     </div>*@
-                                @*    <a href="#" class="btn btn-primary btn-sm" onclick='DetailsView("@item.Request_Id")'>Detail View </a>
-                                </td>*@
+                                    <a href="#" class="btn btn-primary btn-sm" onclick='DetailsView("@item.ClientId")'> Edit </a>
+                                </td>
                             </tr>
                             }
                         }
@@ -82,3 +82,11 @@
     });
     TableManageButtons.init();
  </script>
+
+<script>
+    var DetailsView = function (RequestId) {
+        debugger
+        var Url = "/Customer/EditCClient?Cid=" + RequestId;
+        window.location.href = Url;
+    }
+</script>

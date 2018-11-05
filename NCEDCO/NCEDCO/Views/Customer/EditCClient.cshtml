@@ -1,6 +1,6 @@
-﻿@model NCEDCO.Models.M_CustomerParent
+﻿@model NCEDCO.Models.M_Customer
 @{
-    ViewBag.Title = "Edit Customer";
+    ViewBag.Title = "Edit Customer's Client";
 }
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
@@ -11,7 +11,7 @@
         <ol class="breadcrumb">
             <li><a href="index.html">Customer</a>
             </li>
-            <li class="active">Edit Customer</li>
+            <li class="active">Edit Customers' Client</li>
         </ol>
     </div>
 </div>
@@ -19,16 +19,17 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Edit Customer Form</div>
+            <div class="panel-heading">Edit Customers' Client Form</div>
             <div class="panel-body">
-                <form id="FrmEditP" class="form-horizontal" autocomplete="off">
-                     <div class="col-lg-12">
-                     <h6>Genaral Details --</h6>
-                   </div>
+                  <form id="FrmPCRegister" class="form-horizontal" autocomplete="off">
+                    <div class="col-lg-12">
+                        <h6>Client's Genaral Details --</h6>
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Customer_Name, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Customer_Name, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Customer_Name, new { @class = "form-control", @maxlength = "150" })
+                            @Html.HiddenFor(model => model.ClientId)
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Customer_Name, null, new { @class = "text-danger" })
@@ -37,7 +38,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Address1, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Address1, null, new { @class = "text-danger" })
@@ -46,7 +47,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Address2, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Address2, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Address2, null, new { @class = "text-danger" })
@@ -55,7 +56,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Address3, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Address3, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Address3, null, new { @class = "text-danger" })
@@ -64,7 +65,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
@@ -73,7 +74,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Telephone, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Telephone, null, new { @class = "text-danger" })
@@ -82,20 +83,20 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Fax, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.Fax, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.Fax, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         @*<div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.Fax, null, new { @class = "text-danger" })
                         </div>*@
                     </div>
                     <div class="col-lg-12">
-                     <h6>Contact Person Details --</h6>
-                   </div>
+                        <h6>Clients' Contact Person Details --</h6>
+                    </div>
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonName, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonName, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonName, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonName, null, new { @class = "text-danger" })
@@ -104,7 +105,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonDesignation, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonDesignation, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonDesignation, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonDesignation, null, new { @class = "text-danger" })
@@ -113,7 +114,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonEmail, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonEmail, null, new { @class = "text-danger" })
@@ -122,7 +123,7 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonDirectPhone, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonDirectPhone, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonDirectPhone, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonDirectPhone, null, new { @class = "text-danger" })
@@ -131,19 +132,112 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.ContactPersonMobile, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-7">
-                             @Html.TextBoxFor(model => model.ContactPersonMobile, new { @class = "form-control", @maxlength = "150" })
+                            @Html.TextBoxFor(model => model.ContactPersonMobile, new { @class = "form-control", @maxlength = "150" })
                         </div>
                         <div class="col-sm-3">
                             @Html.ValidationMessageFor(model => model.ContactPersonMobile, null, new { @class = "text-danger" })
                         </div>
                     </div>
-                  
+                    <div class="col-lg-12">
+                        <h6>Client's Export Product Details --</h6>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ProductDetails, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextAreaFor(model => model.ProductDetails, new { @class = "form-control", rows = "5", cols = "20" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.ProductDetails, null, new { @class = "text-danger" })
+                        </div>
+                        @*<textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>*@
+                        <span class="help-block">
+                            <p id="characterLeft" class="help-block ">You have reached the limit</p>
+                            <p id="Error" style="color: red;"></p>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ExportSector, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.DropDownListFor(model => model.ExportSectorId, ViewBag.Bag_ExportSectors as SelectList, "", new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.ExportSectorId, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h6>Client's Other Details --</h6>
+                    </div>
+
+
+                    @*<div class="form-group">
+                                @Html.LabelFor(m => m.IsVat, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-7">
+                                    <div class="radio radio-inline">
+														@Html.RadioButtonFor(m => m.IsVat, "Y")
+														<label for="radio1">
+															YES
+														</label>
+													</div>
+                                    <div class="radio radio-inline">
+														@Html.RadioButtonFor(m => m.IsVat, "N")
+														<label for="radio1">
+															NO
+														</label>
+													</div>
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.IsVat, null, new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.IsNCEMember, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsNCEMember, "Y")
+                                <label for="radio1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsNCEMember, "N")
+                                <label for="radio1">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.IsNCEMember, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.IsVat, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsVat, "Y")
+                                <label for="radio1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                @Html.RadioButtonFor(m => m.IsVat, "N")
+                                <label for="radio1">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.IsVat, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
 
                     <div class="hr-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-2">
-                            <button type="button" value="Update" id="btnRegister" onclick="EditPc()" class="btn btn-primary"><span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
-                                <img src="~/Images/ellipsis.gif" /></span></button>
+                            <button type="button" value="Save" id="btnRegister" onclick="EditPc()" class="btn btn-primary">
+                                <span class="fa fa-bookmark"></span>Save <span style="text-align: center; display: none" id="loaderDiv">
+                                    <img src="~/Images/ellipsis.gif" /></span></button>
                         </div>
                     </div>
 
@@ -151,7 +245,7 @@
 
                 </form>
             </div>
-            <div class="panel-footer">Edit Customer Form</div>
+            <div class="panel-footer">Edit Customers' Client Form</div>
         </div>
     </div>
 </div>
@@ -192,9 +286,9 @@
 <script>
 
     var EditPc = function () {
-        var myformdata = $("#FrmEditP").serialize();
+        var myformdata = $("#FrmPCRegister").serialize();
 
-        if (!$("#FrmEditP").valid()) {
+        if (!$("#FrmPCRegister").valid()) {
             return false;
         }
         $("#loaderDiv").show();
@@ -202,7 +296,7 @@
         $.ajax({
 
             type: "POST",
-            url: "/Customer/EditCustomer",
+            url: "/Customer/EditCClient",
             data: myformdata,
             success: function (result) {
                 $("#loaderDiv").hide();

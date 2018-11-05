@@ -530,7 +530,7 @@ namespace NCEDCO.Models.Business
                                                                 pr.ContactPersonEmail,
                                                                 pr.IsNCEMember,
                                                                 pr.ProductDetails,
-                                                                pr.ExportSector,
+                                                                pr.ExportSectorId.ToString(),
                                                                 pr.Template_ID);
 
                         dbContext._setUpdateClientCustomerReq("A", pr.Request_Id);
@@ -966,6 +966,109 @@ namespace NCEDCO.Models.Business
                 ErrorLog.LogError(ex);
                 return null;
             }
+        }
+
+        public M_Customer get_ChildCustomerDetails(string ClientId)
+        {
+            try
+            {
+
+                M_Customer req = new M_Customer();
+                using (DBLinqDataContext datacontext = new DBLinqDataContext())
+                {
+                    datacontext.Connection.ConnectionString = Connection_;
+                    System.Data.Linq.ISingleResult<_getClientCustomerDetailsResult> lst = datacontext._getClientCustomerDetails(ClientId);
+
+                    foreach (_getClientCustomerDetailsResult r in lst)
+                    {
+                        req.Address1 = r.Address1;
+                        req.Address2 = r.Address2;
+                        req.Address3 = r.Address3;
+                        req.ContactPersonDesignation = r.ContactPersonDesignation;
+                        req.ContactPersonDirectPhone = r.ContactPersonDirectPhoneNumber;
+                        req.ContactPersonEmail = r.ContactPersonEmail;
+                        req.ContactPersonMobile = r.ContactPersonMobile;
+                        req.ContactPersonName = r.ContactPersonName;
+                        req.CreatedDate = Convert.ToDateTime(r.CreatedDate);
+                        req.Customer_Name = r.CustomerName; // Child Customer
+                        req.Email = r.Email;
+                        req.Fax = r.Fax;
+                        req.Request_Id = r.RequestId;
+                        req.Telephone = r.Telephone;
+                        req.IsNCEMember = r.NCEMember;
+                        req.IsVat = r.IsSVat;
+                        req.ProductDetails = r.Productdetails;
+                        req.ExportSectorId = Convert.ToInt32(r.ExportSector);
+                        req.ExportSector = r.ExportSectorName;
+                        req.TemplateId = r.TemplateId;
+                        req.Parent_Id = r.ParentCustomerId;
+                        req.ClientId = ClientId;
+                    }
+                }
+
+                return req;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return null;
+            }
+        }
+
+        public bool Update_ChildCustomerDetails(M_Customer pr)
+        {
+            try
+            {
+                using (DBLinqDataContext dbContext = new DBLinqDataContext())
+                {
+
+                    dbContext.Connection.ConnectionString = Connection_;
+                    dbContext.Connection.Open();
+
+                    try
+                    {
+                        dbContext.Transaction = dbContext.Connection.BeginTransaction();
+                        dbContext._setUpdateClientsCustomer(pr.ClientId,
+                                                            pr.Customer_Name,
+                                                            pr.Telephone,
+                                                            pr.Fax,
+                                                            pr.Email,
+                                                            pr.Address1,
+                                                            pr.Address2,
+                                                            pr.Address3,
+                                                            pr.ContactPersonName,
+                                                            pr.ContactPersonDesignation,
+                                                            pr.ContactPersonDirectPhone,
+                                                            pr.ContactPersonMobile,
+                                                            pr.ContactPersonEmail,
+                                                            pr.ProductDetails,
+                                                            pr.IsVat,
+                                                            pr.ExportSectorId);
+
+                        dbContext.SubmitChanges();
+                        dbContext.Transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLog.LogError("B_Customer", ex);
+                        dbContext.Transaction.Rollback();
+                        return false;
+                    }
+                    finally
+                    {
+                        dbContext.Connection.Close();
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return false;
+            }
+
         }
     }
 

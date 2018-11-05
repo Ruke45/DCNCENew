@@ -468,6 +468,7 @@
     <Content Include="Views\CertificateRequest\Pending_C.cshtml" />
     <Content Include="Views\SupportDocument\Pending_C.cshtml" />
     <Content Include="Views\Customer\EditCustomer.cshtml" />
+    <Content Include="Views\Customer\EditCClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

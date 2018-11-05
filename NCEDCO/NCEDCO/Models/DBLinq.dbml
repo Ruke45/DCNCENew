@@ -1303,4 +1303,53 @@
       <Column Name="PaidType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.[_getClientCustomerDetails]" Method="_getClientCustomerDetails">
+    <Parameter Name="ClientId" Parameter="clientId" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="_getClientCustomerDetailsResult">
+      <Column Name="RequestId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Telephone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSVat" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ContactPersonDesignation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPersonDirectPhoneNumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonMobile" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContactPersonEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NCEMember" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TemplateId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TemplateName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Productdetails" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ExportSector" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExportSectorName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentCustomerId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_setUpdateClientsCustomer]" Method="_setUpdateClientsCustomer">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CustomerName" Parameter="customerName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Address3" Parameter="address3" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ContactPerson" Parameter="contactPerson" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ContactDesignation" Parameter="contactDesignation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ContactDirectPhone" Parameter="contactDirectPhone" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactMobile" Parameter="contactMobile" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContactEmail" Parameter="contactEmail" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ProductDetail" Parameter="productDetail" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="IsSVat" Parameter="isSVat" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="ExportSector" Parameter="exportSector" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

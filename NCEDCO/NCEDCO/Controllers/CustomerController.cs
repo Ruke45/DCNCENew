@@ -374,5 +374,31 @@ namespace NCEDCO.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult EditCClient(string Cid)
+        {
+            ExportSector objExport = new ExportSector();
+            List<M_ExportSector> ExportList = objExport.getAllExportSector("Y");
+            ViewBag.Bag_ExportSectors = new SelectList(ExportList, "ExportSectorId", "ExportSectorName");
+            return View(CustomerOBj.get_ChildCustomerDetails(Cid));
+        }
+
+
+        [HttpPost]
+        public JsonResult EditCClient(M_Customer Model)
+        {
+
+            bool result = false;
+            Model.Parent_Id = _session.Customer_ID;
+            try
+            {
+                result = CustomerOBj.Update_ChildCustomerDetails(Model);
+            }
+            catch (Exception Ex)
+            {
+                ErrorLog.LogError(Ex);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
