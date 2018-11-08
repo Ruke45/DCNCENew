@@ -16,6 +16,13 @@
     <Child title="Cancel Documents" action="Index" controller="CancelDocument" url="#"/>
     <Child title="Cancel History" action="Canceled" controller="CancelDocument" url="#"/>
   </Navigation>
+  <Navigation title="Certificate" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Certificate Request Status" action="RequestStatus" controller="CertificateRequest" url="#"/>
+  </Navigation>
+  <Navigation title="Download" action="#" controller="#" url="#" isParent ="true">
+    <Child title="Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
+    <Child title="Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
+  </Navigation>
   <Navigation title="User" action="#" controller="#" url="#" isParent ="true">
     <Child title="New User" action="Index" controller="User" url="#"/>
   </Navigation>
@@ -27,13 +34,6 @@
     <Child title="Supporting Document (Add/Edit)" action="SupportDocument" controller="Settings" url="#"/>
     <Child title="Support Document For Template" action="SupportDocumentForTemplate" controller="Settings" url="#"/>
     <Child title="Signatory Signature Setup" action="SignatorySignature" controller="Settings" url="#"/>
-  </Navigation>
-  <Navigation title="Cert/Doc Request" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Certificate Request Status" action="RequestStatus" controller="CertificateRequest" url="#"/>
-  </Navigation>
-  <Navigation title="Download" action="#" controller="#" url="#" isParent ="true">
-    <Child title="Certificate Requests" action="Index" controller="CertificateDownload" url="#"/>
-    <Child title="Support Doucment Requests" action="Download" controller="SupportDocument" url="#"/>
   </Navigation>
 </Navigations>
 

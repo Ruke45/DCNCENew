@@ -469,6 +469,10 @@
     <Content Include="Views\SupportDocument\Pending_C.cshtml" />
     <Content Include="Views\Customer\EditCustomer.cshtml" />
     <Content Include="Views\Customer\EditCClient.cshtml" />
+    <Content Include="Views\Home\P_Admin_Dashboard.cshtml" />
+    <Content Include="Views\Home\P_Signatory_Dashboard.cshtml" />
+    <Content Include="Views\Home\P_Customer_Dashboard.cshtml" />
+    <Content Include="Views\Home\P_Finance_Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dll\" />

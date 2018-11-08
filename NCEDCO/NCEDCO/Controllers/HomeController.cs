@@ -35,6 +35,7 @@ namespace NCEDCO.Controllers
         [UserFilter(Function_Id = "F_DASHBOARD")]
         public ActionResult Dashboard()
         {
+            ViewBag.Group = _session.User_Group;
             return View();
         }
 
@@ -152,6 +153,24 @@ namespace NCEDCO.Controllers
         {
             B_CertificateApprove objCa = new B_CertificateApprove();
             return PartialView("P_Verifyed", objCa.getRequestDetails(Ref));
+        }
+
+        public ActionResult ViewLinks(string Group)
+        {
+            switch (Group)
+            {
+                case "ADMIN":
+                    return PartialView("P_Admin_Dashboard");
+                case "SADMIN":
+                    return PartialView("P_Signatory_Dashboard");
+                case "CADMIN":
+                    return PartialView("P_Customer_Dashboard");
+                case "FADMIN":
+                    return PartialView("P_Finance_Dashboard");
+                default:
+                    return View("Login");
+            }
+          
         }
     }
 }
