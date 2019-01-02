@@ -28,8 +28,8 @@
   </Navigation>
   <Navigation title="Settings" action="#" controller="#" url="#" isParent ="true">
     <Child title="Export Sector (Add/Edit)" action="ExportSector" controller="Settings" url="#"/>
-    <Child title="Owner Company" action="ParentCustomerRequests" controller="Settings" url="#"/>
-    <Child title="Owner Contact" action="EditOwnerCompany" controller="Settings" url="#"/>
+    <Child title="Owner Company" action="EditOwnerCompany" controller="Settings" url="#"/>
+    <Child title="Owner Contact" action="EditOwnerContact" controller="Settings" url="#"/>
     <Child title="Reject Reasons" action="RejectReasons" controller="Settings" url="#"/>
     <Child title="Supporting Document (Add/Edit)" action="SupportDocument" controller="Settings" url="#"/>
     <Child title="Support Document For Template" action="SupportDocumentForTemplate" controller="Settings" url="#"/>
